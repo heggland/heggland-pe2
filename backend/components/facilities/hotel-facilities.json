@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_facilities_hotel_facilities",
+  "info": {
+    "name": "Hotel Facilities",
+    "icon": "theater-masks",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "wifi": {
+      "type": "boolean"
+    },
+    "air_conditioning": {
+      "type": "boolean"
+    },
+    "room_service": {
+      "type": "boolean"
+    },
+    "pet_friendly": {
+      "type": "boolean"
+    },
+    "safe": {
+      "type": "boolean"
+    },
+    "electric_vehicle_charging": {
+      "type": "boolean"
+    },
+    "outdoor_furniture": {
+      "type": "boolean"
+    },
+    "non_smoking_rooms": {
+      "type": "boolean"
+    },
+    "Smoke_free_property": {
+      "type": "boolean"
+    },
+    "soundproof_rooms": {
+      "type": "boolean"
+    },
+    "parking_garage": {
+      "type": "boolean"
+    },
+    "street_parking": {
+      "type": "boolean"
+    },
+    "fitness_center": {
+      "type": "boolean"
+    },
+    "restaurant": {
+      "type": "boolean"
+    },
+    "family_rooms": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visitor_messages",
+  "info": {
+    "name": "Visitor Message",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}

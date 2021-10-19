@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "enquiry_s",
+  "info": {
+    "name": "enquiry",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "message": {
+      "type": "string"
+    },
+    "people": {
+      "type": "string"
+    },
+    "rooms": {
+      "type": "integer"
+    },
+    "dateFrom": {
+      "type": "date"
+    },
+    "dateTo": {
+      "type": "date"
+    },
+    "hotels": {
+      "collection": "hotels"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/visitor-messages",
+      "handler": "visitor-message.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/visitor-messages/count",
+      "handler": "visitor-message.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/visitor-messages/:id",
+      "handler": "visitor-message.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/visitor-messages",
+      "handler": "visitor-message.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/visitor-messages/:id",
+      "handler": "visitor-message.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/visitor-messages/:id",
+      "handler": "visitor-message.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
