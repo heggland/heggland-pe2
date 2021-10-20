@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
     "name": {
       "type": "string"
     },
@@ -27,20 +24,20 @@
     "message": {
       "type": "string"
     },
-    "people": {
-      "type": "string"
-    },
     "rooms": {
       "type": "integer"
     },
-    "dateFrom": {
+    "date_from": {
       "type": "date"
     },
-    "dateTo": {
+    "date_to": {
       "type": "date"
     },
-    "hotels": {
+    "hotel_id": {
       "collection": "hotels"
+    },
+    "people": {
+      "type": "integer"
     }
   }
 }

@@ -19,6 +19,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.13.3",
     "eslint": "8.0.1",
     "eslint-config-next": "11.1.2"
   }

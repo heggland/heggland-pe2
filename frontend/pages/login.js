@@ -1,4 +1,4 @@
-import Layout from "../components/Layout/Layout";
+import Head from "../components/Layout/Head";
 import Heading from "../components/Layout/Heading";
 
 import FormError from "../components/Common/FormError";
@@ -10,39 +10,33 @@ import AuthContext from "../context/AuthContext";
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import axios from "axios";
 import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
-
-const schema = yup.object().shape({
-  username: yup
-    .string()
-    .required("Please enter a username")
-    .min(3, "Username must be at least 3 characters long"),
-  password: yup
-    .string()
-    .required("Please enter your password")
-    .min(6, "Password must be at least 6 characters long"),
-});
+import { LOGIN_SCHEMA } from "../constants/schema";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const [auth, setAuth] = useContext(AuthContext);
 
-  const history = useRouter();
+  const router = useRouter();
+
+  if (auth) {
+    router.push("/admin");
+  }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(LOGIN_SCHEMA),
   });
 
-  const [, setAuth] = useContext(AuthContext);
   async function onSubmit(data) {
     setSubmitting(true);
     setLoginError(null);
@@ -64,14 +58,16 @@ const Login = () => {
       setLoginError(error.toString());
     } finally {
       setSubmitting(false);
-      history.push("/admin");
+      router.push("/admin");
     }
   }
-
   return (
-    <Layout title={TITLE_LOGIN} description={DESCRIPTION_LOGIN}>
+    <>
+      <Head title={TITLE_LOGIN} description={DESCRIPTION_LOGIN} />
+      <Link href="/">
+        <a className="link">Holidaze</a>
+      </Link>
       <Heading>Login</Heading>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         {loginError && <FormError>{loginError}</FormError>}
         <div>
@@ -112,7 +108,7 @@ const Login = () => {
           </button>
         )}
       </form>
-    </Layout>
+    </>
   );
 };
 

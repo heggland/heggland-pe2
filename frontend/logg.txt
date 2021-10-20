@@ -1,0 +1,26 @@
+uke 1 - 
+lage databaser i strapi + valg av js-rammeverk
+Skrev alle funksjonene som er på client siden.
+Page skeleton.
+Login page, admin route.
+
+hotel - ok
+specific hotel + form - ok
+contact - ok
+login - ok
+admin - ok 
+
+
+
+
+
+
+
+
+
+
+
+
+
+TODO: admin route protect, when admin log out he/she shouldn't be forwardered
+to index page. add stronger route protect

@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import { AuthProvider } from "../context/AuthContext";
-import Footer from "../components/Layout/Footer";
 
 const GlobalStyle = createGlobalStyle`
 html,
@@ -39,7 +38,6 @@ const MyApp = ({ Component, pageProps }) => {
       <GlobalStyle />
       <AuthProvider>
         <Component {...pageProps} />
-        <Footer />
       </AuthProvider>
     </>
   );

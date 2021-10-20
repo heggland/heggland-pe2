@@ -12,3 +12,5 @@ export const DESCRIPTION_LOGIN = " Logindescription..";
 
 export const TITLE_ADMIN = "Admin | Holidaze";
 export const DESCRIPTION_ADMIN = "Admin description..";
+
+export const DESCRIPTION_HOTEL = "Hotel description..";

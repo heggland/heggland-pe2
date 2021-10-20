@@ -7,8 +7,6 @@ export default function Home() {
       <Heading>Home</Heading>
 
       <main></main>
-
-      <footer></footer>
     </Layout>
   );
 }
