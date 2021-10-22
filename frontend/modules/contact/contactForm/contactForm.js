@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
-import { Form, Row, Col, Error, Success } from "./ContactForm.style";
+import { Form, Row, Col, Error, Success } from "./contactForm.style";
 import axios from "axios";
-import { BASE_URL, CONTACT_PATH } from "../../constants/api";
-import { CONTACT_SCHEMA } from "../../constants/schema";
+import { BASE_URL, CONTACT_PATH } from "../../../constants/api";
+import { CONTACT_SCHEMA } from "../../../constants/schema";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);

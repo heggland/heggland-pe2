@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
 import { Form, Row, Col, Error, Success } from "./EnquiryForm.style";
 import axios from "axios";
-import { BASE_URL, ENQUIRIES_PATH } from "../../constants/api";
-import { ENQUIRY_SCHEMA } from "../../constants/schema";
+import { BASE_URL, ENQUIRIES_PATH } from "../../../constants/api";
+import { ENQUIRY_SCHEMA } from "../../../constants/schema";
 
 const EnquiryForm = ({ hotelId }) => {
   const [submitting, setSubmitting] = useState(false);

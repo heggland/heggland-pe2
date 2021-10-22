@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import Head from "./Head";
 import Footer from "./Footer";
@@ -32,7 +32,11 @@ const Layout = ({ title, description, children }) => {
 
 export default Layout;
 
-export const AdminLayout = ({ title, description, children }) => {
+export const AdminLayout = ({
+  title,
+  description = "no description",
+  children,
+}) => {
   const [auth, setAuth] = useContext(AuthContext);
 
   const router = useRouter();
@@ -50,16 +54,23 @@ export const AdminLayout = ({ title, description, children }) => {
 
   return (
     <>
-      <>
-        <Head title={title} description={description} />
-        <div>
-          <Link href="/admin">
-            <a className="link">Dashboard</a>
-          </Link>
-          <button onClick={logout}>Logout</button>
-        </div>
-        {children}
-      </>
+      <Head title={title} description={description} />
+      <div>
+        <Link href="/admin">
+          <a className="link">Dashboard</a>
+        </Link>
+        <Link href="/admin/edit">
+          <a className="link">Hotels</a>
+        </Link>
+        <Link href="/admin/enquiries">
+          <a className="link">Enquiries</a>
+        </Link>
+        <Link href="/admin/messages">
+          <a className="link">Messages</a>
+        </Link>
+        <button onClick={logout}>Logout</button>
+      </div>
+      {children}
     </>
   );
 };

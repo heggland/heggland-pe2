@@ -6,6 +6,7 @@ import FormError from "../components/Common/FormError";
 import { BASE_URL, TOKEN_PATH } from "../constants/api";
 
 import AuthContext from "../context/AuthContext";
+import { useCookies } from "react-cookie";
 
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -22,6 +23,7 @@ const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [auth, setAuth] = useContext(AuthContext);
+  const [cookie, setCookie] = useCookies(["token"]);
 
   const router = useRouter();
 
@@ -54,13 +56,18 @@ const Login = () => {
         token: response.data.jwt,
         username: response.data.user.username,
       });
-    } catch (error) {
-      setLoginError(error.toString());
-    } finally {
+      setCookie("token", JSON.stringify(response.data.jwt), {
+        path: "/",
+        maxAge: 3600, // Expires after 1hr
+        sameSite: true,
+      });
       setSubmitting(false);
       router.push("/admin");
+    } catch (error) {
+      setLoginError(error.toString());
     }
   }
+
   return (
     <>
       <Head title={TITLE_LOGIN} description={DESCRIPTION_LOGIN} />

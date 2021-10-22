@@ -1,5 +1,9 @@
 import * as yup from "yup";
 
+export const SEARCH_SCHEMA = yup.object().shape({
+  search: yup.string().required("Please type something"),
+});
+
 export const ENQUIRY_SCHEMA = yup.object().shape({
   name: yup
     .string()
