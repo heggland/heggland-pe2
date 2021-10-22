@@ -1,59 +1,61 @@
-import axios from "axios";
+import { useEffect, useState } from "react";
 import Heading from "../../components/Layout/Heading";
 import { AdminLayout } from "../../components/Layout/Layout";
 import { BASE_URL, CONTACT_PATH } from "../../constants/api";
 import { TITLE_ADMIN_MESSAGES } from "../../constants/meta";
+import useAxios from "../../hooks/useAxios";
 
-const Messages = ({ error, content }) => {
-  console.log(content);
+const Messages = () => {
+  const [messages, setMessages] = useState([]);
+  const [error, setError] = useState(null);
+  const http = useAxios();
 
-  if (error) {
-    return (
-      <AdminLayout title={TITLE_ADMIN_MESSAGES}>
-        <Heading>User enquiries</Heading>
-        {error}
-      </AdminLayout>
-    );
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await http.get(BASE_URL + CONTACT_PATH);
+        setMessages(response.data);
+      } catch (error) {
+        setError(error.toString());
+      }
+    }
+    fetchData();
+  }, []);
+
+  async function deleteButton(e) {
+    e.preventDefault();
+
+    const id = e.target.dataset.id;
+
+    try {
+      // checks if id is passed in, if true update item: if false create new item
+      let response;
+      response = await http.delete(BASE_URL + CONTACT_PATH + id);
+      console.log(response);
+    } catch (error) {
+      //setError(error.toString());
+      console.log(error);
+    }
   }
 
   return (
     <AdminLayout title={TITLE_ADMIN_MESSAGES}>
-      <Heading>User enquiries</Heading>
-      {content.map(({ id, name, message }) => {
-        return (
-          <div key={id}>
-            <p>{name}</p>
-            <p>{message}</p>
-          </div>
-        );
-      })}
+      <Heading>Messages</Heading>
+      {error && <span>{error}</span>}
+      {(messages.length !== 0 &&
+        messages.map(({ id, name, message }) => {
+          return (
+            <div key={id}>
+              <p>{name}</p>
+              <p>{message}</p>
+              <button onClick={deleteButton} data-id={id}>
+                X
+              </button>
+            </div>
+          );
+        })) || <span>No new messages</span>}
     </AdminLayout>
   );
 };
-
-export async function getServerSideProps() {
-  let data = [];
-
-  // fetch token
-
-  try {
-    const response = await axios.get(BASE_URL + CONTACT_PATH);
-
-    data = response.data;
-  } catch (error) {
-    return {
-      props: {
-        error: error.toString(),
-      },
-    };
-  }
-
-  return {
-    props: {
-      content: data,
-      length: data.length,
-    },
-  };
-}
 
 export default Messages;

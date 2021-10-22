@@ -4,11 +4,14 @@ import { AdminLayout } from "../../components/Layout/Layout";
 import { BASE_URL, HOTELS_PATH } from "../../constants/api";
 import { TITLE_ADMIN_HOTELS } from "../../constants/meta";
 
-const Edit = ({ content }) => {
+const Hotels = ({ content }) => {
   return (
     <AdminLayout title={TITLE_ADMIN_HOTELS}>
       <Heading>Manage hotels</Heading>
       <main>
+        <a href={`hotel/new`}>
+          <button>create new hotel</button>
+        </a>
         {content.map(({ id, name, city, address }) => {
           return (
             <div key={id}>
@@ -16,7 +19,7 @@ const Edit = ({ content }) => {
               <p>{id}</p>
               <p>{address}</p>
               <p>{city}</p>
-              <a href={`edit/${id}`}>
+              <a href={`hotel/edit/${id}`}>
                 <button>edit</button>
               </a>
             </div>
@@ -50,4 +53,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default Edit;
+export default Hotels;

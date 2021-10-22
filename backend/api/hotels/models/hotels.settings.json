@@ -24,9 +24,6 @@
     "city": {
       "type": "string"
     },
-    "zip_code": {
-      "type": "string"
-    },
     "image": {
       "collection": "file",
       "via": "related",
@@ -39,10 +36,13 @@
       "required": false,
       "pluginOptions": {}
     },
-    "HotelFacilities": {
+    "hotel_facilities": {
       "type": "component",
       "repeatable": true,
       "component": "facilities.hotel-facilities"
+    },
+    "zip_code": {
+      "type": "integer"
     }
   }
 }

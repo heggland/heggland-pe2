@@ -59,7 +59,7 @@ export const AdminLayout = ({
         <Link href="/admin">
           <a className="link">Dashboard</a>
         </Link>
-        <Link href="/admin/edit">
+        <Link href="/admin/hotels">
           <a className="link">Hotels</a>
         </Link>
         <Link href="/admin/enquiries">

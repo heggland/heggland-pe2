@@ -23,7 +23,7 @@ const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [auth, setAuth] = useContext(AuthContext);
-  const [cookie, setCookie] = useCookies(["token"]);
+  //const [cookie, setCookie] = useCookies(["token"]);
 
   const router = useRouter();
 
@@ -56,11 +56,11 @@ const Login = () => {
         token: response.data.jwt,
         username: response.data.user.username,
       });
-      setCookie("token", JSON.stringify(response.data.jwt), {
+      /* setCookie("token", JSON.stringify(response.data.jwt), {
         path: "/",
         maxAge: 3600, // Expires after 1hr
         sameSite: true,
-      });
+      }); */
       setSubmitting(false);
       router.push("/admin");
     } catch (error) {

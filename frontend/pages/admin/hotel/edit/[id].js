@@ -1,8 +1,9 @@
 import axios from "axios";
 import Link from "next/link";
-import { AdminLayout } from "../../../components/Layout/Layout";
-import { BASE_URL, HOTELS_PATH, HOTEL_PATH } from "../../../constants/api";
-import { DESCRIPTION_HOTEL } from "../../../constants/meta";
+import EditHotelForm from "../../../../components/Common/EditHotelForm";
+import { AdminLayout } from "../../../../components/Layout/Layout";
+import { BASE_URL, HOTELS_PATH, HOTEL_PATH } from "../../../../constants/api";
+import { DESCRIPTION_HOTEL } from "../../../../constants/meta";
 
 const Hotel = ({ content, error }) => {
   if (error) {
@@ -16,39 +17,22 @@ const Hotel = ({ content, error }) => {
     );
   }
 
-  let img;
-  if (content.image.length != 0) {
-    img = <img src={BASE_URL + content.image[0].url} height="200px" />;
-  }
-
-  console.log(content);
-
   return (
     <AdminLayout
       title={content.name + " | Holidaze"}
       description={DESCRIPTION_HOTEL}
     >
       <main>
-        <div>
-          <input value={content.name} />
-        </div>
-        <input value={content.description} />
-        <div>
-          <input value={content.address} />
-        </div>
-        <div>
-          <input value={content.city} />
-        </div>
-        <div>
-          <input value={content.zip_code} />
-        </div>
-        <div>
-          <input value={content.description} />
-        </div>
-        <div>
-          <input value={content.hotel_facilities} />
-        </div>
-        <div>{img}</div>
+        <EditHotelForm
+          id={content.id}
+          name={content.name}
+          description={content.description}
+          address={content.address}
+          city={content.city}
+          zip_code={content.zip_code}
+          hotel_facilities={content.hotel_facilities}
+          image={content.image}
+        />
       </main>
     </AdminLayout>
   );
