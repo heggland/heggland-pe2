@@ -26,8 +26,6 @@ const EnquiryForm = ({ hotelId }) => {
 
     data.hotel_id = hotelId;
 
-    console.log(data);
-
     try {
       const response = await axios.post(BASE_URL + ENQUIRIES_PATH, data);
       console.log(response);

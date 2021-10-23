@@ -2,7 +2,12 @@ import axios from "axios";
 import Link from "next/link";
 import EditHotelForm from "../../../../components/Common/EditHotelForm";
 import { AdminLayout } from "../../../../components/Layout/Layout";
-import { BASE_URL, HOTELS_PATH, HOTEL_PATH } from "../../../../constants/api";
+import {
+  BASE_URL,
+  HOTELS_PATH,
+  HOTEL_PATH,
+  HOTEL_STATE_PATH,
+} from "../../../../constants/api";
 import { DESCRIPTION_HOTEL } from "../../../../constants/meta";
 
 const Hotel = ({ content, error }) => {
@@ -32,6 +37,7 @@ const Hotel = ({ content, error }) => {
           zip_code={content.zip_code}
           hotel_facilities={content.hotel_facilities}
           image={content.image}
+          state={content.published_at}
         />
       </main>
     </AdminLayout>
@@ -40,7 +46,7 @@ const Hotel = ({ content, error }) => {
 
 export async function getServerSidePaths() {
   try {
-    const response = await axios.get(BASE_URL + HOTELS_PATH);
+    const response = await axios.get(BASE_URL + HOTELS_PATH + HOTEL_STATE_PATH);
 
     const paths = response.data.map((data) => ({
       params: { id: data.id },
@@ -56,7 +62,9 @@ export async function getServerSideProps({ params }) {
   let data = [];
 
   try {
-    const response = await axios.get(BASE_URL + HOTEL_PATH + params.id);
+    const response = await axios.get(
+      BASE_URL + HOTEL_PATH + params.id + HOTEL_STATE_PATH
+    );
     data = response.data;
   } catch (error) {
     return {

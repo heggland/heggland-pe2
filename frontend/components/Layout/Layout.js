@@ -44,6 +44,7 @@ export const AdminLayout = ({
   if (!auth) {
     if (typeof window !== "undefined") {
       window.location.href = "/login";
+      return <></>;
     }
   }
 
@@ -55,7 +56,7 @@ export const AdminLayout = ({
   return (
     <>
       <Head title={title} description={description} />
-      <div>
+      <nav>
         <Link href="/admin">
           <a className="link">Dashboard</a>
         </Link>
@@ -69,7 +70,7 @@ export const AdminLayout = ({
           <a className="link">Messages</a>
         </Link>
         <button onClick={logout}>Logout</button>
-      </div>
+      </nav>
       {children}
     </>
   );

@@ -71,5 +71,6 @@ export const EDIT_HOTEL_SCHEMA = yup.object().shape({
     .number()
     .required("Please enter a number value")
     .min(4, "Value must be atleast 4 characters long"),
+  state: yup.string(),
   image: yup.object(),
 });

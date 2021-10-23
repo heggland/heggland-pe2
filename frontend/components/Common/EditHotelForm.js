@@ -15,6 +15,7 @@ const EditForm = ({
   zip_code,
   hotel_facilities,
   image,
+  state,
 }) => {
   const [updated, setUpdated] = useState(false);
 
@@ -31,13 +32,15 @@ const EditForm = ({
   const http = useAxios();
 
   async function onSubmit(data) {
+    console.log(data);
     setUpdated(false);
     // setSubmitting(true);
     // setError(null);
 
-    if (id) {
-      data.id = id;
-    }
+    data.id = id && data.id;
+
+    data.published_at =
+      data.state.toLowerCase() === "published" ? new Date() : null;
 
     try {
       // checks if id is passed in, if true update item: if false create new item
@@ -142,6 +145,13 @@ const EditForm = ({
         {/*       <div>
         <input defaultValue={hotel_facilities} />
       </div> */}
+        <select
+          defaultValue={(state && "published") || "draft"}
+          {...register("state")}
+        >
+          <option value="published">Published</option>
+          <option value="draft">Draft</option>
+        </select>
         <div>{(img && img) || "todo: image uploader"}</div>
         <button type="submit">Save</button>
 

@@ -32,7 +32,12 @@ const Enquiries = () => {
       // checks if id is passed in, if true update item: if false create new item
       let response;
       response = await http.delete(BASE_URL + ENQUIRIES_PATH + id);
-      console.log(response);
+      if ((response.status = 200)) {
+        const newArray = enquiries.filter(function (data) {
+          return data.id !== response.data.id;
+        });
+        setEnquiries(newArray);
+      }
     } catch (error) {
       //setError(error.toString());
       console.log(error);

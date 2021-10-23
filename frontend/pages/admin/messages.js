@@ -32,6 +32,12 @@ const Messages = () => {
       let response;
       response = await http.delete(BASE_URL + CONTACT_PATH + id);
       console.log(response);
+      if ((response.status = 200)) {
+        const newArray = messages.filter(function (data) {
+          return data.id !== response.data.id;
+        });
+        setMessages(newArray);
+      }
     } catch (error) {
       //setError(error.toString());
       console.log(error);
