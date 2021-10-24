@@ -5,7 +5,8 @@ import { AdminLayout } from "../components/Layout/Layout";
 export default function Home() {
   return (
     <AdminLayout title={TITLE_ADMIN} description={DESCRIPTION_ADMIN}>
-      <Heading>Admin</Heading>
+      <Heading>Admin </Heading>
+      <span>Select a path from the side menu</span>
     </AdminLayout>
   );
 }

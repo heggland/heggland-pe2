@@ -1,9 +1,28 @@
 import { useEffect, useState } from "react";
 import Heading from "../../components/Layout/Heading";
 import { AdminLayout } from "../../components/Layout/Layout";
-import { BASE_URL, CONTACT_PATH } from "../../constants/api";
+import {
+  BASE_URL,
+  CONTACT_PATH,
+  CONTACT_STATE_PATH,
+} from "../../constants/api";
 import { TITLE_ADMIN_MESSAGES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
+
+import { Header } from "./index.style";
+import {
+  Row,
+  Col,
+  P,
+  Span,
+  Button,
+} from "../../components/Common/Styles/Common";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt as Trash,
+  faPencilAlt as Edit,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
@@ -13,7 +32,7 @@ const Messages = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await http.get(BASE_URL + CONTACT_PATH);
+        const response = await http.get(BASE_URL + CONTACT_STATE_PATH);
         setMessages(response.data);
       } catch (error) {
         setError(error.toString());
@@ -31,7 +50,7 @@ const Messages = () => {
       // checks if id is passed in, if true update item: if false create new item
       let response;
       response = await http.delete(BASE_URL + CONTACT_PATH + id);
-      console.log(response);
+
       if ((response.status = 200)) {
         const newArray = messages.filter(function (data) {
           return data.id !== response.data.id;
@@ -44,24 +63,137 @@ const Messages = () => {
     }
   }
 
+  async function updateState(e) {
+    e.preventDefault();
+
+    const id = Number(e.target.dataset.id);
+    const state = e.target.dataset.state;
+
+    const data = new Object();
+
+    const newState =
+      state === "publish" ? null : state === "draft" && new Date();
+    data.published_at = newState;
+    data.id = id;
+
+    const updatedMessages = messages;
+
+    try {
+      const response = await http.put(
+        BASE_URL + CONTACT_PATH + id + "?_publicationState=preview",
+        data
+      );
+      if ((response.status = 200)) {
+        for (let i = 0; i < updatedMessages.length; i++) {
+          if (updatedMessages[i].id === id) {
+            updatedMessages[i].published_at = newState;
+            setMessages([]);
+            setMessages(updatedMessages);
+            break;
+          }
+        }
+      }
+    } catch (error) {
+      //setError(error.toString());
+      console.log(error);
+    }
+  }
+
   return (
     <AdminLayout title={TITLE_ADMIN_MESSAGES}>
-      <Heading>Messages</Heading>
-      {error && <span>{error}</span>}
-      {(messages.length !== 0 &&
-        messages.map(({ id, name, message }) => {
-          return (
-            <div key={id}>
-              <p>{name}</p>
-              <p>{message}</p>
-              <button onClick={deleteButton} data-id={id}>
-                X
-              </button>
-            </div>
-          );
-        })) || <span>No new messages</span>}
+      <Row margin={30}>
+        <Col size={6}>
+          <Header>
+            <Heading>Messages</Heading>
+          </Header>
+        </Col>
+      </Row>
+      <Col size={12}>
+        <Row bg_color="rgb(243 243 243)">
+          <Col size={1}>
+            <P weight="bold" padding_left={10}>
+              Id
+            </P>
+          </Col>
+          <Col size={2}>
+            <P weight="bold">Name</P>
+          </Col>
+          <Col size={2}>
+            <P weight="bold">Email</P>
+          </Col>
+          <Col size={3}>
+            <P weight="bold">Message</P>
+          </Col>
+          <Col size={2}>
+            <P weight="bold">State</P>
+          </Col>
+          <Col size={2}>
+            <Row>
+              <Col size={6}>
+                <P weight="bold">Edit</P>
+              </Col>
+              <Col size={6}>
+                <P weight="bold">Delete</P>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        {error && <span>{error}</span>}
+        {(messages.length !== 0 &&
+          messages.map(({ id, name, email, message, published_at }) => {
+            return (
+              <Row
+                margin={20}
+                padding_bottom={18}
+                border_size="1"
+                border_color="rgb(243 243 243)"
+                key={id}
+              >
+                <Col size={1}>
+                  <Span padding_left={10}>{id}</Span>
+                </Col>
+                <Col size={2}>
+                  <Span>{name}</Span>
+                </Col>
+                <Col size={2}>
+                  <Span>{email}</Span>
+                </Col>
+                <Col size={3}>
+                  <Span>{message}</Span>
+                </Col>
+                <Col size={2}>
+                  <Span>
+                    <button
+                      onClick={updateState}
+                      data-id={id}
+                      data-state={published_at !== null ? "publish" : "draft"}
+                    >
+                      {published_at !== null ? "old" : "New"}
+                    </button>
+                  </Span>
+                </Col>
+                <Col size={2}>
+                  <Row>
+                    <Col size={6}>
+                      <a href={`message/${id}`}>
+                        <FontAwesomeIcon icon={Edit} />
+                      </a>
+                    </Col>
+                    <Col size={6}>
+                      <Button data-id={id} onClick={deleteButton}>
+                        <FontAwesomeIcon icon={Trash} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            );
+          })) || <span>No new messages</span>}
+      </Col>
     </AdminLayout>
   );
 };
 
 export default Messages;
+
+// handle id on a reactjs way?

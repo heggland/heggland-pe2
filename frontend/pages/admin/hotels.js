@@ -1,12 +1,34 @@
-import axios from "axios";
-import { useEffect } from "react";
-import Heading from "../../components/Layout/Heading";
+import { useEffect, useState } from "react";
 import { AdminLayout } from "../../components/Layout/Layout";
-import { BASE_URL, HOTELS_PATH, HOTEL_STATE_PATH } from "../../constants/api";
+import {
+  BASE_URL,
+  HOTELS_PATH,
+  HOTEL_PATH,
+  HOTEL_STATE_PATH,
+} from "../../constants/api";
 import { TITLE_ADMIN_HOTELS } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-const Hotels = ({ content }) => {
+import Heading from "../../components/Layout/Heading";
+import { Header } from "./index.style";
+import {
+  Row,
+  Col,
+  P,
+  Span,
+  Button,
+  Placement,
+} from "../../components/Common/Styles/Common";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt as Trash,
+  faPencilAlt as Edit,
+  faPlusCircle as Plus,
+} from "@fortawesome/free-solid-svg-icons";
+
+const Hotels = () => {
+  const [hotels, setHotels] = useState([]);
   const http = useAxios();
 
   useEffect(() => {
@@ -15,7 +37,7 @@ const Hotels = ({ content }) => {
         const response = await http.get(
           BASE_URL + HOTELS_PATH + HOTEL_STATE_PATH
         );
-        console.log(response);
+        setHotels(response.data);
       } catch (error) {
         setError(error.toString());
       }
@@ -23,53 +45,129 @@ const Hotels = ({ content }) => {
     fetchData();
   }, []);
 
+  async function deleteButton(e) {
+    // setSubmitting(true);
+    // setError(null);
+    e.preventDefault();
+    const id = e.target.dataset.id;
+
+    try {
+      // checks if id is passed in, if true update item: if false create new item
+      const response = await http.delete(BASE_URL + HOTEL_PATH + id);
+      if ((response.status = 200)) {
+        const newArray = hotels.filter(function (data) {
+          return data.id !== response.data.id;
+        });
+        setHotels(newArray);
+      }
+    } catch (error) {
+      //setError(error.toString());
+      console.log(error);
+    }
+  }
+
   return (
     <AdminLayout title={TITLE_ADMIN_HOTELS}>
-      <Heading>Manage hotels</Heading>
       <main>
-        <a href={`hotel/new`}>
-          <button>create new hotel</button>
-        </a>
-        {content.map(({ id, name, city, address, published_at }) => {
-          return (
-            <div key={id}>
-              <p>{name}</p>
-              <p>{id}</p>
-              <p>{address}</p>
-              <p>{city}</p>
-              <p>{(published_at && "Published") || "Draft"}</p>
-              <a href={`hotel/edit/${id}`}>
-                <button>edit</button>
+        <Row margin={30}>
+          <Col size={6}>
+            <Header>
+              <Heading>Manage hotels</Heading>
+            </Header>
+          </Col>
+          <Col size={6}>
+            <Placement justifyContent="right">
+              <a href={`hotel/new`}>
+                <Button
+                  backgroundColor="rgb(0, 126, 255)"
+                  color="white"
+                  padding="10px 25px"
+                >
+                  <FontAwesomeIcon icon={Plus} />
+                  &nbsp;&nbsp;Add New Hotel
+                </Button>
               </a>
-            </div>
-          );
-        })}
+            </Placement>
+          </Col>
+        </Row>
+        <Col size={12}>
+          <Row bg_color="rgb(243 243 243)">
+            <Col size={1}>
+              <P weight="bold" padding_left={10}>
+                Id
+              </P>
+            </Col>
+            <Col size={3}>
+              <P weight="bold">Name</P>
+            </Col>
+            <Col size={2}>
+              <P weight="bold">Address</P>
+            </Col>
+            <Col size={2}>
+              <P weight="bold">City</P>
+            </Col>
+            <Col size={2}>
+              <P weight="bold">State</P>
+            </Col>
+            <Col size={2}>
+              <Row>
+                <Col size={6}>
+                  <P weight="bold">Edit</P>
+                </Col>
+                <Col size={6}>
+                  <P weight="bold">Delete</P>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
+          {hotels.map(({ id, name, city, address, published_at }) => {
+            return (
+              <Row
+                margin={20}
+                padding_bottom={18}
+                border_size="1"
+                border_color="rgb(243 243 243)"
+                key={id}
+              >
+                <Col size={1}>
+                  <Span padding_left={10}>{id}</Span>
+                </Col>
+                <Col size={3}>
+                  <Span>{name}</Span>
+                </Col>
+                <Col size={2}>
+                  <Span>{address}</Span>
+                </Col>
+                <Col size={2}>
+                  <Span>{city}</Span>
+                </Col>
+                <Col size={2}>
+                  <Span>{(published_at && "Published") || "Draft"}</Span>
+                </Col>
+                <Col size={2}>
+                  <Row>
+                    <Col size={6}>
+                      <Button>
+                        <a href={`hotel/edit/${id}`}>
+                          <FontAwesomeIcon icon={Edit} />
+                        </a>
+                      </Button>
+                    </Col>
+                    <Col size={6}>
+                      <Button data-id={id} onClick={deleteButton}>
+                        <FontAwesomeIcon icon={Trash} />
+                      </Button>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            );
+          })}
+        </Col>
       </main>
     </AdminLayout>
   );
 };
-
-export async function getServerSideProps() {
-  let data = [];
-
-  try {
-    const response = await axios.get(BASE_URL + HOTELS_PATH + HOTEL_STATE_PATH);
-
-    data = response.data;
-  } catch (error) {
-    return {
-      props: {
-        error: error.toString(),
-      },
-    };
-  }
-
-  return {
-    props: {
-      content: data,
-      length: data.length,
-    },
-  };
-}
 
 export default Hotels;

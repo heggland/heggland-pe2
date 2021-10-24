@@ -5,6 +5,16 @@ import AuthContext from "../../context/AuthContext";
 import Head from "./Head";
 import Footer from "./Footer";
 
+import * as Style from "./Layout.style";
+import { Col } from "../Common/Styles/Common";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCaretRight as Caret,
+  faSignOutAlt as SignOut,
+} from "@fortawesome/free-solid-svg-icons";
+import Heading from "./Heading";
+
 const Layout = ({ title, description, children }) => {
   return (
     <>
@@ -56,22 +66,36 @@ export const AdminLayout = ({
   return (
     <>
       <Head title={title} description={description} />
-      <nav>
-        <Link href="/admin">
-          <a className="link">Dashboard</a>
-        </Link>
-        <Link href="/admin/hotels">
-          <a className="link">Hotels</a>
-        </Link>
-        <Link href="/admin/enquiries">
-          <a className="link">Enquiries</a>
-        </Link>
-        <Link href="/admin/messages">
-          <a className="link">Messages</a>
-        </Link>
-        <button onClick={logout}>Logout</button>
-      </nav>
-      {children}
+
+      <Style.AdminHeading />
+
+      <Col size={11}>
+        <Style.AdminContainer>
+          <Style.SideContainer>
+            <Link href="/admin">
+              <Style.AdminNavHead>Dashboard</Style.AdminNavHead>
+            </Link>
+            <Style.AdminNav>
+              <Link href="/admin/hotels">
+                <Style.AdminLink>Hotels</Style.AdminLink>
+              </Link>
+              <Link href="/admin/enquiries">
+                <Style.AdminLink>Enquiries</Style.AdminLink>
+              </Link>
+              <Link href="/admin/messages">
+                <Style.AdminLink>Messages</Style.AdminLink>
+              </Link>
+            </Style.AdminNav>
+            <Style.Logout>
+              <Style.LogoutButton onClick={logout}>
+                <FontAwesomeIcon icon={SignOut} />
+                &nbsp;&nbsp; Logout
+              </Style.LogoutButton>
+            </Style.Logout>
+          </Style.SideContainer>
+          <Style.AdminChildren>{children}</Style.AdminChildren>
+        </Style.AdminContainer>
+      </Col>
     </>
   );
 };

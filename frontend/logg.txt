@@ -24,3 +24,33 @@ admin - ok
 
 TODO: admin route protect, when admin log out he/she shouldn't be forwardered
 to index page. add stronger route protect
+
+
+
+-------
+
+export const DropButton = styled.div`
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  font-family: inherit;
+  margin: 0;
+
+  > p {
+    text-align: right;
+  }
+`;
+
+export const DropContent = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  height: 54px;
+  width: 128px;
+
+  ${DropButton}:hover & {
+    display: block;
+  }
+`;

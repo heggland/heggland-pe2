@@ -37,18 +37,27 @@ const EditForm = ({
     // setSubmitting(true);
     // setError(null);
 
-    data.id = id && data.id;
-
+    // set published / draft state
     data.published_at =
       data.state.toLowerCase() === "published" ? new Date() : null;
 
+    // set id, if id is passed in => editting item. if not = new item is being created.
+    data.id = id && data.id;
+
+    console.log(data);
+
     try {
-      // checks if id is passed in, if true update item: if false create new item
+      // checks if id is passed in, if true update item - if false create new item
       let response;
       if (id) {
         response = await http.put(BASE_URL + HOTEL_PATH + id, data);
       } else {
         response = await http.post(BASE_URL + HOTELS_PATH, data);
+      }
+
+      // if new item is successfully created, push to edit route of the new item
+      if (!id) {
+        router.push("/admin/hotel/edit/" + response.data.id);
       }
 
       setUpdated(true);
