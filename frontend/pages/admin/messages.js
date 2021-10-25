@@ -9,13 +9,13 @@ import {
 import { TITLE_ADMIN_MESSAGES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import { Header } from "./index.style";
 import {
   Row,
   Col,
   P,
   Span,
   Button,
+  Header,
 } from "../../components/Common/Styles/Common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,6 +27,7 @@ import {
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
+  const [errorDelete, setErrorDelete] = useState(null);
   const http = useAxios();
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const Messages = () => {
 
   async function deleteButton(e) {
     e.preventDefault();
+    setErrorDelete(null);
 
     const id = e.target.dataset.id;
 
@@ -58,7 +60,7 @@ const Messages = () => {
         setMessages(newArray);
       }
     } catch (error) {
-      //setError(error.toString());
+      setErrorDelete(error.toString());
       console.log(error);
     }
   }
@@ -139,6 +141,7 @@ const Messages = () => {
           </Col>
         </Row>
         {error && <span>{error}</span>}
+        {errorDelete && <>delete error: {errorDelete}</>}
         {(messages.length !== 0 &&
           messages.map(({ id, name, email, message, published_at }) => {
             return (
@@ -168,7 +171,7 @@ const Messages = () => {
                       data-id={id}
                       data-state={published_at !== null ? "publish" : "draft"}
                     >
-                      {published_at !== null ? "old" : "New"}
+                      {published_at !== null ? "NEW" : "Read"}
                     </button>
                   </Span>
                 </Col>
@@ -188,7 +191,7 @@ const Messages = () => {
                 </Col>
               </Row>
             );
-          })) || <span>No new messages</span>}
+          })) || <span>No messages in the database</span>}
       </Col>
     </AdminLayout>
   );

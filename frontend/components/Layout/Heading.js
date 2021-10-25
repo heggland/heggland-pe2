@@ -7,7 +7,7 @@ const Heading = ({ size = "1", children }) => {
 };
 
 Heading.propTypes = {
-  size: PropTypes.string,
+  size: PropTypes.number,
   children: PropTypes.string.isRequired,
 };
 

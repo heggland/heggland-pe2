@@ -18,6 +18,7 @@ const Hotel = (props) => {
               </a>
             );
           }
+
           return (
             <div key={id}>
               <a href={`hotel/${id}`}>

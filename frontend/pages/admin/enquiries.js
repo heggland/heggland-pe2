@@ -10,14 +10,13 @@ import {
 import { TITLE_ADMIN_ENQUIRIES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import { Header } from "./index.style";
 import {
   Row,
   Col,
   P,
   Span,
   Button,
-  Placement,
+  Header,
 } from "../../components/Common/Styles/Common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -168,7 +167,7 @@ const Enquiries = () => {
                       data-id={id}
                       data-state={published_at !== null ? "publish" : "draft"}
                     >
-                      {published_at !== null ? "old" : "New"}
+                      {published_at !== null ? "NEW" : "FULFILLED"}
                     </button>
                   </Span>
                 </Col>
@@ -188,7 +187,7 @@ const Enquiries = () => {
                 </Col>
               </Row>
             );
-          })) || <span>No new enquiries</span>}
+          })) || <span>No enquiries in the database</span>}
       </Col>
     </AdminLayout>
   );

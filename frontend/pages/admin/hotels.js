@@ -10,7 +10,6 @@ import { TITLE_ADMIN_HOTELS } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
 import Heading from "../../components/Layout/Heading";
-import { Header } from "./index.style";
 import {
   Row,
   Col,
@@ -18,6 +17,8 @@ import {
   Span,
   Button,
   Placement,
+  LinkHover,
+  Header,
 } from "../../components/Common/Styles/Common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -120,50 +121,55 @@ const Hotels = () => {
               </Row>
             </Col>
           </Row>
-
-          {hotels.map(({ id, name, city, address, published_at }) => {
-            return (
-              <Row
-                margin={20}
-                padding_bottom={18}
-                border_size="1"
-                border_color="rgb(243 243 243)"
-                key={id}
-              >
-                <Col size={1}>
-                  <Span padding_left={10}>{id}</Span>
-                </Col>
-                <Col size={3}>
-                  <Span>{name}</Span>
-                </Col>
-                <Col size={2}>
-                  <Span>{address}</Span>
-                </Col>
-                <Col size={2}>
-                  <Span>{city}</Span>
-                </Col>
-                <Col size={2}>
-                  <Span>{(published_at && "Published") || "Draft"}</Span>
-                </Col>
-                <Col size={2}>
-                  <Row>
-                    <Col size={6}>
-                      <Button>
-                        <a href={`hotel/edit/${id}`}>
-                          <FontAwesomeIcon icon={Edit} />
-                        </a>
-                      </Button>
+          {(hotels.length !== 0 && (
+            <>
+              {hotels.map(({ id, name, city, address, published_at }) => {
+                return (
+                  <Row
+                    margin={20}
+                    padding_bottom={18}
+                    border_size="1"
+                    border_color="rgb(243 243 243)"
+                    key={id}
+                  >
+                    <Col size={1}>
+                      <Span padding_left={10}>{id}</Span>
                     </Col>
-                    <Col size={6}>
-                      <Button data-id={id} onClick={deleteButton}>
-                        <FontAwesomeIcon icon={Trash} />
-                      </Button>
+                    <Col size={3} hover="grey">
+                      <LinkHover href={`/hotel/${id}`}>
+                        <Span>{name}</Span>
+                      </LinkHover>
+                    </Col>
+                    <Col size={2}>
+                      <Span>{address}</Span>
+                    </Col>
+                    <Col size={2}>
+                      <Span>{city}</Span>
+                    </Col>
+                    <Col size={2}>
+                      <Span>{(published_at && "Published") || "Draft"}</Span>
+                    </Col>
+                    <Col size={2}>
+                      <Row>
+                        <Col size={6}>
+                          <Button>
+                            <a href={`hotel/edit/${id}`}>
+                              <FontAwesomeIcon icon={Edit} />
+                            </a>
+                          </Button>
+                        </Col>
+                        <Col size={6}>
+                          <Button data-id={id} onClick={deleteButton}>
+                            <FontAwesomeIcon icon={Trash} />
+                          </Button>
+                        </Col>
+                      </Row>
                     </Col>
                   </Row>
-                </Col>
-              </Row>
-            );
-          })}
+                );
+              })}
+            </>
+          )) || <span>No hotels in the database</span>}
         </Col>
       </main>
     </AdminLayout>

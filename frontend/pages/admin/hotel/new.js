@@ -1,5 +1,5 @@
 import { AdminLayout } from "../../../components/Layout/Layout";
-import EditHotelForm from "../../../components/Common/EditHotelForm";
+import EditHotelForm from "../../../modules/admin/hotel/EditHotelForm";
 
 const New = () => {
   return (

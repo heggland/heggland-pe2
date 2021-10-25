@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import EditHotelForm from "../../../../components/Common/EditHotelForm";
+import EditHotelForm from "../../../../modules/admin/hotel/EditHotelForm";
 import { AdminLayout } from "../../../../components/Layout/Layout";
 import {
   BASE_URL,

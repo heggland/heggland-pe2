@@ -19,6 +19,15 @@ import axios from "axios";
 import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
 import { LOGIN_SCHEMA } from "../constants/schema";
 
+import {
+  Row,
+  Col,
+  LoginForm,
+  Placement,
+  P,
+  LoginButton,
+} from "../components/Common/Styles/Common";
+
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
@@ -71,50 +80,90 @@ const Login = () => {
   return (
     <>
       <Head title={TITLE_LOGIN} description={DESCRIPTION_LOGIN} />
-      <Link href="/">
-        <a className="link">Holidaze</a>
-      </Link>
-      <Heading>Login</Heading>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {loginError && <FormError>{loginError}</FormError>}
-        <div>
-          <div>Email address</div>
-          <input
-            {...register("username")}
-            type="username"
-            name="username"
-            placeholder="ola@nordmann.no"
-            autoComplete="on"
-          />
-          {errors.username && (
-            <div className="text-muted">{errors.username.message}</div>
-          )}
-        </div>
+      <Placement
+        position="fixed"
+        top={0}
+        align="center"
+        width={100}
+        alignItems="center"
+      >
+        <Row>
+          <Link href="/">
+            <a className="link">
+              <P>Holidaze</P>
+            </a>
+          </Link>
+          <Link href="/login">
+            <a className="link">
+              <P padding_left={10}>Login</P>
+            </a>
+          </Link>
+        </Row>
+      </Placement>
+      <Placement place="center" align="center" height={100}>
+        <Row justifyContent="center">
+          <LoginForm onSubmit={handleSubmit(onSubmit)}>
+            {loginError && <FormError>{loginError}</FormError>}
+            <Row>
+              <Col>
+                <Heading size={4}>Email address</Heading>
+              </Col>
+              <Col>
+                <input
+                  {...register("username")}
+                  type="username"
+                  name="username"
+                  placeholder="ola@nordmann.no"
+                  autoComplete="on"
+                />
+              </Col>
+              {errors.username && (
+                <div className="text-muted">{errors.username.message}</div>
+              )}
+            </Row>
 
-        <div>
-          <div>Password</div>
-          <input
-            {...register("password")}
-            type="password"
-            name="password"
-            placeholder="Passord"
-            autoComplete="on"
-          />
-          {errors.password && (
-            <div className="text-muted">{errors.password.message}</div>
-          )}
-        </div>
+            <Row padding_bottom={10}>
+              <Col>
+                <Heading size={4}>Password</Heading>
+              </Col>
+              <Col>
+                <input
+                  {...register("password")}
+                  type="password"
+                  name="password"
+                  placeholder="Passord"
+                  autoComplete="on"
+                />
+                {errors.password && (
+                  <div className="text-muted">{errors.password.message}</div>
+                )}
+              </Col>
+            </Row>
 
-        {submitting ? (
-          <button className="w-100" variant="primary" type="submit">
-            Loggin in...
-          </button>
-        ) : (
-          <button className="w-100" variant="outline-primary" type="submit">
-            Login
-          </button>
-        )}
-      </form>
+            <Col>
+              {submitting ? (
+                <LoginButton
+                  width={100}
+                  className="w-100"
+                  variant="primary"
+                  type="submit"
+                >
+                  Loggin in...
+                </LoginButton>
+              ) : (
+                <LoginButton
+                  width={100}
+                  className="w-100"
+                  variant="outline-primary"
+                  type="submit"
+                >
+                  Login
+                </LoginButton>
+              )}
+            </Col>
+          </LoginForm>
+        </Row>
+      </Placement>
     </>
   );
 };

@@ -16,7 +16,6 @@ export const AdminNavHead = styled.nav`
   font-size: 2rem;
   letter-spacing: 0.1rem;
   padding-left: 0.5rem;
-  cursor: pointer;
   background: rgb(0, 126, 255);
 `;
 

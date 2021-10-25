@@ -9,11 +9,7 @@ import * as Style from "./Layout.style";
 import { Col } from "../Common/Styles/Common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretRight as Caret,
-  faSignOutAlt as SignOut,
-} from "@fortawesome/free-solid-svg-icons";
-import Heading from "./Heading";
+import { faSignOutAlt as SignOut } from "@fortawesome/free-solid-svg-icons";
 
 const Layout = ({ title, description, children }) => {
   return (
@@ -72,9 +68,9 @@ export const AdminLayout = ({
       <Col size={11}>
         <Style.AdminContainer>
           <Style.SideContainer>
-            <Link href="/admin">
-              <Style.AdminNavHead>Dashboard</Style.AdminNavHead>
-            </Link>
+            <Style.AdminNavHead>
+              <Link href="/admin">Dashboard</Link>
+            </Style.AdminNavHead>
             <Style.AdminNav>
               <Link href="/admin/hotels">
                 <Style.AdminLink>Hotels</Style.AdminLink>

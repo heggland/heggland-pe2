@@ -66,7 +66,7 @@ export const EDIT_HOTEL_SCHEMA = yup.object().shape({
   city: yup
     .string()
     .required("Please enter a value")
-    .min(5, "Value must be atleast 5 characters long"),
+    .min(3, "Value must be atleast 3 characters long"),
   zip_code: yup
     .number()
     .required("Please enter a number value")
