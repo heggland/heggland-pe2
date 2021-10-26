@@ -1,15 +1,39 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background-color: ${({ bg_color }) => bg_color};
-  margin-top: ${({ margin }) => margin}px;
-  padding-bottom: ${({ padding_bottom }) => padding_bottom}px;
-  margin-bottom: ${({ margin }) => margin}px;
-  border-bottom: ${({ border_size }) => border_size}px solid
-    ${({ border_color }) => border_color};
-  justify-content: ${({ justifyContent }) => justifyContent};
+
+  ${({ bg_color }) =>
+    bg_color &&
+    css`
+      background-color: ${bg_color};
+    `}
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin}px;
+      margin-bottom: ${margin}px;
+    `}
+
+    ${({ padding_bottom }) =>
+    padding_bottom &&
+    css`
+      padding-bottom: ${padding_bottom}px;
+    `}
+
+    ${({ border_size, border_color }) =>
+    border_size &&
+    css`
+      border-bottom: ${border_size}px solid ${border_color};
+    `}
+
+    ${({ justifyContent }) =>
+    justifyContent &&
+    css`
+      justify-content: ${justifyContent};
+    `}
 `;
 
 export const Col = styled.div`
@@ -19,15 +43,6 @@ export const Col = styled.div`
 export const Placement = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: ${({ justifyContent }) => justifyContent};
-  text-align: ${({ align }) => align};
-  place-content: ${({ place }) => place};
-  height: ${({ height }) => height}%;
-  width: ${({ width }) => width}%;
-  position: ${({ position }) => position};
-  top: ${({ top }) => top};
-  align-items: ${({ alignItems }) => alignItems};
-  z-index: ${({ zIndex }) => zIndex};
 `;
 
 export const P = styled.p`
@@ -40,18 +55,19 @@ export const Span = styled.span`
   padding-left: ${({ padding_left }) => padding_left}px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button``;
+
+/* export const Button = styled.button`
   background-color: ${({ backgroundColor }) =>
     backgroundColor || "transparent"};
   color: ${({ color }) => color || "black"};
   padding: ${({ padding }) => padding};
-  border: none;
   width: ${({ width }) => width || "auto"});
 
   &:hover {
     cursor: pointer;
   }
-`;
+`; */
 
 export const LoginButton = styled.button`
   padding: 0 30px;

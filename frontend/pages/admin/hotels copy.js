@@ -75,7 +75,20 @@ const Hotels = () => {
             <Heading>Manage hotels</Heading>
           </Header>
         </Col>
-        <Col size={6}></Col>
+        <Col size={6}>
+          <Placement justifyContent="right">
+            <a href={`hotel/new`}>
+              <Button
+                backgroundColor="rgb(0, 126, 255)"
+                color="white"
+                padding="10px 25px"
+              >
+                <FontAwesomeIcon icon={Plus} />
+                &nbsp;&nbsp;Add New Hotel
+              </Button>
+            </a>
+          </Placement>
+        </Col>
       </Row>
       <Col size={12}>
         <Row bg_color="rgb(243 243 243)">
