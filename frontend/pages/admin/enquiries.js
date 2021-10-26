@@ -117,7 +117,7 @@ const Enquiries = () => {
             <P weight="bold">Name</P>
           </Col>
           <Col size={2}>
-            <P weight="bold">Phone</P>
+            <P weight="bold">Hotel</P>
           </Col>
           <Col size={2}>
             <P weight="bold">Email</P>
@@ -138,7 +138,7 @@ const Enquiries = () => {
         </Row>
         {error && <span>{error}</span>}
         {(enquiries.length !== 0 &&
-          enquiries.map(({ id, name, email, phone, published_at }) => {
+          enquiries.map(({ id, name, email, published_at, hotel_id }) => {
             return (
               <Row
                 margin={20}
@@ -155,7 +155,7 @@ const Enquiries = () => {
                   <Span>{name}</Span>
                 </Col>
                 <Col size={2}>
-                  <Span>{phone}</Span>
+                  <Span>{hotel_id[0].name}</Span>
                 </Col>
                 <Col size={2}>
                   <Span>{email}</Span>
