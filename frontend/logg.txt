@@ -26,6 +26,7 @@ TODO: admin route protect, when admin log out he/she shouldn't be forwardered
 to index page. add stronger route protect
 
 
+https://styled-components.com/docs/api#createglobalstyle
 
 -------
 

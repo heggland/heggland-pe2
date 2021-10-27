@@ -45,27 +45,44 @@ const Hotels = () => {
     }
     fetchData();
   }, []);
+  console.log(hotels);
 
-  async function deleteButton(e) {
-    // setSubmitting(true);
-    // setError(null);
-    e.preventDefault();
-    const id = e.target.dataset.id;
+  const DeleteButton = ({ id }) => {
+    const [error, setError] = useState(null);
 
-    try {
-      // checks if id is passed in, if true update item: if false create new item
-      const response = await http.delete(BASE_URL + HOTEL_PATH + id);
-      if ((response.status = 200)) {
-        const newArray = hotels.filter(function (data) {
-          return data.id !== response.data.id;
-        });
-        setHotels(newArray);
+    async function handleDelete() {
+      const confirmDelete = window.confirm("Delete this hotel?");
+
+      if (confirmDelete) {
+        try {
+          const response = await http.delete(BASE_URL + HOTEL_PATH + id);
+
+          if ((response.status = 200 && response.statusText === "OK")) {
+            const newArray = hotels.filter(function (data) {
+              return data.id !== response.data.id;
+            });
+            setHotels(newArray);
+          }
+        } catch (error) {
+          console.log(error);
+          setError(error);
+        }
       }
-    } catch (error) {
-      //setError(error.toString());
-      console.log(error);
     }
-  }
+
+    return (
+      <Button
+        variant="danger"
+        className="delete"
+        onClick={handleDelete}
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Delete hotel"
+      >
+        {error ? "Error" : <FontAwesomeIcon icon={Trash} />}
+      </Button>
+    );
+  };
 
   return (
     <AdminLayout title={TITLE_ADMIN_HOTELS}>
@@ -75,7 +92,20 @@ const Hotels = () => {
             <Heading>Manage hotels</Heading>
           </Header>
         </Col>
-        <Col size={6}></Col>
+        <Col size={6}>
+          <Placement float="right">
+            <a href={`hotel/new`}>
+              <Button
+                backgroundColor="rgb(0, 126, 255)"
+                color="white"
+                padding="10px 25px"
+              >
+                <FontAwesomeIcon icon={Plus} />
+                &nbsp;&nbsp;Add New Hotel
+              </Button>
+            </a>
+          </Placement>
+        </Col>
       </Row>
       <Col size={12}>
         <Row bg_color="rgb(243 243 243)">
@@ -145,9 +175,9 @@ const Hotels = () => {
                         </Button>
                       </Col>
                       <Col size={6}>
-                        <Button data-id={id} onClick={deleteButton}>
+                        <DeleteButton id={id}>
                           <FontAwesomeIcon icon={Trash} />
-                        </Button>
+                        </DeleteButton>
                       </Col>
                     </Row>
                   </Col>

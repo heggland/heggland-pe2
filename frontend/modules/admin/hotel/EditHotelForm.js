@@ -5,8 +5,8 @@ import { EDIT_HOTEL_SCHEMA } from "../../../constants/schema";
 import useAxios from "../../../hooks/useAxios";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
 import Heading from "../../../components/Layout/Heading";
+import FileUpload from "./fileUpload";
 
 import { Col, Row, Textarea } from "../../../components/Common/Styles/Common";
 
@@ -22,6 +22,7 @@ const EditForm = ({
   state,
 }) => {
   const [updated, setUpdated] = useState(false);
+  const [imagePreview, setImagePreview] = useState(false);
 
   const router = useRouter();
 
@@ -36,7 +37,6 @@ const EditForm = ({
   const http = useAxios();
 
   async function onSubmit(data) {
-    console.log(data);
     setUpdated(false);
     // setSubmitting(true);
     // setError(null);
@@ -48,9 +48,20 @@ const EditForm = ({
     // set id, if id is passed in => editting item. if not = new item is being created.
     data.id = id && data.id;
 
-    console.log(data);
-
     try {
+      console.log(data.image);
+      if (data.image) {
+        const formData = new FormData();
+        formData.append("files", data.image[0]);
+        const imgResponse = await http.post(BASE_URL + "/upload", formData);
+        console.log(imgResponse);
+        data.image = imgResponse.data[0];
+        data.image.related__contentType = "Hotels";
+        data.image.related.id = id;
+        data.image.related.name = data.name;
+      }
+      console.log(data.image);
+
       // checks if id is passed in, if true update item - if false create new item
       let response;
       if (id) {
@@ -58,6 +69,7 @@ const EditForm = ({
       } else {
         response = await http.post(BASE_URL + HOTELS_PATH, data);
       }
+      console.log(response);
 
       // if new item is successfully created, push to edit route of the new item
       if (!id) {
@@ -65,8 +77,7 @@ const EditForm = ({
       }
 
       setUpdated(true);
-      console.log(response);
-      console.log(response.data.name);
+      //console.log(response);
       //setSubmitting(false);
     } catch (error) {
       //setError(error.toString());
@@ -95,16 +106,13 @@ const EditForm = ({
 
   const goBack = () => router.push("/admin/hotels");
 
-  let img;
-  if (image && image.length != 0) {
-    img = (
-      <img
-        src={BASE_URL + image[0].url}
-        height="200px"
-        alt={image.alternativeText}
-      />
-    );
+  let oldImage;
+  if (image && image.length !== 0) {
+    oldImage = BASE_URL + image[0].url;
   }
+
+  const handleImageChange = (e) =>
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
 
   return (
     <>
@@ -198,7 +206,40 @@ const EditForm = ({
 
           <Row padding_bottom={20}>
             <Heading size={6}>IMAGE</Heading>
-            <Col>{(img && img) || "todo: image uploader"}</Col>
+            <Col>
+              {!imagePreview ? (
+                (oldImage && (
+                  <>
+                    <img
+                      src={oldImage}
+                      width="300px"
+                      alt={image.alternativeText}
+                    />
+                    <button>Change image</button>
+                  </>
+                )) || (
+                  <>
+                    <div onChange={handleImageChange}>
+                      <input type="file" name="image" {...register("image")} />
+                    </div>
+                    <button>Change image</button>
+                    <span>
+                      {errors.image && <span>{errors.image.message}</span>}
+                    </span>
+                  </>
+                )
+              ) : (
+                <img
+                  src={imagePreview}
+                  width="300px"
+                  alt={image.alternativeText}
+                />
+              )}
+              <span>
+                TODO: edit images, delete image, edit image-show media gallery
+                and or upload new
+              </span>
+            </Col>
           </Row>
 
           <Row>

@@ -43,31 +43,83 @@ export const Col = styled.div`
 export const Placement = styled.div`
   display: flex;
   flex-direction: column;
+  ${({ float }) =>
+    float &&
+    css`
+      float: ${float};
+    `}
 `;
 
 export const P = styled.p`
-  font-weight: ${({ weight }) => weight};
-  padding-left: ${({ padding_left }) => padding_left}px;
+  ${({ weight }) =>
+    weight &&
+    css`
+      font-weight: ${weight};
+    `}
+  ${({ padding_left }) =>
+    padding_left &&
+    css`
+      padding-left: ${padding_left};
+    `}
 `;
 
 export const Span = styled.span`
-  font-weight: ${({ weight }) => weight};
-  padding-left: ${({ padding_left }) => padding_left}px;
+  ${({ weight }) =>
+    weight &&
+    css`
+      font-weight: ${weight};
+    `}
+  ${({ padding_left }) =>
+    padding_left &&
+    css`
+      padding-left: ${padding_left};
+    `}
 `;
 
-export const Button = styled.button``;
+export const Button = styled.button`
+  ${({ backgroundColor }) =>
+    (backgroundColor &&
+      css`
+        background-color: ${backgroundColor};
+      `) ||
+    css`
+      background-color: transparent;
+    `}
+  ${({ border }) =>
+    (border &&
+      css`
+        border: ${border};
+      `) ||
+    css`
+      border: none;
+    `}
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${color};
+    `}
+${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin}px;
+      margin-bottom: ${margin}px;
+    `}
+${({ padding }) =>
+    padding &&
+    css`
+      padding: ${padding};
+    `}
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width}%;
+    `}
 
-/* export const Button = styled.button`
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor || "transparent"};
-  color: ${({ color }) => color || "black"};
-  padding: ${({ padding }) => padding};
-  width: ${({ width }) => width || "auto"});
 
   &:hover {
     cursor: pointer;
   }
-`; */
+`;
 
 export const LoginButton = styled.button`
   padding: 0 30px;

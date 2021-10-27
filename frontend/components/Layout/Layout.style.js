@@ -77,11 +77,13 @@ export const LogoutButton = styled.div`
   color: white;
   letter-spacing: 0.1rem;
   padding-left: 1rem;
-  margin-left: 0.1rem;
+  margin: 1px;
   width: 100%;
 
   &:hover {
+    margin: 0;
     border: 1px solid rgb(247, 91, 29);
+    background-color: rgb(40 36 50);
   }
 `;
 

@@ -42,26 +42,42 @@ const Enquiries = () => {
     fetchData();
   }, []);
 
-  async function deleteButton(e) {
-    e.preventDefault();
+  const DeleteButton = ({ id }) => {
+    const [error, setError] = useState(null);
 
-    const id = e.target.dataset.id;
+    async function handleDelete() {
+      const confirmDelete = window.confirm("Delete this enquirie?");
 
-    try {
-      // checks if id is passed in, if true update item: if false create new item
-      let response;
-      response = await http.delete(BASE_URL + ENQUIRIES_PATH + id);
-      if ((response.status = 200)) {
-        const newArray = enquiries.filter(function (data) {
-          return data.id !== response.data.id;
-        });
-        setEnquiries(newArray);
+      if (confirmDelete) {
+        try {
+          const response = await http.delete(BASE_URL + ENQUIRIES_PATH + id);
+
+          if ((response.status = 200 && response.statusText === "OK")) {
+            const newArray = enquiries.filter(function (data) {
+              return data.id !== response.data.id;
+            });
+            setEnquiries(newArray);
+          }
+        } catch (error) {
+          console.log(error);
+          setError(error);
+        }
       }
-    } catch (error) {
-      //setError(error.toString());
-      console.log(error);
     }
-  }
+
+    return (
+      <Button
+        variant="danger"
+        className="delete"
+        onClick={handleDelete}
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Delete enquirie"
+      >
+        {error ? "Error" : <FontAwesomeIcon icon={Trash} />}
+      </Button>
+    );
+  };
 
   async function updateState(e) {
     e.preventDefault();
@@ -179,9 +195,9 @@ const Enquiries = () => {
                       </a>
                     </Col>
                     <Col size={6}>
-                      <Button data-id={id} onClick={deleteButton}>
+                      <DeleteButton id={id}>
                         <FontAwesomeIcon icon={Trash} />
-                      </Button>
+                      </DeleteButton>
                     </Col>
                   </Row>
                 </Col>

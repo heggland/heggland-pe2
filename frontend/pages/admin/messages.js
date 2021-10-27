@@ -42,6 +42,43 @@ const Messages = () => {
     fetchData();
   }, []);
 
+  const DeleteButton = ({ id }) => {
+    const [error, setError] = useState(null);
+
+    async function handleDelete() {
+      const confirmDelete = window.confirm("Delete this message?");
+
+      if (confirmDelete) {
+        try {
+          const response = await http.delete(BASE_URL + CONTACT_PATH + id);
+
+          if ((response.status = 200 && response.statusText === "OK")) {
+            const newArray = messages.filter(function (data) {
+              return data.id !== response.data.id;
+            });
+            setMessages(newArray);
+          }
+        } catch (error) {
+          console.log(error);
+          setError(error);
+        }
+      }
+    }
+
+    return (
+      <Button
+        variant="danger"
+        className="delete"
+        onClick={handleDelete}
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Delete message"
+      >
+        {error ? "Error" : <FontAwesomeIcon icon={Trash} />}
+      </Button>
+    );
+  };
+
   async function deleteButton(e) {
     e.preventDefault();
     setErrorDelete(null);
@@ -183,9 +220,9 @@ const Messages = () => {
                       </a>
                     </Col>
                     <Col size={6}>
-                      <Button data-id={id} onClick={deleteButton}>
+                      <DeleteButton id={id}>
                         <FontAwesomeIcon icon={Trash} />
-                      </Button>
+                      </DeleteButton>
                     </Col>
                   </Row>
                 </Col>
