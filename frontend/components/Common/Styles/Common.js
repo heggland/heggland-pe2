@@ -4,6 +4,12 @@ export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
 
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width};
+    `}
+
   ${({ bg_color }) =>
     bg_color &&
     css`
@@ -13,20 +19,19 @@ export const Row = styled.div`
   ${({ margin }) =>
     margin &&
     css`
-      margin-top: ${margin}px;
-      margin-bottom: ${margin}px;
+      margin: ${margin};
     `}
 
-    ${({ padding_bottom }) =>
-    padding_bottom &&
+    ${({ padding }) =>
+    padding &&
     css`
-      padding-bottom: ${padding_bottom}px;
+      padding: ${padding};
     `}
 
     ${({ border_size, border_color }) =>
     border_size &&
     css`
-      border-bottom: ${border_size}px solid ${border_color};
+      border-bottom: ${border_size || 1}px solid ${border_color || "black"};
     `}
 
     ${({ justifyContent }) =>
@@ -34,10 +39,49 @@ export const Row = styled.div`
     css`
       justify-content: ${justifyContent};
     `}
+
+    ${({ hover }) =>
+    hover === "table" &&
+    css`
+      &:hover {
+        background-color: rgb(248, 249, 249);
+        cursor: default;
+      }
+    `}
 `;
 
 export const Col = styled.div`
   width: calc(calc(100% / 12) * ${({ size }) => size || 12});
+  height: fit-content;
+
+  ${({ alignSelf }) =>
+    alignSelf &&
+    css`
+      align-self: ${alignSelf};
+    `}
+  ${({ bgColor }) =>
+    bgColor &&
+    css`
+      background-color: ${bgColor};
+    `}
+    ${({ margin }) =>
+    margin &&
+    css`
+      margin: ${margin};
+    `}
+
+    ${({ box }) =>
+    (box === "white-card" &&
+      css`
+        background-color: white;
+        box-shadow: rgb(227 233 243) 0px 2px 20px;
+        padding: 10px 20px;
+      `) ||
+    (box === "white-table" &&
+      css`
+        background-color: white;
+        box-shadow: rgb(227 233 243) 0px 2px 20px;
+      `)}
 `;
 
 export const Placement = styled.div`
@@ -56,10 +100,10 @@ export const P = styled.p`
     css`
       font-weight: ${weight};
     `}
-  ${({ padding_left }) =>
-    padding_left &&
+  ${({ padding }) =>
+    padding &&
     css`
-      padding-left: ${padding_left};
+      padding: ${padding};
     `}
 `;
 
@@ -69,10 +113,10 @@ export const Span = styled.span`
     css`
       font-weight: ${weight};
     `}
-  ${({ padding_left }) =>
-    padding_left &&
+  ${({ padding }) =>
+    padding &&
     css`
-      padding-left: ${padding_left};
+      padding: ${padding};
     `}
 `;
 
@@ -187,6 +231,7 @@ export const LoginForm = styled.form`
 export const Header = styled.header`
   height: 4rem;
   letter-spacing: 0.1rem;
+  width: 100%;
 
   > h1 {
     margin: 0;

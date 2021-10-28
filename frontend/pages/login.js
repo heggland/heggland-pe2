@@ -89,12 +89,12 @@ const Login = () => {
       >
         <Row>
           <Link href="/">
-            <a className="link">
+            <a>
               <P>Holidaze</P>
             </a>
           </Link>
           <Link href="/login">
-            <a className="link">
+            <a>
               <P padding_left={10}>Login</P>
             </a>
           </Link>

@@ -18,13 +18,13 @@ const Layout = ({ title, description, children }) => {
       <div className="wrapper">
         <nav>
           <Link href="/">
-            <a className="link">Holidaze</a>
+            <a>Holidaze</a>
           </Link>
           <Link href="/hotel">
-            <a className="link">Hotel</a>
+            <a>Hotel</a>
           </Link>
           <Link href="/contact">
-            <a className="link">Contact</a>
+            <a>Contact</a>
           </Link>
         </nav>
         <div>
@@ -63,35 +63,33 @@ export const AdminLayout = ({
     <>
       <Head title={title} description={description} />
 
-      <Style.AdminHeading />
+      <Style.AdminHeading></Style.AdminHeading>
 
-      <Col size={11}>
-        <Style.AdminContainer>
-          <Style.SideContainer>
-            <Style.AdminNavHead>
-              <Link href="/admin">Dashboard</Link>
-            </Style.AdminNavHead>
-            <Style.AdminNav>
-              <Link href="/admin/hotels">
-                <Style.AdminLink>Hotels</Style.AdminLink>
-              </Link>
-              <Link href="/admin/enquiries">
-                <Style.AdminLink>Enquiries</Style.AdminLink>
-              </Link>
-              <Link href="/admin/messages">
-                <Style.AdminLink>Messages</Style.AdminLink>
-              </Link>
-            </Style.AdminNav>
-            <Style.Logout>
-              <Style.LogoutButton onClick={logout}>
-                <FontAwesomeIcon icon={SignOut} />
-                &nbsp;&nbsp; Logout
-              </Style.LogoutButton>
-            </Style.Logout>
-          </Style.SideContainer>
-          <Style.AdminChildren>{children}</Style.AdminChildren>
-        </Style.AdminContainer>
-      </Col>
+      <Style.AdminContainer>
+        <Style.SideContainer>
+          <Style.AdminNavHead>
+            <Link href="/admin">Dashboard</Link>
+          </Style.AdminNavHead>
+          <Style.AdminNav>
+            <Link href="/admin/hotels">
+              <Style.AdminLink>Hotels</Style.AdminLink>
+            </Link>
+            <Link href="/admin/enquiries">
+              <Style.AdminLink>Enquiries</Style.AdminLink>
+            </Link>
+            <Link href="/admin/messages">
+              <Style.AdminLink>Messages</Style.AdminLink>
+            </Link>
+          </Style.AdminNav>
+          <Style.Logout>
+            <Style.LogoutButton onClick={logout}>
+              <FontAwesomeIcon icon={SignOut} />
+              &nbsp;&nbsp; Logout
+            </Style.LogoutButton>
+          </Style.Logout>
+        </Style.SideContainer>
+        <Style.AdminChildren>{children}</Style.AdminChildren>
+      </Style.AdminContainer>
     </>
   );
 };

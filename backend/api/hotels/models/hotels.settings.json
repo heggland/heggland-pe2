@@ -42,7 +42,7 @@
       "component": "facilities.hotel-facilities"
     },
     "zip_code": {
-      "type": "integer"
+      "type": "string"
     }
   }
 }

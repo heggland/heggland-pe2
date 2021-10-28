@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { AdminLayout } from "../../components/Layout/Layout";
 import {
   BASE_URL,
@@ -86,107 +87,115 @@ const Hotels = () => {
 
   return (
     <AdminLayout title={TITLE_ADMIN_HOTELS}>
-      <Row margin={30}>
-        <Col size={6}>
-          <Header>
-            <Heading>Manage hotels</Heading>
-          </Header>
-        </Col>
-        <Col size={6}>
-          <Placement float="right">
-            <a href={`hotel/new`}>
-              <Button
-                backgroundColor="rgb(0, 126, 255)"
-                color="white"
-                padding="10px 25px"
-              >
-                <FontAwesomeIcon icon={Plus} />
-                &nbsp;&nbsp;Add New Hotel
-              </Button>
-            </a>
-          </Placement>
-        </Col>
-      </Row>
-      <Col size={12}>
-        <Row bg_color="rgb(243 243 243)">
-          <Col size={1}>
-            <P weight="bold" padding_left={10}>
-              Id
-            </P>
-          </Col>
-          <Col size={3}>
-            <P weight="bold">Name</P>
-          </Col>
-          <Col size={2}>
-            <P weight="bold">Address</P>
-          </Col>
-          <Col size={2}>
-            <P weight="bold">City</P>
-          </Col>
-          <Col size={2}>
-            <P weight="bold">State</P>
-          </Col>
-          <Col size={2}>
-            <Row>
-              <Col size={6}>
-                <P weight="bold">Edit</P>
+      <Row margin="0 0 0 1rem">
+        <Col size={11}>
+          <Row margin="2rem 0">
+            <Col size={6}>
+              <Header>
+                <Heading>Manage hotels</Heading>
+              </Header>
+            </Col>
+            <Col size={6}>
+              <Placement float="right">
+                <a href={`hotel/new`}>
+                  <Button
+                    backgroundColor="rgb(0, 126, 255)"
+                    color="white"
+                    padding="10px 25px"
+                  >
+                    <FontAwesomeIcon icon={Plus} />
+                    &nbsp;&nbsp;Add New Hotel
+                  </Button>
+                </a>
+              </Placement>
+            </Col>
+          </Row>
+          <Col size={12}>
+            <Row bg_color="rgb(243 243 243)">
+              <Col size={1}>
+                <P weight="bold" padding="0 0 0 0.5rem">
+                  Id
+                </P>
               </Col>
-              <Col size={6}>
-                <P weight="bold">Delete</P>
+              <Col size={3}>
+                <P weight="bold">Name</P>
               </Col>
-            </Row>
-          </Col>
-        </Row>
-        {(hotels.length !== 0 && (
-          <>
-            {hotels.map(({ id, name, city, address, published_at }) => {
-              return (
-                <Row
-                  margin={20}
-                  padding_bottom={18}
-                  border_size="1"
-                  border_color="rgb(243 243 243)"
-                  key={id}
-                >
-                  <Col size={1}>
-                    <Span padding_left={10}>{id}</Span>
+              <Col size={2}>
+                <P weight="bold">Address</P>
+              </Col>
+              <Col size={2}>
+                <P weight="bold">City</P>
+              </Col>
+              <Col size={2}>
+                <P weight="bold">State</P>
+              </Col>
+              <Col size={2}>
+                <Row>
+                  <Col size={6}>
+                    <P weight="bold">Edit</P>
                   </Col>
-                  <Col size={3} hover="grey">
-                    <LinkHover href={`/hotel/${id}`}>
-                      <Span>{name}</Span>
-                    </LinkHover>
-                  </Col>
-                  <Col size={2}>
-                    <Span>{address}</Span>
-                  </Col>
-                  <Col size={2}>
-                    <Span>{city}</Span>
-                  </Col>
-                  <Col size={2}>
-                    <Span>{(published_at && "Published") || "Draft"}</Span>
-                  </Col>
-                  <Col size={2}>
-                    <Row>
-                      <Col size={6}>
-                        <Button>
-                          <a href={`hotel/edit/${id}`}>
-                            <FontAwesomeIcon icon={Edit} />
-                          </a>
-                        </Button>
-                      </Col>
-                      <Col size={6}>
-                        <DeleteButton id={id}>
-                          <FontAwesomeIcon icon={Trash} />
-                        </DeleteButton>
-                      </Col>
-                    </Row>
+                  <Col size={6}>
+                    <P weight="bold">Delete</P>
                   </Col>
                 </Row>
-              );
-            })}
-          </>
-        )) || <span>No hotels in the database</span>}
-      </Col>
+              </Col>
+            </Row>
+            <Col box="white-table">
+              {(hotels.length !== 0 && (
+                <>
+                  {hotels.map(({ id, name, city, address, published_at }) => {
+                    return (
+                      <Row
+                        padding="1rem 0 1rem 0"
+                        border_size="1"
+                        border_color="rgb(243 243 243)"
+                        hover="table"
+                        key={id}
+                      >
+                        <Col size={1}>
+                          <Span padding="0 0 0 0.5rem">{id}</Span>
+                        </Col>
+                        <Col size={3} hover="grey">
+                          <LinkHover href={`/hotel/${id}`}>
+                            <Span>{name}</Span>
+                          </LinkHover>
+                        </Col>
+                        <Col size={2}>
+                          <Span>{address}</Span>
+                        </Col>
+                        <Col size={2}>
+                          <Span>{city}</Span>
+                        </Col>
+                        <Col size={2}>
+                          <Span>
+                            {(published_at && "Published") || "Draft"}
+                          </Span>
+                        </Col>
+                        <Col size={2}>
+                          <Row>
+                            <Col size={6}>
+                              <Button>
+                                <a href={`hotel/edit/${id}`}>
+                                  <FontAwesomeIcon icon={Edit} />
+                                </a>
+                              </Button>
+                            </Col>
+                            <Col size={6}>
+                              <DeleteButton id={id}>
+                                <FontAwesomeIcon icon={Trash} />
+                              </DeleteButton>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    );
+                  })}
+                </>
+              )) || <span>No hotels in the database</span>}
+            </Col>
+          </Col>
+        </Col>
+      </Row>
     </AdminLayout>
   );
 };

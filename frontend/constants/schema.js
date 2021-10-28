@@ -53,24 +53,25 @@ export const LOGIN_SCHEMA = yup.object().shape({
 export const EDIT_HOTEL_SCHEMA = yup.object().shape({
   name: yup
     .string()
-    .required("Please enter a value")
+    .required("Please enter a hotel name")
     .min(5, "Value must be atleast 5 characters long"),
   description: yup
     .string()
-    .required("Please enter a value")
+    .required("Please enter a description")
     .min(50, "Value must be atleast 50 characters long"),
   address: yup
     .string()
-    .required("Please enter a value")
+    .required("Please enter a address")
     .min(5, "Value must be atleast 5 characters long"),
   city: yup
     .string()
-    .required("Please enter a value")
+    .required("Please enter city name")
     .min(3, "Value must be atleast 3 characters long"),
   zip_code: yup
-    .number()
-    .required("Please enter a number value")
-    .min(4, "Value must be atleast 4 characters long"),
+    .string()
+    .required("Please enter a zip code")
+    .min(4, "Value must be atleast 4 characters long")
+    .matches(/^[0-9]+$/, "Please enter only digits"),
   state: yup.string(),
-  image: yup.mixed().required("File is required"),
+  image: yup.mixed(),
 });

@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const AdminContainer = styled.div`
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+`;
+
 export const SideContainer = styled.div`
   position: fixed;
   float: left;
@@ -42,20 +50,17 @@ export const AdminLink = styled.a`
 `;
 
 export const AdminChildren = styled.div`
-  margin-left: 17rem;
+  margin-left: 16rem;
+  background-color: rgb(250 250 251);
   width: 100%;
-`;
-
-export const AdminContainer = styled.div`
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: row;
+  min-height: 100%;
+  height: fit-content;
+  padding-bottom: 2rem;
 `;
 
 export const AdminHeading = styled.div`
   position: fixed;
-  margin-left: 16rem;
-  padding-left: 10px;
+  padding-left: 16rem;
   color: white;
   width: 100%;
   height: 4rem;

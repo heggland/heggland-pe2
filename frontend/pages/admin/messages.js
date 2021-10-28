@@ -140,96 +140,102 @@ const Messages = () => {
 
   return (
     <AdminLayout title={TITLE_ADMIN_MESSAGES}>
-      <Row margin={30}>
-        <Col size={6}>
-          <Header>
-            <Heading>Messages</Heading>
-          </Header>
-        </Col>
-      </Row>
-      <Col size={12}>
-        <Row bg_color="rgb(243 243 243)">
-          <Col size={1}>
-            <P weight="bold" padding_left={10}>
-              Id
-            </P>
-          </Col>
-          <Col size={2}>
-            <P weight="bold">Name</P>
-          </Col>
-          <Col size={2}>
-            <P weight="bold">Email</P>
-          </Col>
-          <Col size={3}>
-            <P weight="bold">Message</P>
-          </Col>
-          <Col size={2}>
-            <P weight="bold">State</P>
-          </Col>
-          <Col size={2}>
-            <Row>
-              <Col size={6}>
-                <P weight="bold">Edit</P>
-              </Col>
-              <Col size={6}>
-                <P weight="bold">Delete</P>
-              </Col>
-            </Row>
+      <Row margin="0 0 0 1rem">
+        <Row margin="2rem 0" width="100%">
+          <Col size={6}>
+            <Header>
+              <Heading>Messages</Heading>
+            </Header>
           </Col>
         </Row>
-        {error && <span>{error}</span>}
-        {errorDelete && <>delete error: {errorDelete}</>}
-        {(messages.length !== 0 &&
-          messages.map(({ id, name, email, message, published_at }) => {
-            return (
-              <Row
-                margin={20}
-                padding_bottom={18}
-                border_size="1"
-                border_color="rgb(243 243 243)"
-                key={id}
-              >
-                <Col size={1}>
-                  <Span padding_left={10}>{id}</Span>
+        <Col size={11}>
+          <Row bg_color="rgb(243 243 243)">
+            <Col size={1}>
+              <P weight="bold" padding="0 0 0 0.5rem">
+                Id
+              </P>
+            </Col>
+            <Col size={2}>
+              <P weight="bold">Name</P>
+            </Col>
+            <Col size={2}>
+              <P weight="bold">Email</P>
+            </Col>
+            <Col size={3}>
+              <P weight="bold">Message</P>
+            </Col>
+            <Col size={2}>
+              <P weight="bold">State</P>
+            </Col>
+            <Col size={2}>
+              <Row>
+                <Col size={6}>
+                  <P weight="bold">Edit</P>
                 </Col>
-                <Col size={2}>
-                  <Span>{name}</Span>
-                </Col>
-                <Col size={2}>
-                  <Span>{email}</Span>
-                </Col>
-                <Col size={3}>
-                  <Span>{message}</Span>
-                </Col>
-                <Col size={2}>
-                  <Span>
-                    <button
-                      onClick={updateState}
-                      data-id={id}
-                      data-state={published_at !== null ? "publish" : "draft"}
-                    >
-                      {published_at !== null ? "NEW" : "Read"}
-                    </button>
-                  </Span>
-                </Col>
-                <Col size={2}>
-                  <Row>
-                    <Col size={6}>
-                      <a href={`message/${id}`}>
-                        <FontAwesomeIcon icon={Edit} />
-                      </a>
-                    </Col>
-                    <Col size={6}>
-                      <DeleteButton id={id}>
-                        <FontAwesomeIcon icon={Trash} />
-                      </DeleteButton>
-                    </Col>
-                  </Row>
+                <Col size={6}>
+                  <P weight="bold">Delete</P>
                 </Col>
               </Row>
-            );
-          })) || <span>No messages in the database</span>}
-      </Col>
+            </Col>
+          </Row>
+          {error && <span>{error}</span>}
+          {errorDelete && <>delete error: {errorDelete}</>}
+          <Col box="white-table">
+            {(messages.length !== 0 &&
+              messages.map(({ id, name, email, message, published_at }) => {
+                return (
+                  <Row
+                    padding="1rem 0 1rem 0"
+                    border_size="1"
+                    border_color="rgb(243 243 243)"
+                    hover="table"
+                    key={id}
+                  >
+                    <Col size={1}>
+                      <Span padding="0 0 0 0.5rem">{id}</Span>
+                    </Col>
+                    <Col size={2}>
+                      <Span>{name}</Span>
+                    </Col>
+                    <Col size={2}>
+                      <Span>{email}</Span>
+                    </Col>
+                    <Col size={3}>
+                      <Span>{message}</Span>
+                    </Col>
+                    <Col size={2}>
+                      <Span>
+                        <button
+                          onClick={updateState}
+                          data-id={id}
+                          data-state={
+                            published_at !== null ? "publish" : "draft"
+                          }
+                        >
+                          {published_at !== null ? "NEW" : "Read"}
+                        </button>
+                      </Span>
+                    </Col>
+                    <Col size={2}>
+                      <Row>
+                        <Col size={6}>
+                          <a href={`message/${id}`}>
+                            <FontAwesomeIcon icon={Edit} />
+                          </a>
+                        </Col>
+                        <Col size={6}>
+                          <DeleteButton id={id}>
+                            <FontAwesomeIcon icon={Trash} />
+                          </DeleteButton>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                );
+              })) || <span>No messages in the database</span>}
+          </Col>
+        </Col>
+      </Row>
     </AdminLayout>
   );
 };

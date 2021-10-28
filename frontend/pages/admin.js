@@ -50,72 +50,73 @@ export default function Home() {
 
   return (
     <AdminLayout title={TITLE_ADMIN} description={DESCRIPTION_ADMIN}>
-      <Heading>Admin </Heading>
-      <Row padding_bottom={30}>
-        <span suppressHydrationWarning>Hi {auth && auth.username}!</span>
-      </Row>
-      <Col size={12}>
-        <Row>
-          <Col size={6}>
-            <Note>
-              <NoteHeader>
+      <Row margin="2rem 0 0 1rem">
+        <Heading>Admin</Heading>
+        <Col size={12}>
+          <Row>
+            <Col size={6}>
+              <Note>
+                <NoteHeader>
+                  <Row>
+                    <Heading size={3}>Messages</Heading>
+                  </Row>
+                </NoteHeader>
                 <Row>
-                  <Heading size={3}>Messages</Heading>
+                  {(messages.length >= 1 && (
+                    <NoteBody>
+                      <span>
+                        <NoteLink href="/admin/messages">
+                          <FontAwesomeIcon icon={iconMessage} />
+                          &nbsp; There {messages.length >= 1 ? "are" : "is"}
+                          &nbsp;
+                          {messages.length}
+                          &nbsp;new message{messages.length >= 2 && "s"}!
+                        </NoteLink>
+                      </span>
+                    </NoteBody>
+                  )) || (
+                    <NoteBody>
+                      <span>
+                        <FontAwesomeIcon icon={iconMessage} />
+                        &nbsp;No new visitor messages
+                      </span>
+                    </NoteBody>
+                  )}
                 </Row>
-              </NoteHeader>
-              <Row>
-                {(messages.length >= 1 && (
+              </Note>
+            </Col>
+            <Col size={6}>
+              <Note>
+                <NoteHeader>
+                  <Row>
+                    <Heading size={3}>Enquiries</Heading>
+                  </Row>
+                </NoteHeader>
+                {(enquiries.length >= 1 && (
                   <NoteBody>
                     <span>
-                      <NoteLink href="/admin/messages">
-                        <FontAwesomeIcon icon={iconMessage} />
-                        &nbsp; There {messages.length >= 1 ? "are" : "is"}&nbsp;
-                        {messages.length}
-                        &nbsp;new message{messages.length >= 2 && "s"}!
+                      <NoteLink href="/admin/enquiries">
+                        <FontAwesomeIcon icon={iconEnquirie} />
+                        &nbsp; There {enquiries.length >= 1 ? "are" : "is"}
+                        &nbsp;
+                        {enquiries.length}&nbsp; new order
+                        {enquiries.length >= 2 && "s"}!
                       </NoteLink>
                     </span>
                   </NoteBody>
                 )) || (
                   <NoteBody>
                     <span>
-                      <FontAwesomeIcon icon={iconMessage} />
-                      &nbsp;No new visitor messages
+                      <FontAwesomeIcon icon={iconEnquirie} />
+                      &nbsp;No new visior orders
                     </span>
                   </NoteBody>
                 )}
-              </Row>
-            </Note>
-          </Col>
-          <Col size={6}>
-            <Note>
-              <NoteHeader>
-                <Row>
-                  <Heading size={3}>Enquiries</Heading>
-                </Row>
-              </NoteHeader>
-              {(enquiries.length >= 1 && (
-                <NoteBody>
-                  <span>
-                    <NoteLink href="/admin/enquiries">
-                      <FontAwesomeIcon icon={iconEnquirie} />
-                      &nbsp; There {enquiries.length >= 1 ? "are" : "is"}&nbsp;
-                      {enquiries.length}&nbsp; new order
-                      {enquiries.length >= 2 && "s"}!
-                    </NoteLink>
-                  </span>
-                </NoteBody>
-              )) || (
-                <NoteBody>
-                  <span>
-                    <FontAwesomeIcon icon={iconEnquirie} />
-                    &nbsp;No new visior orders
-                  </span>
-                </NoteBody>
-              )}
-            </Note>
-          </Col>
-        </Row>
-      </Col>
+              </Note>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     </AdminLayout>
   );
 }
