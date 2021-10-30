@@ -5,31 +5,35 @@ import axios from "axios";
 import { BASE_URL, HOTELS_PATH } from "../constants/api";
 
 const Hotel = (props) => {
+  console.log(props.content);
+
   return (
     <Layout title={TITLE_HOTELS} description={DESCRIPTION_HOTELS}>
       <Heading>Hotels</Heading>
       <main>
-        {props.content.map(({ id, name, image, city, description }) => {
-          let img;
-          if (image[0]) {
-            img = (
-              <a href={`hotel/${id}`}>
-                <img src={BASE_URL + image[0].url} height="200px" />
-              </a>
-            );
-          }
+        {(props.content.length !== 0 &&
+          props.content.map(({ id, name, image, city, description }) => {
+            let img;
+            if (image[0]) {
+              img = (
+                <a href={`hotel/${id}`}>
+                  <img src={BASE_URL + image[0].url} height="200px" />
+                </a>
+              );
+            }
 
-          return (
-            <div key={id}>
-              <a href={`hotel/${id}`}>
-                <Heading size="4">{name}</Heading>
-              </a>
-              {img}
-              <p>{city}</p>
-              <small>{description}</small>
-            </div>
-          );
-        })}
+            return (
+              <div key={id}>
+                <a href={`hotel/${id}`}>
+                  <Heading size="4">{name}</Heading>
+                </a>
+                {img}
+                <p>{city}</p>
+                <small>{description}</small>
+              </div>
+            );
+          })) ||
+          "no hotels"}
       </main>
     </Layout>
   );

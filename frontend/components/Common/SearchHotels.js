@@ -25,7 +25,9 @@ const SearchHotels = () => {
     async function fetchData() {
       try {
         const response = await axios.get(BASE_URL + HOTELS_PATH);
-        setHotels(response.data);
+        if (response.data.length !== 0) {
+          setHotels(response.data);
+        }
       } catch (error) {
         console.error(error);
         setFetchError(error.toString());
@@ -40,7 +42,7 @@ const SearchHotels = () => {
     let filtered;
     try {
       if (search.length !== 0) {
-        if (search.length > 2) {
+        if (search.length > 1) {
           filtered = hotels.filter(function (hotels) {
             if (
               JSON.stringify({
@@ -83,10 +85,10 @@ const SearchHotels = () => {
           )}
         </>
       )} */}
-
       <form onChange={handleSubmit(onChange)}>
         <input
           {...register("search")}
+          disabled={!hotels && true}
           placeholder={(errors.search && errors.search.message) || "search.."}
         ></input>
       </form>

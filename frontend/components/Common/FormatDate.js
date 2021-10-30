@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
 
 export default function FormatDate({ date }) {
+  if (!date) {
+    return <> </>;
+  }
+
   const options = {
     year: "numeric",
     month: "long",
