@@ -4,9 +4,8 @@ export const BackButton = styled.div`
 position fixed;
 top: 1rem;
 color: white;
-
 width: 2rem;
-height: 2rem;
+height: 2.5rem;
 display: flex;
 align-items: center;
 place-content: center;
@@ -14,6 +13,7 @@ place-content: center;
 &:hover {
     cursor: pointer;
     background-color: rgb(0 114 231);
+    
 }
 `;
 

@@ -6,7 +6,7 @@ import Head from "./Head";
 import Footer from "./Footer";
 
 import * as Style from "./Layout.style";
-import { Col } from "../Common/Styles/Common";
+import { Col } from "../../styles/common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt as SignOut } from "@fortawesome/free-solid-svg-icons";

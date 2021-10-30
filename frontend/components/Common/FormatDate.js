@@ -1,8 +1,6 @@
-import Row from "react-bootstrap/Col";
-
 import PropTypes from "prop-types";
 
-export default function FormatDate({ date, modifiedDate }) {
+export default function FormatDate({ date }) {
   const options = {
     year: "numeric",
     month: "long",
@@ -13,48 +11,8 @@ export default function FormatDate({ date, modifiedDate }) {
     new Date(date)
   );
 
-  if (modifiedDate) {
-    const formattedModified = new Intl.DateTimeFormat("en-UK", options).format(
-      new Date(modifiedDate)
-    );
-
-    if (formatted !== formattedModified) {
-      return (
-        <>
-          <Row
-            className="px-0 cursor-help"
-            data-toggle="tooltip"
-            data-placement="top"
-            role="button"
-            title={"Post created at " + formatted}
-          >
-            {formatted}
-          </Row>
-          <Row
-            className="px-0 cursor-help"
-            data-toggle="tooltip"
-            data-placement="top"
-            title={"Post last modified at " + formattedModified}
-          >
-            <small role="button" className="cursor-help">
-              * {formattedModified}
-            </small>
-          </Row>
-        </>
-      );
-    }
-  }
-
-  return (
-    <Row
-      className="px-0 cursor-help"
-      data-toggle="tooltip"
-      data-placement="top"
-      title={"Post created at " + formatted}
-    >
-      {formatted}
-    </Row>
-  );
+  // suppressHydrationWarning, Text content did not match. Server: "October 28, 2021" Client: "28 October 2021"
+  return <span suppressHydrationWarning>{formatted}</span>;
 }
 
 FormatDate.proptTypes = {

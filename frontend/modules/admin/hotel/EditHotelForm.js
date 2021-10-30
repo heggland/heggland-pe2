@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Heading from "../../../components/Layout/Heading";
 // import Image from "next/image";
 
-import { Col, Row, Textarea } from "../../../components/Common/Styles/Common";
+import { Col, Row, Textarea } from "../../../styles/common";
 import {
   BackButton,
   ButtonGroup,
@@ -22,6 +22,7 @@ import {
   faChevronLeft as chevron,
   faTrashAlt as trash,
 } from "@fortawesome/free-solid-svg-icons";
+import FormatDate from "../../../components/Common/FormatDate";
 
 const EditForm = ({
   id,
@@ -33,7 +34,7 @@ const EditForm = ({
   hotel_facilities,
   image,
   state,
-  updated_at
+  updated_at,
 }) => {
   const [error, setError] = useState(null);
   const [updated, setUpdated] = useState(false);
@@ -99,7 +100,6 @@ const EditForm = ({
       console.log(error);
     }
   }
-  console.log(state);
   async function deleteButton(e) {
     setError(null);
     e.preventDefault();
@@ -165,11 +165,17 @@ const EditForm = ({
   const goBack = () => router.push("/admin/hotels");
 
   const handleImageChange = (e) => {
-    setImagePreview(true);
-    setImageFile(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files[0]) {
+      setImagePreview(true);
+      setImageFile(URL.createObjectURL(e.target.files[0]));
+    }
   };
 
-  console.log(image);
+  const revertImage = (e) => {
+    setImagePreview(false);
+    setImageFile(null);
+  };
+
   let hotelImage;
   if (image && image.length !== 0) {
     if (image[0].url) {
@@ -177,7 +183,6 @@ const EditForm = ({
     }
   }
 
-  // todo: when the user revert the changes, set state button to true
   const disableStateButton = () => setStateButton(false);
 
   return (
@@ -302,6 +307,7 @@ const EditForm = ({
                             {...register("image")}
                           />
                         </div>
+                        <button onClick={revertImage}>Revert image</button>
                       </Row>
                     </>
                   )) || (
@@ -330,7 +336,12 @@ const EditForm = ({
                 <Row>
                   <Heading size={5}>INFORMATION</Heading>
                 </Row>
-                <Row padding="10px 0">Last update: {!updatedAt && updated_at && <small>{updated_at}</small> || <small>{updatedAt}</small>}</Row>
+                <Row padding="10px 0">
+                  Last update:&nbsp;
+                  {(!updatedAt && updated_at && (
+                    <FormatDate date={updated_at} />
+                  )) || <FormatDate date={updatedAt} />}
+                </Row>
                 {id && (
                   <Row padding="10px 0">
                     <ButtonDelete onClick={deleteButton}>
@@ -350,4 +361,4 @@ const EditForm = ({
 
 export default EditForm;
 
-// TODO: redesign save / delete button. Look into multiple image upload
+// TODO: redesign image upload, revert button place at the right corner of image- x indicate remove image. Look into multiple image upload

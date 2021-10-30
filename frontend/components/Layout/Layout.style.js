@@ -19,12 +19,22 @@ export const SideContainer = styled.div`
   color: white;
 `;
 export const AdminNavHead = styled.nav`
+  display: flex;
+  place-items: center;
   width: 100%;
   height: 4rem;
   font-size: 2rem;
   letter-spacing: 0.1rem;
   padding-left: 0.5rem;
   background: rgb(0, 126, 255);
+  
+  & > a {
+    position fixed;
+    top: 1rem;
+    height: 2.5rem;
+    width: 13%;
+  }
+
 `;
 
 export const AdminNav = styled.nav`

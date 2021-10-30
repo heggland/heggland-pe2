@@ -20,7 +20,7 @@ import {
   Placement,
   LinkHover,
   Header,
-} from "../../components/Common/Styles/Common";
+} from "../../styles/common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

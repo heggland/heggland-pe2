@@ -177,7 +177,7 @@ export const Note = styled.div`
   background-color: #ffff4a;
   width: 50%;
   box-shadow: 0px 0px 15px 9px rgba(165, 165, 165, 0.4);
-  border-top: 10px solid rgb(245 245 8);
+  border-top: 30px solid rgb(245 245 8);
 `;
 
 export const NoteHeader = styled.div`
@@ -187,7 +187,7 @@ export const NoteHeader = styled.div`
 
 export const NoteBody = styled.div`
   padding-left: 10%;
-  padding-bottom: 10%;
+  padding-bottom: 60px;
   width: fit-content;
 `;
 

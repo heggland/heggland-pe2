@@ -26,7 +26,7 @@ import {
   Placement,
   P,
   LoginButton,
-} from "../components/Common/Styles/Common";
+} from "../styles/common";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);

@@ -10,14 +10,7 @@ import {
 import { TITLE_ADMIN_ENQUIRIES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import {
-  Row,
-  Col,
-  P,
-  Span,
-  Button,
-  Header,
-} from "../../components/Common/Styles/Common";
+import { Row, Col, P, Span, Button, Header } from "../../styles/common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

@@ -8,7 +8,7 @@ import {
   NoteHeader,
   NoteBody,
   NoteLink,
-} from "../components/Common/Styles/Common";
+} from "../styles/common";
 import { useContext, useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 import { BASE_URL, ENQUIRIES_PATH, CONTACT_PATH } from "../constants/api";
