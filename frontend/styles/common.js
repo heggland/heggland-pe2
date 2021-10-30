@@ -40,6 +40,12 @@ export const Row = styled.div`
       justify-content: ${justifyContent};
     `}
 
+    ${({ textAlignLast }) =>
+    textAlignLast &&
+    css`
+      text-align-last: ${textAlignLast};
+    `}
+
     ${({ hover }) =>
     hover === "table" &&
     css`
@@ -91,6 +97,16 @@ export const Placement = styled.div`
     float &&
     css`
       float: ${float};
+    `}
+  ${({ placeContent }) =>
+    placeContent &&
+    css`
+      place-content: ${placeContent};
+    `}
+  ${({ height }) =>
+    height &&
+    css`
+      height: ${height};
     `}
 `;
 
@@ -165,7 +181,15 @@ ${({ padding }) =>
   }
 `;
 
+export const LoginNavigation = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`;
+
 export const LoginButton = styled.button`
+  margin-top: 10px;
   padding: 0 30px;
 
   &:hover {

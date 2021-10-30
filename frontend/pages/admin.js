@@ -45,9 +45,6 @@ export default function Home() {
     fetchData();
   }, []);
 
-  console.log("Enquries", enquiries);
-  console.log("Messages", messages);
-
   return (
     <AdminLayout title={TITLE_ADMIN} description={DESCRIPTION_ADMIN}>
       <Row margin="2rem 0 0 1rem">

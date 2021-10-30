@@ -46,7 +46,6 @@ const Hotels = () => {
     }
     fetchData();
   }, []);
-  console.log(hotels);
 
   const DeleteButton = ({ id }) => {
     const [error, setError] = useState(null);

@@ -26,11 +26,13 @@ import {
   Placement,
   P,
   LoginButton,
+  LoginNavigation,
 } from "../styles/common";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
   //const [cookie, setCookie] = useCookies(["token"]);
 
@@ -70,24 +72,23 @@ const Login = () => {
         maxAge: 3600, // Expires after 1hr
         sameSite: true,
       }); */
-      setSubmitting(false);
+
       router.push("/admin");
     } catch (error) {
-      setLoginError(error.toString());
+      setSubmitting(false);
+      setLoginError(
+        (error.toString().includes("400") && "Invalid login") ||
+          error.toString()
+      );
     }
   }
 
   return (
     <>
       <Head title={TITLE_LOGIN} description={DESCRIPTION_LOGIN} />
-      <Placement
-        position="fixed"
-        top={0}
-        align="center"
-        width={100}
-        alignItems="center"
-      >
-        <Row>
+
+      <LoginNavigation>
+        <Row justifyContent="center">
           <Link href="/">
             <a>
               <P>Holidaze</P>
@@ -99,9 +100,9 @@ const Login = () => {
             </a>
           </Link>
         </Row>
-      </Placement>
-      <Placement place="center" align="center" height={100}>
-        <Row justifyContent="center">
+      </LoginNavigation>
+      <Placement placeContent="center" height="100%">
+        <Row justifyContent="center" textAlignLast="center">
           <LoginForm onSubmit={handleSubmit(onSubmit)}>
             {loginError && <FormError>{loginError}</FormError>}
             <Row>
@@ -151,12 +152,7 @@ const Login = () => {
                   Loggin in...
                 </LoginButton>
               ) : (
-                <LoginButton
-                  width={100}
-                  className="w-100"
-                  variant="outline-primary"
-                  type="submit"
-                >
+                <LoginButton variant="outline-primary" type="submit">
                   Login
                 </LoginButton>
               )}
