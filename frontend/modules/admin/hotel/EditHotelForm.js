@@ -42,6 +42,7 @@ const EditForm = ({
   const [updatedAt, setUpdatedAt] = useState(null);
   const [stateButton, setStateButton] = useState(true);
   const [imagePreview, setImagePreview] = useState(false);
+  const [imageRevertButton, setImageRevertButton] = useState(true);
   const [imageFile, setImageFile] = useState(null);
 
   const router = useRouter();
@@ -93,6 +94,7 @@ const EditForm = ({
         router.push("/admin/hotel/edit/" + response.data.id);
       }
 
+      setImageRevertButton(false);
       setUpdated(true);
       setUpdatedAt(response.data.updated_at);
     } catch (error) {
@@ -307,7 +309,9 @@ const EditForm = ({
                             {...register("image")}
                           />
                         </div>
-                        <button onClick={revertImage}>Revert image</button>
+                        {imageRevertButton && (
+                          <button onClick={revertImage}>Revert image</button>
+                        )}
                       </Row>
                     </>
                   )) || (

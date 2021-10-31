@@ -27,20 +27,18 @@ const Hotel = ({ content, error }) => {
       title={content.name + " | Holidaze"}
       description={DESCRIPTION_HOTEL}
     >
-      <main>
-        <EditHotelForm
-          id={content.id}
-          name={content.name}
-          description={content.description}
-          address={content.address}
-          city={content.city}
-          zip_code={content.zip_code}
-          hotel_facilities={content.hotel_facilities}
-          image={content.image}
-          state={content.published_at}
-          updated_at={content.updated_at}
-        />
-      </main>
+      <EditHotelForm
+        id={content.id}
+        name={content.name}
+        description={content.description}
+        address={content.address}
+        city={content.city}
+        zip_code={content.zip_code}
+        hotel_facilities={content.hotel_facilities}
+        image={content.image}
+        state={content.published_at}
+        updated_at={content.updated_at}
+      />
     </AdminLayout>
   );
 };

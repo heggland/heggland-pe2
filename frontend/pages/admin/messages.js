@@ -234,5 +234,3 @@ const Messages = () => {
 };
 
 export default Messages;
-
-// handle id on a reactjs way?

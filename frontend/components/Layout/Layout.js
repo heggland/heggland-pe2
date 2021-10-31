@@ -68,7 +68,7 @@ export const AdminLayout = ({
       <Style.AdminContainer>
         <Style.SideContainer>
           <Style.AdminNavHead>
-            <Link href="/admin">Dashboard</Link>
+            <Link href="/admin">Admin</Link>
           </Style.AdminNavHead>
           <Style.AdminNav>
             <Link href="/admin/hotels">

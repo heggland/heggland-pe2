@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <AdminLayout title={TITLE_ADMIN} description={DESCRIPTION_ADMIN}>
       <Row margin="2rem 0 0 1rem">
-        <Heading>Admin</Heading>
+        <Heading>Dashboard</Heading>
         <Col size={12}>
           <Row>
             <Col size={6}>
