@@ -1,5 +1,131 @@
 import styled from "styled-components";
+import { xs, sm, lg, md } from "../../styles/breakpoints";
 
+export const Container = styled.div`
+  flex: 1 0 auto;
+`;
+
+// placeholder height.
+export const Navigation = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  width: 100%;
+  align-items: center;
+
+  ${xs} {
+    box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+    
+    > :nth-child(1), > :nth-child(2) {
+    padding 0 10px;
+    }
+
+    ${sm} {
+      
+      > :nth-child(1) {
+        padding-left: 5vw;
+        order: 1;
+      }
+      > :nth-child(2) {
+        order: 3;
+        margin-right: 30px;
+      }
+      > :nth-child(3) {
+        border-left: 1px solid rgb(234 234 234);
+        padding-left: 46px;
+        order: 2;
+      }
+    }
+  }
+
+  ${sm} {
+    flex-wrap: nowrap;
+    display: flex;
+    height: 70px;
+    display: flex;
+  }
+
+  ${lg} {
+  }
+`;
+
+export const NavTitle = styled.div`
+  font-size: 1.5rem;
+
+  ${md} {
+    padding-right: 26px;
+  }
+`;
+
+export const SearchButton = styled.div`
+  background-color: rgb(255 74 82);
+  width: fit-content;
+  padding: 10px 10px;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  display: flex;
+  place-items: center;
+
+  & > * {
+    color: white;
+  }
+
+  ${sm} {
+    background-color: white;
+
+    & > * {
+      color: black;
+    }
+  }
+`;
+
+export const MobileButton = styled.div`
+  padding: 10px 10px;
+  margin-left: 10px;
+  width: fit-content;
+  font-size: 1.5rem;
+
+  ${sm} {
+    display: none;
+  }
+`;
+
+export const NavPages = styled.div`
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(0 0 0 / 1%);
+  padding: 0 10px;
+
+  font-weight: 400;
+  font-size: 1rem;
+
+  & > * {
+    padding: 10px 0;
+  }
+
+  ${xs} {
+    display: ${(props) => props.show};
+    border-top: 1px solid rgb(0 0 0 / 5%);
+  }
+
+  ${sm} {
+    display: block;
+    background-color: white;
+    border-top: none;
+    padding: 0 2em;
+
+    & > * {
+      margin: 0 40px 0 0;
+
+      &:hover {
+        cursor: pointer;
+        color: rgb(30 198 182);
+      }
+    }
+  }
+`;
+
+// admin path style
 export const AdminContainer = styled.div`
   margin-top: 4rem;
   display: flex;

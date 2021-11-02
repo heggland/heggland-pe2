@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import * as breakpoints from "./breakpoints";
 
 export const Row = styled.div`
   display: flex;
@@ -57,8 +58,17 @@ export const Row = styled.div`
 `;
 
 export const Col = styled.div`
+  width: auto;
   width: calc(calc(100% / 12) * ${({ size }) => size || 12});
   height: fit-content;
+
+  ${({ md }) =>
+    md === "auto" &&
+    css`
+      ${breakpoints.md} {
+        width: auto !important;
+      }
+    `}
 
   ${({ alignSelf }) =>
     alignSelf &&

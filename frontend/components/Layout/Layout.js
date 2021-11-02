@@ -1,36 +1,55 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import Head from "./Head";
 import Footer from "./Footer";
 
 import * as Style from "./Layout.style";
-import { Col } from "../../styles/common";
+import { Col, Row } from "../../styles/common";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt as SignOut } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt as SignOut,
+  faBars as MobileMenu,
+} from "@fortawesome/free-solid-svg-icons";
+import SearchHotels from "../Common/SearchHotels";
 
 const Layout = ({ title, description, children }) => {
+  const [mobileMenu, setMobileMenu] = useState("none");
+
+  const handleClick = () =>
+    setMobileMenu((mobileMenu === "none" && "flex") || "none");
+
   return (
     <>
       <Head title={title} description={description} />
-      <div className="wrapper">
-        <nav>
-          <Link href="/">
-            <a>Holidaze</a>
-          </Link>
-          <Link href="/hotel">
-            <a>Hotel</a>
-          </Link>
-          <Link href="/contact">
-            <a>Contact</a>
-          </Link>
-        </nav>
-        <div>
-          <div>{children}</div>
-        </div>
-      </div>
+
+      <Style.Container>
+        <Style.Navigation>
+          <Col size={6} md="auto">
+            <Style.NavTitle>
+              <Link href="/">Holidaze</Link>
+            </Style.NavTitle>
+          </Col>
+          <Col size={6}>
+            <Row justifyContent="right">
+              <Style.SearchButton>
+                <SearchHotels type="nav" />
+              </Style.SearchButton>
+              <Style.MobileButton onClick={handleClick}>
+                <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />
+              </Style.MobileButton>
+            </Row>
+          </Col>
+
+          <Style.NavPages show={mobileMenu}>
+            <Link href="/hotel">Hotel</Link>
+            <Link href="/contact">Contact</Link>
+          </Style.NavPages>
+        </Style.Navigation>
+        <div>{children}</div>
+      </Style.Container>
       <Footer />
     </>
   );

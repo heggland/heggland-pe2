@@ -5,7 +5,10 @@ import axios from "axios";
 import { SEARCH_SCHEMA } from "../../constants/schema";
 import { BASE_URL, HOTELS_PATH } from "../../constants/api";
 
-const SearchHotels = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch as SearchIcon } from "@fortawesome/free-solid-svg-icons";
+
+const SearchHotels = ({ type }) => {
   const [fetchError, setFetchError] = useState(null);
   const [searchError, setSearchError] = useState(null);
   const [hotels, setHotels] = useState(null);
@@ -71,6 +74,14 @@ const SearchHotels = () => {
     }
   }
 
+  //TODO bring up search..
+  if (type === "nav") {
+    return (
+      <>
+        <FontAwesomeIcon icon={SearchIcon} />
+      </>
+    );
+  }
   return (
     <div>
       {/*      {searchError && (
