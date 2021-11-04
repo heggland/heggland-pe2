@@ -4,8 +4,8 @@ Skrev alle funksjonene som er på client siden.
 Page skeleton.
 Login page, admin route.
 
-hotel - ok
-specific hotel + form - ok
+accommodation - ok
+specific accommodation + form - ok
 contact - ok
 login - ok
 admin - ok 

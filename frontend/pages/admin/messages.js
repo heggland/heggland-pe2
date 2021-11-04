@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Heading from "../../components/Layout/Heading";
+import Heading from "../../components/Common/Heading";
 import { AdminLayout } from "../../components/Layout/Layout";
 import {
   BASE_URL,
@@ -72,29 +72,6 @@ const Messages = () => {
     );
   };
 
-  async function deleteButton(e) {
-    e.preventDefault();
-    setErrorDelete(null);
-
-    const id = e.target.dataset.id;
-
-    try {
-      // checks if id is passed in, if true update item: if false create new item
-      let response;
-      response = await http.delete(BASE_URL + CONTACT_PATH + id);
-
-      if ((response.status = 200)) {
-        const newArray = messages.filter(function (data) {
-          return data.id !== response.data.id;
-        });
-        setMessages(newArray);
-      }
-    } catch (error) {
-      setErrorDelete(error.toString());
-      console.log(error);
-    }
-  }
-
   async function updateState(e) {
     e.preventDefault();
 
@@ -137,7 +114,7 @@ const Messages = () => {
         <Row margin="2rem 0" width="100%">
           <Col size={6}>
             <Header>
-              <Heading>Messages</Heading>
+              <Heading>Visitor messages</Heading>
             </Header>
           </Col>
         </Row>

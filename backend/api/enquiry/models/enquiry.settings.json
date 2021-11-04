@@ -33,8 +33,8 @@
     "date_to": {
       "type": "date"
     },
-    "hotel_id": {
-      "collection": "hotels"
+    "accommondation_id": {
+      "collection": "accommodation"
     },
     "people": {
       "type": "integer"

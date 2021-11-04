@@ -9,7 +9,7 @@ To take the skills learned over the last two years and take on an extensive proj
 
 ## Brief
 
-For this assignment you have the choice between getting a real world client that you will manage and build a website for, or a case study to make a hotel booking website.
+For this assignment you have the choice between getting a real world client that you will manage and build a website for, or a case study to make a accommodation booking website.
 
 Whatever project you choose, the final submission must have the following:
 
@@ -54,7 +54,7 @@ End of week 7: Report with link to website, and all files in a compressed ZIP
 
 ## Option 2: Hotel Booking Website
 
-A local tourism agency in Bergen is launching a new website called ‘Holidaze’ for visitors to the area to be able to find hotels, B&Bs and guesthouses, and for the accommodation owners to receive enquiries.
+A local tourism agency in Bergen is launching a new website called ‘Holidaze’ for visitors to the area to be able to find accommodations, B&Bs and guesthouses, and for the accommodation owners to receive enquiries.
 
 The project requires you to create the visitor side of the website where users can search accommodation and make enquiries, as well as the administration side where properties can be added and enquiries managed.
 
@@ -65,9 +65,9 @@ You will need to create an API to store the data for the establishments, enquiri
 ### Visitor Side
 
 - Homepage
-- Search bar typeahead (auto dropdown with hotel names that match what has been typed)
-- A results page with all hotels
-- The hotel specific page which displays all details about the hotel
+- Search bar typeahead (auto dropdown with accommodation names that match what has been typed)
+- A results page with all accommodations
+- The accommodation specific page which displays all details about the accommodation
 - An enquiry page either modal or separate page
 - A contact page (different to enquiry page) which goes to the admin for Holidaze
 

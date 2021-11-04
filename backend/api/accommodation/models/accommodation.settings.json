@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "hotels",
+  "collectionName": "accommodation",
   "info": {
-    "name": "hotels",
+    "name": "accommodation",
     "description": ""
   },
   "options": {
@@ -27,11 +27,7 @@
     "image": {
       "collection": "file",
       "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
+      "allowedTypes": ["images", "files", "videos"],
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}

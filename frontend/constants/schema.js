@@ -50,10 +50,10 @@ export const LOGIN_SCHEMA = yup.object().shape({
     .min(6, "Password must be at least 6 characters long"),
 });
 
-export const EDIT_HOTEL_SCHEMA = yup.object().shape({
+export const EDIT_ACCOMMONDATION_SCHEMA = yup.object().shape({
   name: yup
     .string()
-    .required("Please enter a hotel name")
+    .required("Please enter a accommodation name")
     .min(5, "Value must be atleast 5 characters long"),
   description: yup
     .string()

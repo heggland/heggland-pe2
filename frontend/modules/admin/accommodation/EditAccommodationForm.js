@@ -1,11 +1,15 @@
-import { BASE_URL, HOTELS_PATH, HOTEL_PATH } from "../../../constants/api";
+import {
+  BASE_URL,
+  HOTELS_PATH,
+  ACCOMMONDATION_PATH,
+} from "../../../constants/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { EDIT_HOTEL_SCHEMA } from "../../../constants/schema";
+import { EDIT_ACCOMMONDATION_SCHEMA } from "../../../constants/schema";
 import useAxios from "../../../hooks/useAxios";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Heading from "../../../components/Layout/Heading";
+import Heading from "../../../components/Common/Heading";
 // import Image from "next/image";
 
 import { Col, Row, Textarea } from "../../../styles/common";
@@ -15,7 +19,7 @@ import {
   Button,
   ButtonDelete,
   InformationGroup,
-} from "./EditHotelForm.style";
+} from "./EditAccommodationForm.style";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,7 +35,6 @@ const EditForm = ({
   address,
   city,
   zip_code,
-  hotel_facilities,
   image,
   state,
   updated_at,
@@ -52,7 +55,7 @@ const EditForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(EDIT_HOTEL_SCHEMA),
+    resolver: yupResolver(EDIT_ACCOMMONDATION_SCHEMA),
   });
 
   const http = useAxios();
@@ -73,7 +76,7 @@ const EditForm = ({
         const imgResponse = await http.post(BASE_URL + "/upload", formData);
         console.log(imgResponse);
         data.image = imgResponse.data[0];
-        data.image.related__contentType = "Hotels";
+        data.image.related__contentType = "Accommondation";
         data.image.related.id = id;
         data.image.related.name = data.name;
       }
@@ -83,15 +86,15 @@ const EditForm = ({
       // checks if id is passed in, if true update item - if false create new item
       let response;
       if (id) {
-        response = await http.put(BASE_URL + HOTEL_PATH + id, data);
+        response = await http.put(BASE_URL + ACCOMMONDATION_PATH + id, data);
       } else {
-        response = await http.post(BASE_URL + HOTELS_PATH, data);
+        response = await http.post(BASE_URL + ACCOMMONDATION_PATH, data);
       }
       console.log(response);
 
       // if new item is successfully created, push to edit route of the new item
       if (!id) {
-        router.push("/admin/hotel/edit/" + response.data.id);
+        router.push("/admin/accommodation/edit/" + response.data.id);
       }
 
       setImageRevertButton(false);
@@ -113,11 +116,11 @@ const EditForm = ({
         // checks if id is passed in, if true update item: if false create new item
         let response;
         if (id) {
-          response = await http.delete(BASE_URL + HOTEL_PATH + id);
+          response = await http.delete(BASE_URL + ACCOMMONDATION_PATH + id);
         }
 
         if ((response.status = 200)) {
-          router.push("/admin/hotels");
+          router.push("/admin/accommodation");
         }
       } catch (error) {
         setError(error.toString());
@@ -145,7 +148,10 @@ const EditForm = ({
 
       console.log(data);
       try {
-        const response = await http.put(BASE_URL + HOTEL_PATH + id, data);
+        const response = await http.put(
+          BASE_URL + ACCOMMONDATION_PATH + id,
+          data
+        );
 
         if ((response.status = 200)) {
           console.log("updated status");
@@ -164,7 +170,7 @@ const EditForm = ({
     }
   }
 
-  const goBack = () => router.push("/admin/hotels");
+  const goBack = () => router.push("/admin/accommodation");
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -178,10 +184,10 @@ const EditForm = ({
     setImageFile(null);
   };
 
-  let hotelImage;
+  let accommodationImage;
   if (image && image.length !== 0) {
     if (image[0].url) {
-      hotelImage = BASE_URL + image[0].url;
+      accommodationImage = BASE_URL + image[0].url;
     }
   }
 
@@ -201,7 +207,7 @@ const EditForm = ({
         >
           <Row padding_bottom={5}>
             <Col size={6}>
-              <Heading>{(id && name) || "Create a new hotel"}</Heading>
+              <Heading>{(id && name) || "Create a new accommodation"}</Heading>
             </Col>
 
             <Col size={6} alignSelf="center">
@@ -292,9 +298,6 @@ const EditForm = ({
                   {errors.zip_code && <span>{errors.zip_code.message}</span>}
                 </Col>
               </Row>
-              {/*       <div>
-                  <input defaultValue={hotel_facilities} />
-                 </div> */}
               <Row padding_bottom={20}>
                 <Heading size={6}>IMAGE</Heading>
                 <Col>
@@ -316,7 +319,9 @@ const EditForm = ({
                     </>
                   )) || (
                     <>
-                      {hotelImage && <img src={hotelImage} width="300px" />}
+                      {accommodationImage && (
+                        <img src={accommodationImage} width="300px" />
+                      )}
                       <Row>
                         <div onChange={handleImageChange}>
                           <input
@@ -350,7 +355,7 @@ const EditForm = ({
                   <Row padding="10px 0">
                     <ButtonDelete onClick={deleteButton}>
                       <FontAwesomeIcon icon={trash} size="lg" />
-                      &nbsp;Delete this hotel
+                      &nbsp;Delete this accommodation
                     </ButtonDelete>
                   </Row>
                 )}

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
-import Head from "./Head";
-import Footer from "./Footer";
+import Head from "../Common/Head";
+import Footer from "../Common/Footer";
 
 import * as Style from "./Layout.style";
 import { Col, Row } from "../../styles/common";
@@ -13,14 +13,13 @@ import {
   faSignOutAlt as SignOut,
   faBars as MobileMenu,
 } from "@fortawesome/free-solid-svg-icons";
-import SearchHotels from "../Common/SearchHotels";
+import SearchAccommodation from "../Common/SearchAccommodation";
 
 const Layout = ({ title, description, children }) => {
   const [mobileMenu, setMobileMenu] = useState("none");
 
   const handleClick = () =>
     setMobileMenu((mobileMenu === "none" && "flex") || "none");
-
   return (
     <>
       <Head title={title} description={description} />
@@ -35,20 +34,19 @@ const Layout = ({ title, description, children }) => {
           <Col size={6}>
             <Row justifyContent="right">
               <Style.SearchButton>
-                <SearchHotels type="nav" />
+                <SearchAccommodation type="nav" />
               </Style.SearchButton>
               <Style.MobileButton onClick={handleClick}>
                 <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />
               </Style.MobileButton>
             </Row>
           </Col>
-
           <Style.NavPages show={mobileMenu}>
-            <Link href="/hotel">Hotel</Link>
+            <Link href="/accommodation">Accommodation</Link>
             <Link href="/contact">Contact</Link>
           </Style.NavPages>
         </Style.Navigation>
-        <div>{children}</div>
+        <Style.Children>{children}</Style.Children>
       </Style.Container>
       <Footer />
     </>
@@ -90,8 +88,8 @@ export const AdminLayout = ({
             <Link href="/admin">Admin</Link>
           </Style.AdminNavHead>
           <Style.AdminNav>
-            <Link href="/admin/hotels">
-              <Style.AdminLink>Hotels</Style.AdminLink>
+            <Link href="/admin/accommodation">
+              <Style.AdminLink>Accommodation</Style.AdminLink>
             </Link>
             <Link href="/admin/enquiries">
               <Style.AdminLink>Enquiries</Style.AdminLink>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Heading from "../../components/Layout/Heading";
+import Heading from "../../components/Common/Heading";
 import { AdminLayout } from "../../components/Layout/Layout";
 import {
   BASE_URL,
@@ -34,6 +34,8 @@ const Enquiries = () => {
     }
     fetchData();
   }, []);
+
+  console.log(enquiries);
 
   const DeleteButton = ({ id }) => {
     const [error, setError] = useState(null);
@@ -127,7 +129,7 @@ const Enquiries = () => {
               <P weight="bold">Name</P>
             </Col>
             <Col size={2}>
-              <P weight="bold">Hotel</P>
+              <P weight="bold">Accommodation</P>
             </Col>
             <Col size={2}>
               <P weight="bold">Email</P>
@@ -149,58 +151,64 @@ const Enquiries = () => {
           {error && <span>{error}</span>}
           <Col box="white-table">
             {(enquiries.length !== 0 &&
-              enquiries.map(({ id, name, email, published_at, hotel_id }) => {
-                return (
-                  <Row
-                    padding="1rem 0 1rem 0"
-                    border_size="1"
-                    border_color="rgb(243 243 243)"
-                    hover="table"
-                    key={id}
-                  >
-                    <Col size={1}>
-                      <Span padding="0 0 0 0.5rem">{id}</Span>
-                    </Col>
+              enquiries.map(
+                ({ id, name, email, published_at, accommondation_id }) => {
+                  return (
+                    <Row
+                      padding="1rem 0 1rem 0"
+                      border_size="1"
+                      border_color="rgb(243 243 243)"
+                      hover="table"
+                      key={id}
+                    >
+                      <Col size={1}>
+                        <Span padding="0 0 0 0.5rem">{id}</Span>
+                      </Col>
 
-                    <Col size={3}>
-                      <Span>{name}</Span>
-                    </Col>
-                    <Col size={2}>
-                      <Span>{hotel_id[0].name}</Span>
-                    </Col>
-                    <Col size={2}>
-                      <Span>{email}</Span>
-                    </Col>
-                    <Col size={2}>
-                      <Span>
-                        <button
-                          onClick={updateState}
-                          data-id={id}
-                          data-state={
-                            published_at !== null ? "publish" : "draft"
-                          }
-                        >
-                          {published_at !== null ? "NEW" : "FULFILLED"}
-                        </button>
-                      </Span>
-                    </Col>
-                    <Col size={2}>
-                      <Row>
-                        <Col size={6}>
-                          <a href={`enquirie/${id}`}>
-                            <FontAwesomeIcon icon={Edit} />
-                          </a>
-                        </Col>
-                        <Col size={6}>
-                          <DeleteButton id={id}>
-                            <FontAwesomeIcon icon={Trash} />
-                          </DeleteButton>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                );
-              })) || <span>No enquiries in the database</span>}
+                      <Col size={3}>
+                        <Span>{name}</Span>
+                      </Col>
+                      <Col size={2}>
+                        <Span>
+                          {(accommondation_id.length !== 0 &&
+                            accommondation_id[0].name) ||
+                            "Invalid"}
+                        </Span>
+                      </Col>
+                      <Col size={2}>
+                        <Span>{email}</Span>
+                      </Col>
+                      <Col size={2}>
+                        <Span>
+                          <button
+                            onClick={updateState}
+                            data-id={id}
+                            data-state={
+                              published_at !== null ? "publish" : "draft"
+                            }
+                          >
+                            {published_at !== null ? "NEW" : "FULFILLED"}
+                          </button>
+                        </Span>
+                      </Col>
+                      <Col size={2}>
+                        <Row>
+                          <Col size={6}>
+                            <a href={`enquirie/${id}`}>
+                              <FontAwesomeIcon icon={Edit} />
+                            </a>
+                          </Col>
+                          <Col size={6}>
+                            <DeleteButton id={id}>
+                              <FontAwesomeIcon icon={Trash} />
+                            </DeleteButton>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  );
+                }
+              )) || <span>No enquiries in the database</span>}
           </Col>
         </Col>
       </Row>

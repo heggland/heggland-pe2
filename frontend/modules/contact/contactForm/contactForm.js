@@ -2,10 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
-import { Form, Row, Col, Error, Success } from "./contactForm.style";
+import * as Style from "./contactForm.style";
 import axios from "axios";
 import { BASE_URL, CONTACT_PATH } from "../../../constants/api";
 import { CONTACT_SCHEMA } from "../../../constants/schema";
+import { Col, Row } from "../../../styles/common";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -36,22 +37,26 @@ const ContactForm = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Style.Form onSubmit={handleSubmit(onSubmit)}>
         {formError && <Error>{formError}</Error>}
         <Row>
           <Col>
-            <div>
-              <input type="text" placeholder="Name *" {...register("name")} />
+            <Style.FormGroup>
+              <Style.InputField
+                type="text"
+                placeholder="Name *"
+                {...register("name")}
+              />
               {errors.name && (
                 <div>
                   <Error>{errors.name.message}</Error>
                 </div>
               )}
-            </div>
+            </Style.FormGroup>
           </Col>
           <Col>
-            <div>
-              <input
+            <Style.FormGroup>
+              <Style.InputField
                 type="email"
                 placeholder="Email *"
                 {...register("email")}
@@ -61,12 +66,12 @@ const ContactForm = () => {
                   <Error>{errors.email.message}</Error>
                 </div>
               )}
-            </div>
+            </Style.FormGroup>
           </Col>
         </Row>
 
-        <div>
-          <input
+        <Style.FormGroup>
+          <Style.InputTextArea
             as="textarea"
             placeholder="Message *"
             rows={3}
@@ -74,19 +79,19 @@ const ContactForm = () => {
           />
           {errors.message && (
             <div>
-              <Error>{errors.message.message}</Error>
+              <Style.Error>{errors.message.message}</Style.Error>
             </div>
           )}
-        </div>
+        </Style.FormGroup>
         <Row>
           <Col>
             <button type="submit">
               {(submitting && "Sending..") || "Send"}
             </button>
           </Col>
-          <Col>{sent && <Success>Message sent</Success>}</Col>
+          <Col>{sent && <Style.Success>Message sent</Style.Success>}</Col>
         </Row>
-      </Form>
+      </Style.Form>
     </>
   );
 };

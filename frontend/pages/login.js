@@ -1,5 +1,5 @@
-import Head from "../components/Layout/Head";
-import Heading from "../components/Layout/Heading";
+import Head from "../components/Common/Head";
+import Heading from "../components/Common/Heading";
 
 import FormError from "../components/Common/FormError";
 

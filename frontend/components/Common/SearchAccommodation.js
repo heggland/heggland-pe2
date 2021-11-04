@@ -3,15 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { SEARCH_SCHEMA } from "../../constants/schema";
-import { BASE_URL, HOTELS_PATH } from "../../constants/api";
+import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch as SearchIcon } from "@fortawesome/free-solid-svg-icons";
 
-const SearchHotels = ({ type }) => {
+const SearchAccommodation = ({ type }) => {
   const [fetchError, setFetchError] = useState(null);
   const [searchError, setSearchError] = useState(null);
-  const [hotels, setHotels] = useState(null);
+  const [accommodations, setHotels] = useState(null);
 
   const [searchResult, setSearchResult] = useState(null);
 
@@ -27,7 +27,7 @@ const SearchHotels = ({ type }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(BASE_URL + HOTELS_PATH);
+        const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);
         if (response.data.length !== 0) {
           setHotels(response.data);
         }
@@ -46,18 +46,18 @@ const SearchHotels = ({ type }) => {
     try {
       if (search.length !== 0) {
         if (search.length > 1) {
-          filtered = hotels.filter(function (hotels) {
+          filtered = accommodations.filter(function (accommodations) {
             if (
               JSON.stringify({
-                name: hotels.name,
-                description: hotels.description,
-                address: hotels.address,
-                zip_code: hotels.zip_code,
+                name: accommodations.name,
+                description: accommodations.description,
+                address: accommodations.address,
+                zip_code: accommodations.zip_code,
               })
                 .toLowerCase()
                 .includes(search)
             ) {
-              return hotels;
+              return accommodations;
             }
           });
 
@@ -99,7 +99,7 @@ const SearchHotels = ({ type }) => {
       <form onChange={handleSubmit(onChange)}>
         <input
           {...register("search")}
-          disabled={!hotels && true}
+          disabled={!accommodations && true}
           placeholder={(errors.search && errors.search.message) || "search.."}
         ></input>
       </form>
@@ -109,7 +109,7 @@ const SearchHotels = ({ type }) => {
             ({ id, name, city, address, zip_code, description }) => {
               return (
                 <div key={id}>
-                  <a href={`hotel/${id}`}>
+                  <a href={`accommodation/${id}`}>
                     <p>{name}</p>
                   </a>
                   <p>{city}</p>
@@ -126,7 +126,7 @@ const SearchHotels = ({ type }) => {
   );
 };
 
-export default SearchHotels;
+export default SearchAccommodation;
 
 /*
 
@@ -134,7 +134,7 @@ export default SearchHotels;
     {searchResult.map(({ id, name, city, description }) => {
         return (
           <div key={id}>
-            <a href={`hotel/${id}`}>
+            <a href={`accommodation/${id}`}>
               <Heading size="4">{name}</Heading>
             </a>
             <p>{city}</p>

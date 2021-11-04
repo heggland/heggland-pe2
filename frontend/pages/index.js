@@ -1,4 +1,4 @@
-import Heading from "../components/Layout/Heading";
+import Heading from "../components/Common/Heading";
 import Layout from "../components/Layout/Layout";
 import { DESCRIPTION_HOME, TITLE_HOME } from "../constants/meta";
 import axios from "axios";
@@ -7,20 +7,18 @@ import Image from "next/image";
 
 import * as Style from "./index.style";
 
-const Home = (props) => {
+const Home = () => {
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
-      <Style.AboveFold>
-        <Style.Heading>
-          <img
-            src={BASE_URL + props.content[0].image[0].url}
-            alt={props.content[0].image[0].alternativeText}
-          />
-        </Style.Heading>
-        <Style.SearchForm>
-          <Heading size={3}>Where you want to go?</Heading>
-        </Style.SearchForm>
-      </Style.AboveFold>
+      <Style.Heading>
+        <img
+          src="https://media.radissonhotels.net/image/radisson-blu-caledonien-hotel-kristiansand/lobbyview/16256-116540-f66765457_3xl.jpg?impolicy=HomeHero"
+          alt="{props.content[0].image[0].alternativeText}"
+        />
+      </Style.Heading>
+      <Style.SearchForm>
+        <Heading size={3}>Where you want to go?</Heading>
+      </Style.SearchForm>
       <Style.Featured>
         <Heading size={3}>Featured Hotels</Heading>
       </Style.Featured>
@@ -28,7 +26,7 @@ const Home = (props) => {
   );
 };
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   let data = [];
 
   try {
@@ -50,5 +48,5 @@ export async function getStaticProps() {
     },
   };
 }
-
+*/
 export default Home;

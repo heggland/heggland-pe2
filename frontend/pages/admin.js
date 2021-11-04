@@ -1,5 +1,5 @@
 import { DESCRIPTION_ADMIN, TITLE_ADMIN } from "../constants/meta";
-import Heading from "../components/Layout/Heading";
+import Heading from "../components/Common/Heading";
 import { AdminLayout } from "../components/Layout/Layout";
 import {
   Col,

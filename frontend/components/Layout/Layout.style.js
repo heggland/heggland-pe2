@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { xs, sm, lg, md } from "../../styles/breakpoints";
 
+// unauthorized/visitors path
 export const Container = styled.div`
   flex: 1 0 auto;
+  background-color: rgb(247 250 253);
 `;
 
-// placeholder height.
 export const Navigation = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -15,13 +16,13 @@ export const Navigation = styled.div`
 
   ${xs} {
     box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
-    
+
     > :nth-child(1), > :nth-child(2) {
     padding 0 10px;
     }
 
     ${sm} {
-      
+
       > :nth-child(1) {
         padding-left: 5vw;
         order: 1;
@@ -50,10 +51,42 @@ export const Navigation = styled.div`
 `;
 
 export const NavTitle = styled.div`
-  font-size: 1.5rem;
-
   ${md} {
     padding-right: 26px;
+  }
+`;
+
+export const NavPages = styled.div`
+  flex-direction: column;
+  width: 100%;
+  padding: 0 10px;
+
+  font-weight: 400;
+  font-size: 1rem;
+
+  & > * {
+    padding: 10px 0;
+  }
+
+  ${xs} {
+    display: ${(props) => props.show};
+    border-top: 1px solid rgb(0 0 0 / 5%);
+  }
+
+  ${sm} {
+    display: block;
+    background-color: white;
+    border-top: none;
+    padding: 0 2em;
+
+    & > * {
+      margin: 0 40px 0 0;
+
+      &:hover {
+        cursor: pointer;
+        color: rgb(30 198 182);
+      }
+    }
   }
 `;
 
@@ -90,38 +123,14 @@ export const MobileButton = styled.div`
   }
 `;
 
-export const NavPages = styled.div`
-  flex-direction: column;
-  width: 100%;
-  background-color: rgb(0 0 0 / 1%);
-  padding: 0 10px;
+export const Children = styled.div`
+  padding: 10px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 
-  font-weight: 400;
-  font-size: 1rem;
-
-  & > * {
-    padding: 10px 0;
-  }
-
-  ${xs} {
-    display: ${(props) => props.show};
-    border-top: 1px solid rgb(0 0 0 / 5%);
-  }
-
-  ${sm} {
-    display: block;
-    background-color: white;
-    border-top: none;
-    padding: 0 2em;
-
-    & > * {
-      margin: 0 40px 0 0;
-
-      &:hover {
-        cursor: pointer;
-        color: rgb(30 198 182);
-      }
-    }
+  ${md} {
+    padding: 0;
+    margin: 0;
   }
 `;
 

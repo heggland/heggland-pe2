@@ -7,7 +7,7 @@ import axios from "axios";
 import { BASE_URL, ENQUIRIES_PATH } from "../../../constants/api";
 import { ENQUIRY_SCHEMA } from "../../../constants/schema";
 
-const EnquiryForm = ({ hotelId }) => {
+const EnquiryForm = ({ accommondationId }) => {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState(null);
   const [sent, setSent] = useState(false);
@@ -24,7 +24,7 @@ const EnquiryForm = ({ hotelId }) => {
     setSubmitting(true);
     setFormError(null);
 
-    data.hotel_id = hotelId;
+    data.accommondation_id = accommondationId;
 
     try {
       const response = await axios.post(BASE_URL + ENQUIRIES_PATH, data);

@@ -1,12 +1,11 @@
 import axios from "axios";
 import Link from "next/link";
-import EditHotelForm from "../../../../modules/admin/hotel/EditHotelForm";
+import EditHotelForm from "../../../../modules/admin/accommodation/EditAccommodationForm";
 import { AdminLayout } from "../../../../components/Layout/Layout";
 import {
   BASE_URL,
-  HOTELS_PATH,
-  HOTEL_PATH,
-  HOTEL_STATE_PATH,
+  ACCOMMONDATION_PATH,
+  ACCOMMONDATION_STATE_PATH,
 } from "../../../../constants/api";
 import { DESCRIPTION_HOTEL } from "../../../../constants/meta";
 
@@ -34,7 +33,7 @@ const Hotel = ({ content, error }) => {
         address={content.address}
         city={content.city}
         zip_code={content.zip_code}
-        hotel_facilities={content.hotel_facilities}
+        accommodation_facilities={content.accommodation_facilities}
         image={content.image}
         state={content.published_at}
         updated_at={content.updated_at}
@@ -62,7 +61,7 @@ export async function getServerSideProps({ params }) {
 
   try {
     const response = await axios.get(
-      BASE_URL + HOTEL_PATH + params.id + HOTEL_STATE_PATH
+      BASE_URL + ACCOMMONDATION_PATH + params.id + ACCOMMONDATION_STATE_PATH
     );
     data = response.data;
   } catch (error) {

@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
-export const AboveFold = styled.div`
-  height: calc(100vh - 70px);
-`;
-
 export const Heading = styled.div`
   & > * {
-    height: 650px;
+    height: 60vh;
     width: 100%;
   }
 `;
