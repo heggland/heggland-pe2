@@ -112,37 +112,37 @@ const Enquiries = () => {
     <AdminLayout title={TITLE_ADMIN_ENQUIRIES}>
       <Row margin="0 0 0 1rem">
         <Row margin="2rem 0" width="100%">
-          <Col size={11}>
+          <Col md={11}>
             <Header>
               <Heading>User enquiries</Heading>
             </Header>
           </Col>
         </Row>
-        <Col size={11}>
+        <Col xs={12} md={11}>
           <Row bg_color="rgb(243 243 243)">
-            <Col size={1}>
+            <Col xs={1} md={1}>
               <P weight="bold" padding="0 0 0 0.5rem">
                 Id
               </P>
             </Col>
-            <Col size={3}>
+            <Col xs={2} md={3}>
               <P weight="bold">Name</P>
             </Col>
-            <Col size={2}>
+            <Col xs={2} md={2}>
               <P weight="bold">Accommodation</P>
             </Col>
-            <Col size={2}>
+            <Col xs={2} md={2}>
               <P weight="bold">Email</P>
             </Col>
-            <Col size={2}>
+            <Col xs={2} md={2}>
               <P weight="bold">State</P>
             </Col>
-            <Col size={2}>
+            <Col xs={2} md={2}>
               <Row>
-                <Col size={6}>
+                <Col xs={6} md={6}>
                   <P weight="bold">Edit</P>
                 </Col>
-                <Col size={6}>
+                <Col xs={6} md={6}>
                   <P weight="bold">Delete</P>
                 </Col>
               </Row>
@@ -156,29 +156,29 @@ const Enquiries = () => {
                   return (
                     <Row
                       padding="1rem 0 1rem 0"
-                      border_size="1"
+                      border_md="1"
                       border_color="rgb(243 243 243)"
                       hover="table"
                       key={id}
                     >
-                      <Col size={1}>
+                      <Col xs={1} md={1}>
                         <Span padding="0 0 0 0.5rem">{id}</Span>
                       </Col>
 
-                      <Col size={3}>
+                      <Col xs={2} md={3}>
                         <Span>{name}</Span>
                       </Col>
-                      <Col size={2}>
+                      <Col xs={2} md={2}>
                         <Span>
                           {(accommondation_id.length !== 0 &&
                             accommondation_id[0].name) ||
                             "Invalid"}
                         </Span>
                       </Col>
-                      <Col size={2}>
+                      <Col xs={2} md={2}>
                         <Span>{email}</Span>
                       </Col>
-                      <Col size={2}>
+                      <Col xs={2} md={2}>
                         <Span>
                           <button
                             onClick={updateState}
@@ -191,14 +191,14 @@ const Enquiries = () => {
                           </button>
                         </Span>
                       </Col>
-                      <Col size={2}>
+                      <Col xs={2} md={2}>
                         <Row>
-                          <Col size={6}>
+                          <Col xs={6} md={6}>
                             <a href={`enquirie/${id}`}>
                               <FontAwesomeIcon icon={Edit} />
                             </a>
                           </Col>
-                          <Col size={6}>
+                          <Col xs={6} md={6}>
                             <DeleteButton id={id}>
                               <FontAwesomeIcon icon={Trash} />
                             </DeleteButton>

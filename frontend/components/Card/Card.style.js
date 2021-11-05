@@ -9,6 +9,10 @@ export const Card = styled.div`
   &:hover {
     box-shadow: 0 10px 20px rgb(0 0 0 / 4%);
   }
+
+  ${md} {
+    margin: 10px 10px;
+  }
 `;
 
 export const Image = styled.img`

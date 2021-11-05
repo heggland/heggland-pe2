@@ -58,11 +58,66 @@ export const Row = styled.div`
 `;
 
 export const Col = styled.div`
-  width: auto;
-  width: calc(calc(100% / 12) * ${({ size }) => size || 12});
   height: fit-content;
 
-  ${({ md }) =>
+  ${(xs) =>
+    xs &&
+    css`
+      ${breakpoints.xs} {
+        width: calc(
+          calc(100% / 12) * ${({ xs }) => (xs >= 1 && xs <= 12 && xs) || 12}
+        );
+      }
+    `}
+  ${({ sm }) =>
+    sm &&
+    css`
+      ${breakpoints.sm} {
+        width: calc(
+          calc(100% / 12) * ${({ sm }) => (sm >= 1 && sm <= 12 && sm) || 12}
+        );
+      }
+    `}
+    ${({ md }) =>
+    md &&
+    css`
+      ${breakpoints.md} {
+        width: calc(
+          calc(100% / 12) * ${({ md }) => (md >= 1 && md <= 12 && md) || 12}
+        );
+      }
+    `}
+    ${({ lg }) =>
+    lg &&
+    css`
+      ${breakpoints.lg} {
+        width: calc(
+          calc(100% / 12) * ${({ lg }) => (lg >= 1 && lg <= 12 && lg) || 12}
+        );
+      }
+    `}
+    ${({ xl }) =>
+    xl &&
+    css`
+      ${breakpoints.xl} {
+        width: calc(
+          calc(100% / 12) * ${({ xl }) => (xl >= 1 && xl <= 12 && xl) || 12}
+        );
+      }
+    `}
+    ${({ xll }) =>
+    xll &&
+    css`
+      ${breakpoints.xll} {
+        width: calc(
+          calc(100% / 12) * ${({ xll }) => (xll >= 1 && xll <= 12 && xll) || 12}
+        );
+      }
+    `}
+
+
+
+    ${({ md }) =>
     md === "auto" &&
     css`
       ${breakpoints.md} {
@@ -282,4 +337,65 @@ ${(props) =>
       background-color: rgb(243 243 243);
       cursor: pointer;
     }
-  `} */
+  `} 
+  
+  
+  export const TestCol = styled.div`
+  width: calc(calc(100% / 12) * 12});
+  ${(xs) =>
+    xs &&
+    css`
+      ${breakpoints.xs} {
+        width: calc(
+          calc(100% / 12) * ${({ xs }) => (xs >= 1 && xs <= 12 && xs) || 12}
+        );
+      }
+    `}
+  ${({ sm }) =>
+    sm &&
+    css`
+      ${breakpoints.sm} {
+        width: calc(
+          calc(100% / 12) * ${({ sm }) => (sm >= 1 && sm <= 12 && sm) || 12}
+        );
+      }
+    `}
+    ${({ md }) =>
+    md &&
+    css`
+      ${breakpoints.md} {
+        width: calc(
+          calc(100% / 12) * ${({ md }) => (md >= 1 && md <= 12 && md) || 12}
+        );
+      }
+    `}
+    ${({ lg }) =>
+    lg &&
+    css`
+      ${breakpoints.lg} {
+        width: calc(
+          calc(100% / 12) * ${({ lg }) => (lg >= 1 && lg <= 12 && lg) || 12}
+        );
+      }
+    `}
+    ${({ xl }) =>
+    xl &&
+    css`
+      ${breakpoints.xl} {
+        width: calc(
+          calc(100% / 12) * ${({ xl }) => (xl >= 1 && xl <= 12 && xl) || 12}
+        );
+      }
+    `}
+    ${({ xll }) =>
+    xll &&
+    css`
+      ${breakpoints.xll} {
+        width: calc(
+          calc(100% / 12) * ${({ xll }) => (xll >= 1 && xll <= 12 && xll) || 12}
+        );
+      }
+    `}
+`;
+  
+  */

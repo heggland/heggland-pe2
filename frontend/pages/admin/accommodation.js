@@ -91,14 +91,14 @@ const Accommodation = () => {
   return (
     <AdminLayout title={TITLE_ADMIN_ACCOMMONDATION}>
       <Row margin="0 0 0 1rem">
-        <Col size={11}>
+        <Col md={11}>
           <Row margin="2rem 0">
-            <Col size={6}>
+            <Col md={6}>
               <Header>
                 <Heading>Manage accommodations</Heading>
               </Header>
             </Col>
-            <Col size={6}>
+            <Col md={6}>
               <Placement float="right">
                 <a href={`accommodation/new`}>
                   <Button
@@ -113,31 +113,31 @@ const Accommodation = () => {
               </Placement>
             </Col>
           </Row>
-          <Col size={12}>
+          <Col md={12}>
             <Row bg_color="rgb(243 243 243)">
-              <Col size={1}>
+              <Col md={1}>
                 <P weight="bold" padding="0 0 0 0.5rem">
                   Id
                 </P>
               </Col>
-              <Col size={3}>
+              <Col md={3}>
                 <P weight="bold">Name</P>
               </Col>
-              <Col size={2}>
+              <Col md={2}>
                 <P weight="bold">Address</P>
               </Col>
-              <Col size={2}>
+              <Col md={2}>
                 <P weight="bold">City</P>
               </Col>
-              <Col size={2}>
+              <Col md={2}>
                 <P weight="bold">State</P>
               </Col>
-              <Col size={2}>
+              <Col md={2}>
                 <Row>
-                  <Col size={6}>
+                  <Col md={6}>
                     <P weight="bold">Edit</P>
                   </Col>
-                  <Col size={6}>
+                  <Col md={6}>
                     <P weight="bold">Delete</P>
                   </Col>
                 </Row>
@@ -151,40 +151,40 @@ const Accommodation = () => {
                       return (
                         <Row
                           padding="1rem 0 1rem 0"
-                          border_size="1"
+                          border_md="1"
                           border_color="rgb(243 243 243)"
                           hover="table"
                           key={id}
                         >
-                          <Col size={1}>
+                          <Col md={1}>
                             <Span padding="0 0 0 0.5rem">{id}</Span>
                           </Col>
-                          <Col size={3} hover="grey">
+                          <Col md={3} hover="grey">
                             <LinkHover href={`/accommodation/${id}`}>
                               <Span>{name}</Span>
                             </LinkHover>
                           </Col>
-                          <Col size={2}>
+                          <Col md={2}>
                             <Span>{address}</Span>
                           </Col>
-                          <Col size={2}>
+                          <Col md={2}>
                             <Span>{city}</Span>
                           </Col>
-                          <Col size={2}>
+                          <Col md={2}>
                             <Span>
                               {(published_at && "Published") || "Draft"}
                             </Span>
                           </Col>
-                          <Col size={2}>
+                          <Col md={2}>
                             <Row>
-                              <Col size={6}>
+                              <Col md={6}>
                                 <Button>
                                   <a href={`accommodation/edit/${id}`}>
                                     <FontAwesomeIcon icon={Edit} />
                                   </a>
                                 </Button>
                               </Col>
-                              <Col size={6}>
+                              <Col md={6}>
                                 <DeleteButton id={id}>
                                   <FontAwesomeIcon icon={Trash} />
                                 </DeleteButton>

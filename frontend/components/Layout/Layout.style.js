@@ -143,6 +143,7 @@ export const AdminContainer = styled.div`
   height: 100%;
 `;
 
+// make mobile button to show side navigation
 export const SideContainer = styled.div`
   position: fixed;
   float: left;
@@ -152,7 +153,13 @@ export const SideContainer = styled.div`
   height: 100vh;
   background: rgb(24, 32, 46);
   color: white;
+  display: none;
+
+  ${md} {
+    display: block;
+  }
 `;
+
 export const AdminNavHead = styled.nav`
   display: flex;
   place-items: center;
@@ -195,12 +202,16 @@ export const AdminLink = styled.a`
 `;
 
 export const AdminChildren = styled.div`
-  margin-left: 16rem;
   background-color: rgb(250 250 251);
   width: 100%;
   min-height: 100%;
   height: fit-content;
   padding-bottom: 2rem;
+  margin-left: 0;
+
+  ${md} {
+    margin-left: 16rem;
+  }
 `;
 
 export const AdminHeading = styled.div`

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import Head from "../Common/Head";
-import Footer from "../Common/Footer";
+import Footer from "../Footer/Footer";
 
 import * as Style from "./Layout.style";
 import { Col, Row } from "../../styles/common";
