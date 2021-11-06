@@ -2,8 +2,9 @@ import Layout from "../components/Layout/Layout";
 import { DESCRIPTION_CONTACT, TITLE_CONTACT } from "../constants/meta";
 import Heading from "../components/Common/Heading";
 import ContactForm from "../modules/contact/contactForm/contactForm";
-import * as Style from "./contact.style";
-import { Row, Col } from "../styles/common";
+import * as Style from "../styles/contact.style";
+import { Row } from "../styles/common";
+import Col from "../components/Col/Col";
 
 export default function Home() {
   return (

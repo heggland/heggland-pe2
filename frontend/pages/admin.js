@@ -1,18 +1,13 @@
 import { DESCRIPTION_ADMIN, TITLE_ADMIN } from "../constants/meta";
 import Heading from "../components/Common/Heading";
 import { AdminLayout } from "../components/Layout/Layout";
-import {
-  Col,
-  Row,
-  Note,
-  NoteHeader,
-  NoteBody,
-  NoteLink,
-} from "../styles/common";
-import { useContext, useEffect, useState } from "react";
+import { Row, Note, NoteHeader, NoteBody, NoteLink } from "../styles/common";
+
+import Col from "../components/Col/Col";
+
+import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 import { BASE_URL, ENQUIRIES_PATH, CONTACT_PATH } from "../constants/api";
-import AuthContext from "../context/AuthContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,7 +19,6 @@ export default function Home() {
   const [enquiries, setEnquiries] = useState([]);
   const [messages, setMessages] = useState([]);
   const http = useAxios();
-  const [auth] = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -49,13 +43,13 @@ export default function Home() {
     <AdminLayout title={TITLE_ADMIN} description={DESCRIPTION_ADMIN}>
       <Row margin="2rem 0 0 1rem">
         <Heading>Dashboard</Heading>
-        <Col size={12}>
+        <Col xs={12}>
           <Row>
-            <Col size={6}>
+            <Col xs={12} lg={6}>
               <Note>
                 <NoteHeader>
                   <Row>
-                    <Heading size={3}>Messages</Heading>
+                    <Heading xs={3}>Messages</Heading>
                   </Row>
                 </NoteHeader>
                 <Row>
@@ -82,11 +76,11 @@ export default function Home() {
                 </Row>
               </Note>
             </Col>
-            <Col size={6}>
+            <Col xs={12} lg={6}>
               <Note>
                 <NoteHeader>
                   <Row>
-                    <Heading size={3}>Enquiries</Heading>
+                    <Heading xs={3}>Enquiries</Heading>
                   </Row>
                 </NoteHeader>
                 {(enquiries.length >= 1 && (

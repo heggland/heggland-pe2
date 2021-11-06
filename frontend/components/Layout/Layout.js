@@ -6,7 +6,9 @@ import Head from "../Common/Head";
 import Footer from "../Footer/Footer";
 
 import * as Style from "./Layout.style";
-import { Col, Row } from "../../styles/common";
+import { Row } from "../../styles/common";
+
+import Col from "../Col/Col";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,12 +28,12 @@ const Layout = ({ title, description, children }) => {
 
       <Style.Container>
         <Style.Navigation>
-          <Col size={6} md="auto">
+          <Col xs={6} md="auto">
             <Style.NavTitle>
               <Link href="/">Holidaze</Link>
             </Style.NavTitle>
           </Col>
-          <Col size={6}>
+          <Col xs={6}>
             <Row justifyContent="right">
               <Style.SearchButton>
                 <SearchAccommodation type="nav" />

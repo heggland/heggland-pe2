@@ -5,6 +5,9 @@ export const Card = styled.div`
   background-color: white;
   margin: 10px 0;
   border-radius: 5px;
+  background-color: white;
+  box-shadow: rgb(227 233 243) 0px 2px 20px;
+  padding: 10px 20px;
 
   &:hover {
     box-shadow: 0 10px 20px rgb(0 0 0 / 4%);

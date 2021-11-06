@@ -12,7 +12,6 @@ import useAxios from "../../hooks/useAxios";
 import Heading from "../../components/Common/Heading";
 import {
   Row,
-  Col,
   P,
   Span,
   Button,
@@ -20,6 +19,8 @@ import {
   LinkHover,
   Header,
 } from "../../styles/common";
+
+import Col from "../../components/Col/Col";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

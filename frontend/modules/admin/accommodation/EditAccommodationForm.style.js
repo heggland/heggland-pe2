@@ -1,4 +1,11 @@
 import styled, { css } from "styled-components";
+import { md } from "../../../styles/breakpoints";
+
+export const Container = styled.div`
+  ${md} {
+    margin: 50px 20px;
+  }
+`;
 
 export const BackButton = styled.div`
 position fixed;

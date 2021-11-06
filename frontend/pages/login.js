@@ -21,13 +21,14 @@ import { LOGIN_SCHEMA } from "../constants/schema";
 
 import {
   Row,
-  Col,
   LoginForm,
   Placement,
   P,
   LoginButton,
   LoginNavigation,
 } from "../styles/common";
+
+import Col from "../components/Col/Col";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -101,58 +102,50 @@ const Login = () => {
           </Link>
         </Row>
       </LoginNavigation>
+
       <Placement placeContent="center" height="100%">
         <Row justifyContent="center" textAlignLast="center">
           <LoginForm onSubmit={handleSubmit(onSubmit)}>
             {loginError && <FormError>{loginError}</FormError>}
-            <Row>
-              <Col>
-                <Heading size={4}>Email address</Heading>
-              </Col>
-              <Col>
-                <input
-                  {...register("username")}
-                  type="username"
-                  name="username"
-                  placeholder="ola@nordmann.no"
-                  autoComplete="on"
-                />
-              </Col>
-              {errors.username && (
-                <div className="text-muted">{errors.username.message}</div>
-              )}
-            </Row>
+            <Col>
+              <Heading size={4}>Email address</Heading>
+            </Col>
+            <Col>
+              <input
+                {...register("username")}
+                type="username"
+                name="username"
+                placeholder="ola@nordmann.no"
+                autoComplete="on"
+              />
+            </Col>
+            {errors.username && (
+              <div className="text-muted">{errors.username.message}</div>
+            )}
 
-            <Row padding_bottom={10}>
-              <Col>
-                <Heading size={4}>Password</Heading>
-              </Col>
-              <Col>
-                <input
-                  {...register("password")}
-                  type="password"
-                  name="password"
-                  placeholder="Passord"
-                  autoComplete="on"
-                />
-                {errors.password && (
-                  <div className="text-muted">{errors.password.message}</div>
-                )}
-              </Col>
-            </Row>
+            <Col>
+              <Heading size={4}>Password</Heading>
+            </Col>
+            <Col>
+              <input
+                {...register("password")}
+                type="password"
+                name="password"
+                placeholder="Passord"
+                autoComplete="on"
+              />
+              {errors.password && (
+                <div className="text-muted">{errors.password.message}</div>
+              )}
+            </Col>
 
             <Col>
               {submitting ? (
-                <LoginButton
-                  width={100}
-                  className="w-100"
-                  variant="primary"
-                  type="submit"
-                >
+                <LoginButton width={100} type="submit">
                   Loggin in...
                 </LoginButton>
               ) : (
-                <LoginButton variant="outline-primary" type="submit">
+                <LoginButton width={100} type="submit">
                   Login
                 </LoginButton>
               )}

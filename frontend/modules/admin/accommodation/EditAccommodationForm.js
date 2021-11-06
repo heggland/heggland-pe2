@@ -1,8 +1,4 @@
-import {
-  BASE_URL,
-  HOTELS_PATH,
-  ACCOMMONDATION_PATH,
-} from "../../../constants/api";
+import { BASE_URL, ACCOMMONDATION_PATH } from "../../../constants/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EDIT_ACCOMMONDATION_SCHEMA } from "../../../constants/schema";
@@ -12,13 +8,16 @@ import { useRouter } from "next/router";
 import Heading from "../../../components/Common/Heading";
 // import Image from "next/image";
 
-import { Col, Row, Textarea } from "../../../styles/common";
+import { Row, Textarea } from "../../../styles/common";
+import Col from "../../../components/Col/Col";
+
 import {
   BackButton,
   ButtonGroup,
   Button,
   ButtonDelete,
   InformationGroup,
+  Container,
 } from "./EditAccommodationForm.style";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -194,23 +193,23 @@ const EditForm = ({
   const disableStateButton = () => setStateButton(false);
 
   return (
-    <>
+    <Container>
       <BackButton onClick={goBack}>
         <FontAwesomeIcon icon={chevron} size="lg" />
       </BackButton>
       {error && <span>{error}</span>}
       {updated && <span>updated</span>}
-      <Col size={11} margin="0 0 0 2rem">
+      <Col xs={11} margin="0 0 0 2rem">
         <form
           onSubmit={handleSubmit(onSubmit)}
           onChange={id && disableStateButton}
         >
           <Row padding_bottom={5}>
-            <Col size={6}>
+            <Col xs={6}>
               <Heading>{(id && name) || "Create a new accommodation"}</Heading>
             </Col>
 
-            <Col size={6} alignSelf="center">
+            <Col xs={6} alignSelf="center">
               <Row justifyContent="right">
                 <ButtonGroup>
                   {id && (
@@ -240,7 +239,7 @@ const EditForm = ({
             </Col>
           </Row>
           <Row>
-            <Col size={9} box="white-card">
+            <Col xs={9} box="white-card">
               <Row padding_bottom={20}>
                 <Heading size={5}>DESCRIPTION</Heading>
                 <Textarea
@@ -255,7 +254,7 @@ const EditForm = ({
                 )}
               </Row>
               <Row padding_bottom={20}>
-                <Col size={6}>
+                <Col xs={6}>
                   <Heading size={5}>NAME</Heading>
                   <input
                     placeholder="name *"
@@ -265,7 +264,7 @@ const EditForm = ({
                   />
                   {errors.name && <span>{errors.name.message}</span>}
                 </Col>
-                <Col size={6}>
+                <Col xs={6}>
                   <Heading size={5}>ADDRESS</Heading>
                   <input
                     placeholder="address *"
@@ -277,7 +276,7 @@ const EditForm = ({
                 </Col>
               </Row>
               <Row padding_bottom={20}>
-                <Col size={6}>
+                <Col xs={6}>
                   <Heading size={5}>CITY</Heading>
                   <input
                     placeholder="city *"
@@ -287,7 +286,7 @@ const EditForm = ({
                   />
                   {errors.city && <span>{errors.city.message}</span>}
                 </Col>
-                <Col size={6}>
+                <Col xs={6}>
                   <Heading size={5}>ZIP CODE</Heading>
                   <input
                     placeholder="zip_code *"
@@ -339,8 +338,8 @@ const EditForm = ({
                 </Col>
               </Row>
             </Col>
-            <Col size={1} />
-            <Col size={2} box="white-card">
+            <Col xs={1} />
+            <Col xs={2} box="white-card">
               <InformationGroup>
                 <Row>
                   <Heading size={5}>INFORMATION</Heading>
@@ -364,7 +363,7 @@ const EditForm = ({
           </Row>
         </form>
       </Col>
-    </>
+    </Container>
   );
 };
 

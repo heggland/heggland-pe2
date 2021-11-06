@@ -9,7 +9,9 @@ import {
 import { TITLE_ADMIN_MESSAGES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import { Row, Col, P, Span, Button, Header } from "../../styles/common";
+import { Row, P, Span, Button, Header } from "../../styles/common";
+
+import Col from "../../components/Col/Col";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

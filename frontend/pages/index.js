@@ -5,7 +5,7 @@ import axios from "axios";
 import { BASE_URL, HOTELS_PATH } from "../constants/api";
 import Image from "next/image";
 
-import * as Style from "./index.style";
+import * as Style from "../styles/index.style";
 
 const Home = () => {
   return (
