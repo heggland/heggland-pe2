@@ -11,7 +11,6 @@ import useAxios from "../../hooks/useAxios";
 
 import Heading from "../../components/Common/Heading";
 import {
-  Row,
   P,
   Span,
   Button,
@@ -21,6 +20,7 @@ import {
 } from "../../styles/common";
 
 import Col from "../../components/Col/Col";
+import Row from "../../components/Row/Row";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -115,7 +115,7 @@ const Accommodation = () => {
             </Col>
           </Row>
           <Col md={12}>
-            <Row bg_color="rgb(243 243 243)">
+            <Row backgroundColor="rgb(243 243 243)">
               <Col md={1}>
                 <P weight="bold" padding="0 0 0 0.5rem">
                   Id
@@ -152,9 +152,8 @@ const Accommodation = () => {
                       return (
                         <Row
                           padding="1rem 0 1rem 0"
-                          border_md="1"
-                          border_color="rgb(243 243 243)"
-                          hover="table"
+                          borderColor="rgb(243 243 243)"
+                          hover="rgb(243 243 243 / 70%)"
                           key={id}
                         >
                           <Col md={1}>

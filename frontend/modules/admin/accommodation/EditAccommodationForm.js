@@ -8,8 +8,9 @@ import { useRouter } from "next/router";
 import Heading from "../../../components/Common/Heading";
 // import Image from "next/image";
 
-import { Row, Textarea } from "../../../styles/common";
+import { Textarea } from "../../../styles/common";
 import Col from "../../../components/Col/Col";
+import Row from "../../../components/Row/Row";
 
 import {
   BackButton,
@@ -204,7 +205,7 @@ const EditForm = ({
           onSubmit={handleSubmit(onSubmit)}
           onChange={id && disableStateButton}
         >
-          <Row padding_bottom={5}>
+          <Row padding="0 0 5 0">
             <Col xs={6}>
               <Heading>{(id && name) || "Create a new accommodation"}</Heading>
             </Col>
@@ -240,7 +241,7 @@ const EditForm = ({
           </Row>
           <Row>
             <Col xs={9} box="white-card">
-              <Row padding_bottom={20}>
+              <Row padding="0 0 20 0">
                 <Heading size={5}>DESCRIPTION</Heading>
                 <Textarea
                   placeholder="description *"
@@ -253,7 +254,7 @@ const EditForm = ({
                   <span>{errors.description.message}</span>
                 )}
               </Row>
-              <Row padding_bottom={20}>
+              <Row padding="0 0 20 0">
                 <Col xs={6}>
                   <Heading size={5}>NAME</Heading>
                   <input
@@ -275,7 +276,7 @@ const EditForm = ({
                   {errors.address && <span>{errors.address.message}</span>}
                 </Col>
               </Row>
-              <Row padding_bottom={20}>
+              <Row padding="0 0 20 0">
                 <Col xs={6}>
                   <Heading size={5}>CITY</Heading>
                   <input
@@ -297,7 +298,7 @@ const EditForm = ({
                   {errors.zip_code && <span>{errors.zip_code.message}</span>}
                 </Col>
               </Row>
-              <Row padding_bottom={20}>
+              <Row padding="0 0 20 0">
                 <Heading size={6}>IMAGE</Heading>
                 <Col>
                   {(imagePreview && (

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import * as breakpoints from "../../styles/breakpoints";
 
-const Style = styled.div`
+const Col = styled.div`
   height: fit-content;
 
   ${({ width }) =>
@@ -83,4 +83,4 @@ const Style = styled.div`
     `}
 `;
 
-export default Style;
+export default Col;

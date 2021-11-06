@@ -3,8 +3,8 @@ import { DESCRIPTION_CONTACT, TITLE_CONTACT } from "../constants/meta";
 import Heading from "../components/Common/Heading";
 import ContactForm from "../modules/contact/contactForm/contactForm";
 import * as Style from "../styles/contact.style";
-import { Row } from "../styles/common";
 import Col from "../components/Col/Col";
+import Row from "../components/Row/Row";
 
 export default function Home() {
   return (

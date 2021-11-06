@@ -10,8 +10,9 @@ import {
 import { TITLE_ADMIN_ENQUIRIES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import { Row, P, Span, Button, Header } from "../../styles/common";
+import { P, Span, Button, Header } from "../../styles/common";
 import Col from "../../components/Col/Col";
+import Row from "../../components/Row/Row";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -120,7 +121,7 @@ const Enquiries = () => {
           </Col>
         </Row>
         <Col xs={12} md={11}>
-          <Row bg_color="rgb(243 243 243)">
+          <Row backgroundColor="rgb(243 243 243)">
             <Col xs={1} md={1}>
               <P weight="bold" padding="0 0 0 0.5rem">
                 Id
@@ -157,9 +158,8 @@ const Enquiries = () => {
                   return (
                     <Row
                       padding="1rem 0 1rem 0"
-                      border_md="1"
-                      border_color="rgb(243 243 243)"
-                      hover="table"
+                      borderColor="rgb(243 243 243 / 70%)"
+                      hover="rgb(243 243 243 / 70%)"
                       key={id}
                     >
                       <Col xs={1} md={1}>
