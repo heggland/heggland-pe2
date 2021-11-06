@@ -1,8 +1,12 @@
 import styled, { css } from "styled-components";
-import { md } from "../../../styles/breakpoints";
+import * as Breakpoints from "../../../styles/breakpoints";
 
 export const Container = styled.div`
-  ${md} {
+  ${Breakpoints.xs} {
+    margin: 0 20px;
+  }
+
+  ${Breakpoints.md} {
     margin: 50px 20px;
   }
 `;

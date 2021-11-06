@@ -200,17 +200,17 @@ const EditForm = ({
       </BackButton>
       {error && <span>{error}</span>}
       {updated && <span>updated</span>}
-      <Col xs={11} margin="0 0 0 2rem">
+      <Col xs={12} md={11} margin="0 0 0 2rem">
         <form
           onSubmit={handleSubmit(onSubmit)}
           onChange={id && disableStateButton}
         >
           <Row padding="0 0 5 0">
-            <Col xs={6}>
+            <Col md={6}>
               <Heading>{(id && name) || "Create a new accommodation"}</Heading>
             </Col>
 
-            <Col xs={6} alignSelf="center">
+            <Col xs={12} md={6} alignSelf="center">
               <Row justifyContent="right">
                 <ButtonGroup>
                   {id && (
@@ -240,7 +240,7 @@ const EditForm = ({
             </Col>
           </Row>
           <Row>
-            <Col xs={9} box="white-card">
+            <Col xs={11} md={9} box="white-card">
               <Row padding="0 0 20 0">
                 <Heading size={5}>DESCRIPTION</Heading>
                 <Textarea
@@ -255,7 +255,7 @@ const EditForm = ({
                 )}
               </Row>
               <Row padding="0 0 20 0">
-                <Col xs={6}>
+                <Col xs={11} md={6}>
                   <Heading size={5}>NAME</Heading>
                   <input
                     placeholder="name *"
@@ -265,7 +265,7 @@ const EditForm = ({
                   />
                   {errors.name && <span>{errors.name.message}</span>}
                 </Col>
-                <Col xs={6}>
+                <Col xs={11} md={6}>
                   <Heading size={5}>ADDRESS</Heading>
                   <input
                     placeholder="address *"
@@ -277,7 +277,7 @@ const EditForm = ({
                 </Col>
               </Row>
               <Row padding="0 0 20 0">
-                <Col xs={6}>
+                <Col xs={11} md={6}>
                   <Heading size={5}>CITY</Heading>
                   <input
                     placeholder="city *"
@@ -287,7 +287,7 @@ const EditForm = ({
                   />
                   {errors.city && <span>{errors.city.message}</span>}
                 </Col>
-                <Col xs={6}>
+                <Col xs={11} md={6}>
                   <Heading size={5}>ZIP CODE</Heading>
                   <input
                     placeholder="zip_code *"
@@ -339,8 +339,8 @@ const EditForm = ({
                 </Col>
               </Row>
             </Col>
-            <Col xs={1} />
-            <Col xs={2} box="white-card">
+            <Col md={1} />
+            <Col xs={11} md={2} box="white-card">
               <InformationGroup>
                 <Row>
                   <Heading size={5}>INFORMATION</Heading>

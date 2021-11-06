@@ -6,7 +6,9 @@ import * as Style from "./contactForm.style";
 import axios from "axios";
 import { BASE_URL, CONTACT_PATH } from "../../../constants/api";
 import { CONTACT_SCHEMA } from "../../../constants/schema";
-import { Col, Row } from "../../../styles/common";
+
+import Col from "../../../components/Col/Col";
+import Row from "../../../components/Row/Row";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -40,7 +42,7 @@ const ContactForm = () => {
       <Style.Form onSubmit={handleSubmit(onSubmit)}>
         {formError && <Error>{formError}</Error>}
         <Row>
-          <Col>
+          <Col xs={12}>
             <Style.FormGroup>
               <Style.InputField
                 type="text"
@@ -54,7 +56,7 @@ const ContactForm = () => {
               )}
             </Style.FormGroup>
           </Col>
-          <Col>
+          <Col xs={12}>
             <Style.FormGroup>
               <Style.InputField
                 type="email"

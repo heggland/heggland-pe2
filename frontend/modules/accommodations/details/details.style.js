@@ -8,6 +8,11 @@ export const Container = styled.div`
   margin-bottom: 30px;
 `;
 
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
 export const Text = styled.p`
   font-size: 1rem;
   font-weight: 400;

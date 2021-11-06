@@ -8,8 +8,8 @@ import axios from "axios";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../constants/api";
 import Card from "../components/Card/Card";
 import * as Style from "../styles/accommodation.style";
-import { Row } from "../styles/common";
 import Col from "../components/Col/Col";
+import Row from "../components/Row/Row";
 
 const Accommodation = (props) => {
   return (

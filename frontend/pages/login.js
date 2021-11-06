@@ -20,7 +20,6 @@ import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
 import { LOGIN_SCHEMA } from "../constants/schema";
 
 import {
-  Row,
   LoginForm,
   Placement,
   P,
@@ -29,6 +28,7 @@ import {
 } from "../styles/common";
 
 import Col from "../components/Col/Col";
+import Row from "../components/Row/Row";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);

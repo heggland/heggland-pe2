@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
-import EnquiryForm from "../../modules/accommodation/enquiry/enquiryForm";
+import EnquiryForm from "../../modules/accommodations/enquiry/enquiryForm";
+import Details from "../../modules/accommodations/details/details";
 import Heading from "../../components/Common/Heading";
 import Layout from "../../components/Layout/Layout";
 import {
@@ -9,7 +10,6 @@ import {
   ACCOMMONDATION_PATH,
 } from "../../constants/api";
 import { DESCRIPTION_HOTEL } from "../../constants/meta";
-import Details from "../../modules/accommodation/details/details";
 
 const Hotel = ({ content, error }) => {
   if (error) {

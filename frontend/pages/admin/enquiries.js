@@ -121,7 +121,7 @@ const Enquiries = () => {
           </Col>
         </Row>
         <Col xs={12} md={11}>
-          <Row backgroundColor="rgb(243 243 243)">
+          <Row backgroundColor="rgb(243 243 243)" xs="none">
             <Col xs={1} md={1}>
               <P weight="bold" padding="0 0 0 0.5rem">
                 Id
@@ -160,6 +160,7 @@ const Enquiries = () => {
                       padding="1rem 0 1rem 0"
                       borderColor="rgb(243 243 243 / 70%)"
                       hover="rgb(243 243 243 / 70%)"
+                      direction="column-mobile"
                       key={id}
                     >
                       <Col xs={1} md={1}>

@@ -1,86 +1,152 @@
 import styled, { css } from "styled-components";
-import * as breakpoints from "../../styles/breakpoints";
+import * as Breakpoints from "../../styles/breakpoints";
 
 const Col = styled.div`
   height: fit-content;
 
-  ${({ width }) =>
-    width.hasOwnProperty("xs") &&
-    css`
-      ${breakpoints.xs} {
-        width: calc(
-          calc(100% / 12) *
-            ${({ width }) =>
-              (width.xs >= 1 && width.xs <= 12 && width.xs) || 12}
-        );
-        width: ${({ width }) => width.xs === "auto" && "auto"};
-      }
-    `}
+  ${({ values }) =>
+    // xs
+    (values.hasOwnProperty("xs") &&
+      !isNaN(values.xs) &&
+      css`
+        ${Breakpoints.xs} {
+          width: calc(
+            calc(100% / 12) *
+              ${({ values }) =>
+                (values.xs >= 1 && values.xs <= 12 && values.xs) || 12}
+          );
+        }
+      `) ||
+    (values.hasOwnProperty("xs") &&
+      isNaN(values.xs) &&
+      css`
+          width: ${({ values }) => values.xs === "auto" && "auto"};
+          ${Breakpoints.xsOnly} {
+            display: ${({ values }) =>
+              (values.xs === "none" && "none") || "flex"};
+          }
+        }
+      `)}
 
-  ${(width) =>
-    width.hasOwnProperty("sm") &&
-    css`
-      ${breakpoints.sm} {
-        width: calc(
-          calc(100% / 12) *
-            ${({ width }) =>
-              (width.sm >= 1 && width.sm <= 12 && width.sm) || 12}
-        );
-        width: ${({ width }) => width.sm === "auto" && "auto"};
-      }
-    `}
+  ${({ values }) =>
+    // sm
+    (values.hasOwnProperty("sm") &&
+      !isNaN(values.sm) &&
+      css`
+        ${Breakpoints.sm} {
+          width: calc(
+            calc(100% / 12) *
+              ${({ values }) =>
+                (values.sm >= 1 && values.sm <= 12 && values.sm) || 12}
+          );
+        }
+      `) ||
+    (values.hasOwnProperty("sm") &&
+      isNaN(values.sm) &&
+      css`
+          width: ${({ values }) => values.sm === "auto" && "auto"};
+          ${Breakpoints.smOnly} {
+            display: ${({ values }) =>
+              (values.sm === "none" && "none") || "flex"};
+          }
+        }
+      `)}
 
-    ${({ width }) =>
-    width.hasOwnProperty("md") &&
-    css`
-      ${breakpoints.md} {
-        width: calc(
-          calc(100% / 12) *
-            ${({ width }) =>
-              (width.md >= 1 && width.md <= 12 && width.md) || 12}
-        );
-        width: ${({ width }) => width.md === "auto" && "auto"};
-      }
-    `}
+      ${({ values }) =>
+    // md
+    (values.hasOwnProperty("md") &&
+      !isNaN(values.md) &&
+      css`
+        ${Breakpoints.md} {
+          width: calc(
+            calc(100% / 12) *
+              ${({ values }) =>
+                (values.md >= 1 && values.md <= 12 && values.md) || 12}
+          );
+        }
+      `) ||
+    (values.hasOwnProperty("md") &&
+      isNaN(values.md) &&
+      css`
+          width: ${({ values }) => values.md === "auto" && "auto"};
+          ${Breakpoints.mdOnly} {
+            display: ${({ values }) =>
+              (values.md === "none" && "none") || "flex"};
+          }
+        }
+      `)}
     
-    ${({ width }) =>
-    width.hasOwnProperty("lg") &&
-    css`
-      ${breakpoints.lg} {
-        width: calc(
-          calc(100% / 12) *
-            ${({ width }) =>
-              (width.lg >= 1 && width.lg <= 12 && width.lg) || 12}
-        );
-        width: ${({ width }) => width.lg === "auto" && "auto"};
-      }
-    `}
+      ${({ values }) =>
+    // lg
+    (values.hasOwnProperty("lg") &&
+      !isNaN(values.lg) &&
+      css`
+        ${Breakpoints.lg} {
+          width: calc(
+            calc(100% / 12) *
+              ${({ values }) =>
+                (values.lg >= 1 && values.lg <= 12 && values.lg) || 12}
+          );
+        }
+      `) ||
+    (values.hasOwnProperty("lg") &&
+      isNaN(values.xs) &&
+      css`
+          width: ${({ values }) => values.lg === "auto" && "auto"};
+          ${Breakpoints.lgOnly} {
+            display: ${({ values }) =>
+              (values.lg === "none" && "none") || "flex"};
+          }
+        }
+      `)}
 
-    ${({ width }) =>
-    width.hasOwnProperty("xl") &&
-    css`
-      ${breakpoints.xl} {
-        width: calc(
-          calc(100% / 12) *
-            ${({ width }) =>
-              (width.xl >= 1 && width.xl <= 12 && width.xl) || 12}
-        );
-        width: ${({ width }) => width.xl === "auto" && "auto"};
-      }
-    `}
+      ${({ values }) =>
+    // xl
+    (values.hasOwnProperty("xl") &&
+      !isNaN(values.xl) &&
+      css`
+        ${Breakpoints.xl} {
+          width: calc(
+            calc(100% / 12) *
+              ${({ values }) =>
+                (values.xl >= 1 && values.xl <= 12 && values.xl) || 12}
+          );
+        }
+      `) ||
+    (values.hasOwnProperty("xl") &&
+      isNaN(values.xl) &&
+      css`
+            width: ${({ values }) => values.xl === "auto" && "auto"};
+            ${Breakpoints.xlOnly} {
+              display: ${({ values }) =>
+                (values.xl === "none" && "none") || "flex"};
+            }
+          }
+        `)}
 
-    ${({ width }) =>
-    width.hasOwnProperty("xxl") &&
-    css`
-      ${breakpoints.xxl} {
-        width: calc(
-          calc(100% / 12) *
-            ${({ width }) =>
-              (width.xxl >= 1 && width.xxl <= 12 && width.xxl) || 12}
-        );
-        width: ${({ width }) => width.xxl === "auto" && "auto"};
-      }
-    `}
+        ${({ values }) =>
+    // xxl
+    (values.hasOwnProperty("xxl") &&
+      !isNaN(values.xxl) &&
+      css`
+        ${Breakpoints.xxl} {
+          width: calc(
+            calc(100% / 12) *
+              ${({ values }) =>
+                (values.xxl >= 1 && values.xxl <= 12 && values.xxl) || 12}
+          );
+        }
+      `) ||
+    (values.hasOwnProperty("xxl") &&
+      isNaN(values.xxl) &&
+      css`
+              width: ${({ values }) => values.xxl === "auto" && "auto"};
+              ${Breakpoints.xxlOnly} {
+                display: ${({ values }) =>
+                  (values.xxl === "none" && "none") || "flex"};
+              }
+            }
+          `)}
 `;
 
 export default Col;

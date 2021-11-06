@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import * as breakpoints from "./breakpoints";
 
-export const Row = styled.div`
+/* export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
 
@@ -55,9 +55,9 @@ export const Row = styled.div`
         cursor: default;
       }
     `}
-`;
+`; */
 
-export const Col = styled.div`
+/* export const Col = styled.div`
   height: fit-content;
 
   ${(xs) =>
@@ -153,7 +153,7 @@ export const Col = styled.div`
         background-color: white;
         box-shadow: rgb(227 233 243) 0px 2px 20px;
       `)}
-`;
+`; */
 
 export const Placement = styled.div`
   display: flex;

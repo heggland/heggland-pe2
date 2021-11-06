@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as breakpoints from "../../styles/breakpoints";
+import * as Breakpoints from "../../styles/breakpoints";
 
 export const Row = styled.div`
   display: flex;
@@ -79,6 +79,92 @@ ${({ values }) =>
     }
 }
 `}
+
+${({ values }) =>
+    // direction
+    values.hasOwnProperty("direction") &&
+    css`
+    ${Breakpoints.xsOnly} {
+      flex-direction: ${({ values }) =>
+        (values.direction === "column-mobile" && "column") ||
+        (values.direction === "row-mobile" && "row")}; };
+    }
+}
+`}
+
+${({ values }) =>
+    // xs
+    values.hasOwnProperty("xs") &&
+    isNaN(values.xs) &&
+    css`
+      width: ${({ values }) => values.xs === "auto" && "auto"};
+      ${Breakpoints.xsOnly} {
+        display: ${({ values }) => (values.xs === "none" && "none") || "flex"};
+      }
+    }
+  `}
+
+${({ values }) =>
+    // sm
+    values.hasOwnProperty("sm") &&
+    isNaN(values.sm) &&
+    css`
+      width: ${({ values }) => values.sm === "auto" && "auto"};
+      ${Breakpoints.smOnly} {
+        display: ${({ values }) => (values.sm === "none" && "none") || "flex"};
+      }
+    }
+  `}
+
+  ${({ values }) =>
+    // md
+    values.hasOwnProperty("md") &&
+    isNaN(values.md) &&
+    css`
+      width: ${({ values }) => values.md === "auto" && "auto"};
+      ${Breakpoints.mdOnly} {
+        display: ${({ values }) => (values.md === "none" && "none") || "flex"};
+      }
+    }
+  `}
+
+  ${({ values }) =>
+    // lg
+    values.hasOwnProperty("lg") &&
+    isNaN(values.xs) &&
+    css`
+      width: ${({ values }) => values.lg === "auto" && "auto"};
+      ${Breakpoints.lgOnly} {
+        display: ${({ values }) => (values.lg === "none" && "none") || "flex"};
+      }
+    }
+  `}
+
+  ${({ values }) =>
+    // xl
+    values.hasOwnProperty("xl") &&
+    isNaN(values.xl) &&
+    css`
+        width: ${({ values }) => values.xl === "auto" && "auto"};
+        ${Breakpoints.xlOnly} {
+          display: ${({ values }) =>
+            (values.xl === "none" && "none") || "flex"};
+        }
+      }
+    `}
+
+    ${({ values }) =>
+    // xxl
+    values.hasOwnProperty("xxl") &&
+    isNaN(values.xxl) &&
+    css`
+          width: ${({ values }) => values.xxl === "auto" && "auto"};
+          ${Breakpoints.xxlOnly} {
+            display: ${({ values }) =>
+              (values.xxl === "none" && "none") || "flex"};
+          }
+        }
+      `}
 `;
 
 export default Row;

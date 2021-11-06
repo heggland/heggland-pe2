@@ -6,9 +6,9 @@ import Head from "../Common/Head";
 import Footer from "../Footer/Footer";
 
 import * as Style from "./Layout.style";
-import { Row } from "../../styles/common";
 
 import Col from "../Col/Col";
+import Row from "../Row/Row";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -44,7 +44,7 @@ const Layout = ({ title, description, children }) => {
             </Row>
           </Col>
           <Style.NavPages show={mobileMenu}>
-            <Link href="/accommodation">Accommodation</Link>
+            <Link href="/accommodations">Accommodation</Link>
             <Link href="/contact">Contact</Link>
           </Style.NavPages>
         </Style.Navigation>

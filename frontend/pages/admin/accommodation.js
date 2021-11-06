@@ -115,7 +115,7 @@ const Accommodation = () => {
             </Col>
           </Row>
           <Col md={12}>
-            <Row backgroundColor="rgb(243 243 243)">
+            <Row backgroundColor="rgb(243 243 243)" xs="none">
               <Col md={1}>
                 <P weight="bold" padding="0 0 0 0.5rem">
                   Id
@@ -154,6 +154,7 @@ const Accommodation = () => {
                           padding="1rem 0 1rem 0"
                           borderColor="rgb(243 243 243)"
                           hover="rgb(243 243 243 / 70%)"
+                          direction="column-mobile"
                           key={id}
                         >
                           <Col md={1}>

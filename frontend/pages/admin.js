@@ -1,9 +1,10 @@
 import { DESCRIPTION_ADMIN, TITLE_ADMIN } from "../constants/meta";
 import Heading from "../components/Common/Heading";
 import { AdminLayout } from "../components/Layout/Layout";
-import { Row, Note, NoteHeader, NoteBody, NoteLink } from "../styles/common";
+import { Note, NoteHeader, NoteBody, NoteLink } from "../styles/common";
 
 import Col from "../components/Col/Col";
+import Row from "../components/Row/Row";
 
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
