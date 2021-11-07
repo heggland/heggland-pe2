@@ -29,6 +29,7 @@ export const InputTextArea = styled.input`
   padding-top: 5px;
   padding-left: 15px;
   font-size: 14px;
+  resize: vertical;
 
   &:focus {
     outline: 0;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { xs, sm, lg, md } from "../../styles/breakpoints";
 
 // unauthorized/visitors path
@@ -16,26 +16,27 @@ export const Navigation = styled.div`
 
   ${xs} {
     box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+    justify-content: space-between;
 
     > :nth-child(1), > :nth-child(2) {
     padding 0 10px;
     }
+  }
 
-    ${sm} {
+  ${sm} {
 
-      > :nth-child(1) {
-        padding-left: 5vw;
-        order: 1;
-      }
-      > :nth-child(2) {
-        order: 3;
-        margin-right: 30px;
-      }
-      > :nth-child(3) {
-        border-left: 1px solid rgb(234 234 234);
-        padding-left: 46px;
-        order: 2;
-      }
+    > :nth-child(1) {
+      padding-left: 5vw;
+      order: 1;
+    }
+    > :nth-child(2) {
+      order: 3;
+      margin-right: 30px;
+    }
+    > :nth-child(3) {
+      border-left: 1px solid rgb(234 234 234);
+      padding-left: 46px;
+      order: 2;
     }
   }
 
@@ -60,17 +61,23 @@ export const NavPages = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 0 10px;
-
   font-weight: 400;
   font-size: 1rem;
+  display: none;
 
   & > * {
     padding: 10px 0;
   }
 
   ${xs} {
-    display: ${(props) => props.show};
     border-top: 1px solid rgb(0 0 0 / 5%);
+
+    ${({ show }) =>
+      isNaN(show) &&
+      css`
+        display: ${show && "flex"};
+      }
+    `}
   }
 
   ${sm} {
@@ -134,29 +141,59 @@ export const Children = styled.div`
   }
 `;
 
-// admin path style
+// --------------------------- admin path style ---------------------------
+
 export const AdminContainer = styled.div`
-  margin-top: 4rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
+  }
 `;
 
-// make mobile button to show side navigation
+export const AdminMobileButton = styled.div`
+  padding: 10px 10px;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  width: fit-content;
+  font-size: 1.5rem;
+  z-index: 2;
+  color: white;
+
+  ${md} {
+    display: none;
+  }
+`;
+
 export const SideContainer = styled.div`
   position: fixed;
   float: left;
   top: 0px;
   left: 0px;
-  width: 16rem;
-  height: 100vh;
   background: rgb(24, 32, 46);
   color: white;
-  display: none;
+  width: 0;
+  height: 0;
+
+  ${xs} {
+    z-index: 1;
+
+    ${({ show }) =>
+      // xs
+      isNaN(show) &&
+      css`
+          width: ${show === "flex" && "100%"};
+          height: ${show === "flex" && "100%"};
+        }
+      `}
+
 
   ${md} {
     display: block;
+    width: 16rem;
+    height: 100%;
   }
 `;
 
@@ -169,21 +206,35 @@ export const AdminNavHead = styled.nav`
   letter-spacing: 0.1rem;
   padding-left: 0.5rem;
   background: rgb(0, 126, 255);
-  
-  & > a {
-    position fixed;
-    top: 1rem;
-    height: 2.5rem;
-    width: 13%;
-  }
 
+  ${md} {
+    & > a {
+      padding-left: 0.5rem;
+    }
+  }
 `;
 
 export const AdminNav = styled.nav`
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  font-size: 1, 2rem;
+  font-size: 1.2rem;
+
+  display: none;
+
+  ${({ show }) =>
+    // xs
+    isNaN(show) &&
+    css`
+    ${xs} {
+      display: ${(show) => show && "flex"};
+    }
+  }
+  `}
+
+  ${md} {
+    display: flex;
+  }
 `;
 
 export const AdminLink = styled.a`

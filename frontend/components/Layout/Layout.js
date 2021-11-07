@@ -6,7 +6,6 @@ import Head from "../Common/Head";
 import Footer from "../Footer/Footer";
 
 import * as Style from "./Layout.style";
-
 import Col from "../Col/Col";
 import Row from "../Row/Row";
 
@@ -16,12 +15,14 @@ import {
   faBars as MobileMenu,
 } from "@fortawesome/free-solid-svg-icons";
 import SearchAccommodation from "../Common/SearchAccommodation";
+import GlobalStyle from "../Global";
 
 const Layout = ({ title, description, children }) => {
-  const [mobileMenu, setMobileMenu] = useState("none");
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   const handleClick = () =>
-    setMobileMenu((mobileMenu === "none" && "flex") || "none");
+    setMobileMenu((mobileMenu === false && "flex") || false);
+
   return (
     <>
       <Head title={title} description={description} />
@@ -63,6 +64,11 @@ export const AdminLayout = ({
   children,
 }) => {
   const [auth, setAuth] = useContext(AuthContext);
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  const handleClick = () => {
+    setMobileMenu((mobileMenu === false && "flex") || false);
+  };
 
   const router = useRouter();
 
@@ -81,15 +87,17 @@ export const AdminLayout = ({
   return (
     <>
       <Head title={title} description={description} />
-
-      <Style.AdminHeading></Style.AdminHeading>
-
+      <Style.AdminHeading />
+      {mobileMenu === "flex" && <GlobalStyle hidden={true} />};
       <Style.AdminContainer>
-        <Style.SideContainer>
+        <Style.AdminMobileButton onClick={handleClick}>
+          <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />
+        </Style.AdminMobileButton>
+        <Style.SideContainer show={mobileMenu}>
           <Style.AdminNavHead>
             <Link href="/admin">Admin</Link>
           </Style.AdminNavHead>
-          <Style.AdminNav>
+          <Style.AdminNav show={mobileMenu}>
             <Link href="/admin/accommodation">
               <Style.AdminLink>Accommodation</Style.AdminLink>
             </Link>

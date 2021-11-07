@@ -92,12 +92,7 @@ const Login = () => {
         <Row justifyContent="center">
           <Link href="/">
             <a>
-              <P>Holidaze</P>
-            </a>
-          </Link>
-          <Link href="/login">
-            <a>
-              <P padding_left={10}>Login</P>
+              <P>Go back to Holidaze</P>
             </a>
           </Link>
         </Row>

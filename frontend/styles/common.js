@@ -255,7 +255,6 @@ export const LoginNavigation = styled.div`
 
 export const LoginButton = styled.button`
   margin-top: 10px;
-  padding: 30px;
 
   &:hover {
     cursor: pointer;

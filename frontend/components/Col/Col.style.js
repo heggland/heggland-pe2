@@ -20,7 +20,7 @@ const Col = styled.div`
     (values.hasOwnProperty("xs") &&
       isNaN(values.xs) &&
       css`
-          width: ${({ values }) => values.xs === "auto" && "auto"};
+          width: ${({ values }) => values.xs === "auto" && "auto !important"};
           ${Breakpoints.xsOnly} {
             display: ${({ values }) =>
               (values.xs === "none" && "none") || "flex"};
@@ -44,7 +44,7 @@ const Col = styled.div`
     (values.hasOwnProperty("sm") &&
       isNaN(values.sm) &&
       css`
-          width: ${({ values }) => values.sm === "auto" && "auto"};
+          width: ${({ values }) => values.sm === "auto" && "auto  !important"};
           ${Breakpoints.smOnly} {
             display: ${({ values }) =>
               (values.sm === "none" && "none") || "flex"};
@@ -68,7 +68,7 @@ const Col = styled.div`
     (values.hasOwnProperty("md") &&
       isNaN(values.md) &&
       css`
-          width: ${({ values }) => values.md === "auto" && "auto"};
+          width: ${({ values }) => values.md === "auto" && "auto !important"} ;
           ${Breakpoints.mdOnly} {
             display: ${({ values }) =>
               (values.md === "none" && "none") || "flex"};
@@ -92,7 +92,7 @@ const Col = styled.div`
     (values.hasOwnProperty("lg") &&
       isNaN(values.xs) &&
       css`
-          width: ${({ values }) => values.lg === "auto" && "auto"};
+          width: ${({ values }) => values.lg === "auto" && "auto !important"};
           ${Breakpoints.lgOnly} {
             display: ${({ values }) =>
               (values.lg === "none" && "none") || "flex"};
@@ -116,7 +116,7 @@ const Col = styled.div`
     (values.hasOwnProperty("xl") &&
       isNaN(values.xl) &&
       css`
-            width: ${({ values }) => values.xl === "auto" && "auto"};
+            width: ${({ values }) => values.xl === "auto" && "auto !important"};
             ${Breakpoints.xlOnly} {
               display: ${({ values }) =>
                 (values.xl === "none" && "none") || "flex"};
@@ -140,7 +140,8 @@ const Col = styled.div`
     (values.hasOwnProperty("xxl") &&
       isNaN(values.xxl) &&
       css`
-              width: ${({ values }) => values.xxl === "auto" && "auto"};
+              width: ${({ values }) =>
+                values.xxl === "auto" && "auto !important"};
               ${Breakpoints.xxlOnly} {
                 display: ${({ values }) =>
                   (values.xxl === "none" && "none") || "flex"};
