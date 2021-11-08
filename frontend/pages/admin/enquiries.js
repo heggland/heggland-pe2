@@ -65,7 +65,6 @@ const Enquiries = () => {
     return (
       <Button
         variant="danger"
-        className="delete"
         onClick={handleDelete}
         data-toggle="tooltip"
         data-placement="top"

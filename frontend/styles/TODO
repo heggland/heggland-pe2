@@ -1,2 +1,1 @@
-- use better names on props
-- look at the best file structure
+- move the styling into components or directly styled components on the page

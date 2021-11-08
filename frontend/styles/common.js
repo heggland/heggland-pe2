@@ -155,7 +155,7 @@ import * as breakpoints from "./breakpoints";
       `)}
 `; */
 
-export const Placement = styled.div`
+/* export const Placement = styled.div`
   display: flex;
   flex-direction: column;
   ${({ float }) =>
@@ -173,7 +173,7 @@ export const Placement = styled.div`
     css`
       height: ${height};
     `}
-`;
+`; */
 
 export const P = styled.p`
   ${({ weight }) =>
@@ -239,7 +239,6 @@ ${({ padding }) =>
     css`
       width: ${width}%;
     `}
-
 
   &:hover {
     cursor: pointer;

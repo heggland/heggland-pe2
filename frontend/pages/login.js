@@ -6,7 +6,6 @@ import FormError from "../components/Common/FormError";
 import { BASE_URL, TOKEN_PATH } from "../constants/api";
 
 import AuthContext from "../context/AuthContext";
-import { useCookies } from "react-cookie";
 
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -19,23 +18,17 @@ import axios from "axios";
 import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
 import { LOGIN_SCHEMA } from "../constants/schema";
 
-import {
-  LoginForm,
-  Placement,
-  P,
-  LoginButton,
-  LoginNavigation,
-} from "../styles/common";
+import { LoginForm, P, LoginButton, LoginNavigation } from "../styles/common";
 
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
+import Container from "../components/Container/Container";
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
-  //const [cookie, setCookie] = useCookies(["token"]);
 
   const router = useRouter();
 
@@ -68,11 +61,6 @@ const Login = () => {
         token: response.data.jwt,
         username: response.data.user.username,
       });
-      /* setCookie("token", JSON.stringify(response.data.jwt), {
-        path: "/",
-        maxAge: 3600, // Expires after 1hr
-        sameSite: true,
-      }); */
 
       router.push("/admin");
     } catch (error) {
@@ -98,7 +86,7 @@ const Login = () => {
         </Row>
       </LoginNavigation>
 
-      <Placement placeContent="center" height="100%">
+      <Container placeContent="center" height={100}>
         <Row justifyContent="center" textAlignLast="center">
           <LoginForm onSubmit={handleSubmit(onSubmit)}>
             {loginError && <FormError>{loginError}</FormError>}
@@ -147,7 +135,7 @@ const Login = () => {
             </Col>
           </LoginForm>
         </Row>
-      </Placement>
+      </Container>
     </>
   );
 };

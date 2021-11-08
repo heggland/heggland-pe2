@@ -10,17 +10,11 @@ import { TITLE_ADMIN_ACCOMMONDATION } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
 import Heading from "../../components/Common/Heading";
-import {
-  P,
-  Span,
-  Button,
-  Placement,
-  LinkHover,
-  Header,
-} from "../../styles/common";
+import { P, Button, Span, LinkHover, Header } from "../../styles/common";
 
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
+//import Button from "../../components/Button/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,6 +22,7 @@ import {
   faPencilAlt as Edit,
   faPlusCircle as Plus,
 } from "@fortawesome/free-solid-svg-icons";
+import Container from "../../components/Container/Container";
 
 const Accommodation = () => {
   const [accommodations, setAccommodations] = useState([]);
@@ -47,8 +42,6 @@ const Accommodation = () => {
     }
     fetchData();
   }, []);
-
-  console.log(accommodations);
 
   const DeleteButton = ({ id }) => {
     const [error, setError] = useState(null);
@@ -77,8 +70,6 @@ const Accommodation = () => {
 
     return (
       <Button
-        variant="danger"
-        className="delete"
         onClick={handleDelete}
         data-toggle="tooltip"
         data-placement="top"
@@ -100,7 +91,7 @@ const Accommodation = () => {
               </Header>
             </Col>
             <Col md={6}>
-              <Placement float="right">
+              <Container float="right">
                 <a href={`accommodation/new`}>
                   <Button
                     backgroundColor="rgb(0, 126, 255)"
@@ -111,7 +102,7 @@ const Accommodation = () => {
                     &nbsp;&nbsp;Add new accommodation
                   </Button>
                 </a>
-              </Placement>
+              </Container>
             </Col>
           </Row>
           <Col md={12}>
