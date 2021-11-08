@@ -18,11 +18,31 @@ import axios from "axios";
 import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
 import { LOGIN_SCHEMA } from "../constants/schema";
 
-import { LoginForm, P, LoginButton, LoginNavigation } from "../styles/common";
+import { P } from "../styles/common";
+import styled from "styled-components";
 
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
+
+const LoginNavigation = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`;
+
+const LoginButton = styled.button`
+  margin-top: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const LoginForm = styled.form`
+  font-size: 1.1rem;
+`;
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);

@@ -1,7 +1,8 @@
 import { DESCRIPTION_ADMIN, TITLE_ADMIN } from "../constants/meta";
 import Heading from "../components/Common/Heading";
 import { AdminLayout } from "../components/Layout/Layout";
-import { Note, NoteHeader, NoteBody, NoteLink } from "../styles/common";
+
+import styled from "styled-components";
 
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
@@ -15,6 +16,38 @@ import {
   faEnvelope as iconMessage,
   faInbox as iconEnquirie,
 } from "@fortawesome/free-solid-svg-icons";
+
+const Note = styled.div`
+  background-color: #ffff4a;
+  width: 50%;
+  box-shadow: 0px 0px 15px 9px rgba(165, 165, 165, 0.4);
+  border-top: 30px solid rgb(245 245 8);
+`;
+
+const NoteHeader = styled.div`
+  padding-top: 5%;
+  padding-left: 10%;
+`;
+
+const NoteBody = styled.div`
+  padding-left: 10%;
+  padding-bottom: 60px;
+  width: fit-content;
+`;
+
+const NoteLink = styled.a`
+  margin-bottom: 10%;
+  width: fit-content;
+  &:hover {
+    border-bottom: 1px solid rgb(0, 126, 255);
+  }
+`;
+
+const NoteFooter = styled.div`
+  padding-left: 10%;
+  padding-bottom: 10%;
+  width: fit-content;
+`;
 
 export default function Home() {
   const [enquiries, setEnquiries] = useState([]);

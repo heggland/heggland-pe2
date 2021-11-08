@@ -1,6 +1,92 @@
 import styled, { css } from "styled-components";
 import * as breakpoints from "./breakpoints";
 
+export const P = styled.p`
+  ${({ weight }) =>
+    weight &&
+    css`
+      font-weight: ${weight};
+    `}
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding: ${padding};
+    `}
+`;
+
+export const Span = styled.span`
+  ${({ weight }) =>
+    weight &&
+    css`
+      font-weight: ${weight};
+    `}
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding: ${padding};
+    `}
+`;
+
+export const Header = styled.header`
+  height: 4rem;
+  letter-spacing: 0.1rem;
+  width: 100%;
+
+  > h1 {
+    margin: 0;
+  }
+`;
+
+export const LinkHover = styled.a`
+  &:hover {
+    border-bottom: 1px solid rgb(0, 126, 255);
+  }
+`;
+
+export const Button = styled.button`
+  ${({ backgroundColor }) =>
+    (backgroundColor &&
+      css`
+        background-color: ${backgroundColor};
+      `) ||
+    css`
+      background-color: transparent;
+    `}
+  ${({ border }) =>
+    (border &&
+      css`
+        border: ${border};
+      `) ||
+    css`
+      border: none;
+    `}
+  ${({ color }) =>
+    color &&
+    css`
+      color: ${color};
+    `}
+${({ margin }) =>
+    margin &&
+    css`
+      margin-top: ${margin}px;
+      margin-bottom: ${margin}px;
+    `}
+${({ padding }) =>
+    padding &&
+    css`
+      padding: ${padding};
+    `}
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width}%;
+    `}
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 /* export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -175,92 +261,7 @@ import * as breakpoints from "./breakpoints";
     `}
 `; */
 
-export const P = styled.p`
-  ${({ weight }) =>
-    weight &&
-    css`
-      font-weight: ${weight};
-    `}
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding: ${padding};
-    `}
-`;
-
-export const Span = styled.span`
-  ${({ weight }) =>
-    weight &&
-    css`
-      font-weight: ${weight};
-    `}
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding: ${padding};
-    `}
-`;
-
-export const Button = styled.button`
-  ${({ backgroundColor }) =>
-    (backgroundColor &&
-      css`
-        background-color: ${backgroundColor};
-      `) ||
-    css`
-      background-color: transparent;
-    `}
-  ${({ border }) =>
-    (border &&
-      css`
-        border: ${border};
-      `) ||
-    css`
-      border: none;
-    `}
-  ${({ color }) =>
-    color &&
-    css`
-      color: ${color};
-    `}
-${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin}px;
-      margin-bottom: ${margin}px;
-    `}
-${({ padding }) =>
-    padding &&
-    css`
-      padding: ${padding};
-    `}
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width}%;
-    `}
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const LoginNavigation = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-`;
-
-export const LoginButton = styled.button`
-  margin-top: 10px;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const Note = styled.div`
+/* export const Note = styled.div`
   background-color: #ffff4a;
   width: 50%;
   box-shadow: 0px 0px 15px 9px rgba(165, 165, 165, 0.4);
@@ -290,15 +291,9 @@ export const NoteLink = styled.a`
   &:hover {
     border-bottom: 1px solid rgb(0, 126, 255);
   }
-`;
+`; */
 
-export const LinkHover = styled.a`
-  &:hover {
-    border-bottom: 1px solid rgb(0, 126, 255);
-  }
-`;
-
-export const Textarea = styled.textarea`
+/* export const Textarea = styled.textarea`
   width: 100%;
   min-height: 300px;
   max-height: 600px;
@@ -309,21 +304,26 @@ export const Textarea = styled.textarea`
   color: rgb(51, 55, 64);
   overflow: auto;
   line-height: 16px;
+`; */
+
+/* export const LoginNavigation = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const LoginButton = styled.button`
+  margin-top: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const LoginForm = styled.form`
   font-size: 1.1rem;
-`;
-
-export const Header = styled.header`
-  height: 4rem;
-  letter-spacing: 0.1rem;
-  width: 100%;
-
-  > h1 {
-    margin: 0;
-  }
-`;
+`; */
 
 /* import { css } from "styled-components";
 

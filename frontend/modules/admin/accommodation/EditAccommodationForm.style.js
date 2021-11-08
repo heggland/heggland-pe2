@@ -78,3 +78,16 @@ export const ButtonDelete = styled.div`
     cursor: pointer;
   }
 `;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  min-height: 300px;
+  max-height: 600px;
+  padding: 20px 20px 0px;
+  font-size: 13px;
+  background-color: rgb(255, 255, 255);
+  cursor: text;
+  color: rgb(51, 55, 64);
+  overflow: auto;
+  line-height: 16px;
+`;

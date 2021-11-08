@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import Heading from "../../../components/Common/Heading";
 // import Image from "next/image";
 
-import { Textarea } from "../../../styles/common";
 import Col from "../../../components/Col/Col";
 import Row from "../../../components/Row/Row";
 
@@ -19,6 +18,7 @@ import {
   ButtonDelete,
   InformationGroup,
   Container,
+  Textarea,
 } from "./EditAccommodationForm.style";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
