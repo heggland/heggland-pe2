@@ -29,7 +29,7 @@ const Layout = ({ title, description, children }) => {
 
       <Style.Container>
         <Style.Navigation>
-          <Col xs={6} md="auto">
+          <Col xs={6} sm="auto">
             <Style.NavTitle>
               <Link href="/">Holidaze</Link>
             </Style.NavTitle>

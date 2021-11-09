@@ -1,45 +1,54 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button`
-  ${({ backgroundColor }) =>
-    (backgroundColor &&
-      css`
-        background-color: ${backgroundColor};
-      `) ||
+const Button = styled.button`
+  ${({ values }) =>
+    values.hasOwnProperty("backgroundColor") &&
     css`
-      background-color: transparent;
-    `}
-  ${({ border }) =>
-    (border &&
+    background-color: ${values.backgroundColor};
+}
+`}
+  ${({ values }) =>
+    (values.hasOwnProperty("border") &&
       css`
-        border: ${border};
-      `) ||
+border: ${values.border && values.border};
+} 
+`) ||
     css`
       border: none;
-    `}
-  ${({ color }) =>
-    color &&
-    css`
-      color: ${color};
-    `}
-${({ margin }) =>
-    margin &&
-    css`
-      margin-top: ${margin}px;
-      margin-bottom: ${margin}px;
-    `}
-${({ padding }) =>
-    padding &&
-    css`
-      padding: ${padding};
-    `}
-  ${({ width }) =>
-    width &&
-    css`
-      width: ${width}%;
-    `}
+    `} }
 
-  &:hover {
+${({ values }) =>
+  values.hasOwnProperty("color") &&
+  css`
+color: ${values.color && values.color};
+} 
+`}
+
+${({ values }) =>
+  values.hasOwnProperty("margin") &&
+  css`
+    margin-top: ${margin}px;
+    margin-bottom: ${margin}px;
+} 
+`}
+
+${({ values }) =>
+  values.hasOwnProperty("padding") &&
+  css`
+    padding: ${values.padding};
+} 
+`}
+
+${({ values }) =>
+  values.hasOwnProperty("width") &&
+  css`
+    width: ${values.width}%;
+}
+`}
+
+&:hover {
     cursor: pointer;
   }
 `;
+
+export default Button;

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { xs, sm, lg, md } from "../../styles/breakpoints";
+import { xs, sm, lg, md, xsOnly } from "../../styles/breakpoints";
 
 // unauthorized/visitors path
 export const Container = styled.div`
@@ -177,7 +177,7 @@ export const SideContainer = styled.div`
   width: 0;
   height: 0;
 
-  ${xs} {
+  ${xsOnly} {
     z-index: 1;
 
     ${({ show }) =>
@@ -226,7 +226,7 @@ export const AdminNav = styled.nav`
     // xs
     isNaN(show) &&
     css`
-    ${xs} {
+    ${xsOnly} {
       display: ${(show) => show && "flex"};
     }
   }

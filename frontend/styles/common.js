@@ -43,7 +43,7 @@ export const LinkHover = styled.a`
   }
 `;
 
-export const Button = styled.button`
+/* export const Button = styled.button`
   ${({ backgroundColor }) =>
     (backgroundColor &&
       css`
@@ -85,7 +85,7 @@ ${({ padding }) =>
   &:hover {
     cursor: pointer;
   }
-`;
+`; */
 
 /* export const Row = styled.div`
   display: flex;

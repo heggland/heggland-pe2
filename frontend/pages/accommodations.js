@@ -22,7 +22,7 @@ const Accommodation = (props) => {
           <Heading>Our Accommodation</Heading>
         </Row>
         <Row justifyContent="center">
-          <Col md={8}>
+          <Col xs={8} md={8}>
             <Row>
               {(props.content &&
                 props.content.map(({ id, name, image, city }) => {

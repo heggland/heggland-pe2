@@ -12,9 +12,9 @@ import Col from "../../../components/Col/Col";
 import Row from "../../../components/Row/Row";
 
 import {
+  Button,
   BackButton,
   ButtonGroup,
-  Button,
   ButtonDelete,
   InformationGroup,
   Container,

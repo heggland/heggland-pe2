@@ -19,11 +19,17 @@ import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
 import { LOGIN_SCHEMA } from "../constants/schema";
 
 import { P } from "../styles/common";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSpinner as Spinner,
+  faExclamation as Exclamation,
+} from "@fortawesome/free-solid-svg-icons";
 
 const LoginNavigation = styled.div`
   position: absolute;
@@ -34,10 +40,34 @@ const LoginNavigation = styled.div`
 
 const LoginButton = styled.button`
   margin-top: 10px;
+  width: 100px;
+  color: white;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 50px;
+  border: 0;
 
   &:hover {
     cursor: pointer;
   }
+
+  ${({ bgColor }) =>
+    (bgColor === "success" &&
+      css`
+      background-color: rgb(0 114 182); 
+      }
+`) ||
+    (bgColor === "warning" &&
+      css`
+      background-color: rgb(174 13 27); 
+      }
+`)}
+`;
+
+const ErrorBorder = styled.input`
+  border: 1px solid rgb(174 13 27);
+  border-radius: 3px;
+  box-shadow: 0px 0px 13px -3px rgb(174, 13, 27, 0.2);
 `;
 
 const LoginForm = styled.form`
@@ -46,8 +76,8 @@ const LoginForm = styled.form`
 
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState(null);
-  const [success, setSuccess] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
 
   const router = useRouter();
@@ -75,7 +105,11 @@ const Login = () => {
 
     try {
       const response = await axios.post(BASE_URL + TOKEN_PATH, strapiData);
-      console.log(response);
+
+      if (response.data.jwt) {
+        setSubmitting(false);
+        setLoggedIn(true);
+      }
 
       setAuth({
         token: response.data.jwt,
@@ -89,6 +123,9 @@ const Login = () => {
         (error.toString().includes("400") && "Invalid login") ||
           error.toString()
       );
+      setTimeout(() => {
+        setLoginError(null);
+      }, 3000);
     }
   }
 
@@ -109,18 +146,27 @@ const Login = () => {
       <Container placeContent="center" height={100}>
         <Row justifyContent="center" textAlignLast="center">
           <LoginForm onSubmit={handleSubmit(onSubmit)}>
-            {loginError && <FormError>{loginError}</FormError>}
             <Col>
               <Heading size={4}>Email address</Heading>
             </Col>
             <Col>
-              <input
-                {...register("username")}
-                type="username"
-                name="username"
-                placeholder="ola@nordmann.no"
-                autoComplete="on"
-              />
+              {(errors.username && (
+                <ErrorBorder
+                  {...register("username")}
+                  type="username"
+                  name="username"
+                  placeholder="ola@nordmann.no"
+                  autoComplete="on"
+                />
+              )) || (
+                <input
+                  {...register("username")}
+                  type="username"
+                  name="username"
+                  placeholder="ola@nordmann.no"
+                  autoComplete="on"
+                />
+              )}
             </Col>
             {errors.username && (
               <div className="text-muted">{errors.username.message}</div>
@@ -130,13 +176,24 @@ const Login = () => {
               <Heading size={4}>Password</Heading>
             </Col>
             <Col>
-              <input
-                {...register("password")}
-                type="password"
-                name="password"
-                placeholder="Passord"
-                autoComplete="on"
-              />
+              {(errors.password && (
+                <ErrorBorder
+                  {...register("password")}
+                  type="password"
+                  name="password"
+                  placeholder="Passord"
+                  autoComplete="on"
+                />
+              )) || (
+                <input
+                  {...register("password")}
+                  type="password"
+                  name="password"
+                  placeholder="Passord"
+                  autoComplete="on"
+                />
+              )}
+
               {errors.password && (
                 <div className="text-muted">{errors.password.message}</div>
               )}
@@ -144,15 +201,24 @@ const Login = () => {
 
             <Col>
               {submitting ? (
-                <LoginButton width={100} type="submit">
-                  Loggin in...
+                <LoginButton width={100} bgColor="success" type="submit">
+                  <FontAwesomeIcon icon={Spinner} spin />
                 </LoginButton>
               ) : (
-                <LoginButton width={100} type="submit">
-                  Login
-                </LoginButton>
+                (loginError && (
+                  <LoginButton width={100} bgColor="warning" type="submit">
+                    <FontAwesomeIcon icon={Exclamation} />
+                  </LoginButton>
+                )) || (
+                  <LoginButton width={100} bgColor="success" type="submit">
+                    {(loggedIn && "Success") || "Login"}
+                  </LoginButton>
+                )
               )}
             </Col>
+            <Row justifyContent="center" margin="10px 0 0 0">
+              {loginError && <FormError>{loginError}</FormError>}
+            </Row>
           </LoginForm>
         </Row>
       </Container>

@@ -10,11 +10,11 @@ import { TITLE_ADMIN_ACCOMMONDATION } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
 import Heading from "../../components/Common/Heading";
-import { P, Button, Span, LinkHover, Header } from "../../styles/common";
+import { P, Span, LinkHover, Header } from "../../styles/common";
 
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
-//import Button from "../../components/Button/Button";
+import Button from "../../components/Button/Button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
