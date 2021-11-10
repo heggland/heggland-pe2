@@ -5,23 +5,45 @@ import axios from "axios";
 import { BASE_URL, HOTELS_PATH } from "../constants/api";
 import Image from "next/image";
 
-import * as Style from "../styles/index.style";
+import styled from "styled-components";
+
+export const Header = styled.div`
+  & > * {
+    height: 60vh;
+    width: 100%;
+  }
+`;
+
+const SearchForm = styled.div`
+  background-color: rgb(4 14 39);
+  color: white;
+  height: 150px;
+  display: flex;
+  align-items: center;
+`;
+
+const Featured = styled.div`
+  height: 150px;
+  display: flex;
+  align-items: center;
+  place-content: center;
+`;
 
 const Home = () => {
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
-      <Style.Heading>
+      <Header>
         {/*         <img
           src="https://media.radissonhotels.net/image/radisson-blu-caledonien-hotel-kristiansand/lobbyview/16256-116540-f66765457_3xl.jpg?impolicy=HomeHero"
           alt="{props.content[0].image[0].alternativeText}"
         /> */}
-      </Style.Heading>
-      {/*       <Style.SearchForm>
+      </Header>
+      {/*       <SearchForm>
         <Heading size={3}>Where you want to go?</Heading>
-      </Style.SearchForm> */}
-      <Style.Featured>
+      </SearchForm> */}
+      <Featured>
         <Heading size={3}>Featured Hotels</Heading>
-      </Style.Featured>
+      </Featured>
     </Layout>
   );
 };

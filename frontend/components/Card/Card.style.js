@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { xs, sm, lg, md } from "../../styles/breakpoints";
+import { xs, sm, lg, md } from "../Global/Breakpoints";
 
 export const Card = styled.div`
   background-color: white;

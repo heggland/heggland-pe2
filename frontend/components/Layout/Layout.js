@@ -15,7 +15,7 @@ import {
   faBars as MobileMenu,
 } from "@fortawesome/free-solid-svg-icons";
 import SearchAccommodation from "../Common/SearchAccommodation";
-import GlobalStyle from "../Global";
+import GlobalStyle from "../Global/Global";
 
 const Layout = ({ title, description, children }) => {
   const [mobileMenu, setMobileMenu] = useState(false);

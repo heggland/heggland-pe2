@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as Breakpoints from "../../styles/breakpoints";
+import * as Breakpoints from "../Global/Breakpoints";
 
 export const Row = styled.div`
   display: flex;
@@ -44,6 +44,13 @@ ${({ values }) =>
     values.hasOwnProperty("padding") &&
     css`
     padding: ${values.padding};
+}
+`}
+
+${({ values }) =>
+    values.hasOwnProperty("alignItems") &&
+    css`
+    align-items: ${values.alignItems};
 }
 `}
 

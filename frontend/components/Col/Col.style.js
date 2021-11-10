@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as Breakpoints from "../../styles/breakpoints";
+import * as Breakpoints from "../Global/Breakpoints";
 
 // fetch the media query breakpoint
 const handleBreakpoint = (values) => {

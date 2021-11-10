@@ -18,12 +18,12 @@ import axios from "axios";
 import { DESCRIPTION_LOGIN, TITLE_LOGIN } from "../constants/meta";
 import { LOGIN_SCHEMA } from "../constants/schema";
 
-import { P } from "../styles/common";
 import styled, { css } from "styled-components";
 
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
+import Paragraph from "../components/Paragraph/Paragraph";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -137,7 +137,7 @@ const Login = () => {
         <Row justifyContent="center">
           <Link href="/">
             <a>
-              <P>Go back to Holidaze</P>
+              <Paragraph>Go back to Holidaze</Paragraph>
             </a>
           </Link>
         </Row>

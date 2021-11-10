@@ -1,8 +1,8 @@
-import Style from "./Button.style";
+import Style from "./Span.style";
 
-const Button = (props) => {
+const Span = (props) => {
   const { children, ...rest } = props;
   return <Style values={rest}>{children}</Style>;
 };
 
-export default Button;
+export default Span;

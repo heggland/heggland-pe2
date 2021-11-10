@@ -205,7 +205,7 @@ const EditForm = ({
           onSubmit={handleSubmit(onSubmit)}
           onChange={id && disableStateButton}
         >
-          <Row padding="0 0 5 0">
+          <Row padding="0 0 5 0" alignItems="center">
             <Col md={6}>
               <Heading>{(id && name) || "Create a new accommodation"}</Heading>
             </Col>

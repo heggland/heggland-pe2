@@ -10,10 +10,11 @@ import {
 import { TITLE_ADMIN_ENQUIRIES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import { P, Span, Header } from "../../styles/common";
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
 import Button from "../../components/Button/Button";
+import Span from "../../components/Span/Span";
+import Paragraph from "../../components/Paragraph/Paragraph";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -37,8 +38,6 @@ const Enquiries = () => {
     }
     fetchData();
   }, []);
-
-  console.log(enquiries);
 
   const DeleteButton = ({ id }) => {
     const [error, setError] = useState(null);
@@ -91,7 +90,6 @@ const Enquiries = () => {
 
     const updatedEnquiries = enquiries;
 
-    console.log(updatedEnquiries);
     try {
       const response = await http.put(BASE_URL + ENQUIRIES_PATH + id, data);
       if ((response.status = 200)) {
@@ -106,7 +104,7 @@ const Enquiries = () => {
       }
     } catch (error) {
       //setError(error.toString());
-      console.log(error);
+      //console.log(error);
     }
   }
 
@@ -115,37 +113,37 @@ const Enquiries = () => {
       <Row margin="0 0 0 1rem">
         <Row margin="2rem 0" width="100%">
           <Col md={11}>
-            <Header>
+            <Row>
               <Heading>User enquiries</Heading>
-            </Header>
+            </Row>
           </Col>
         </Row>
         <Col xs={12} md={11}>
           <Row backgroundColor="rgb(243 243 243)" xs="none">
             <Col xs={1} md={1}>
-              <P weight="bold" padding="0 0 0 0.5rem">
+              <Paragraph weight="bold" padding="0 0 0 0.5rem">
                 Id
-              </P>
+              </Paragraph>
             </Col>
             <Col xs={2} md={3}>
-              <P weight="bold">Name</P>
+              <Paragraph weight="bold">Name</Paragraph>
             </Col>
             <Col xs={2} md={2}>
-              <P weight="bold">Accommodation</P>
+              <Paragraph weight="bold">Accommodation</Paragraph>
             </Col>
             <Col xs={2} md={2}>
-              <P weight="bold">Email</P>
+              <Paragraph weight="bold">Email</Paragraph>
             </Col>
             <Col xs={2} md={2}>
-              <P weight="bold">State</P>
+              <Paragraph weight="bold">State</Paragraph>
             </Col>
             <Col xs={2} md={2}>
               <Row>
                 <Col xs={6} md={6}>
-                  <P weight="bold">Edit</P>
+                  <Paragraph weight="bold">Edit</Paragraph>
                 </Col>
                 <Col xs={6} md={6}>
-                  <P weight="bold">Delete</P>
+                  <Paragraph weight="bold">Delete</Paragraph>
                 </Col>
               </Row>
             </Col>

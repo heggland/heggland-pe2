@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { xs, sm, lg, md, xsOnly } from "../../styles/breakpoints";
+import * as Breakpoints from "../Global/Breakpoints";
 
 // unauthorized/visitors path
 export const Container = styled.div`
@@ -14,7 +14,7 @@ export const Navigation = styled.div`
   width: 100%;
   align-items: center;
 
-  ${xs} {
+  ${Breakpoints.xs} {
     box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
     justify-content: space-between;
 
@@ -23,7 +23,11 @@ export const Navigation = styled.div`
     }
   }
 
-  ${sm} {
+  ${Breakpoints.sm} {
+    flex-wrap: nowrap;
+    display: flex;
+    height: 70px;
+    display: flex;
 
     > :nth-child(1) {
       padding-left: 5vw;
@@ -40,19 +44,14 @@ export const Navigation = styled.div`
     }
   }
 
-  ${sm} {
-    flex-wrap: nowrap;
-    display: flex;
-    height: 70px;
-    display: flex;
-  }
 
-  ${lg} {
+
+  ${Breakpoints.lg} {
   }
 `;
 
 export const NavTitle = styled.div`
-  ${md} {
+  ${Breakpoints.md} {
     padding-right: 26px;
   }
 `;
@@ -69,7 +68,7 @@ export const NavPages = styled.div`
     padding: 10px 0;
   }
 
-  ${xs} {
+  ${Breakpoints.xs} {
     border-top: 1px solid rgb(0 0 0 / 5%);
 
     ${({ show }) =>
@@ -80,7 +79,7 @@ export const NavPages = styled.div`
     `}
   }
 
-  ${sm} {
+  ${Breakpoints.sm} {
     display: block;
     background-color: white;
     border-top: none;
@@ -110,7 +109,7 @@ export const SearchButton = styled.div`
     color: white;
   }
 
-  ${sm} {
+  ${Breakpoints.sm} {
     background-color: white;
 
     & > * {
@@ -125,7 +124,7 @@ export const MobileButton = styled.div`
   width: fit-content;
   font-size: 1.5rem;
 
-  ${sm} {
+  ${Breakpoints.sm} {
     display: none;
   }
 `;
@@ -135,7 +134,7 @@ export const Children = styled.div`
   margin-left: 10px;
   margin-right: 10px;
 
-  ${md} {
+  ${Breakpoints.md} {
     padding: 0;
     margin: 0;
   }
@@ -162,7 +161,7 @@ export const AdminMobileButton = styled.div`
   z-index: 2;
   color: white;
 
-  ${md} {
+  ${Breakpoints.md} {
     display: none;
   }
 `;
@@ -172,12 +171,12 @@ export const SideContainer = styled.div`
   float: left;
   top: 0px;
   left: 0px;
-  background: rgb(24, 32, 46);
+  background-color: rgb(24, 32, 46);
   color: white;
   width: 0;
   height: 0;
 
-  ${xsOnly} {
+  ${Breakpoints.mobileOnly} {
     z-index: 1;
 
     ${({ show }) =>
@@ -188,9 +187,9 @@ export const SideContainer = styled.div`
           height: ${show === "flex" && "100%"};
         }
       `}
+  }
 
-
-  ${md} {
+  ${Breakpoints.md} {
     display: block;
     width: 16rem;
     height: 100%;
@@ -207,7 +206,7 @@ export const AdminNavHead = styled.nav`
   padding-left: 0.5rem;
   background: rgb(0, 126, 255);
 
-  ${md} {
+  ${Breakpoints.md} {
     & > a {
       padding-left: 0.5rem;
     }
@@ -226,13 +225,13 @@ export const AdminNav = styled.nav`
     // xs
     isNaN(show) &&
     css`
-    ${xsOnly} {
+    ${Breakpoints.mobileOnly} {
       display: ${(show) => show && "flex"};
     }
   }
   `}
 
-  ${md} {
+  ${Breakpoints.md} {
     display: flex;
   }
 `;
@@ -260,7 +259,7 @@ export const AdminChildren = styled.div`
   padding-bottom: 2rem;
   margin-left: 0;
 
-  ${md} {
+  ${Breakpoints.md} {
     margin-left: 16rem;
   }
 `;

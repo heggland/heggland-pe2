@@ -9,11 +9,11 @@ import {
 import { TITLE_ADMIN_MESSAGES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
-import { P, Span, Header } from "../../styles/common";
-
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
 import Button from "../../components/Button/Button";
+import Span from "../../components/Span/Span";
+import Paragraph from "../../components/Paragraph/Paragraph";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -56,7 +56,6 @@ const Messages = () => {
             setMessages(newArray);
           }
         } catch (error) {
-          console.log(error);
           setError(error);
         }
       }
@@ -107,7 +106,7 @@ const Messages = () => {
       }
     } catch (error) {
       //setError(error.toString());
-      console.log(error);
+      //console.log(error);
     }
   }
 
@@ -116,37 +115,37 @@ const Messages = () => {
       <Row margin="0 0 0 1rem">
         <Row margin="2rem 0" width="100%">
           <Col md={6}>
-            <Header>
+            <Row>
               <Heading>Visitor messages</Heading>
-            </Header>
+            </Row>
           </Col>
         </Row>
         <Col xs={12} md={11}>
           <Row backgroundColor="rgb(243 243 243)" xs="none">
             <Col md={1}>
-              <P weight="bold" padding="0 0 0 0.5rem">
+              <Paragraph weight="bold" padding="0 0 0 0.5rem">
                 Id
-              </P>
+              </Paragraph>
             </Col>
             <Col md={2}>
-              <P weight="bold">Name</P>
+              <Paragraph weight="bold">Name</Paragraph>
             </Col>
             <Col md={2}>
-              <P weight="bold">Email</P>
+              <Paragraph weight="bold">Email</Paragraph>
             </Col>
             <Col md={3}>
-              <P weight="bold">Message</P>
+              <Paragraph weight="bold">Message</Paragraph>
             </Col>
             <Col md={2}>
-              <P weight="bold">State</P>
+              <Paragraph weight="bold">State</Paragraph>
             </Col>
             <Col md={2}>
               <Row>
                 <Col md={6}>
-                  <P weight="bold">Edit</P>
+                  <Paragraph weight="bold">Edit</Paragraph>
                 </Col>
                 <Col md={6}>
-                  <P weight="bold">Delete</P>
+                  <Paragraph weight="bold">Delete</Paragraph>
                 </Col>
               </Row>
             </Col>

@@ -12,8 +12,6 @@ const Details = ({ accommodation }) => {
     alt = accommodation.image[0].alternativeText;
   }
 
-  console.log(accommodation);
-
   return (
     <Style.Container>
       <Row justifyContent="center" padding="5% 0 0 0">
@@ -23,9 +21,11 @@ const Details = ({ accommodation }) => {
           <Style.Text>{accommodation.description}</Style.Text>
 
           <Heading size={3}>Locaction</Heading>
-          <Style.Text>{accommodation.city}</Style.Text>
-          <Style.Text>{accommodation.address}</Style.Text>
-          <Style.Text>{accommodation.zip_code}</Style.Text>
+          <address>
+            <Style.Text>{accommodation.city}</Style.Text>
+            <Style.Text>{accommodation.address}</Style.Text>
+            <Style.Text>{accommodation.zip_code}</Style.Text>
+          </address>
         </Col>
       </Row>
     </Style.Container>

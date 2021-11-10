@@ -10,11 +10,12 @@ import { TITLE_ADMIN_ACCOMMONDATION } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
 import Heading from "../../components/Common/Heading";
-import { P, Span, LinkHover, Header } from "../../styles/common";
 
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
 import Button from "../../components/Button/Button";
+import Span from "../../components/Span/Span";
+import Paragraph from "../../components/Paragraph/Paragraph";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -62,7 +63,6 @@ const Accommodation = () => {
             setHotels(newArray);
           }
         } catch (error) {
-          console.log(error);
           setError(error);
         }
       }
@@ -84,11 +84,9 @@ const Accommodation = () => {
     <AdminLayout title={TITLE_ADMIN_ACCOMMONDATION}>
       <Row margin="0 0 0 1rem">
         <Col md={11}>
-          <Row margin="2rem 0">
+          <Row margin="2rem 0" alignItems="center">
             <Col md={6}>
-              <Header>
-                <Heading>Manage accommodations</Heading>
-              </Header>
+              <Heading>Manage accommodations</Heading>
             </Col>
             <Col md={6}>
               <Container float="right">
@@ -108,29 +106,29 @@ const Accommodation = () => {
           <Col md={12}>
             <Row backgroundColor="rgb(243 243 243)" xs="none">
               <Col md={1}>
-                <P weight="bold" padding="0 0 0 0.5rem">
+                <Paragraph weight="bold" padding="0 0 0 0.5rem">
                   Id
-                </P>
+                </Paragraph>
               </Col>
               <Col md={3}>
-                <P weight="bold">Name</P>
+                <Paragraph weight="bold">Name</Paragraph>
               </Col>
               <Col md={2}>
-                <P weight="bold">Address</P>
+                <Paragraph weight="bold">Address</Paragraph>
               </Col>
               <Col md={2}>
-                <P weight="bold">City</P>
+                <Paragraph weight="bold">City</Paragraph>
               </Col>
               <Col md={2}>
-                <P weight="bold">State</P>
+                <Paragraph weight="bold">State</Paragraph>
               </Col>
               <Col md={2}>
                 <Row>
                   <Col md={6}>
-                    <P weight="bold">Edit</P>
+                    <Paragraph weight="bold">Edit</Paragraph>
                   </Col>
                   <Col md={6}>
-                    <P weight="bold">Delete</P>
+                    <Paragraph weight="bold">Delete</Paragraph>
                   </Col>
                 </Row>
               </Col>
@@ -152,9 +150,9 @@ const Accommodation = () => {
                             <Span padding="0 0 0 0.5rem">{id}</Span>
                           </Col>
                           <Col md={3} hover="grey">
-                            <LinkHover href={`/accommodation/${id}`}>
+                            <a href={`/accommodation/${id}`} target="_blank">
                               <Span>{name}</Span>
-                            </LinkHover>
+                            </a>
                           </Col>
                           <Col md={2}>
                             <Span>{address}</Span>

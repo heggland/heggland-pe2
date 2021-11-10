@@ -7,9 +7,9 @@ import Heading from "../components/Common/Heading";
 import axios from "axios";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../constants/api";
 import Card from "../components/Card/Card";
-import * as Style from "../styles/accommodation.style";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
+import Container from "../components/Container/Container";
 
 const Accommodation = (props) => {
   return (
@@ -17,7 +17,7 @@ const Accommodation = (props) => {
       title={TITLE_ACCOMMONDATION}
       description={DESCRIPTION_ACCOMMONDATION}
     >
-      <Style.Container>
+      <Container>
         <Row justifyContent="center">
           <Heading>Our Accommodation</Heading>
         </Row>
@@ -38,7 +38,7 @@ const Accommodation = (props) => {
             </Row>
           </Col>
         </Row>
-      </Style.Container>
+      </Container>
     </Layout>
   );
 };

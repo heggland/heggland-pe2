@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { xs, sm, lg, md } from "../../styles/breakpoints";
+import { xs, sm, lg, md } from "../Global/Breakpoints";
 
 // unauthorized/visitors path
 export const Footer = styled.footer`

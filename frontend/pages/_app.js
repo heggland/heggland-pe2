@@ -1,4 +1,4 @@
-import GlobalStyle from "../components/Global";
+import GlobalStyle from "../components/Global/Global";
 import { AuthProvider } from "../context/AuthContext";
 
 const MyApp = ({ Component, pageProps }) => {

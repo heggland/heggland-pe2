@@ -2,7 +2,6 @@ import axios from "axios";
 import Link from "next/link";
 import EnquiryForm from "../../modules/accommodations/enquiry/enquiryForm";
 import Details from "../../modules/accommodations/details/details";
-import Heading from "../../components/Common/Heading";
 import Layout from "../../components/Layout/Layout";
 import {
   BASE_URL,
@@ -22,7 +21,6 @@ const Hotel = ({ content, error }) => {
       </>
     );
   }
-  console.log(content.id);
   return (
     <Layout
       title={content.name + " | Holidaze"}
