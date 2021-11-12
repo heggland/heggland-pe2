@@ -105,6 +105,10 @@ export const SearchButton = styled.div`
   display: flex;
   place-items: center;
 
+  &: hover {
+    cursor: pointer;
+  }
+
   & > * {
     color: white;
   }
@@ -123,6 +127,10 @@ export const MobileButton = styled.div`
   margin-left: 10px;
   width: fit-content;
   font-size: 1.5rem;
+
+  &: hover {
+    cursor: pointer;
+  }
 
   ${Breakpoints.sm} {
     display: none;
@@ -160,6 +168,10 @@ export const AdminMobileButton = styled.div`
   font-size: 1.5rem;
   z-index: 2;
   color: white;
+
+  &: hover {
+    cursor: pointer;
+  }
 
   ${Breakpoints.md} {
     display: none;

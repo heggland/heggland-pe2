@@ -2,7 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
-import { Form, Row, Col, Error, Success } from "./EnquiryForm.style";
+import { Form, Error, Success } from "./EnquiryForm.style";
+import Container from "../../../components/Container/Container";
+import Col from "../../../components/Col/Col";
+import Row from "../../../components/Row/Row";
 import axios from "axios";
 import { BASE_URL, ENQUIRIES_PATH } from "../../../constants/api";
 import { ENQUIRY_SCHEMA } from "../../../constants/schema";
@@ -11,6 +14,9 @@ const EnquiryForm = ({ accommondationId }) => {
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState(null);
   const [sent, setSent] = useState(false);
+
+  const rooms = 10;
+  const people = 20;
 
   const {
     register,
@@ -37,7 +43,7 @@ const EnquiryForm = ({ accommondationId }) => {
   }
 
   return (
-    <>
+    <Container padding="20px">
       <Form onSubmit={handleSubmit(onSubmit)}>
         {formError && <Error>{formError}</Error>}
         <Col>
@@ -79,18 +85,11 @@ const EnquiryForm = ({ accommondationId }) => {
           <div>
             <label htmlFor="people">People </label>
             <select name="people" defaultValue="1" {...register("people")}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
+              {[...Array(people).keys()].map((i) => (
+                <option key={i} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
             </select>
             {errors.people && (
               <div>
@@ -103,18 +102,11 @@ const EnquiryForm = ({ accommondationId }) => {
           <div>
             <label htmlFor="rooms">Rooms </label>
             <select name="rooms" defaultValue="1" {...register("rooms")}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
+              {[...Array(rooms).keys()].map((i) => (
+                <option key={i} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
             </select>
             {errors.rooms && (
               <div>
@@ -174,7 +166,7 @@ const EnquiryForm = ({ accommondationId }) => {
           <Col>{sent && <Success>Message sent</Success>}</Col>
         </Row>
       </Form>
-    </>
+    </Container>
   );
 };
 

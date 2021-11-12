@@ -64,12 +64,15 @@ const Messages = () => {
     return (
       <Button
         variant="danger"
-        onClick={handleDelete}
         data-toggle="tooltip"
         data-placement="top"
         title="Delete message"
       >
-        {error ? "Error" : <FontAwesomeIcon icon={Trash} />}
+        {error ? (
+          "Error"
+        ) : (
+          <FontAwesomeIcon onClick={handleDelete} icon={Trash} />
+        )}
       </Button>
     );
   };

@@ -1,13 +1,8 @@
 import axios from "axios";
 import Link from "next/link";
-import EnquiryForm from "../../modules/accommodations/enquiry/enquiryForm";
 import Details from "../../modules/accommodations/details/details";
 import Layout from "../../components/Layout/Layout";
-import {
-  BASE_URL,
-  HOTELS_PATH,
-  ACCOMMONDATION_PATH,
-} from "../../constants/api";
+import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 import { DESCRIPTION_HOTEL } from "../../constants/meta";
 
 const Hotel = ({ content, error }) => {
@@ -21,13 +16,13 @@ const Hotel = ({ content, error }) => {
       </>
     );
   }
+
   return (
     <Layout
       title={content.name + " | Holidaze"}
       description={DESCRIPTION_HOTEL}
     >
       <Details accommodation={content} />
-      <EnquiryForm accommondationId={content.id} />
     </Layout>
   );
 };

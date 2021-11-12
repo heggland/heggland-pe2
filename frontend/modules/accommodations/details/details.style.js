@@ -21,3 +21,14 @@ export const Text = styled.p`
   margin-bottom: 0px;
   margin-top: 1px;
 `;
+
+export const CloseModal = styled.div`
+  color: red;
+  position: absolute;
+  top: 5px;
+  right: 7px;
+
+  &: hover {
+    cursor: pointer;
+  }
+`;

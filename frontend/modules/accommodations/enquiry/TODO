@@ -1,0 +1,7 @@
+fetch room information from database
+- accommondation
+-- rooms
+---room
+----.room id
+----.max people / beds
+----.

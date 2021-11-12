@@ -1,9 +1,14 @@
+import PropTypes from "prop-types";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import Head from "../Common/Head";
 import Footer from "../Footer/Footer";
+
+import Image from "next/image";
+// placeholder logo.
+import logo from "../../public/logo.png";
 
 import * as Style from "./Layout.style";
 import Col from "../Col/Col";
@@ -23,6 +28,7 @@ const Layout = ({ title, description, children }) => {
   const handleClick = () =>
     setMobileMenu((mobileMenu === false && "flex") || false);
 
+  console.log("TODO CHANGE: ", logo);
   return (
     <>
       <Head title={title} description={description} />
@@ -31,7 +37,9 @@ const Layout = ({ title, description, children }) => {
         <Style.Navigation>
           <Col xs={6} sm="auto">
             <Style.NavTitle>
-              <Link href="/">Holidaze</Link>
+              <a href="/">
+                <Image height="100" width="120" src={logo} />
+              </a>
             </Style.NavTitle>
           </Col>
           <Col xs={6}>
@@ -57,6 +65,12 @@ const Layout = ({ title, description, children }) => {
 };
 
 export default Layout;
+
+Layout.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 export const AdminLayout = ({
   title,
@@ -119,4 +133,10 @@ export const AdminLayout = ({
       </Style.AdminContainer>
     </>
   );
+};
+
+AdminLayout.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };

@@ -13,7 +13,7 @@ body {
     overflow: ${(props) => props.hidden === true && "hidden"};
 }
 
-body > :first-child {
+body > #__next {
   display: flex;
   flex-direction: column;
   height: 100%;

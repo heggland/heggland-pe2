@@ -64,10 +64,15 @@ const LoginButton = styled.button`
 `)}
 `;
 
-const ErrorBorder = styled.input`
-  border: 1px solid rgb(174 13 27);
+const Input = styled.input`
   border-radius: 3px;
-  box-shadow: 0px 0px 13px -3px rgb(174, 13, 27, 0.2);
+  // prop: error
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid rgb(174 13 27);
+      box-shadow: 0px 0px 13px -3px rgb(174, 13, 27, 0.2);
+    `}
 `;
 
 const LoginForm = styled.form`
@@ -150,23 +155,14 @@ const Login = () => {
               <Heading size={4}>Email address</Heading>
             </Col>
             <Col>
-              {(errors.username && (
-                <ErrorBorder
-                  {...register("username")}
-                  type="username"
-                  name="username"
-                  placeholder="ola@nordmann.no"
-                  autoComplete="on"
-                />
-              )) || (
-                <input
-                  {...register("username")}
-                  type="username"
-                  name="username"
-                  placeholder="ola@nordmann.no"
-                  autoComplete="on"
-                />
-              )}
+              <Input
+                {...register("username")}
+                type="username"
+                error={errors.username && true}
+                name="username"
+                placeholder="ola@nordmann.no"
+                autoComplete="on"
+              />
             </Col>
             {errors.username && (
               <div className="text-muted">{errors.username.message}</div>
@@ -176,23 +172,14 @@ const Login = () => {
               <Heading size={4}>Password</Heading>
             </Col>
             <Col>
-              {(errors.password && (
-                <ErrorBorder
-                  {...register("password")}
-                  type="password"
-                  name="password"
-                  placeholder="Passord"
-                  autoComplete="on"
-                />
-              )) || (
-                <input
-                  {...register("password")}
-                  type="password"
-                  name="password"
-                  placeholder="Passord"
-                  autoComplete="on"
-                />
-              )}
+              <Input
+                {...register("password")}
+                error={errors.password && true}
+                type="password"
+                name="password"
+                placeholder="Passord"
+                autoComplete="on"
+              />
 
               {errors.password && (
                 <div className="text-muted">{errors.password.message}</div>

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button`
+const Button = styled.div`
   ${({ values }) =>
     values.hasOwnProperty("backgroundColor") &&
     css`

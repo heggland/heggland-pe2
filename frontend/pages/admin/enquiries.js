@@ -44,7 +44,6 @@ const Enquiries = () => {
 
     async function handleDelete() {
       const confirmDelete = window.confirm("Delete this enquirie?");
-
       if (confirmDelete) {
         try {
           const response = await http.delete(BASE_URL + ENQUIRIES_PATH + id);
@@ -64,13 +63,15 @@ const Enquiries = () => {
 
     return (
       <Button
-        variant="danger"
-        onClick={handleDelete}
         data-toggle="tooltip"
         data-placement="top"
         title="Delete enquirie"
       >
-        {error ? "Error" : <FontAwesomeIcon icon={Trash} />}
+        {error ? (
+          "Error"
+        ) : (
+          <FontAwesomeIcon onClick={handleDelete} icon={Trash} />
+        )}
       </Button>
     );
   };

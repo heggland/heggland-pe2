@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import * as Breakpoints from "../Global/Breakpoints";
 
-const Col = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -10,7 +10,6 @@ const Col = styled.div`
     isNaN(values.placeContent) &&
     css`
       place-content: ${values.placeContent};
-            
         }
       `}
 
@@ -29,6 +28,14 @@ const Col = styled.div`
       float: ${values.float};
       }
     `}
+
+    ${({ values }) =>
+    values.hasOwnProperty("padding") &&
+    isNaN(values.padding) &&
+    css`
+      padding: ${values.padding};
+      }
+    `}
 `;
 
-export default Col;
+export default Container;
