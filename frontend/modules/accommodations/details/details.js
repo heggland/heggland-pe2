@@ -4,12 +4,12 @@ import EnquiryForm from "../enquiry/enquiryForm";
 import * as Style from "./details.style";
 import Col from "./../../../components/Col/Col";
 import Row from "./../../../components/Row/Row";
-import Modal from "react-modal";
-import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes as close } from "@fortawesome/free-solid-svg-icons";
 
+import { useState } from "react";
+import Modal from "react-modal";
 const customStyles = {
   content: {
     top: "50%",
@@ -25,7 +25,6 @@ Modal.setAppElement("#enquiryForm");
 
 const Details = ({ accommodation }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -56,11 +55,7 @@ const Details = ({ accommodation }) => {
             <Col md={6}>
               <button onClick={openModal}>Order Now! DO IT NOW!</button>
               <div id="enquiryForm">
-                <Modal
-                  isOpen={modalIsOpen}
-                  onRequestClose={closeModal}
-                  style={customStyles}
-                >
+                <Modal isOpen={modalIsOpen} style={customStyles}>
                   <Style.CloseModal onClick={closeModal}>
                     <FontAwesomeIcon icon={close} />
                   </Style.CloseModal>

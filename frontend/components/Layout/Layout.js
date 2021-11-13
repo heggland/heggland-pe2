@@ -19,7 +19,7 @@ import {
   faSignOutAlt as SignOut,
   faBars as MobileMenu,
 } from "@fortawesome/free-solid-svg-icons";
-import SearchAccommodation from "../Common/SearchAccommodation";
+import SearchAccommodation from "../Search/SearchAccommodation";
 import GlobalStyle from "../Global/Global";
 
 const Layout = ({ title, description, children }) => {

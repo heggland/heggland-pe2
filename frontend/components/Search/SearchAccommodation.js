@@ -8,12 +8,36 @@ import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch as SearchIcon } from "@fortawesome/free-solid-svg-icons";
 
+import Row from "../Row/Row";
+import Col from "../Col/Col";
+import * as Style from "./SearchAccommodation.Style";
+
+import { faTimes as close } from "@fortawesome/free-solid-svg-icons";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "80%",
+    height: "80%",
+  },
+};
+
 const SearchAccommodation = ({ type }) => {
   const [fetchError, setFetchError] = useState(null);
   const [searchError, setSearchError] = useState(null);
-  const [accommodations, setHotels] = useState(null);
+  const [accommodations, setAccommodation] = useState(null);
 
   const [searchResult, setSearchResult] = useState(null);
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   const {
     register,
@@ -29,7 +53,7 @@ const SearchAccommodation = ({ type }) => {
       try {
         const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);
         if (response.data.length !== 0) {
-          setHotels(response.data);
+          setAccommodation(response.data);
         }
       } catch (error) {
         console.error(error);
@@ -53,6 +77,7 @@ const SearchAccommodation = ({ type }) => {
                 description: accommodations.description,
                 address: accommodations.address,
                 zip_code: accommodations.zip_code,
+                city: accommodations.city,
               })
                 .toLowerCase()
                 .includes(search)
@@ -76,9 +101,74 @@ const SearchAccommodation = ({ type }) => {
 
   //TODO bring up search..
   if (type === "nav") {
+    Modal.setAppElement("#searchForm");
     return (
       <>
-        <FontAwesomeIcon icon={SearchIcon} />
+        <FontAwesomeIcon icon={SearchIcon} onClick={openModal} />
+        <div id="searchForm">
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+          >
+            <Style.Container>
+              <Style.Header>
+                <Row>
+                  <Col xs={1}>
+                    <FontAwesomeIcon icon={SearchIcon} />
+                  </Col>
+                  <Col xs={10}>
+                    <Style.Form onChange={handleSubmit(onChange)}>
+                      <Style.Input
+                        autocomplete="off"
+                        {...register("search")}
+                        type="text"
+                        disabled={!accommodations && true}
+                        placeholder={
+                          (errors.search && errors.search.message) || "search.."
+                        }
+                      ></Style.Input>
+                    </Style.Form>
+                  </Col>
+                  <Col xs={1}>
+                    <Style.CloseModal onClick={closeModal}>
+                      <FontAwesomeIcon icon={close} />
+                    </Style.CloseModal>
+                  </Col>
+                </Row>
+              </Style.Header>
+              <Style.Result>
+                <Col xs={11}>
+                  <Col>
+                    {searchResult &&
+                      searchResult.map(
+                        ({
+                          id,
+                          name,
+                          city,
+                          address,
+                          zip_code,
+                          description,
+                        }) => {
+                          return (
+                            <Row key={id}>
+                              <a href={`accommodation/${id}`}>
+                                <p>{name}</p>
+                              </a>
+                              <p>{city}</p>
+                              <p>{address}</p>
+                              <p>{zip_code}</p>
+                              <small>{description}</small>
+                            </Row>
+                          );
+                        }
+                      )}
+                  </Col>
+                </Col>
+              </Style.Result>
+            </Style.Container>
+          </Modal>
+        </div>
       </>
     );
   }

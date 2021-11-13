@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
-import { Form, Error, Success } from "./EnquiryForm.style";
+import * as Style from "./EnquiryForm.style";
 import Container from "../../../components/Container/Container";
 import Col from "../../../components/Col/Col";
 import Row from "../../../components/Row/Row";
@@ -44,108 +44,126 @@ const EnquiryForm = ({ accommondationId }) => {
 
   return (
     <Container padding="20px">
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Style.Form onSubmit={handleSubmit(onSubmit)}>
         {formError && <Error>{formError}</Error>}
-        <Col>
-          <div>
-            <input type="text" placeholder="Name *" {...register("name")} />
-            {errors.name && (
-              <div>
-                <Error>{errors.name.message}</Error>
-              </div>
-            )}
-          </div>
-        </Col>
-        <Col>
-          <div>
-            <input type="email" placeholder="Email *" {...register("email")} />
+        <Row>
+          <Style.Input type="text" placeholder="Name *" {...register("name")} />
+          {errors.name && (
+            <div>
+              <Style.Error>{errors.name.message}</Style.Error>
+            </div>
+          )}
+        </Row>
+        <Row>
+          <Col xs={6}>
+            <Style.Input
+              type="email"
+              placeholder="Email *"
+              {...register("email")}
+            />
             {errors.email && (
               <div>
-                <Error>{errors.email.message}</Error>
+                <Style.Error>{errors.email.message}</Style.Error>
               </div>
             )}
-          </div>
-        </Col>
-        <Col>
-          <div>
-            <input type="text" placeholder="Phone *" {...register("phone")} />
+          </Col>
+          <Col xs={6}>
+            <Style.Input
+              type="text"
+              placeholder="Phone *"
+              {...register("phone")}
+            />
             {errors.phone && (
               <div>
-                <Error>
+                <Style.Error>
                   {(errors.phone.message.includes("NaN") && (
                     <>Please enter digits only</>
                   )) ||
                     errors.phone.message}
-                </Error>
+                </Style.Error>
               </div>
             )}
-          </div>
-        </Col>
-        <Col>
-          <div>
-            <label htmlFor="people">People </label>
-            <select name="people" defaultValue="1" {...register("people")}>
-              {[...Array(people).keys()].map((i) => (
-                <option key={i} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            {errors.people && (
-              <div>
-                <Error>{errors.people.message}</Error>
-              </div>
-            )}
-          </div>
-        </Col>
-        <Col>
-          <div>
-            <label htmlFor="rooms">Rooms </label>
-            <select name="rooms" defaultValue="1" {...register("rooms")}>
-              {[...Array(rooms).keys()].map((i) => (
-                <option key={i} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            {errors.rooms && (
-              <div>
-                <Error>{errors.rooms.message}</Error>
-              </div>
-            )}
-          </div>
-        </Col>
-        <Col>
-          <div>
-            <input
+          </Col>
+        </Row>
+        <Style.Group>
+          <Row>
+            <Col xs={6}>
+              <Row>
+                <Col xs={5}>
+                  <label htmlFor="people">People </label>
+                </Col>
+                <Col>
+                  <select
+                    name="people"
+                    defaultValue="1"
+                    {...register("people")}
+                  >
+                    {[...Array(people).keys()].map((i) => (
+                      <option key={i} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </select>
+                </Col>
+              </Row>
+              {errors.people && (
+                <div>
+                  <Style.Error>{errors.people.message}</Style.Error>
+                </div>
+              )}
+            </Col>
+            <Col xs={6}>
+              <Row>
+                <Col xs={5}>
+                  <label htmlFor="rooms">Rooms </label>
+                </Col>
+                <Col>
+                  <select name="rooms" defaultValue="1" {...register("rooms")}>
+                    {[...Array(rooms).keys()].map((i) => (
+                      <option key={i} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </select>
+                </Col>
+              </Row>
+              {errors.rooms && (
+                <div>
+                  <Style.Error>{errors.rooms.message}</Style.Error>
+                </div>
+              )}
+            </Col>
+          </Row>
+        </Style.Group>
+        <Row justifyContent="center">
+          <Col xs={5.5}>
+            <Style.Input
               type="date"
               min={new Date().toISOString().split("T")[0]}
               {...register("date_from")}
             />
             {errors.date_from && (
               <div>
-                <Error>{errors.date_from.message}</Error>
+                <Style.Error>{errors.date_from.message}</Style.Error>
               </div>
             )}
-          </div>
-        </Col>
-        <Col>
-          <div>
-            <input
+          </Col>
+          <Col xs={1} />
+          <Col xs={5.5}>
+            <Style.Input
               type="date"
               min={new Date().toISOString().split("T")[0]}
               {...register("date_to")}
             />
             {errors.date_to && (
               <div>
-                <Error>{errors.date_to.message}</Error>
+                <Style.Error>{errors.date_to.message}</Style.Error>
               </div>
             )}
-          </div>
-        </Col>
-
-        <div>
-          <input
+          </Col>
+        </Row>
+        <Row>
+          <Style.Textarea
             as="textarea"
             placeholder="Additional message *"
             rows={3}
@@ -153,19 +171,19 @@ const EnquiryForm = ({ accommondationId }) => {
           />
           {errors.message && (
             <div>
-              <Error>{errors.message.message}</Error>
+              <Style.Error>{errors.message.message}</Style.Error>
             </div>
           )}
-        </div>
+        </Row>
         <Row>
           <Col>
             <button type="submit">
               {(submitting && "Sending..") || "Send"}
             </button>
           </Col>
-          <Col>{sent && <Success>Message sent</Success>}</Col>
+          <Col>{sent && <Style.Success>Message sent</Style.Success>}</Col>
         </Row>
-      </Form>
+      </Style.Form>
     </Container>
   );
 };

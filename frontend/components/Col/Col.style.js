@@ -29,7 +29,7 @@ function CreateCSS(values) {
     if (values.hasOwnProperty(key)) {
       if (!isNaN(values[key])) {
         const keyValue =
-          values[key] >= 1 || values.key <= 12 ? values[key].toString() : "12";
+          values[key] >= 0 || values.key <= 12 ? values[key].toString() : 12;
 
         styles += css`
           ${handleBreakpoint(key)} {

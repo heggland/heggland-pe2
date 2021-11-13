@@ -23,7 +23,7 @@ export const Text = styled.p`
 `;
 
 export const CloseModal = styled.div`
-  color: red;
+  color: rgb(255 74 82);
   position: absolute;
   top: 5px;
   right: 7px;

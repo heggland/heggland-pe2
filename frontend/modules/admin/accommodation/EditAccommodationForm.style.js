@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as Breakpoints from "../../../styles/breakpoints";
+import * as Breakpoints from "../../../components/Global/Breakpoints";
 
 export const Container = styled.div`
   ${Breakpoints.xs} {
