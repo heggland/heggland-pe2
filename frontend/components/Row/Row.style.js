@@ -41,13 +41,6 @@ ${({ values }) =>
 `}
 
 ${({ values }) =>
-    values.hasOwnProperty("padding") &&
-    css`
-    padding: ${values.padding};
-}
-`}
-
-${({ values }) =>
     values.hasOwnProperty("alignItems") &&
     css`
     align-items: ${values.alignItems};

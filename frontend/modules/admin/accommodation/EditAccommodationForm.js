@@ -38,6 +38,7 @@ const EditForm = ({
   image,
   state,
   updated_at,
+  featured,
 }) => {
   const [error, setError] = useState(null);
   const [updated, setUpdated] = useState(false);
@@ -70,7 +71,7 @@ const EditForm = ({
     data.state = "draft";
 
     try {
-      if (data.image.length >= 1) {
+      if (data.image.length !== 0) {
         const formData = new FormData();
         formData.append("files", data.image[0]);
         const imgResponse = await http.post(BASE_URL + "/upload", formData);
@@ -79,9 +80,9 @@ const EditForm = ({
         data.image.related__contentType = "Accommondation";
         data.image.related.id = id;
         data.image.related.name = data.name;
+      } else {
+        delete data.image;
       }
-
-      console.log(data);
 
       // checks if id is passed in, if true update item - if false create new item
       let response;
@@ -90,7 +91,6 @@ const EditForm = ({
       } else {
         response = await http.post(BASE_URL + ACCOMMONDATION_PATH, data);
       }
-      console.log(response);
 
       // if new item is successfully created, push to edit route of the new item
       if (!id) {
@@ -205,7 +205,7 @@ const EditForm = ({
           onSubmit={handleSubmit(onSubmit)}
           onChange={id && disableStateButton}
         >
-          <Row padding="0 0 5 0" alignItems="center">
+          <Row padding="0px 0px 5px 0px" alignItems="center">
             <Col md={6}>
               <Heading>{(id && name) || "Create a new accommodation"}</Heading>
             </Col>
@@ -241,7 +241,7 @@ const EditForm = ({
           </Row>
           <Row>
             <Col xs={11} md={9} box="white-card">
-              <Row padding="0 0 20 0">
+              <Row padding="0px 0px 20px 0px">
                 <Heading size={5}>DESCRIPTION</Heading>
                 <Textarea
                   placeholder="description *"
@@ -254,7 +254,7 @@ const EditForm = ({
                   <span>{errors.description.message}</span>
                 )}
               </Row>
-              <Row padding="0 0 20 0">
+              <Row padding="0px 0px 20px 0px">
                 <Col xs={11} md={6}>
                   <Heading size={5}>NAME</Heading>
                   <input
@@ -262,6 +262,7 @@ const EditForm = ({
                     defaultValue={name && name}
                     {...register("name")}
                     type="text"
+                    autoFocus
                   />
                   {errors.name && <span>{errors.name.message}</span>}
                 </Col>
@@ -276,7 +277,7 @@ const EditForm = ({
                   {errors.address && <span>{errors.address.message}</span>}
                 </Col>
               </Row>
-              <Row padding="0 0 20 0">
+              <Row padding="0px 0px 20px 0px">
                 <Col xs={11} md={6}>
                   <Heading size={5}>CITY</Heading>
                   <input
@@ -298,44 +299,63 @@ const EditForm = ({
                   {errors.zip_code && <span>{errors.zip_code.message}</span>}
                 </Col>
               </Row>
-              <Row padding="0 0 20 0">
-                <Heading size={6}>IMAGE</Heading>
-                <Col>
-                  {(imagePreview && (
-                    <>
-                      <img src={imageFile} width="300px" alt="preview image" />
-                      <Row>
-                        <div onChange={handleImageChange}>
-                          <input
-                            type="file"
-                            name="image"
-                            {...register("image")}
+              <Row padding="0px 0px 20px 0px">
+                <Col xs={11} md={6}>
+                  <Row>
+                    <Col md={6}>
+                      <Heading size={6}>IMAGE</Heading>
+
+                      {(imagePreview && (
+                        <>
+                          <img
+                            src={imageFile}
+                            width="300px"
+                            alt="preview image"
                           />
-                        </div>
-                        {imageRevertButton && (
-                          <button onClick={revertImage}>Revert image</button>
-                        )}
-                      </Row>
-                    </>
-                  )) || (
-                    <>
-                      {accommodationImage && (
-                        <img src={accommodationImage} width="300px" />
+
+                          <div onChange={handleImageChange}>
+                            <input
+                              type="file"
+                              name="image"
+                              {...register("image")}
+                            />
+                          </div>
+                          {imageRevertButton && (
+                            <button onClick={revertImage}>Revert image</button>
+                          )}
+                        </>
+                      )) || (
+                        <>
+                          {accommodationImage && (
+                            <img src={accommodationImage} width="300px" />
+                          )}
+
+                          <div onChange={handleImageChange}>
+                            <input
+                              type="file"
+                              name="image"
+                              {...register("image")}
+                            />
+                          </div>
+                          <span>
+                            {errors.image && (
+                              <span>{errors.image.message}</span>
+                            )}
+                          </span>
+                        </>
                       )}
-                      <Row>
-                        <div onChange={handleImageChange}>
-                          <input
-                            type="file"
-                            name="image"
-                            {...register("image")}
-                          />
-                        </div>
-                        <span>
-                          {errors.image && <span>{errors.image.message}</span>}
-                        </span>
-                      </Row>
-                    </>
-                  )}
+                    </Col>
+                  </Row>
+                </Col>
+                <Col xs={11} md={6}>
+                  <Heading size={5}>Featured</Heading>
+                  <input
+                    type="checkbox"
+                    defaultChecked={featured && featured}
+                    name="featured"
+                    {...register("featured")}
+                  />
+                  {errors.featured && <span>{errors.featured.message}</span>}
                 </Col>
               </Row>
             </Col>

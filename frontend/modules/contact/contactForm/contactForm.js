@@ -47,13 +47,10 @@ const ContactForm = () => {
               <Style.InputField
                 type="text"
                 placeholder="Name *"
+                autoFocus
                 {...register("name")}
               />
-              {errors.name && (
-                <div>
-                  <Error>{errors.name.message}</Error>
-                </div>
-              )}
+              {errors.name && <Style.Error>{errors.name.message}</Style.Error>}
             </Style.FormGroup>
           </Col>
           <Col xs={12}>
@@ -64,9 +61,7 @@ const ContactForm = () => {
                 {...register("email")}
               />
               {errors.email && (
-                <div>
-                  <Error>{errors.email.message}</Error>
-                </div>
+                <Style.Error>{errors.email.message}</Style.Error>
               )}
             </Style.FormGroup>
           </Col>
@@ -80,9 +75,7 @@ const ContactForm = () => {
             {...register("message")}
           />
           {errors.message && (
-            <div>
-              <Style.Error>{errors.message.message}</Style.Error>
-            </div>
+            <Style.Error>{errors.message.message}</Style.Error>
           )}
         </Style.FormGroup>
         <Row>

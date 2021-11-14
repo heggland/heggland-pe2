@@ -5,14 +5,6 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const Header = styled.div`
-  line-height: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 30px;
-  border-bottom: 1px solid grey;
-`;
-
 export const CloseModal = styled.div`
   color: rgb(255 74 82);
 
@@ -32,7 +24,16 @@ export const Input = styled.input`
   }
 `;
 
+export const Header = styled.div`
+  line-height: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 15px 0;
+  border-bottom: 1px solid grey;
+`;
+
 export const Result = styled.div`
+  margin-top: 15px;
   padding: 10px;
   margin-bottom: 30px;
   overflow: scroll;

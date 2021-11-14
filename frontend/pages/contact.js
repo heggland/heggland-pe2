@@ -11,9 +11,15 @@ export default function Home() {
     <Layout title={TITLE_CONTACT} description={DESCRIPTION_CONTACT}>
       <Container>
         <Row justifyContent="center">
-          <Col md={4}>
-            <Heading>Get in Touch</Heading>
-            <ContactForm />
+          <Col xs={8} md={8}>
+            <Row>
+              <Heading>Get in Touch</Heading>
+            </Row>
+            <Row>
+              <Col>
+                <ContactForm />
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

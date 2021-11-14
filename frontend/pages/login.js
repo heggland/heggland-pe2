@@ -162,6 +162,7 @@ const Login = () => {
                 name="username"
                 placeholder="ola@nordmann.no"
                 autoComplete="on"
+                autoFocus
               />
             </Col>
             {errors.username && (

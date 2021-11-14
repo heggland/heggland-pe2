@@ -14,6 +14,7 @@ import * as Style from "./SearchAccommodation.Style";
 
 import { faTimes as close } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
+import GlobalStyle from "../Global/Global";
 
 const customStyles = {
   content: {
@@ -66,6 +67,14 @@ const SearchAccommodation = ({ type }) => {
   async function onChange({ search }) {
     setSearchResult(null);
 
+    const stringData = JSON.stringify({
+      name: accommodations.name,
+      description: accommodations.description,
+      address: accommodations.address,
+      zip_code: accommodations.zip_code,
+      city: accommodations.city,
+    });
+
     let filtered;
     try {
       if (search.length !== 0) {
@@ -99,7 +108,6 @@ const SearchAccommodation = ({ type }) => {
     }
   }
 
-  //TODO bring up search..
   if (type === "nav") {
     Modal.setAppElement("#searchForm");
     return (
@@ -111,6 +119,7 @@ const SearchAccommodation = ({ type }) => {
             onRequestClose={closeModal}
             style={customStyles}
           >
+            <GlobalStyle overflow="hidden" />
             <Style.Container>
               <Style.Header>
                 <Row>
@@ -122,12 +131,13 @@ const SearchAccommodation = ({ type }) => {
                       <Style.Input
                         autocomplete="off"
                         {...register("search")}
-                        type="text"
+                        type="search"
                         disabled={!accommodations && true}
                         placeholder={
                           (errors.search && errors.search.message) || "search.."
                         }
-                      ></Style.Input>
+                        autoFocus
+                      />
                     </Style.Form>
                   </Col>
                   <Col xs={1}>
@@ -140,7 +150,7 @@ const SearchAccommodation = ({ type }) => {
               <Style.Result>
                 <Col xs={11}>
                   <Col>
-                    {searchResult &&
+                    {(searchResult &&
                       searchResult.map(
                         ({
                           id,
@@ -162,7 +172,33 @@ const SearchAccommodation = ({ type }) => {
                             </Row>
                           );
                         }
-                      )}
+                      )) ||
+                      (accommodations !== null &&
+                        accommodations.map(
+                          ({
+                            id,
+                            name,
+                            city,
+                            address,
+                            zip_code,
+                            description,
+                            featured,
+                          }) => {
+                            if (featured) {
+                              return (
+                                <Row key={id}>
+                                  <a href={`accommodation/${id}`}>
+                                    <p>{name}</p>
+                                  </a>
+                                  <p>{city}</p>
+                                  <p>{address}</p>
+                                  <p>{zip_code}</p>
+                                  <small>{description}</small>
+                                </Row>
+                              );
+                            }
+                          }
+                        ))}
                   </Col>
                 </Col>
               </Style.Result>
@@ -232,5 +268,10 @@ export default SearchAccommodation;
           </div>
         );
       })}
+
+            const regex = new RegExp(search, "gi");
+            const searchTerm = dataString.replace(regex, `<b>${search}</b>`);
+            // datastring json parse
+            const jsonData = JSON.parse(searchTerm);
 
       */

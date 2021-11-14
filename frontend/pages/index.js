@@ -2,10 +2,14 @@ import Heading from "../components/Common/Heading";
 import Layout from "../components/Layout/Layout";
 import { DESCRIPTION_HOME, TITLE_HOME } from "../constants/meta";
 import axios from "axios";
-import { BASE_URL, HOTELS_PATH } from "../constants/api";
+import { ACCOMMONDATION_PATH, BASE_URL } from "../constants/api";
 import Image from "next/image";
 
 import styled from "styled-components";
+import Card from "../components/Card/Card";
+import Col from "../components/Col/Col";
+import Row from "../components/Row/Row";
+import Container from "../components/Container/Container";
 
 export const Header = styled.div`
   & > * {
@@ -23,13 +27,14 @@ const SearchForm = styled.div`
 `;
 
 const Featured = styled.div`
-  height: 150px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   place-content: center;
 `;
 
-const Home = () => {
+const Home = (props) => {
+  console.log(props);
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
       <Header>
@@ -41,20 +46,38 @@ const Home = () => {
       {/*       <SearchForm>
         <Heading size={3}>Where you want to go?</Heading>
       </SearchForm> */}
-      <Featured>
-        <Heading size={3}>Featured Hotels</Heading>
-      </Featured>
+      <Container>
+        <Row justifyContent="center">
+          <Col xs={8} md={8}>
+            <Row>
+              <Heading size={3}>Featured Accommodations</Heading>
+            </Row>
+            <Row>
+              {(props.content &&
+                props.content.map(({ id, name, image, city }) => {
+                  return (
+                    <Col md={6} lg={4} xxl={3} key={id}>
+                      <a href={`accommodation/${id}`}>
+                        <Card name={name} city={city} image={image} key={id} />
+                      </a>
+                    </Col>
+                  );
+                })) ||
+                "no accommodations"}
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     </Layout>
   );
 };
 
-/* export async function getStaticProps() {
+export async function getServerSideProps() {
   let data = [];
 
   try {
-    const response = await axios.get(BASE_URL + HOTELS_PATH);
-
-    data = response.data;
+    const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);
+    data = response.data.filter((item) => item.featured === true);
   } catch (error) {
     return {
       props: {
@@ -70,5 +93,5 @@ const Home = () => {
     },
   };
 }
-*/
+
 export default Home;

@@ -47,7 +47,12 @@ const EnquiryForm = ({ accommondationId }) => {
       <Style.Form onSubmit={handleSubmit(onSubmit)}>
         {formError && <Error>{formError}</Error>}
         <Row>
-          <Style.Input type="text" placeholder="Name *" {...register("name")} />
+          <Style.Input
+            type="text"
+            placeholder="Name *"
+            autoFocus
+            {...register("name")}
+          />
           {errors.name && (
             <div>
               <Style.Error>{errors.name.message}</Style.Error>

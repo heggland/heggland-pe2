@@ -74,4 +74,5 @@ export const EDIT_ACCOMMONDATION_SCHEMA = yup.object().shape({
     .matches(/^[0-9]+$/, "Please enter only digits"),
   state: yup.string(),
   image: yup.mixed(),
+  featured: yup.boolean(),
 });

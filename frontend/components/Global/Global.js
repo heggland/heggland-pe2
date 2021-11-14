@@ -9,14 +9,33 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    
-    overflow: ${(props) => props.hidden === true && "hidden"};
+    overflow: hidden;
 }
 
 body > #__next {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
+  position: fixed; 
+  overflow-y:scroll;
+
+  & ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  & ::-webkit-scrollbar-track {
+    background: rgb(240, 240, 240);
+  }
+
+  & ::-webkit-scrollbar-thumb {
+    background: rgb(135, 135, 135);
+    border-radius: 10px;
+  }
+
+  & ::-webkit-scrollbar-thumb:hover {
+    background: rgb(84, 84, 84);
+  }
 }
 
 .wrapper {

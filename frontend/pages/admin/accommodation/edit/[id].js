@@ -37,6 +37,7 @@ const Hotel = ({ content, error }) => {
         image={content.image}
         state={content.published_at}
         updated_at={content.updated_at}
+        featured={content.featured}
       />
     </AdminLayout>
   );

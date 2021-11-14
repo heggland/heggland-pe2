@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { AdminLayout } from "../../components/Layout/Layout";
 import {
   BASE_URL,
@@ -60,7 +59,7 @@ const Accommodation = () => {
             const newArray = accommodations.filter(function (data) {
               return data.id !== response.data.id;
             });
-            setHotels(newArray);
+            setAccommodations(newArray);
           }
         } catch (error) {
           setError(error);
@@ -70,12 +69,15 @@ const Accommodation = () => {
 
     return (
       <Button
-        onClick={handleDelete}
         data-toggle="tooltip"
         data-placement="top"
         title="Delete accommodation"
       >
-        {error ? "Error" : <FontAwesomeIcon icon={Trash} />}
+        {error ? (
+          "Error"
+        ) : (
+          <FontAwesomeIcon onClick={handleDelete} icon={Trash} />
+        )}
       </Button>
     );
   };

@@ -20,7 +20,6 @@ import {
   faBars as MobileMenu,
 } from "@fortawesome/free-solid-svg-icons";
 import SearchAccommodation from "../Search/SearchAccommodation";
-import GlobalStyle from "../Global/Global";
 
 const Layout = ({ title, description, children }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -102,7 +101,6 @@ export const AdminLayout = ({
     <>
       <Head title={title} description={description} />
       <Style.AdminHeading />
-      {mobileMenu === "flex" && <GlobalStyle hidden={true} />};
       <Style.AdminContainer>
         <Style.AdminMobileButton onClick={handleClick}>
           <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />

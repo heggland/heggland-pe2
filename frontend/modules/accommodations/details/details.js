@@ -53,13 +53,13 @@ const Details = ({ accommodation }) => {
               </address>
             </Col>
             <Col md={6}>
-              <button onClick={openModal}>Order Now! DO IT NOW!</button>
+              <button onClick={openModal}>Order Now!</button>
               <div id="enquiryForm">
                 <Modal isOpen={modalIsOpen} style={customStyles}>
                   <Style.CloseModal onClick={closeModal}>
                     <FontAwesomeIcon icon={close} />
                   </Style.CloseModal>
-                  <EnquiryForm accommondationId={accommodation.id} />
+                  <EnquiryForm accomsmondationId={accommodation.id} />
                 </Modal>
               </div>
             </Col>
