@@ -37,7 +37,8 @@ const Layout = ({ title, description, children }) => {
           <Col xs={6} sm="auto">
             <Style.NavTitle>
               <a href="/">
-                <Image height="100" width="120" src={logo} />
+                {/* <Image height="100" width="120" src={logo} /> */}
+                Holidaze
               </a>
             </Style.NavTitle>
           </Col>

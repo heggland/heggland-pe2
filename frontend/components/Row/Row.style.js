@@ -48,6 +48,15 @@ ${({ values }) =>
 `}
 
 ${({ values }) =>
+    values.hasOwnProperty("alignItemsSm") &&
+    css`
+    ${Breakpoints.sm} {
+    align-items: ${values.alignItemsSm};
+    }
+}
+`}
+
+${({ values }) =>
     values.hasOwnProperty("textAlignLast") &&
     css`
     text-align-last: ${values.textAlignLast};

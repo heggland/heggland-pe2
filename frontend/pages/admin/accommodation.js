@@ -82,10 +82,12 @@ const Accommodation = () => {
     );
   };
 
+  // TODO: add a marker for each accommodation that is featured
+
   return (
     <AdminLayout title={TITLE_ADMIN_ACCOMMONDATION}>
-      <Row margin="0 0 0 1rem">
-        <Col md={11}>
+      <Row margin="0 1rem 0 1rem">
+        <Col xs={12} md={11}>
           <Row margin="2rem 0" alignItems="center">
             <Col md={6}>
               <Heading>Manage accommodations</Heading>
@@ -107,76 +109,103 @@ const Accommodation = () => {
           </Row>
           <Col md={12}>
             <Row backgroundColor="rgb(243 243 243)" xs="none">
-              <Col md={1}>
+              <Col sm={1}>
                 <Paragraph weight="bold" padding="0 0 0 0.5rem">
                   Id
                 </Paragraph>
               </Col>
-              <Col md={3}>
+              <Col sm={3}>
                 <Paragraph weight="bold">Name</Paragraph>
               </Col>
-              <Col md={2}>
+              <Col sm={2}>
                 <Paragraph weight="bold">Address</Paragraph>
               </Col>
-              <Col md={2}>
+              <Col sm={2}>
                 <Paragraph weight="bold">City</Paragraph>
               </Col>
-              <Col md={2}>
+              <Col sm={2}>
                 <Paragraph weight="bold">State</Paragraph>
               </Col>
-              <Col md={2}>
+              <Col sm={2}>
                 <Row>
-                  <Col md={6}>
+                  <Col sm={6}>
                     <Paragraph weight="bold">Edit</Paragraph>
                   </Col>
-                  <Col md={6}>
+                  <Col sm={6}>
                     <Paragraph weight="bold">Delete</Paragraph>
                   </Col>
                 </Row>
               </Col>
             </Row>
             <Col box="white-table">
-              {(accommodations.length !== 0 && (
-                <>
-                  {accommodations.map(
-                    ({ id, name, city, address, published_at }) => {
-                      return (
+              {(accommodations.length !== 0 &&
+                accommodations.map(
+                  ({ id, name, city, address, published_at }) => {
+                    return (
+                      <a href={`accommodation/edit/${id}`} key={id}>
                         <Row
                           padding="1rem 0 1rem 0"
                           borderColor="rgb(243 243 243)"
                           hover="rgb(243 243 243 / 70%)"
+                          alignItemsSm="center"
                           direction="column-mobile"
-                          key={id}
                         >
-                          <Col md={1}>
-                            <Span padding="0 0 0 0.5rem">{id}</Span>
-                          </Col>
-                          <Col md={3} hover="grey">
-                            <a href={`/accommodation/${id}`} target="_blank">
-                              <Span>{name}</Span>
-                            </a>
-                          </Col>
-                          <Col md={2}>
-                            <Span>{address}</Span>
-                          </Col>
-                          <Col md={2}>
-                            <Span>{city}</Span>
-                          </Col>
-                          <Col md={2}>
-                            <Span>
-                              {(published_at && "Published") || "Draft"}
-                            </Span>
-                          </Col>
-                          <Col md={2}>
+                          <Col xs={11} sm={1}>
                             <Row>
-                              <Col md={6}>
+                              <Col xs={3} sm="none">
+                                ID:
+                              </Col>
+                              <Span padding="0 0 0 0.5rem">{id}</Span>
+                            </Row>
+                          </Col>
+
+                          <Col xs={11} sm={3} hover="grey">
+                            <Row>
+                              <Col xs={3} sm="none">
+                                Name:
+                              </Col>
+                              {/* <a href={`/accommodation/${id}`} target="_blank"> */}
+                              <Span>{name}</Span>
+                              {/*  </a> */}
+                            </Row>
+                          </Col>
+
+                          <Col xs={11} sm={2}>
+                            <Row>
+                              <Col xs={3} sm="none">
+                                Address:
+                              </Col>
+                              <Span>{address}</Span>
+                            </Row>
+                          </Col>
+
+                          <Col xs={11} sm={2}>
+                            <Row>
+                              <Col xs={3} sm="none">
+                                City:
+                              </Col>
+                              <Span>{city}</Span>
+                            </Row>
+                          </Col>
+
+                          <Col xs={11} sm={2}>
+                            <Row>
+                              <Col xs={3} sm="none">
+                                State:
+                              </Col>
+                              <Span>
+                                {(published_at && "Published") || "Draft"}
+                              </Span>
+                            </Row>
+                          </Col>
+                          <Col xs="none" sm={2}>
+                            <Row>
+                              <Col sm={6}>
                                 <Button>
-                                  <a href={`accommodation/edit/${id}`}>
-                                    <FontAwesomeIcon icon={Edit} />
-                                  </a>
+                                  <FontAwesomeIcon icon={Edit} />
                                 </Button>
                               </Col>
-                              <Col md={6}>
+                              <Col sm={6}>
                                 <DeleteButton id={id}>
                                   <FontAwesomeIcon icon={Trash} />
                                 </DeleteButton>
@@ -184,11 +213,10 @@ const Accommodation = () => {
                             </Row>
                           </Col>
                         </Row>
-                      );
-                    }
-                  )}
-                </>
-              )) || <span>No accommodations in the database</span>}
+                      </a>
+                    );
+                  }
+                )) || <span>No accommodations in the database</span>}
             </Col>
           </Col>
         </Col>

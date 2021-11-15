@@ -115,7 +115,7 @@ const Messages = () => {
 
   return (
     <AdminLayout title={TITLE_ADMIN_MESSAGES}>
-      <Row margin="0 0 0 1rem">
+      <Row margin="0 1rem 0 1rem">
         <Row margin="2rem 0" width="100%">
           <Col md={6}>
             <Row>
@@ -125,29 +125,29 @@ const Messages = () => {
         </Row>
         <Col xs={12} md={11}>
           <Row backgroundColor="rgb(243 243 243)" xs="none">
-            <Col md={1}>
+            <Col sm={1}>
               <Paragraph weight="bold" padding="0 0 0 0.5rem">
                 Id
               </Paragraph>
             </Col>
-            <Col md={2}>
+            <Col sm={2}>
               <Paragraph weight="bold">Name</Paragraph>
             </Col>
-            <Col md={2}>
+            <Col sm={2}>
               <Paragraph weight="bold">Email</Paragraph>
             </Col>
-            <Col md={3}>
+            <Col sm={3}>
               <Paragraph weight="bold">Message</Paragraph>
             </Col>
-            <Col md={2}>
+            <Col sm={2}>
               <Paragraph weight="bold">State</Paragraph>
             </Col>
-            <Col md={2}>
+            <Col sm={2}>
               <Row>
-                <Col md={6}>
+                <Col sm={6}>
                   <Paragraph weight="bold">Edit</Paragraph>
                 </Col>
-                <Col md={6}>
+                <Col sm={6}>
                   <Paragraph weight="bold">Delete</Paragraph>
                 </Col>
               </Row>
@@ -163,22 +163,23 @@ const Messages = () => {
                     padding="1rem 0 1rem 0"
                     borderColor="rgb(243 243 243)"
                     hover="rgb(243 243 243 / 70%)"
+                    alignItemsSm="center"
                     direction="column-mobile"
                     key={id}
                   >
-                    <Col md={1}>
+                    <Col sm={1}>
                       <Span padding="0 0 0 0.5rem">{id}</Span>
                     </Col>
-                    <Col md={2}>
+                    <Col sm={2}>
                       <Span>{name}</Span>
                     </Col>
-                    <Col md={2}>
+                    <Col sm={2}>
                       <Span>{email}</Span>
                     </Col>
-                    <Col md={3}>
+                    <Col sm={3}>
                       <Span>{message}</Span>
                     </Col>
-                    <Col md={2}>
+                    <Col sm={2}>
                       <Span>
                         <button
                           onClick={updateState}
@@ -191,14 +192,14 @@ const Messages = () => {
                         </button>
                       </Span>
                     </Col>
-                    <Col md={2}>
+                    <Col sm={2}>
                       <Row>
-                        <Col md={6}>
+                        <Col sm={6}>
                           <a href={`message/${id}`}>
                             <FontAwesomeIcon icon={Edit} />
                           </a>
                         </Col>
-                        <Col md={6}>
+                        <Col sm={6}>
                           <DeleteButton id={id}>
                             <FontAwesomeIcon icon={Trash} />
                           </DeleteButton>

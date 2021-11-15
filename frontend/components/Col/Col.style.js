@@ -34,6 +34,7 @@ function CreateCSS(values) {
         styles += css`
           ${handleBreakpoint(key)} {
             width: calc(calc(100% / 12) * ${keyValue});
+            display: block;
           }
         `;
       } else {

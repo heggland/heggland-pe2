@@ -61,14 +61,18 @@ const EditForm = ({
 
   const http = useAxios();
 
+  console.log(updated_at);
   async function onSubmit(data) {
     setUpdated(false);
     setError(null);
 
     // set id, if id is passed in => editting item. if not = new item is being created.
     data.id = id && data.id;
-    // set default state
-    data.state = "draft";
+    // set default state to draft
+
+    if (!updated_at) {
+      data.published_at = null;
+    }
 
     try {
       if (data.image.length !== 0) {
@@ -91,6 +95,8 @@ const EditForm = ({
       } else {
         response = await http.post(BASE_URL + ACCOMMONDATION_PATH, data);
       }
+
+      console.log(response);
 
       // if new item is successfully created, push to edit route of the new item
       if (!id) {

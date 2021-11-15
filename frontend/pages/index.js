@@ -34,7 +34,6 @@ const Featured = styled.div`
 `;
 
 const Home = (props) => {
-  console.log(props);
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
       <Header>
@@ -50,10 +49,10 @@ const Home = (props) => {
         <Row justifyContent="center">
           <Col xs={8} md={8}>
             <Row>
-              <Heading size={3}>Featured Accommodations</Heading>
+              <Heading size={1}>Featured Accommodations</Heading>
             </Row>
             <Row>
-              {(props.content &&
+              {(props.content.length >= 1 &&
                 props.content.map(({ id, name, image, city }) => {
                   return (
                     <Col md={6} lg={4} xxl={3} key={id}>
@@ -63,7 +62,7 @@ const Home = (props) => {
                     </Col>
                   );
                 })) ||
-                "no accommodations"}
+                "no featured accommodations"}
             </Row>
           </Col>
         </Row>

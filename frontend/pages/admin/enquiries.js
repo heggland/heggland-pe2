@@ -111,7 +111,7 @@ const Enquiries = () => {
 
   return (
     <AdminLayout title={TITLE_ADMIN_ENQUIRIES}>
-      <Row margin="0 0 0 1rem">
+      <Row margin="0 1rem 0 1rem">
         <Row margin="2rem 0" width="100%">
           <Col md={11}>
             <Row>
@@ -121,29 +121,29 @@ const Enquiries = () => {
         </Row>
         <Col xs={12} md={11}>
           <Row backgroundColor="rgb(243 243 243)" xs="none">
-            <Col xs={1} md={1}>
+            <Col sm={1}>
               <Paragraph weight="bold" padding="0 0 0 0.5rem">
                 Id
               </Paragraph>
             </Col>
-            <Col xs={2} md={3}>
+            <Col sm={2}>
               <Paragraph weight="bold">Name</Paragraph>
             </Col>
-            <Col xs={2} md={2}>
+            <Col sm={2}>
               <Paragraph weight="bold">Accommodation</Paragraph>
             </Col>
-            <Col xs={2} md={2}>
+            <Col sm={2}>
               <Paragraph weight="bold">Email</Paragraph>
             </Col>
-            <Col xs={2} md={2}>
+            <Col sm={2}>
               <Paragraph weight="bold">State</Paragraph>
             </Col>
-            <Col xs={2} md={2}>
+            <Col sm={2}>
               <Row>
-                <Col xs={6} md={6}>
+                <Col sm={6}>
                   <Paragraph weight="bold">Edit</Paragraph>
                 </Col>
-                <Col xs={6} md={6}>
+                <Col sm={6}>
                   <Paragraph weight="bold">Delete</Paragraph>
                 </Col>
               </Row>
@@ -162,24 +162,24 @@ const Enquiries = () => {
                       direction="column-mobile"
                       key={id}
                     >
-                      <Col xs={1} md={1}>
+                      <Col sm={1}>
                         <Span padding="0 0 0 0.5rem">{id}</Span>
                       </Col>
 
-                      <Col xs={2} md={3}>
+                      <Col sm={2}>
                         <Span>{name}</Span>
                       </Col>
-                      <Col xs={2} md={2}>
+                      <Col sm={2}>
                         <Span>
                           {(accommondation_id.length !== 0 &&
                             accommondation_id[0].name) ||
                             "Invalid"}
                         </Span>
                       </Col>
-                      <Col xs={2} md={2}>
+                      <Col sm={2}>
                         <Span>{email}</Span>
                       </Col>
-                      <Col xs={2} md={2}>
+                      <Col sm={2}>
                         <Span>
                           <button
                             onClick={updateState}
@@ -192,14 +192,14 @@ const Enquiries = () => {
                           </button>
                         </Span>
                       </Col>
-                      <Col xs={2} md={2}>
+                      <Col sm={2}>
                         <Row>
-                          <Col xs={6} md={6}>
+                          <Col sm={6}>
                             <a href={`enquirie/${id}`}>
                               <FontAwesomeIcon icon={Edit} />
                             </a>
                           </Col>
-                          <Col xs={6} md={6}>
+                          <Col sm={6}>
                             <DeleteButton id={id}>
                               <FontAwesomeIcon icon={Trash} />
                             </DeleteButton>
