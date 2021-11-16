@@ -14,6 +14,7 @@ import Row from "../../components/Row/Row";
 import Button from "../../components/Button/Button";
 import Span from "../../components/Span/Span";
 import Paragraph from "../../components/Paragraph/Paragraph";
+import ViewMessage from "../../modules/admin/viewMessage/viewMessage";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -157,58 +158,113 @@ const Messages = () => {
           {errorDelete && <>delete error: {errorDelete}</>}
           <Col box="white-table">
             {(messages.length !== 0 &&
-              messages.map(({ id, name, email, message, published_at }) => {
-                return (
-                  <Row
-                    padding="1rem 0 1rem 0"
-                    borderColor="rgb(243 243 243)"
-                    hover="rgb(243 243 243 / 70%)"
-                    alignItemsSm="center"
-                    direction="column-mobile"
-                    key={id}
-                  >
-                    <Col sm={1}>
-                      <Span padding="0 0 0 0.5rem">{id}</Span>
-                    </Col>
-                    <Col sm={2}>
-                      <Span>{name}</Span>
-                    </Col>
-                    <Col sm={2}>
-                      <Span>{email}</Span>
-                    </Col>
-                    <Col sm={3}>
-                      <Span>{message}</Span>
-                    </Col>
-                    <Col sm={2}>
-                      <Span>
-                        <button
-                          onClick={updateState}
-                          data-id={id}
-                          data-state={
-                            published_at !== null ? "publish" : "draft"
-                          }
-                        >
-                          {published_at !== null ? "NEW" : "FULFILLED"}
-                        </button>
-                      </Span>
-                    </Col>
-                    <Col sm={2}>
-                      <Row>
-                        <Col sm={6}>
-                          <a href={`message/${id}`}>
-                            <FontAwesomeIcon icon={Edit} />
-                          </a>
-                        </Col>
-                        <Col sm={6}>
-                          <DeleteButton id={id}>
-                            <FontAwesomeIcon icon={Trash} />
-                          </DeleteButton>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                );
-              })) || <span>No messages in the database</span>}
+              messages.map(
+                ({
+                  id,
+                  name,
+                  email,
+                  message,
+                  created_at,
+                  published_at,
+                  updated_at,
+                }) => {
+                  return (
+                    <Row
+                      padding="1rem 0 1rem 0"
+                      borderColor="rgb(243 243 243)"
+                      hover="rgb(243 243 243 / 70%)"
+                      alignItemsSm="center"
+                      direction="column-mobile"
+                      key={id}
+                    >
+                      <Col xs={11} sm={1}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Id:
+                          </Col>
+                          <Col>
+                            <Span padding="0 0 0 0.5rem">{id}</Span>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Name:
+                          </Col>
+                          <Col>
+                            <Span>{name}</Span>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Email:
+                          </Col>
+                          <Col>
+                            <Span>{email}</Span>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={11} sm={3}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Message:
+                          </Col>
+                          <Col>
+                            <ViewMessage
+                              id={id}
+                              name={name}
+                              content={message}
+                              created={created_at}
+                              published={published_at}
+                              updated={updated_at}
+                            />
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            State:
+                          </Col>
+                          <Col>
+                            <Span>
+                              <button
+                                onClick={updateState}
+                                data-id={id}
+                                data-state={
+                                  published_at !== null ? "publish" : "draft"
+                                }
+                              >
+                                {published_at !== null ? "NEW" : "Read"}
+                              </button>
+                            </Span>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs="none" sm={6}>
+                            <a href={`message/${id}`}>
+                              <FontAwesomeIcon icon={Edit} />
+                            </a>
+                          </Col>
+                          <Col xs={3} sm="none">
+                            Delete:
+                          </Col>
+                          <Col sm={6}>
+                            <DeleteButton id={id}>
+                              <FontAwesomeIcon icon={Trash} />
+                            </DeleteButton>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  );
+                }
+              )) || <span>No messages in the database</span>}
           </Col>
         </Col>
       </Row>

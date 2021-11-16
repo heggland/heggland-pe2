@@ -4,24 +4,32 @@ export const SEARCH_SCHEMA = yup.object().shape({
   search: yup.string().required("Please type something"),
 });
 
+const Today = () => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return today;
+};
+
 export const ENQUIRY_SCHEMA = yup.object().shape({
   name: yup
     .string()
     .required("Please enter your name")
     .min(3, "Name must be atleast 3 characters"),
-  email: yup
-    .string()
-    .required("Please enter an email address")
-    .email("Please enter a valid email address"),
+  email: yup.string().required("Please enter your email").email("Ivalid email"),
   phone: yup
     .number()
     .required("Please enter a phone number")
-    .min(10000000, "Please enter at least 8 numbers"),
+    .min(10000000, "Enter 8 digit number"),
   message: yup.string().max(200, "Message must be less than 200 characters"),
   people: yup.number().required("Please choose an option"),
   rooms: yup.number().required("Please choose an option"),
-  date_from: yup.string().required("Please pick a date"),
-  date_to: yup.string().required("Please pick a date"),
+  date_from: yup
+    .date()
+    .required("Select a date")
+    .min(Today(), "Date cannot be in the past"),
+  date_to: yup
+    .date()
+    .min(yup.ref("date_from"), "Date must be later than the start date"),
 });
 
 export const CONTACT_SCHEMA = yup.object().shape({

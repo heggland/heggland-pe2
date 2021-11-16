@@ -1,10 +1,10 @@
 import { AdminLayout } from "../../../components/Layout/Layout";
-import EditHotelForm from "../../../modules/admin/accommodation/EditAccommodationForm";
+import EditAccommodationForm from "../../../modules/admin/EditAccommodationForm/EditAccommodationForm";
 
 const New = () => {
   return (
     <AdminLayout title={"Create a new accommodation" + " | Holidaze"}>
-      <EditHotelForm />
+      <EditAccommodationForm />
     </AdminLayout>
   );
 };

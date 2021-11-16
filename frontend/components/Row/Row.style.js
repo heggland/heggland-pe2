@@ -90,6 +90,15 @@ ${({ values }) =>
 `}
 
 ${({ values }) =>
+    values.hasOwnProperty("cursor") &&
+    css`
+    &:hover {
+      cursor: ${values.cursor};
+    }
+}
+`}
+
+${({ values }) =>
     // direction
     values.hasOwnProperty("direction") &&
     css`

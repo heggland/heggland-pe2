@@ -5,7 +5,7 @@ import Layout from "../../components/Layout/Layout";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 import { DESCRIPTION_HOTEL } from "../../constants/meta";
 
-const Hotel = ({ content, error }) => {
+const Accommondation = ({ content, error }) => {
   if (error) {
     return (
       <>
@@ -64,4 +64,4 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-export default Hotel;
+export default Accommondation;

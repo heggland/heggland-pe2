@@ -162,42 +162,81 @@ const Enquiries = () => {
                       direction="column-mobile"
                       key={id}
                     >
-                      <Col sm={1}>
-                        <Span padding="0 0 0 0.5rem">{id}</Span>
+                      <Col xs={11} sm={1}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Id:
+                          </Col>
+                          <Col sm={1}>
+                            <Span padding="0 0 0 0.5rem">{id}</Span>
+                          </Col>
+                        </Row>
                       </Col>
 
-                      <Col sm={2}>
-                        <Span>{name}</Span>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Name:
+                          </Col>
+                          <Col>
+                            <Span>{name}</Span>
+                          </Col>
+                        </Row>
                       </Col>
-                      <Col sm={2}>
-                        <Span>
-                          {(accommondation_id.length !== 0 &&
-                            accommondation_id[0].name) ||
-                            "Invalid"}
-                        </Span>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Accom:
+                          </Col>
+                          <Col>
+                            <Span>
+                              {(accommondation_id.length !== 0 &&
+                                accommondation_id[0].name) ||
+                                "Invalid"}
+                            </Span>
+                          </Col>
+                        </Row>
                       </Col>
-                      <Col sm={2}>
-                        <Span>{email}</Span>
+
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            Email:
+                          </Col>
+                          <Col>
+                            <Span>{email}</Span>
+                          </Col>
+                        </Row>
                       </Col>
-                      <Col sm={2}>
-                        <Span>
-                          <button
-                            onClick={updateState}
-                            data-id={id}
-                            data-state={
-                              published_at !== null ? "publish" : "draft"
-                            }
-                          >
-                            {published_at !== null ? "NEW" : "FULFILLED"}
-                          </button>
-                        </Span>
+                      <Col xs={11} sm={2}>
+                        <Row>
+                          <Col xs={3} sm="none">
+                            State:
+                          </Col>
+                          <Col>
+                            <Span>
+                              <button
+                                onClick={updateState}
+                                data-id={id}
+                                data-state={
+                                  published_at !== null ? "publish" : "draft"
+                                }
+                              >
+                                {published_at !== null ? "NEW" : "FULFILLED"}
+                              </button>
+                            </Span>
+                          </Col>
+                        </Row>
                       </Col>
                       <Col sm={2}>
                         <Row>
-                          <Col sm={6}>
+                          <Col xs="none" sm={6}>
                             <a href={`enquirie/${id}`}>
                               <FontAwesomeIcon icon={Edit} />
                             </a>
+                          </Col>
+                          <Col xs={3} sm="none">
+                            Delete:
                           </Col>
                           <Col sm={6}>
                             <DeleteButton id={id}>

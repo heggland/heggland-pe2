@@ -1,7 +1,7 @@
 import Layout from "../components/Layout/Layout";
 import { DESCRIPTION_CONTACT, TITLE_CONTACT } from "../constants/meta";
 import Heading from "../components/Common/Heading";
-import ContactForm from "../modules/contact/contactForm/contactForm";
+import ContactForm from "../modules/contactForm/contactForm";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";

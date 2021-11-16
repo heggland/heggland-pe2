@@ -4,11 +4,11 @@ import { useState } from "react";
 
 import * as Style from "./contactForm.style";
 import axios from "axios";
-import { BASE_URL, CONTACT_PATH } from "../../../constants/api";
-import { CONTACT_SCHEMA } from "../../../constants/schema";
+import { BASE_URL, CONTACT_PATH } from "../../constants/api";
+import { CONTACT_SCHEMA } from "../../constants/schema";
 
-import Col from "../../../components/Col/Col";
-import Row from "../../../components/Row/Row";
+import Col from "../../components/Col/Col";
+import Row from "../../components/Row/Row";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -44,22 +44,26 @@ const ContactForm = () => {
         <Row>
           <Col xs={12}>
             <Style.FormGroup>
-              <Style.InputField
-                type="text"
-                placeholder="Name *"
-                autoFocus
-                {...register("name")}
-              />
+              <Row padding="0 0 10px 0">
+                <Style.InputField
+                  type="text"
+                  placeholder="Name *"
+                  autoFocus
+                  {...register("name")}
+                />
+              </Row>
               {errors.name && <Style.Error>{errors.name.message}</Style.Error>}
             </Style.FormGroup>
           </Col>
           <Col xs={12}>
             <Style.FormGroup>
-              <Style.InputField
-                type="email"
-                placeholder="Email *"
-                {...register("email")}
-              />
+              <Row padding="0 0 10px 0">
+                <Style.InputField
+                  type="email"
+                  placeholder="Email *"
+                  {...register("email")}
+                />
+              </Row>
               {errors.email && (
                 <Style.Error>{errors.email.message}</Style.Error>
               )}
@@ -68,23 +72,35 @@ const ContactForm = () => {
         </Row>
 
         <Style.FormGroup>
-          <Style.InputTextArea
-            as="textarea"
-            placeholder="Message *"
-            rows={3}
-            {...register("message")}
-          />
+          <Row padding="0 0 10px 0">
+            <Style.InputTextArea
+              as="textarea"
+              placeholder="Message *"
+              rows={3}
+              {...register("message")}
+            />
+          </Row>
           {errors.message && (
             <Style.Error>{errors.message.message}</Style.Error>
           )}
         </Style.FormGroup>
         <Row>
           <Col>
-            <button type="submit">
-              {(submitting && "Sending..") || "Send"}
-            </button>
+            <Row margin="10px 0 30px 0" justifyContent="center">
+              <Col>
+                {(!sent && (
+                  <Style.Button type="submit">
+                    {(sent && "Sent") || (submitting && "Sending..") || "Send"}
+                  </Style.Button>
+                )) || <Style.SentButton>Sent</Style.SentButton>}
+                {sent && (
+                  <Style.Thanks>
+                    <Row padding="5px 0 0 0">Thank you for your message</Row>
+                  </Style.Thanks>
+                )}
+              </Col>
+            </Row>
           </Col>
-          <Col>{sent && <Style.Success>Message sent</Style.Success>}</Col>
         </Row>
       </Style.Form>
     </>

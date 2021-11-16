@@ -25,10 +25,23 @@ export const Text = styled.p`
 export const CloseModal = styled.div`
   color: rgb(255 74 82);
   position: absolute;
-  top: 5px;
-  right: 7px;
+  top: 3%;
+  right: 5%;
 
   &: hover {
+    cursor: pointer;
+  }
+`;
+
+export const OrderButton = styled.button`
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  margin-top: 30px;
+  width: fit-content;
+
+  &:hover {
     cursor: pointer;
   }
 `;

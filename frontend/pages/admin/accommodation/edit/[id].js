@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import EditHotelForm from "../../../../modules/admin/accommodation/EditAccommodationForm";
+import EditAccommodationForm from "../../../../modules/admin/EditAccommodationForm/EditAccommodationForm";
 import { AdminLayout } from "../../../../components/Layout/Layout";
 import {
   BASE_URL,
@@ -26,7 +26,7 @@ const Hotel = ({ content, error }) => {
       title={content.name + " | Holidaze"}
       description={DESCRIPTION_HOTEL}
     >
-      <EditHotelForm
+      <EditAccommodationForm
         id={content.id}
         name={content.name}
         description={content.description}

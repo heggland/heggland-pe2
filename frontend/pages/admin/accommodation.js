@@ -147,6 +147,7 @@ const Accommodation = () => {
                           padding="1rem 0 1rem 0"
                           borderColor="rgb(243 243 243)"
                           hover="rgb(243 243 243 / 70%)"
+                          cursor="pointer"
                           alignItemsSm="center"
                           direction="column-mobile"
                         >

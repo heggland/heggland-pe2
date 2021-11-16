@@ -39,7 +39,38 @@ export const InputTextArea = styled.input`
 
 export const Error = styled.span`
   color: red;
+  font-size: 12px;
+  position: absolute;
+  display: flex;
 `;
-export const Success = styled.span`
+
+export const Thanks = styled.div`
   color: green;
+  position: relative;
+`;
+
+export const Button = styled.button`
+  background-color: rgb(45 148 0);s
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  margin-top: 30px;
+  width: fit-content;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const SentButton = styled.div`
+  background-color: rgb(45 148 0 / 85%);
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  margin-top: 30px;
+  width: fit-content;
+
+  &:hover {
+    cursor: default;
+  }
 `;

@@ -2,6 +2,7 @@ import Heading from "../../../components/Common/Heading";
 import { BASE_URL } from "../../../constants/api";
 import EnquiryForm from "../enquiry/enquiryForm";
 import * as Style from "./details.style";
+import Container from "./../../../components/Container/Container";
 import Col from "./../../../components/Col/Col";
 import Row from "./../../../components/Row/Row";
 
@@ -42,28 +43,27 @@ const Details = ({ accommodation }) => {
           <Style.Image src={img} alt={alt} width="100%" />
           <Heading>{accommodation.name}</Heading>
           <Style.Text>{accommodation.description}</Style.Text>
-
           <Heading size={3}>Locaction</Heading>
-          <Row>
-            <Col md={6}>
-              <address>
-                <Style.Text>{accommodation.city}</Style.Text>
-                <Style.Text>{accommodation.address}</Style.Text>
-                <Style.Text>{accommodation.zip_code}</Style.Text>
-              </address>
-            </Col>
-            <Col md={6}>
-              <button onClick={openModal}>Order Now!</button>
+          <address>
+            <Style.Text>{accommodation.city}</Style.Text>
+            <Style.Text>{accommodation.address}</Style.Text>
+            <Style.Text>{accommodation.zip_code}</Style.Text>
+          </address>
+          <Container padding="5% 0">
+            <Row>
+              <Style.OrderButton onClick={openModal}>
+                Order Now!
+              </Style.OrderButton>
               <div id="enquiryForm">
                 <Modal isOpen={modalIsOpen} style={customStyles}>
                   <Style.CloseModal onClick={closeModal}>
-                    <FontAwesomeIcon icon={close} />
+                    <FontAwesomeIcon icon={close} transform="grow-5" />
                   </Style.CloseModal>
-                  <EnquiryForm accomsmondationId={accommodation.id} />
+                  <EnquiryForm accommodation={accommodation.id} />
                 </Modal>
               </div>
-            </Col>
-          </Row>
+            </Row>
+          </Container>
         </Col>
       </Row>
     </Style.Container>

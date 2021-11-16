@@ -14,7 +14,6 @@ import * as Style from "./SearchAccommodation.Style";
 
 import { faTimes as close } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
-import GlobalStyle from "../Global/Global";
 
 const customStyles = {
   content: {
@@ -115,11 +114,11 @@ const SearchAccommodation = ({ type }) => {
         <FontAwesomeIcon icon={SearchIcon} onClick={openModal} />
         <div id="searchForm">
           <Modal
+            id="searchForm"
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             style={customStyles}
           >
-            <GlobalStyle overflow="hidden" />
             <Style.Container>
               <Style.Header>
                 <Row>
