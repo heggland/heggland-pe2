@@ -45,10 +45,20 @@ export const Button = styled.button`
       color: ${color};
     `}
 
+    ${({ padding }) =>
+    padding &&
+    css`
+      padding: ${padding};
+    `}
+
+    ${({ margin }) =>
+    margin &&
+    css`
+      margin: ${margin};
+    `}
+
   min-width: 100px;
   font-weight: 600;
-  margin-right: 0px;
-  margin-left: 1rem;
   max-width: 100%;
   border: 0;
 

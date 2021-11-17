@@ -18,8 +18,14 @@ export const Navigation = styled.div`
     box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
     justify-content: space-between;
 
-    > :nth-child(1), > :nth-child(2) {
-    padding 0 10px;
+    > :nth-child(1),
+    > :nth-child(2) {
+      ${Breakpoints.mobileOnly} {
+        padding 0 5px;
+      }
+    }
+    ${Breakpoints.desktopOnly} {
+      height: 100px !important;
     }
   }
 
@@ -35,18 +41,15 @@ export const Navigation = styled.div`
     }
     > :nth-child(2) {
       order: 3;
-      margin-right: 30px;
+      ${Breakpoints.mobileOnly} {
+        margin-right: 30px;
+      }
     }
+
     > :nth-child(3) {
-      border-left: 1px solid rgb(234 234 234);
-      padding-left: 46px;
+     // border-left: 1px solid rgb(234 234 234);
       order: 2;
     }
-  }
-
-
-
-  ${Breakpoints.lg} {
   }
 `;
 
@@ -59,13 +62,14 @@ export const NavTitle = styled.div`
 export const NavPages = styled.div`
   flex-direction: column;
   width: 100%;
-  padding: 0 10px;
   font-weight: 400;
   font-size: 1rem;
   display: none;
 
-  & > * {
-    padding: 10px 0;
+  ${Breakpoints.mobileOnly} {
+    & > * {
+      padding: 10px 0;
+    }
   }
 
   ${Breakpoints.xs} {
@@ -83,7 +87,6 @@ export const NavPages = styled.div`
     display: block;
     background-color: white;
     border-top: none;
-    padding: 0 2em;
 
     & > * {
       margin: 0 40px 0 0;
@@ -100,7 +103,6 @@ export const SearchButton = styled.div`
   background-color: rgb(255 74 82);
   width: fit-content;
   padding: 10px 10px;
-  margin: 0 10px;
   font-size: 1.2rem;
   display: flex;
   place-items: center;
@@ -113,11 +115,16 @@ export const SearchButton = styled.div`
     color: white;
   }
 
+  ${Breakpoints.mobileOnly} {
+    margin: 0 10px;
+  }
+
   ${Breakpoints.sm} {
-    background-color: white;
+    width: 80px;
+    place-content: center;
 
     & > * {
-      color: black;
+      color: white;
     }
   }
 `;

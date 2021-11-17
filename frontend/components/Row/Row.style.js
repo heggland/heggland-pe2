@@ -13,6 +13,13 @@ export const Row = styled.div`
   `}
 
   ${({ values }) =>
+    values.hasOwnProperty("height") &&
+    css`
+    height: ${values.height};
+  }
+`}
+
+  ${({ values }) =>
     values.hasOwnProperty("backgroundColor") &&
     css`
     background-color: ${values.backgroundColor};

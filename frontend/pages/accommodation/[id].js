@@ -1,18 +1,28 @@
 import axios from "axios";
-import Link from "next/link";
 import Details from "../../modules/accommodations/details/details";
 import Layout from "../../components/Layout/Layout";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 import { DESCRIPTION_HOTEL } from "../../constants/meta";
+import Row from "../../components/Row/Row";
+import Col from "../../components/Col/Col";
 
 const Accommondation = ({ content, error }) => {
+  console.log(error);
   if (error) {
     return (
       <>
-        <Link href="/">
-          <a className="link">Go back to Holidaze</a>
-        </Link>
-        {error}
+        <Row justifyContent="center">
+          <i>{error}</i>
+        </Row>
+        <Col height="100%" placeContent="center">
+          <Row justifyContent="center">
+            <a href="/">
+              <u>
+                <b>Go back to Holidaze</b>
+              </u>
+            </a>
+          </Row>
+        </Col>
       </>
     );
   }

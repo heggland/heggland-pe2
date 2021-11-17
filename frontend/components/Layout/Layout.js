@@ -34,7 +34,7 @@ const Layout = ({ title, description, children }) => {
 
       <Style.Container>
         <Style.Navigation>
-          <Col xs={6} sm="auto">
+          <Col xs={6} sm={2}>
             <Style.NavTitle>
               <a href="/">
                 {/* <Image height="100" width="120" src={logo} /> */}
@@ -42,8 +42,8 @@ const Layout = ({ title, description, children }) => {
               </a>
             </Style.NavTitle>
           </Col>
-          <Col xs={6}>
-            <Row justifyContent="right">
+          <Col xs={6} md={2} height="100%">
+            <Row justifyContent="right" height="100%">
               <Style.SearchButton>
                 <SearchAccommodation type="nav" />
               </Style.SearchButton>
@@ -52,11 +52,14 @@ const Layout = ({ title, description, children }) => {
               </Style.MobileButton>
             </Row>
           </Col>
-          <Style.NavPages show={mobileMenu}>
-            <Link href="/accommodations">Accommodation</Link>
-            <Link href="/contact">Contact</Link>
-          </Style.NavPages>
+          <Col xs="auto" md={8}>
+            <Style.NavPages show={mobileMenu}>
+              <Link href="/accommodations">Accommodation</Link>
+              <Link href="/contact">Contact</Link>
+            </Style.NavPages>
+          </Col>
         </Style.Navigation>
+
         <Style.Children>{children}</Style.Children>
       </Style.Container>
       <Footer />

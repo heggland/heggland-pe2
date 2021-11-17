@@ -142,79 +142,76 @@ const Accommodation = () => {
                 accommodations.map(
                   ({ id, name, city, address, published_at }) => {
                     return (
-                      <a href={`accommodation/edit/${id}`} key={id}>
-                        <Row
-                          padding="1rem 0 1rem 0"
-                          borderColor="rgb(243 243 243)"
-                          hover="rgb(243 243 243 / 70%)"
-                          cursor="pointer"
-                          alignItemsSm="center"
-                          direction="column-mobile"
-                        >
-                          <Col xs={11} sm={1}>
-                            <Row>
-                              <Col xs={3} sm="none">
-                                ID:
-                              </Col>
-                              <Span padding="0 0 0 0.5rem">{id}</Span>
-                            </Row>
-                          </Col>
-
-                          <Col xs={11} sm={3} hover="grey">
-                            <Row>
-                              <Col xs={3} sm="none">
-                                Name:
-                              </Col>
-                              {/* <a href={`/accommodation/${id}`} target="_blank"> */}
-                              <Span>{name}</Span>
-                              {/*  </a> */}
-                            </Row>
-                          </Col>
-
-                          <Col xs={11} sm={2}>
-                            <Row>
-                              <Col xs={3} sm="none">
-                                Address:
-                              </Col>
-                              <Span>{address}</Span>
-                            </Row>
-                          </Col>
-
-                          <Col xs={11} sm={2}>
-                            <Row>
-                              <Col xs={3} sm="none">
-                                City:
-                              </Col>
-                              <Span>{city}</Span>
-                            </Row>
-                          </Col>
-
-                          <Col xs={11} sm={2}>
-                            <Row>
-                              <Col xs={3} sm="none">
-                                State:
-                              </Col>
-                              <Span>
-                                {(published_at && "Published") || "Draft"}
-                              </Span>
-                            </Row>
-                          </Col>
-                          <Col xs="none" sm={2}>
-                            <Row>
-                              <Col sm={6}>
-                                <Button>
+                      <Row
+                        key={id}
+                        padding="1rem 0 1rem 0"
+                        borderColor="rgb(243 243 243)"
+                        hover="rgb(243 243 243 / 70%)"
+                        cursor="pointer"
+                        alignItemsSm="center"
+                        direction="column-mobile"
+                      >
+                        <Col xs={11} sm={1}>
+                          <Row>
+                            <Col xs={3} sm="none">
+                              ID:
+                            </Col>
+                            <Span padding="0 0 0 0.5rem">{id}</Span>
+                          </Row>
+                        </Col>
+                        <Col xs={11} sm={3} hover="grey">
+                          <Row>
+                            <Col xs={3} sm="none">
+                              Name:
+                            </Col>
+                            {/* <a href={`/accommodation/${id}`} target="_blank"> */}
+                            <Span>{name}</Span>
+                            {/*  </a> */}
+                          </Row>
+                        </Col>
+                        <Col xs={11} sm={2}>
+                          <Row>
+                            <Col xs={3} sm="none">
+                              Address:
+                            </Col>
+                            <Span>{address}</Span>
+                          </Row>
+                        </Col>
+                        <Col xs={11} sm={2}>
+                          <Row>
+                            <Col xs={3} sm="none">
+                              City:
+                            </Col>
+                            <Span>{city}</Span>
+                          </Row>
+                        </Col>
+                        <Col xs={11} sm={2}>
+                          <Row>
+                            <Col xs={3} sm="none">
+                              State:
+                            </Col>
+                            <Span>
+                              {(published_at && "Published") || "Draft"}
+                            </Span>
+                          </Row>
+                        </Col>
+                        <Col xs="none" sm={2}>
+                          <Row>
+                            <Col sm={6}>
+                              <a href={`accommodation/edit/${id}`}>
+                                <Button href={`accommodation/edit/${id}`}>
                                   <FontAwesomeIcon icon={Edit} />
                                 </Button>
-                              </Col>
-                              <Col sm={6}>
-                                <DeleteButton id={id}>
-                                  <FontAwesomeIcon icon={Trash} />
-                                </DeleteButton>
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-                      </a>
+                              </a>
+                            </Col>
+                            <Col sm={6}>
+                              <DeleteButton id={id}>
+                                <FontAwesomeIcon icon={Trash} />
+                              </DeleteButton>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
                     );
                   }
                 )) || <span>No accommodations in the database</span>}

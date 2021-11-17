@@ -22,9 +22,12 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#enquiryForm");
-
 const Details = ({ accommodation }) => {
+  if (!isNaN(accommodation)) {
+    return <Row justifyContent="center">error fetching accommodation...</Row>;
+  }
+
+  Modal.setAppElement("#enquiryForm");
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);

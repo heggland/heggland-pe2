@@ -12,7 +12,7 @@ import Row from "../Row/Row";
 import Col from "../Col/Col";
 import * as Style from "./SearchAccommodation.Style";
 
-import { faTimes as close } from "@fortawesome/free-solid-svg-icons";
+import { faTimes as Close } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -141,7 +141,7 @@ const SearchAccommodation = ({ type }) => {
                   </Col>
                   <Col xs={1}>
                     <Style.CloseModal onClick={closeModal}>
-                      <FontAwesomeIcon icon={close} />
+                      <FontAwesomeIcon icon={Close} transform="grow-5" />
                     </Style.CloseModal>
                   </Col>
                 </Row>

@@ -48,6 +48,7 @@ const EditForm = ({
   const [imagePreview, setImagePreview] = useState(false);
   const [imageRevertButton, setImageRevertButton] = useState(true);
   const [imageFile, setImageFile] = useState(null);
+  const [newUpload, setNewUpload] = useState(false);
 
   const router = useRouter();
 
@@ -61,7 +62,6 @@ const EditForm = ({
 
   const http = useAxios();
 
-  console.log(updated_at);
   async function onSubmit(data) {
     setUpdated(false);
     setError(null);
@@ -79,7 +79,6 @@ const EditForm = ({
         const formData = new FormData();
         formData.append("files", data.image[0]);
         const imgResponse = await http.post(BASE_URL + "/upload", formData);
-        console.log(imgResponse);
         data.image = imgResponse.data[0];
         data.image.related__contentType = "Accommondation";
         data.image.related.id = id;
@@ -152,7 +151,6 @@ const EditForm = ({
         data.published_at = updatedState === "draft" ? new Date() : null;
       }
 
-      console.log(data);
       try {
         const response = await http.put(
           BASE_URL + ACCOMMONDATION_PATH + id,
@@ -185,9 +183,13 @@ const EditForm = ({
     }
   };
 
-  const revertImage = (e) => {
+  const revertImage = () => {
     setImagePreview(false);
     setImageFile(null);
+  };
+
+  const newImageUpload = () => {
+    setNewUpload(true);
   };
 
   let accommodationImage;
@@ -237,6 +239,7 @@ const EditForm = ({
                     type="submit"
                     bgColor="rgb(109, 187, 26)"
                     color="white"
+                    margin="0 0 0 1rem"
                     disabledChange={id && stateButton && true}
                   >
                     Save
@@ -337,11 +340,22 @@ const EditForm = ({
                           )}
 
                           <div onChange={handleImageChange}>
-                            <input
-                              type="file"
-                              name="image"
-                              {...register("image")}
-                            />
+                            {(newUpload && (
+                              <input
+                                type="file"
+                                name="image"
+                                {...register("image")}
+                              />
+                            )) || (
+                              <Button
+                                onClick={newImageUpload}
+                                bgColor="rgb(0 126 255)"
+                                color="white"
+                                padding="7px 10px"
+                              >
+                                Upload new image?
+                              </Button>
+                            )}
                           </div>
                           <span>
                             {errors.image && (

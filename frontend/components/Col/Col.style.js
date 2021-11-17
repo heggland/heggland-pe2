@@ -54,7 +54,6 @@ function CreateCSS(values) {
       }
     }
   }
-
   // remove , from width
   styles = styles.replace(/,/g, "");
   return styles;
@@ -62,6 +61,23 @@ function CreateCSS(values) {
 
 const Col = styled.div`
   height: fit-content;
+
+  ${({ values }) =>
+    values.height &&
+    css`
+      height: ${values.height};
+    `}
+
+  ${({ values }) =>
+    values.placeContent &&
+    css`
+      place-content: ${values.placeContent};
+      display: flex;
+      flex-direction: column;
+    `}
+
+
+  //border: 1px solid grey; // debugging go brr
 
   ${({ values }) => values && CreateCSS(values)}
 `;
