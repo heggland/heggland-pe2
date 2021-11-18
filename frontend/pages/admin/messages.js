@@ -21,6 +21,7 @@ import {
   faTrashAlt as Trash,
   faPencilAlt as Edit,
 } from "@fortawesome/free-solid-svg-icons";
+import Error from "../../modules/error/error";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
@@ -45,7 +46,6 @@ const Messages = () => {
 
     async function handleDelete() {
       const confirmDelete = window.confirm("Delete this message?");
-
       if (confirmDelete) {
         try {
           const response = await http.delete(BASE_URL + CONTACT_PATH + id);
@@ -78,40 +78,42 @@ const Messages = () => {
     );
   };
 
-  async function updateState(e) {
-    e.preventDefault();
-
-    const id = Number(e.target.dataset.id);
-    const state = e.target.dataset.state;
-
+  function UpdateButton({ id, state }) {
+    const [error, setError] = useState(null);
     const data = new Object();
 
-    const newState =
-      state === "publish" ? null : state === "draft" && new Date();
+    const newState = (state === null && new Date()) || null;
     data.published_at = newState;
     data.id = id;
 
     const updatedMessages = messages;
 
-    try {
-      const response = await http.put(
-        BASE_URL + CONTACT_PATH + id + "?_publicationState=preview",
-        data
-      );
-      if ((response.status = 200)) {
-        for (let i = 0; i < updatedMessages.length; i++) {
-          if (updatedMessages[i].id === id) {
-            updatedMessages[i].published_at = newState;
-            setMessages([]);
-            setMessages(updatedMessages);
-            break;
+    async function handleUpdate() {
+      try {
+        const response = await http.put(BASE_URL + CONTACT_PATH + id, data);
+        console.log(response);
+        if ((response.status = 200)) {
+          for (let i = 0; i < updatedMessages.length; i++) {
+            if (updatedMessages[i].id === id) {
+              updatedMessages[i].published_at = newState;
+              setMessages([]);
+              setMessages(updatedMessages);
+              break;
+            }
           }
         }
+      } catch (error) {
+        setError(error.toString());
       }
-    } catch (error) {
-      //setError(error.toString());
-      //console.log(error);
     }
+
+    return (
+      <Span>
+        <button onClick={handleUpdate}>
+          {!error && state !== null ? "NEW" : "Read" || "error"}
+        </button>
+      </Span>
+    );
   }
 
   return (
@@ -154,7 +156,6 @@ const Messages = () => {
               </Row>
             </Col>
           </Row>
-          {error && <span>{error}</span>}
           {errorDelete && <>delete error: {errorDelete}</>}
           <Col box="white-table">
             {(messages.length !== 0 &&
@@ -192,7 +193,7 @@ const Messages = () => {
                           <Col xs={3} sm="none">
                             Name:
                           </Col>
-                          <Col>
+                          <Col overflow="hidden">
                             <Span>{name}</Span>
                           </Col>
                         </Row>
@@ -202,7 +203,7 @@ const Messages = () => {
                           <Col xs={3} sm="none">
                             Email:
                           </Col>
-                          <Col>
+                          <Col overflow="hidden">
                             <Span>{email}</Span>
                           </Col>
                         </Row>
@@ -212,7 +213,7 @@ const Messages = () => {
                           <Col xs={3} sm="none">
                             Message:
                           </Col>
-                          <Col>
+                          <Col overflow="hidden">
                             <ViewMessage
                               id={id}
                               name={name}
@@ -230,17 +231,7 @@ const Messages = () => {
                             State:
                           </Col>
                           <Col>
-                            <Span>
-                              <button
-                                onClick={updateState}
-                                data-id={id}
-                                data-state={
-                                  published_at !== null ? "publish" : "draft"
-                                }
-                              >
-                                {published_at !== null ? "NEW" : "Read"}
-                              </button>
-                            </Span>
+                            <UpdateButton id={id} state={published_at} />
                           </Col>
                         </Row>
                       </Col>
@@ -264,7 +255,10 @@ const Messages = () => {
                     </Row>
                   );
                 }
-              )) || <span>No messages in the database</span>}
+              )) ||
+              (!error && <span>No messages in the database</span>) || (
+                <Error string={error} />
+              )}
           </Col>
         </Col>
       </Row>

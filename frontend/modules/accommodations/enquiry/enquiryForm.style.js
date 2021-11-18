@@ -47,7 +47,7 @@ export const Thanks = styled.div`
 export const Group = styled.div``;
 
 export const Button = styled.button`
-background-color: rgb(45 148 0);s
+  background-color: rgb(45 148 0);
   border: none;
   color: white;
   padding: 10px 25px;
@@ -56,6 +56,23 @@ background-color: rgb(45 148 0);s
   &:hover {
     cursor: pointer;
   }
+
+  ${({ error }) =>
+    error &&
+    `
+    background-color: rgb(255 29 39);
+    &:hover {
+      cursor: default;
+    }
+    `}
+
+  ${({ sent }) =>
+    sent &&
+    `
+  &:hover {
+    cursor: default;
+  }
+`}
 `;
 
 export const SentButton = styled.div`

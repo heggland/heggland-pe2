@@ -46,7 +46,7 @@ export const Error = styled.span`
 
 export const Thanks = styled.div`
   color: green;
-  position: relative;
+  position: absolute;
 `;
 
 export const Button = styled.button`
@@ -56,10 +56,32 @@ export const Button = styled.button`
   padding: 10px 25px;
   margin-top: 30px;
   width: fit-content;
+  height: fit-content;
 
   &:hover {
     cursor: pointer;
   }
+
+
+  ${({ error }) =>
+    error &&
+    `
+    background-color: rgb(255 29 39);
+    
+    &:hover {
+      cursor: default;
+    }
+  `}
+
+  ${({ sent }) =>
+    sent &&
+    `
+  &:hover {
+    cursor: default;
+  }
+`}
+
+
 `;
 
 export const SentButton = styled.div`

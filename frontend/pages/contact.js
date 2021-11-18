@@ -16,7 +16,7 @@ export default function Home() {
               <Heading>Get in Touch</Heading>
             </Row>
             <Row>
-              <Col>
+              <Col xs={12} sm={6}>
                 <ContactForm />
               </Col>
             </Row>

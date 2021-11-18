@@ -79,6 +79,15 @@ const Col = styled.div`
 
   //border: 1px solid grey; // debugging go brr
 
+  ${({ values }) =>
+    values.overflow === "hidden" &&
+    css`
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    `}
+
+
   ${({ values }) => values && CreateCSS(values)}
 `;
 

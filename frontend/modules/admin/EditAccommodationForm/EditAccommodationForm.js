@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import Heading from "../../../components/Common/Heading";
 // import Image from "next/image";
 
+import Error from "../../../modules/error/error";
+
 import Col from "../../../components/Col/Col";
 import Row from "../../../components/Row/Row";
 
@@ -66,6 +68,8 @@ const EditForm = ({
     setUpdated(false);
     setError(null);
 
+    console.log(data);
+
     // set id, if id is passed in => editting item. if not = new item is being created.
     data.id = id && data.id;
     // set default state to draft
@@ -75,7 +79,7 @@ const EditForm = ({
     }
 
     try {
-      if (data.image.length !== 0) {
+      if (data.image && data.image.length !== 0) {
         const formData = new FormData();
         formData.append("files", data.image[0]);
         const imgResponse = await http.post(BASE_URL + "/upload", formData);
@@ -162,7 +166,7 @@ const EditForm = ({
         }
 
         const status =
-          response.data.published_at !== null ? "published" : "draft";
+          response.data.published_at !== null ? "Unpublish" : "Publish";
         setUpdatedState(status);
         setUpdatedAt(response.data.updated_at);
         setUpdated(true);
@@ -206,7 +210,7 @@ const EditForm = ({
       <BackButton onClick={goBack}>
         <FontAwesomeIcon icon={chevron} size="lg" />
       </BackButton>
-      {error && <span>{error}</span>}
+      {error && <Error string={error} />}
       {updated && <span>updated</span>}
       <Col xs={12} md={11} margin="0 0 0 2rem">
         <form
@@ -230,8 +234,8 @@ const EditForm = ({
                       disabledChange={!stateButton && true}
                     >
                       {(updatedState && updatedState) ||
-                        (state && "published") ||
-                        "draft"}
+                        (state && "Unpublish") ||
+                        "Publish"}
                     </Button>
                   )}
                   <Button

@@ -10,6 +10,8 @@ import {
 import { TITLE_ADMIN_ENQUIRIES } from "../../constants/meta";
 import useAxios from "../../hooks/useAxios";
 
+import Error from "../../modules/error/error";
+
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
 import Button from "../../components/Button/Button";
@@ -76,37 +78,41 @@ const Enquiries = () => {
     );
   };
 
-  async function updateState(e) {
-    e.preventDefault();
-
-    const id = Number(e.target.dataset.id);
-    const state = e.target.dataset.state;
-
+  function UpdateButton({ id, state }) {
+    const [error, setError] = useState(null);
     const data = new Object();
 
-    const newState =
-      state === "publish" ? null : state === "draft" && new Date();
+    const newState = (state === null && new Date()) || null;
     data.published_at = newState;
     data.id = id;
 
     const updatedEnquiries = enquiries;
 
-    try {
-      const response = await http.put(BASE_URL + ENQUIRIES_PATH + id, data);
-      if ((response.status = 200)) {
-        for (let i = 0; i < updatedEnquiries.length; i++) {
-          if (updatedEnquiries[i].id === id) {
-            updatedEnquiries[i].published_at = newState;
-            setEnquiries([]);
-            setEnquiries(updatedEnquiries);
-            break;
+    async function handleUpdate() {
+      try {
+        const response = await http.put(BASE_URL + ENQUIRIES_PATH + id, data);
+        if ((response.status = 200)) {
+          for (let i = 0; i < updatedEnquiries.length; i++) {
+            if (updatedEnquiries[i].id === id) {
+              updatedEnquiries[i].published_at = newState;
+              setEnquiries([]);
+              setEnquiries(updatedEnquiries);
+              break;
+            }
           }
         }
+      } catch (error) {
+        setError(error.toString());
       }
-    } catch (error) {
-      //setError(error.toString());
-      //console.log(error);
     }
+
+    return (
+      <Span>
+        <button onClick={handleUpdate}>
+          {!error && state !== null ? "NEW" : "Read" || "error"}
+        </button>
+      </Span>
+    );
   }
 
   return (
@@ -129,11 +135,11 @@ const Enquiries = () => {
             <Col sm={2}>
               <Paragraph weight="bold">Name</Paragraph>
             </Col>
-            <Col sm={2}>
-              <Paragraph weight="bold">Accommodation</Paragraph>
-            </Col>
-            <Col sm={2}>
+            <Col sm={2} overflow="hidden">
               <Paragraph weight="bold">Email</Paragraph>
+            </Col>
+            <Col sm={3} overflow="hidden">
+              <Paragraph weight="bold">Accommodation</Paragraph>
             </Col>
             <Col sm={2}>
               <Paragraph weight="bold">State</Paragraph>
@@ -149,7 +155,6 @@ const Enquiries = () => {
               </Row>
             </Col>
           </Row>
-          {error && <span>{error}</span>}
           <Col box="white-table">
             {(enquiries.length !== 0 &&
               enquiries.map(
@@ -178,7 +183,7 @@ const Enquiries = () => {
                           <Col xs={3} sm="none">
                             Name:
                           </Col>
-                          <Col>
+                          <Col overflow="hidden">
                             <Span>{name}</Span>
                           </Col>
                         </Row>
@@ -186,25 +191,24 @@ const Enquiries = () => {
                       <Col xs={11} sm={2}>
                         <Row>
                           <Col xs={3} sm="none">
+                            Email:
+                          </Col>
+                          <Col overflow="hidden">
+                            <Span>{email}</Span>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xs={11} sm={3}>
+                        <Row>
+                          <Col xs={3} sm="none">
                             Accom:
                           </Col>
-                          <Col>
+                          <Col overflow="hidden">
                             <Span>
                               {(accommondation_id.length !== 0 &&
                                 accommondation_id[0].name) ||
                                 "Invalid"}
                             </Span>
-                          </Col>
-                        </Row>
-                      </Col>
-
-                      <Col xs={11} sm={2}>
-                        <Row>
-                          <Col xs={3} sm="none">
-                            Email:
-                          </Col>
-                          <Col>
-                            <Span>{email}</Span>
                           </Col>
                         </Row>
                       </Col>
@@ -214,17 +218,7 @@ const Enquiries = () => {
                             State:
                           </Col>
                           <Col>
-                            <Span>
-                              <button
-                                onClick={updateState}
-                                data-id={id}
-                                data-state={
-                                  published_at !== null ? "publish" : "draft"
-                                }
-                              >
-                                {published_at !== null ? "NEW" : "FULFILLED"}
-                              </button>
-                            </Span>
+                            <UpdateButton id={id} state={published_at} />
                           </Col>
                         </Row>
                       </Col>
@@ -248,7 +242,10 @@ const Enquiries = () => {
                     </Row>
                   );
                 }
-              )) || <span>No enquiries in the database</span>}
+              )) ||
+              (error && <Error string={error} />) || (
+                <span>No enquiries in the database</span>
+              )}
           </Col>
         </Col>
       </Row>

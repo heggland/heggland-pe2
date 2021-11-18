@@ -108,7 +108,10 @@ const SearchAccommodation = ({ type }) => {
   }
 
   if (type === "nav") {
-    Modal.setAppElement("#searchForm");
+    if (typeof window !== "undefined") {
+      Modal.setAppElement("#searchForm");
+    }
+
     return (
       <>
         <FontAwesomeIcon icon={SearchIcon} onClick={openModal} />

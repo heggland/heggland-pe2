@@ -23,10 +23,11 @@ import {
   faPlusCircle as Plus,
 } from "@fortawesome/free-solid-svg-icons";
 import Container from "../../components/Container/Container";
+import Error from "../../modules/error/error";
 
 const Accommodation = () => {
   const [accommodations, setAccommodations] = useState([]);
-  const [error, setError] = useState([]);
+  const [error, setError] = useState(false);
   const http = useAxios();
 
   useEffect(() => {
@@ -82,7 +83,7 @@ const Accommodation = () => {
     );
   };
 
-  // TODO: add a marker for each accommodation that is featured
+  // TODO, future improvement: add a marker for each accommodation that is featured
 
   return (
     <AdminLayout title={TITLE_ADMIN_ACCOMMONDATION}>
@@ -164,9 +165,9 @@ const Accommodation = () => {
                             <Col xs={3} sm="none">
                               Name:
                             </Col>
-                            {/* <a href={`/accommodation/${id}`} target="_blank"> */}
-                            <Span>{name}</Span>
-                            {/*  </a> */}
+                            <Col overflow="hidden">
+                              <Span>{name}</Span>
+                            </Col>
                           </Row>
                         </Col>
                         <Col xs={11} sm={2}>
@@ -174,7 +175,9 @@ const Accommodation = () => {
                             <Col xs={3} sm="none">
                               Address:
                             </Col>
-                            <Span>{address}</Span>
+                            <Col overflow="hidden">
+                              <Span>{address}</Span>
+                            </Col>
                           </Row>
                         </Col>
                         <Col xs={11} sm={2}>
@@ -182,29 +185,36 @@ const Accommodation = () => {
                             <Col xs={3} sm="none">
                               City:
                             </Col>
-                            <Span>{city}</Span>
+                            <Col overflow="hidden">
+                              <Span>{city}</Span>
+                            </Col>
                           </Row>
                         </Col>
-                        <Col xs={11} sm={2}>
+                        <Col xs={11} sm={2} overflow="hidden">
                           <Row>
                             <Col xs={3} sm="none">
                               State:
                             </Col>
-                            <Span>
-                              {(published_at && "Published") || "Draft"}
-                            </Span>
+                            <Col overflow="hidden">
+                              <Span>
+                                {(published_at && "Published") || "Draft"}
+                              </Span>
+                            </Col>
                           </Row>
                         </Col>
-                        <Col xs="none" sm={2}>
+                        <Col sm={2}>
                           <Row>
-                            <Col sm={6}>
+                            <Col xs={3} sm="none">
+                              Tools:
+                            </Col>
+                            <Col xs={1} sm={6}>
                               <a href={`accommodation/edit/${id}`}>
                                 <Button href={`accommodation/edit/${id}`}>
                                   <FontAwesomeIcon icon={Edit} />
                                 </Button>
                               </a>
                             </Col>
-                            <Col sm={6}>
+                            <Col xs={1} sm={6}>
                               <DeleteButton id={id}>
                                 <FontAwesomeIcon icon={Trash} />
                               </DeleteButton>
@@ -214,7 +224,10 @@ const Accommodation = () => {
                       </Row>
                     );
                   }
-                )) || <span>No accommodations in the database</span>}
+                )) ||
+                (!error && <span>No accommodations in the database</span>) || (
+                  <Error string={error} />
+                )}
             </Col>
           </Col>
         </Col>

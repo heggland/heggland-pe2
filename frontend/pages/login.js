@@ -1,8 +1,6 @@
 import Head from "../components/Common/Head";
 import Heading from "../components/Common/Heading";
 
-import FormError from "../components/Common/FormError";
-
 import { BASE_URL, TOKEN_PATH } from "../constants/api";
 
 import AuthContext from "../context/AuthContext";
@@ -30,6 +28,7 @@ import {
   faSpinner as Spinner,
   faExclamation as Exclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import Error from "../modules/error/error";
 
 const LoginNavigation = styled.div`
   position: absolute;
@@ -82,7 +81,7 @@ const LoginForm = styled.form`
 const Login = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [loginError, setLoginError] = useState(null);
+  const [error, setError] = useState(null);
   const [auth, setAuth] = useContext(AuthContext);
 
   const router = useRouter();
@@ -101,7 +100,7 @@ const Login = () => {
 
   async function onSubmit(data) {
     setSubmitting(true);
-    setLoginError(null);
+    setError(null);
 
     const strapiData = {
       identifier: data.username,
@@ -124,12 +123,9 @@ const Login = () => {
       router.push("/admin");
     } catch (error) {
       setSubmitting(false);
-      setLoginError(
-        (error.toString().includes("400") && "Invalid login") ||
-          error.toString()
-      );
+      setError(error.toString());
       setTimeout(() => {
-        setLoginError(null);
+        setError(null);
       }, 3000);
     }
   }
@@ -193,7 +189,7 @@ const Login = () => {
                   <FontAwesomeIcon icon={Spinner} spin />
                 </LoginButton>
               ) : (
-                (loginError && (
+                (error && (
                   <LoginButton width={100} bgColor="warning" type="submit">
                     <FontAwesomeIcon icon={Exclamation} />
                   </LoginButton>
@@ -205,7 +201,7 @@ const Login = () => {
               )}
             </Col>
             <Row justifyContent="center" margin="10px 0 0 0">
-              {loginError && <FormError>{loginError}</FormError>}
+              {error && <Error string={error} path="login" />}
             </Row>
           </LoginForm>
         </Row>

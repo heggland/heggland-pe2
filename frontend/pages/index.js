@@ -3,20 +3,14 @@ import Layout from "../components/Layout/Layout";
 import { DESCRIPTION_HOME, TITLE_HOME } from "../constants/meta";
 import axios from "axios";
 import { ACCOMMONDATION_PATH, BASE_URL } from "../constants/api";
-import Image from "next/image";
 
 import styled from "styled-components";
 import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
-
-export const Header = styled.div`
-  & > * {
-    height: 60vh;
-    width: 100%;
-  }
-`;
+import Header from "../components/Header/Header";
+import Error from "../modules/error/Error";
 
 const SearchForm = styled.div`
   background-color: rgb(4 14 39);
@@ -33,27 +27,29 @@ const Featured = styled.div`
   place-content: center;
 `;
 
-const Home = (props) => {
+const Index = ({ content, error }) => {
+  console.log(content);
+  console.log(error);
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
-      <Header>
-        {/*         <img
-          src="https://media.radissonhotels.net/image/radisson-blu-caledonien-hotel-kristiansand/lobbyview/16256-116540-f66765457_3xl.jpg?impolicy=HomeHero"
-          alt="{props.content[0].image[0].alternativeText}"
-        /> */}
-      </Header>
+      {/* USE HEADER FROM API or locally */}
+      <Header
+        imgUrl="https://media.radissonhotels.net/image/radisson-blu-caledonien-hotel-kristiansand/lobbyview/16256-116540-f66765457_3xl.jpg?impolicy=HomeHero"
+        imgAlt="{props.content[0].image[0].alternativeText}"
+      />
       {/*       <SearchForm>
         <Heading size={3}>Where you want to go?</Heading>
       </SearchForm> */}
       <Container>
         <Row justifyContent="center">
-          <Col xs={8} md={8}>
+          <Col xs={12} md={8}>
             <Row>
               <Heading size={1}>Featured Accommodations</Heading>
             </Row>
             <Row>
-              {(props.content.length >= 1 &&
-                props.content.map(({ id, name, image, city }) => {
+              {(content &&
+                content.length >= 1 &&
+                content.map(({ id, name, image, city }) => {
                   return (
                     <Col md={6} lg={4} xxl={3} key={id}>
                       <a href={`accommodation/${id}`}>
@@ -62,7 +58,9 @@ const Home = (props) => {
                     </Col>
                   );
                 })) ||
-                "no featured accommodations"}
+                (!error && <span>No featured accommodations</span>) || (
+                  <Error string={error} path="accomondation" />
+                )}
             </Row>
           </Col>
         </Row>
@@ -93,4 +91,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default Home;
+export default Index;

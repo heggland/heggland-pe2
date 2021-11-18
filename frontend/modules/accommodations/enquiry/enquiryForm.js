@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
+import Error from "../../../modules/error/error";
+
 import * as Style from "./EnquiryForm.style";
 import Container from "../../../components/Container/Container";
 import Col from "../../../components/Col/Col";
@@ -12,7 +14,7 @@ import { ENQUIRY_SCHEMA } from "../../../constants/schema";
 
 const EnquiryForm = ({ accommodation }) => {
   const [submitting, setSubmitting] = useState(false);
-  const [formError, setFormError] = useState(null);
+  const [error, setError] = useState(null);
   const [sent, setSent] = useState(false);
 
   // default rooms, people values. future improvements - make dynamic with a new database for rooms on each accommodation
@@ -29,24 +31,23 @@ const EnquiryForm = ({ accommodation }) => {
 
   async function onSubmit(data) {
     setSubmitting(true);
-    setFormError(null);
+    setError(null);
 
     data.accommondation_id = accommodation;
 
     try {
       const response = await axios.post(BASE_URL + ENQUIRIES_PATH, data);
-      console.log(response);
+
       setSubmitting(false);
       setSent(true);
     } catch (error) {
-      setFormError(error.toString());
+      setError(error.toString());
     }
   }
 
   return (
     <Container padding="20px">
       <Style.Form onSubmit={handleSubmit(onSubmit)}>
-        {formError && <Error>{formError}</Error>}
         <Row margin="10px 0 30px 0">
           <Col xs={12}>
             <Style.Input
@@ -191,20 +192,30 @@ const EnquiryForm = ({ accommodation }) => {
             </div>
           )}
         </Row>
+
+        {error && <Error string={error} path="enquirie" />}
         <Row margin="10px 0 30px 0" justifyContent="center">
+          {sent && (
+            <Style.Thanks>
+              <Row justifyContent="center" margin="-10px 0 0 0">
+                Thank you for your order
+              </Row>
+            </Style.Thanks>
+          )}
           <Col>
             {(!sent && (
-              <Style.Button type="submit">
-                {(sent && "Sent") || (submitting && "Sending..") || "Send"}
+              <Style.Button
+                type="submit"
+                disabled={(error && true) || false}
+                error={(error && true) || false}
+                sent={(sent && true) || false}
+              >
+                {(sent && "Sent") ||
+                  (error && "error") ||
+                  (submitting && "Sending..") ||
+                  "Send"}
               </Style.Button>
             )) || <Style.SentButton>Sent</Style.SentButton>}
-            {sent && (
-              <Style.Thanks>
-                <Row padding="5px 0 0 0" justifyContent="center">
-                  Thank you for your order
-                </Row>
-              </Style.Thanks>
-            )}
           </Col>
         </Row>
       </Style.Form>

@@ -7,12 +7,14 @@ import Heading from "../components/Common/Heading";
 import axios from "axios";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../constants/api";
 
+import Error from "../modules/error/Error";
+
 import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
 
-const Accommodation = (props) => {
+const Accommodation = ({ content, error }) => {
   return (
     <Layout
       title={TITLE_ACCOMMONDATION}
@@ -25,8 +27,8 @@ const Accommodation = (props) => {
               <Heading>Our Accommodations</Heading>
             </Row>
             <Row>
-              {(props.content &&
-                props.content.map(({ id, name, image, city }) => {
+              {(content &&
+                content.map(({ id, name, image, city }) => {
                   return (
                     <Col md={6} lg={4} xxl={3} key={id}>
                       <a href={`accommodation/${id}`}>
@@ -35,7 +37,9 @@ const Accommodation = (props) => {
                     </Col>
                   );
                 })) ||
-                "no accommodations"}
+                (!error && <span>No accommodations</span>) || (
+                  <Error string={error} path="accomondation" />
+                )}
             </Row>
           </Col>
         </Row>

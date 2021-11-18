@@ -16,6 +16,7 @@ import {
   faEnvelope as iconMessage,
   faInbox as iconEnquirie,
 } from "@fortawesome/free-solid-svg-icons";
+import Error from "../modules/error/error";
 
 const Note = styled.div`
   background-color: #ffff4a;
@@ -52,6 +53,8 @@ const NoteFooter = styled.div`
 export default function Home() {
   const [enquiries, setEnquiries] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorenquiries, setErrorEnquiries] = useState(false);
   const http = useAxios();
 
   useEffect(() => {
@@ -60,14 +63,14 @@ export default function Home() {
         const responseMessages = await http.get(BASE_URL + CONTACT_PATH);
         setMessages(responseMessages.data);
       } catch (error) {
-        setError(error.toString());
+        setErrorMessage(error.toString());
       }
 
       try {
         const responseEnquiries = await http.get(BASE_URL + ENQUIRIES_PATH);
         setEnquiries(responseEnquiries.data);
       } catch (error) {
-        setError(error.toString());
+        setErrorEnquiries(error.toString());
       }
     }
     fetchData();
@@ -101,10 +104,12 @@ export default function Home() {
                     </NoteBody>
                   )) || (
                     <NoteBody>
-                      <span>
-                        <FontAwesomeIcon icon={iconMessage} />
-                        &nbsp;No new visitor messages
-                      </span>
+                      {(errorMessage && <Error string={errorMessage} />) || (
+                        <span>
+                          <FontAwesomeIcon icon={iconMessage} />
+                          &nbsp;No new visitor messages
+                        </span>
+                      )}
                     </NoteBody>
                   )}
                 </Row>
@@ -131,10 +136,12 @@ export default function Home() {
                   </NoteBody>
                 )) || (
                   <NoteBody>
-                    <span>
-                      <FontAwesomeIcon icon={iconEnquirie} />
-                      &nbsp;No new visior orders
-                    </span>
+                    {(errorenquiries && <Error string={errorenquiries} />) || (
+                      <span>
+                        <FontAwesomeIcon icon={iconEnquirie} />
+                        &nbsp;No new visior orders
+                      </span>
+                    )}
                   </NoteBody>
                 )}
               </Note>

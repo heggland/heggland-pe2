@@ -144,16 +144,7 @@ export const MobileButton = styled.div`
   }
 `;
 
-export const Children = styled.div`
-  padding: 10px 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-
-  ${Breakpoints.md} {
-    padding: 0;
-    margin: 0;
-  }
-`;
+export const Children = styled.div``;
 
 // --------------------------- admin path style ---------------------------
 

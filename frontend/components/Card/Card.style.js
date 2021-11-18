@@ -18,8 +18,12 @@ export const Card = styled.div`
   }
 `;
 
+export const Head = styled.div`
+  height: 200px;
+`;
+
 export const Image = styled.img`
-  height: 250px;
+  height: 200px;
   width: 100%;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -32,6 +36,10 @@ export const Content = styled.div`
 `;
 
 export const Heading = styled.div`
+  height: 70px;
+  display: flex;
+  align-items: center;
+
   ${Card}:hover & {
     color: rgb(255 74 82);
   }

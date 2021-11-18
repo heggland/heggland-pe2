@@ -11,7 +11,9 @@ const Card = ({ name, city, image }) => {
   }
   return (
     <Style.Card>
-      <Style.Image src={img} alt={alt} />
+      <Style.Head>
+        <Style.Image src={img} alt={alt} />
+      </Style.Head>
       <Style.Content>
         <Style.Heading>
           <Heading size={4}>{name}</Heading>
