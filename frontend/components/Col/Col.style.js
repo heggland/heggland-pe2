@@ -87,6 +87,18 @@ const Col = styled.div`
       white-space: nowrap;
     `}
 
+    ${({ values }) =>
+    values.margin &&
+    css`
+      margin: ${values.margin};
+    `}
+
+    
+    ${({ values }) =>
+    values.padding &&
+    css`
+      padding: ${values.padding};
+    `}
 
   ${({ values }) => values && CreateCSS(values)}
 `;

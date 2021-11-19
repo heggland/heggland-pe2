@@ -35,27 +35,39 @@ export const Navigation = styled.div`
     height: 70px;
     display: flex;
 
+    // nav logo
     > :nth-child(1) {
       padding-left: 5vw;
       order: 1;
     }
+    
+    // nav search button
     > :nth-child(2) {
       order: 3;
-      ${Breakpoints.mobileOnly} {
+
+      ${Breakpoints.xs} {
         margin-right: 30px;
       }
+      ${Breakpoints.sm} {
+        margin-right: 0;
+        padding: 0;
+      }
     }
-
+    
+    // nav social icons
     > :nth-child(3) {
-     // border-left: 1px solid rgb(234 234 234);
-      order: 2;
-    }
+      // border-left: 1px solid rgb(234 234 234);
+       order: 2;
+     }
   }
 `;
 
 export const NavTitle = styled.div`
   ${Breakpoints.md} {
-    padding-right: 26px;
+    font-size: 1.5rem;
+    border-right: 1px solid rgb(234 234 234);
+    padding-right: 15%;
+    width: 130px;
   }
 `;
 
@@ -102,7 +114,6 @@ export const NavPages = styled.div`
 export const SearchButton = styled.div`
   background-color: rgb(255 74 82);
   width: fit-content;
-  padding: 10px 10px;
   font-size: 1.2rem;
   display: flex;
   place-items: center;
@@ -115,13 +126,14 @@ export const SearchButton = styled.div`
     color: white;
   }
 
-  ${Breakpoints.mobileOnly} {
+  ${Breakpoints.xs} {
     margin: 0 10px;
+    width: 39px;
   }
 
   ${Breakpoints.sm} {
+    margin: 0;
     width: 80px;
-    place-content: center;
 
     & > * {
       color: white;

@@ -1,6 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import * as Breakpoints from "../Global/Breakpoints";
 
-export const Container = styled.div`
+export const ButtonContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalContainer = styled.div`
   overflow: hidden;
   height: 100%;
 `;
@@ -22,6 +31,16 @@ export const Input = styled.input`
   & :focus {
     outline: none;
   }
+
+  ${({ error }) =>
+    error &&
+    `
+  background-color: white;
+  `}
+
+  ::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
 `;
 
 export const Header = styled.div`
@@ -39,6 +58,9 @@ export const Result = styled.div`
   overflow: auto;
   height: 100%;
 
+  display: flex;
+  justify-content: center;
+
   & ::-webkit-scrollbar {
     width: 10px;
   }
@@ -55,4 +77,34 @@ export const Result = styled.div`
   & ::-webkit-scrollbar-thumb:hover {
     background: rgb(84, 84, 84);
   }
+
+  // items found in search
+  & > * > * > * {
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgb(227 233 243) 0px 2px 20px;
+    padding: 5px 10px;
+
+
+    &: hover {
+      box-shadow: rgb(227 233 243) 0px 4px 40px;
+    }
+    }
+  }
 `;
+
+export const ResultImage = styled.img`
+  width: 100%;
+  max-height: 200px;
+`;
+
+/*
+
+
+    ${Breakpoints.mobileOnly} {
+      flex-direction: row;
+    }
+
+
+*/

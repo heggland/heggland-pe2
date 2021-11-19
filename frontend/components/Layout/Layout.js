@@ -42,7 +42,8 @@ const Layout = ({ title, description, children }) => {
               </a>
             </Style.NavTitle>
           </Col>
-          <Col xs={6} md={2} height="100%">
+
+          <Col xs={6} sm={4} md={2} height="100%">
             <Row justifyContent="right" height="100%">
               <Style.SearchButton>
                 <SearchAccommodation type="nav" />
@@ -59,7 +60,6 @@ const Layout = ({ title, description, children }) => {
             </Style.NavPages>
           </Col>
         </Style.Navigation>
-
         <Style.Children>{children}</Style.Children>
       </Style.Container>
       <Footer />

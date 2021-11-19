@@ -68,8 +68,6 @@ const EditForm = ({
     setUpdated(false);
     setError(null);
 
-    console.log(data);
-
     // set id, if id is passed in => editting item. if not = new item is being created.
     data.id = id && data.id;
     // set default state to draft
@@ -98,8 +96,6 @@ const EditForm = ({
       } else {
         response = await http.post(BASE_URL + ACCOMMONDATION_PATH, data);
       }
-
-      console.log(response);
 
       // if new item is successfully created, push to edit route of the new item
       if (!id) {

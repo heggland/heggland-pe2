@@ -10,7 +10,7 @@ import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
 import Header from "../components/Header/Header";
-import Error from "../modules/error/Error";
+import Error from "../modules/error/error";
 
 const SearchForm = styled.div`
   background-color: rgb(4 14 39);
@@ -28,8 +28,6 @@ const Featured = styled.div`
 `;
 
 const Index = ({ content, error }) => {
-  console.log(content);
-  console.log(error);
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
       {/* USE HEADER FROM API or locally */}

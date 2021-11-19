@@ -8,12 +8,14 @@ import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch as SearchIcon } from "@fortawesome/free-solid-svg-icons";
 
+import Heading from "../Common/Heading";
 import Row from "../Row/Row";
 import Col from "../Col/Col";
 import * as Style from "./SearchAccommodation.Style";
 
 import { faTimes as Close } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
+import Error from "../../modules/error/error";
 
 const customStyles = {
   content: {
@@ -30,19 +32,18 @@ const customStyles = {
 
 const SearchAccommodation = ({ type }) => {
   const [fetchError, setFetchError] = useState(null);
-  const [searchError, setSearchError] = useState(null);
+  const [error, setError] = useState(null);
   const [accommodations, setAccommodation] = useState(null);
 
   const [searchResult, setSearchResult] = useState(null);
 
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
 
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(SEARCH_SCHEMA),
@@ -56,8 +57,7 @@ const SearchAccommodation = ({ type }) => {
           setAccommodation(response.data);
         }
       } catch (error) {
-        console.error(error);
-        setFetchError(error.toString());
+        setError(error.toString());
       }
     }
     fetchData();
@@ -102,27 +102,27 @@ const SearchAccommodation = ({ type }) => {
         }
       }
     } catch (error) {
-      console.error(error);
-      setSearchError(error.toString());
+      setError(error.toString());
     }
   }
 
   if (type === "nav") {
-    if (typeof window !== "undefined") {
-      Modal.setAppElement("#searchForm");
-    }
-
+    const data = (searchResult && searchResult) || accommodations;
+    console.log(data);
     return (
       <>
-        <FontAwesomeIcon icon={SearchIcon} onClick={openModal} />
+        <Style.ButtonContainer onClick={openModal}>
+          <FontAwesomeIcon icon={SearchIcon} />
+        </Style.ButtonContainer>
         <div id="searchForm">
           <Modal
             id="searchForm"
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             style={customStyles}
+            ariaHideApp={false}
           >
-            <Style.Container>
+            <Style.ModalContainer>
               <Style.Header>
                 <Row>
                   <Col xs={1}>
@@ -135,6 +135,7 @@ const SearchAccommodation = ({ type }) => {
                         {...register("search")}
                         type="search"
                         disabled={!accommodations && true}
+                        error={(error && true) || false}
                         placeholder={
                           (errors.search && errors.search.message) || "search.."
                         }
@@ -152,8 +153,9 @@ const SearchAccommodation = ({ type }) => {
               <Style.Result>
                 <Col xs={11}>
                   <Col>
-                    {(searchResult &&
-                      searchResult.map(
+                    {error && <Error string={error} path="search" />}
+                    {data &&
+                      data.map(
                         ({
                           id,
                           name,
@@ -161,69 +163,54 @@ const SearchAccommodation = ({ type }) => {
                           address,
                           zip_code,
                           description,
+                          image,
                         }) => {
                           return (
-                            <Row key={id}>
-                              <a href={`accommodation/${id}`}>
-                                <p>{name}</p>
-                              </a>
-                              <p>{city}</p>
-                              <p>{address}</p>
-                              <p>{zip_code}</p>
-                              <small>{description}</small>
+                            <Row key={id} margin="5% 0">
+                              <Col xs={12}>
+                                <a href={`/accommodation/${id}`}>
+                                  <Row justifyContent="center">
+                                    <Col xs={6} margin="0 25px 0 0">
+                                      <Heading size={4}>{name}</Heading>
+                                      <p>
+                                        <Heading size={6}>
+                                          {address}, {zip_code} {city}
+                                        </Heading>
+                                      </p>
+                                      <i>
+                                        <small>
+                                          {description.slice(0, 250)}
+                                          {description.length > 250 && "..."}
+                                        </small>
+                                      </i>
+                                    </Col>
+                                    <Col xs={4}>
+                                      {image[0] && (
+                                        <Style.ResultImage
+                                          src={BASE_URL + image[0].url}
+                                          alt={image[0].alternativeText}
+                                        />
+                                      )}
+                                    </Col>
+                                  </Row>
+                                </a>
+                              </Col>
                             </Row>
                           );
                         }
-                      )) ||
-                      (accommodations !== null &&
-                        accommodations.map(
-                          ({
-                            id,
-                            name,
-                            city,
-                            address,
-                            zip_code,
-                            description,
-                            featured,
-                          }) => {
-                            if (featured) {
-                              return (
-                                <Row key={id}>
-                                  <a href={`accommodation/${id}`}>
-                                    <p>{name}</p>
-                                  </a>
-                                  <p>{city}</p>
-                                  <p>{address}</p>
-                                  <p>{zip_code}</p>
-                                  <small>{description}</small>
-                                </Row>
-                              );
-                            }
-                          }
-                        ))}
+                      )}
                   </Col>
                 </Col>
               </Style.Result>
-            </Style.Container>
+            </Style.ModalContainer>
           </Modal>
         </div>
       </>
     );
   }
+
   return (
     <div>
-      {/*      {searchError && (
-        <>
-          {searchError.includes("null") ? (
-            <>
-              {fetchError && <span>{fetchError}</span>}
-              <span>Database is properly down</span>
-            </>
-          ) : (
-            <span>{searchError}</span>
-          )}
-        </>
-      )} */}
       <form onChange={handleSubmit(onChange)}>
         <input
           {...register("search")}

@@ -32,7 +32,9 @@ const Error = ({ string, path }) => {
           "An unexpected error occured on the server. Please call us at 12345678.",
         enquirie:
           "An unexpected error occured on the server. Please call us at 12345678.",
-        accomondation: `An unexpected error occured on the server. Permission issue.`,
+        accomondation:
+          "An unexpected error occured on the server. Permission issue.",
+        search: "An unexpected error occured on the server. Permission issue.",
       },
     },
     {

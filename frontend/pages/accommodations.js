@@ -7,7 +7,7 @@ import Heading from "../components/Common/Heading";
 import axios from "axios";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../constants/api";
 
-import Error from "../modules/error/Error";
+import Error from "../modules/error/error";
 
 import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";

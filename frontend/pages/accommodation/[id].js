@@ -7,7 +7,6 @@ import Row from "../../components/Row/Row";
 import Col from "../../components/Col/Col";
 
 const Accommondation = ({ content, error }) => {
-  console.log(error);
   if (error) {
     return (
       <>

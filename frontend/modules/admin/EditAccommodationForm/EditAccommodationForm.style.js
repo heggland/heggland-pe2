@@ -21,11 +21,30 @@ display: flex;
 align-items: center;
 place-content: center;
 
+${Breakpoints.desktopOnly} {
 &:hover {
     cursor: pointer;
     background-color: rgb(0 114 231);
-    
+  }
 }
+
+${Breakpoints.mobileOnly} {
+  position: relative;
+  color: black;
+  & > svg {
+    display: none;
+  }
+  width: fit-content;
+  ::after { 
+    content: " Go Back";
+  }
+  &:hover {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
 `;
 
 export const ButtonGroup = styled.div`
