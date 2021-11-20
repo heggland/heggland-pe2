@@ -69,13 +69,25 @@ const Col = styled.div`
     `}
 
   ${({ values }) =>
+    values.width &&
+    css`
+      width: ${values.width};
+    `}
+
+  ${({ values }) =>
     values.placeContent &&
     css`
       place-content: ${values.placeContent};
-      display: flex;
+      display: flex !imporant;
       flex-direction: column;
     `}
 
+    ${({ values }) =>
+    values.alignItems &&
+    css`
+      align-items: ${values.alignItems};
+      display: flex !important;
+    `}
 
   //border: 1px solid grey; // debugging go brr
 

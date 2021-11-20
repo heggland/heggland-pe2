@@ -16,6 +16,8 @@ export const ModalContainer = styled.div`
 
 export const CloseModal = styled.div`
   color: rgb(255 74 82);
+  justify-content: right;
+  display: flex;
 
   &: hover {
     cursor: pointer;

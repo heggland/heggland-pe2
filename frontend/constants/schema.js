@@ -1,14 +1,20 @@
 import * as yup from "yup";
 
-export const SEARCH_SCHEMA = yup.object().shape({
-  search: yup.string().required("Please type something"),
-});
-
 const Today = () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   return today;
 };
+
+export const SEARCH_SCHEMA = yup.object().shape({
+  search: yup.string().required("Please type something"),
+});
+
+export const FRONTPAGESEARCH_SCHEMA = yup.object().shape({
+  search: yup.string().required("Please type something"),
+  date_from: yup.date().min(Today(), "Date cannot be in the past"),
+  date_to: yup.date().min(yup.ref("date_from"), "Must be a later date"),
+});
 
 export const ENQUIRY_SCHEMA = yup.object().shape({
   name: yup

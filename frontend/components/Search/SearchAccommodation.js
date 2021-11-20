@@ -6,14 +6,16 @@ import { SEARCH_SCHEMA } from "../../constants/schema";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../../constants/api";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch as SearchIcon } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch as SearchIcon,
+  faTimes as Close,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Heading from "../Common/Heading";
 import Row from "../Row/Row";
 import Col from "../Col/Col";
 import * as Style from "./SearchAccommodation.Style";
 
-import { faTimes as Close } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-modal";
 import Error from "../../modules/error/error";
 
@@ -108,7 +110,6 @@ const SearchAccommodation = ({ type }) => {
 
   if (type === "nav") {
     const data = (searchResult && searchResult) || accommodations;
-    console.log(data);
     return (
       <>
         <Style.ButtonContainer onClick={openModal}>
@@ -124,11 +125,11 @@ const SearchAccommodation = ({ type }) => {
           >
             <Style.ModalContainer>
               <Style.Header>
-                <Row>
+                <Row justifyContent="center">
                   <Col xs={1}>
                     <FontAwesomeIcon icon={SearchIcon} />
                   </Col>
-                  <Col xs={10}>
+                  <Col xs={9}>
                     <Style.Form onChange={handleSubmit(onChange)}>
                       <Style.Input
                         autocomplete="off"
@@ -172,11 +173,9 @@ const SearchAccommodation = ({ type }) => {
                                   <Row justifyContent="center">
                                     <Col xs={6} margin="0 25px 0 0">
                                       <Heading size={4}>{name}</Heading>
-                                      <p>
-                                        <Heading size={6}>
-                                          {address}, {zip_code} {city}
-                                        </Heading>
-                                      </p>
+                                      <Heading size={6}>
+                                        {(address, zip_code, city).toString()}
+                                      </Heading>
                                       <i>
                                         <small>
                                           {description.slice(0, 250)}

@@ -11,33 +11,41 @@ import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
 import Header from "../components/Header/Header";
 import Error from "../modules/error/error";
+import SearchBox from "../modules/searchBox/searchBox";
 
-const SearchForm = styled.div`
-  background-color: rgb(4 14 39);
-  color: white;
-  height: 150px;
-  display: flex;
-  align-items: center;
-`;
-
+/*
 const Featured = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   place-content: center;
 `;
+*/
+
+const AboveFold = styled.div`
+  height: 90vh;
+`;
 
 const Index = ({ content, error }) => {
+  const featuredContent = content.filter((item) => item.featured === true);
+
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
-      {/* USE HEADER FROM API or locally */}
-      <Header
-        imgUrl="https://media.radissonhotels.net/image/radisson-blu-caledonien-hotel-kristiansand/lobbyview/16256-116540-f66765457_3xl.jpg?impolicy=HomeHero"
-        imgAlt="{props.content[0].image[0].alternativeText}"
-      />
-      {/*       <SearchForm>
-        <Heading size={3}>Where you want to go?</Heading>
-      </SearchForm> */}
+      <AboveFold>
+        {/* USE HEADER FROM API or locally */}
+
+        <Header
+          imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
+          imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
+        />
+        <Row justifyContent="center">
+          <Col xs={11} sm={8}>
+            <SearchBox
+              accomondations={content && content.length >= 1 && content}
+            />
+          </Col>
+        </Row>
+      </AboveFold>
       <Container>
         <Row justifyContent="center">
           <Col xs={12} md={8}>
@@ -45,9 +53,9 @@ const Index = ({ content, error }) => {
               <Heading size={1}>Featured Accommodations</Heading>
             </Row>
             <Row>
-              {(content &&
-                content.length >= 1 &&
-                content.map(({ id, name, image, city }) => {
+              {(featuredContent &&
+                featuredContent.length >= 1 &&
+                featuredContent.map(({ id, name, image, city }) => {
                   return (
                     <Col md={6} lg={4} xxl={3} key={id}>
                       <a href={`accommodation/${id}`}>
@@ -72,7 +80,7 @@ export async function getServerSideProps() {
 
   try {
     const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);
-    data = response.data.filter((item) => item.featured === true);
+    data = response.data;
   } catch (error) {
     return {
       props: {

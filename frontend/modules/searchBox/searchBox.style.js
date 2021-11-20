@@ -1,0 +1,136 @@
+import styled, { css } from "styled-components";
+import * as colors from "../../constants/colors";
+import * as Breakpoints from "../../components/Global/Breakpoints";
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  display: flex;
+  position: relative;
+  top: -5rem;
+  box-shadow: 0px 0px 50px 5px rgba(0 0 0 / 50%);
+  border: 3px solid ${colors.orange}};
+  border-radius: 5px;
+
+  ${Breakpoints.sm} {
+    top: -2rem;
+  }
+
+ 
+  // border around last input field
+  & > * > * > * {
+    &:last-child {
+    border-right: none;
+    }
+  } 
+  ${Breakpoints.mobileOnly} {
+    & > *  > * > * > * {
+    border: 3px solid ${colors.orange}};
+  }
+  }
+}
+`;
+
+export const TextInput = styled.input`
+  width: 100%;
+  height: 45px;
+  padding: 0 2rem;
+  border: none;
+  outline: none;
+    
+  ${Breakpoints.sm} {
+  border-right: 3px solid ${colors.orange}};
+}
+  ::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+`;
+
+export const DateInput = styled.input`
+  width: 100%;
+  height: 45px;
+  padding-left: 2rem;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border: none;
+
+  ${Breakpoints.sm} {
+  border-right: 3px solid ${colors.orange}};
+  }
+  outline: none;
+  padding: 0 2rem;
+
+  ::-webkit-calendar-picker-indicator {
+    ${Breakpoints.sm} {
+    opacity: 0;
+    }
+    //position: absolute;
+    //width: 60%;
+    padding: 0;
+    margin: 0;
+}
+
+  // TODO: future implementation: the whole date input column should bring up the datepicker
+  &:hover { 
+    ::-webkit-calendar-picker-indicator {
+      opacity: 1;
+    }
+  }
+}
+
+
+}
+
+`;
+
+export const InputLabel = styled.label`
+  position: absolute;
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  height: 45px;
+  background-color: ${colors.blue}};
+  color: white;
+  border: 0;
+  cursor: pointer;
+  ${Breakpoints.xs} {
+    width: 100%;
+  }
+`;
+
+export const ErrorDate = styled.div`
+  position: absolute;
+  bottom: 75px;
+  color: red;
+  padding: 10px;
+  font-size: 0.7rem;
+
+  ${Breakpoints.sm} {
+    top: -25%;
+    position: absolute;
+    color: red;
+    padding: 10px;
+    font-size: 0.5rem;
+  }
+`;
+
+export const ErrorSearch = styled.div`
+  position: absolute;
+  top: -5px;
+  color: red;
+  padding: 10px;
+  font-size: 0.5rem;
+
+  ${Breakpoints.sm} {
+    top: -25%;
+    position: absolute;
+    color: red;
+    padding: 10px;
+    font-size: 0.7rem;
+  }
+`;
