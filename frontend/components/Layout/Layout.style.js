@@ -1,10 +1,22 @@
 import styled, { css } from "styled-components";
 import * as Breakpoints from "../Global/Breakpoints";
+import * as colors from "../../constants/colors";
 
 // unauthorized/visitors path
 export const Container = styled.div`
   flex: 1 0 auto;
-  background-color: rgb(247 250 253);
+  background-color: white;
+`;
+
+export const LinkContainer = styled.span`
+  ${({ active }) =>
+    active &&
+    css`
+    & > * {
+      font-weight: bold;s
+  }
+}
+`}
 `;
 
 export const Navigation = styled.div`
@@ -105,7 +117,7 @@ export const NavPages = styled.div`
 
       &:hover {
         cursor: pointer;
-        color: rgb(30 198 182);
+        color: ${colors.blue};}});
       }
     }
   }

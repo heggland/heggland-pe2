@@ -94,12 +94,18 @@ const Error = ({ string, path }) => {
 
   // filter out error code from string
   const filteredError = errorsArray.find((item) => string.includes(item.code));
-  const stringError =
+  /*   const stringError =
     filteredError.code +
     " " +
     filteredError.description +
     " " +
-    filteredError.comment;
+    filteredError.comment; */
+
+  if (string.includes("ECONNREFUSED")) {
+    return (
+      <Style.ErrorString>Connection error to the server! </Style.ErrorString>
+    );
+  }
 
   // custom errors
   if (path) {

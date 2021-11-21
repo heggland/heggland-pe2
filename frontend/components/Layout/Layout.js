@@ -28,6 +28,10 @@ const Layout = ({ title, description, children }) => {
     setMobileMenu((mobileMenu === false && "flex") || false);
 
   // console.log("TODO CHANGE: ", logo);
+
+  const router = useRouter();
+  const { pathname } = router;
+
   return (
     <>
       <Head title={title} description={description} />
@@ -36,10 +40,12 @@ const Layout = ({ title, description, children }) => {
         <Style.Navigation>
           <Col xs={6} sm={2}>
             <Style.NavTitle>
-              <a href="/">
-                {/* <Image height="100" width="120" src={logo} /> */}
-                Holidaze
-              </a>
+              <Style.LinkContainer active={(pathname === "/" && true) || false}>
+                <a href="/">
+                  {/* <Image height="100" width="120" src={logo} /> */}
+                  Holidaze
+                </a>
+              </Style.LinkContainer>
             </Style.NavTitle>
           </Col>
 
@@ -55,8 +61,16 @@ const Layout = ({ title, description, children }) => {
           </Col>
           <Col xs="auto" md={8}>
             <Style.NavPages show={mobileMenu}>
-              <Link href="/accommodations">Accommodation</Link>
-              <Link href="/contact">Contact</Link>
+              <Style.LinkContainer
+                active={(pathname.includes("accommodations") && true) || false}
+              >
+                <Link href="/accommodations">Accommodation</Link>
+              </Style.LinkContainer>
+              <Style.LinkContainer
+                active={(pathname.includes("contact") && true) || false}
+              >
+                <Link href="/contact">Contact</Link>
+              </Style.LinkContainer>
             </Style.NavPages>
           </Col>
         </Style.Navigation>

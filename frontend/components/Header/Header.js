@@ -1,8 +1,8 @@
 import * as Style from "./Header.style";
 
-const Header = ({ imgUrl, imgAlt }) => {
+const Header = ({ page, imgUrl, imgAlt }) => {
   return (
-    <Style.Header>
+    <Style.Header page={page}>
       <img src={imgUrl} alt={imgAlt} />
     </Style.Header>
   );

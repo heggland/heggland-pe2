@@ -28,12 +28,17 @@ const SearchBox = ({ accomondations = "" }) => {
                   
   }; */
 
-  // array of cities
-  let cityArray = accomondations.map((item) => {
-    return item.city;
-  });
-  // remove duplicate in the array
-  cityArray = [...new Set(cityArray)];
+  let cityArray;
+  if (accomondations) {
+    // array of cities
+    cityArray =
+      accomondations &&
+      accomondations.map((item) => {
+        return item.city;
+      });
+    // remove duplicate in the array
+    cityArray = [...new Set(cityArray)];
+  }
 
   const {
     register,
@@ -66,7 +71,8 @@ const SearchBox = ({ accomondations = "" }) => {
                   {...register("search")}
                 />
                 <datalist id="suggestions">
-                  {cityArray.length > 0 &&
+                  {cityArray &&
+                    cityArray.length > 0 &&
                     cityArray.map((item) => {
                       return <option key={item}>{item}</option>;
                     })}

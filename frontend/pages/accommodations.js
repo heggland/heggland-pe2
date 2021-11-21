@@ -13,6 +13,8 @@ import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
+import Header from "../components/Header/Header";
+import SearchBox from "../modules/searchBox/searchBox";
 
 const Accommodation = ({ content, error }) => {
   return (
@@ -20,6 +22,17 @@ const Accommodation = ({ content, error }) => {
       title={TITLE_ACCOMMONDATION}
       description={DESCRIPTION_ACCOMMONDATION}
     >
+      <Header
+        imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
+        imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
+      />
+      <Row justifyContent="center">
+        <Col xs={11} sm={8}>
+          <SearchBox
+            accomondations={content && content.length >= 1 && content}
+          />
+        </Col>
+      </Row>
       <Container>
         <Row justifyContent="center">
           <Col xs={8} md={8}>
@@ -28,6 +41,7 @@ const Accommodation = ({ content, error }) => {
             </Row>
             <Row>
               {(content &&
+                content.length >= 1 &&
                 content.map(({ id, name, image, city }) => {
                   return (
                     <Col md={6} lg={4} xxl={3} key={id}>

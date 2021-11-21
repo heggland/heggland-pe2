@@ -27,7 +27,10 @@ const AboveFold = styled.div`
 `;
 
 const Index = ({ content, error }) => {
-  const featuredContent = content.filter((item) => item.featured === true);
+  let featuredContent;
+  if (content) {
+    featuredContent = content.filter((item) => item.featured === true);
+  }
 
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
@@ -35,6 +38,7 @@ const Index = ({ content, error }) => {
         {/* USE HEADER FROM API or locally */}
 
         <Header
+          page="home"
           imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
           imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
         />
@@ -47,7 +51,7 @@ const Index = ({ content, error }) => {
         </Row>
       </AboveFold>
       <Container>
-        <Row justifyContent="center">
+        <Row justifyContent="center" backgroundColor="white">
           <Col xs={12} md={8}>
             <Row>
               <Heading size={1}>Featured Accommodations</Heading>
