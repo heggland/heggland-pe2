@@ -13,22 +13,16 @@ import Error from "../../../modules/error/error";
 import Col from "../../../components/Col/Col";
 import Row from "../../../components/Row/Row";
 
-import {
-  Button,
-  BackButton,
-  ButtonGroup,
-  ButtonDelete,
-  InformationGroup,
-  Container,
-  Textarea,
-} from "./EditAccommodationForm.style";
+import * as Style from "./EditAccommodationForm.style";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft as chevron,
   faTrashAlt as trash,
+  faSpinner as Spinner,
 } from "@fortawesome/free-solid-svg-icons";
 import FormatDate from "../../../components/Common/FormatDate";
+import Save from "../../notification/save/save";
 
 const EditForm = ({
   id,
@@ -51,6 +45,9 @@ const EditForm = ({
   const [imageRevertButton, setImageRevertButton] = useState(true);
   const [imageFile, setImageFile] = useState(null);
   const [newUpload, setNewUpload] = useState(false);
+  const [notification, setNotification] = useState();
+  const [saveLoading, setSaveLoading] = useState(false);
+  const [stateLoading, setStateLoading] = useState(false);
 
   const router = useRouter();
 
@@ -67,6 +64,7 @@ const EditForm = ({
   async function onSubmit(data) {
     setUpdated(false);
     setError(null);
+    setSaveLoading(true);
 
     // set id, if id is passed in => editting item. if not = new item is being created.
     data.id = id && data.id;
@@ -93,6 +91,7 @@ const EditForm = ({
       let response;
       if (id) {
         response = await http.put(BASE_URL + ACCOMMONDATION_PATH + id, data);
+        setNotification("Saved");
       } else {
         response = await http.post(BASE_URL + ACCOMMONDATION_PATH, data);
       }
@@ -102,12 +101,12 @@ const EditForm = ({
         router.push("/admin/accommodation/edit/" + response.data.id);
       }
 
+      setSaveLoading(false);
       setImageRevertButton(false);
       setUpdated(true);
       setUpdatedAt(response.data.updated_at);
     } catch (error) {
       setError(error.toString());
-      console.log(error);
     }
   }
   async function deleteButton(e) {
@@ -135,20 +134,22 @@ const EditForm = ({
   }
 
   async function updateButton(e) {
+    e.preventDefault();
     setUpdated(false);
     setError(null);
-    e.preventDefault();
+    setStateLoading(true);
 
     const confirmUpdate = window.confirm("Update state?");
 
     if (confirmUpdate) {
       const data = new Object();
       data.id = id;
-      console.log(data.published_at);
+      console.log(data);
+
       if (updatedState === null) {
         data.published_at = state === null ? new Date() : null;
       } else {
-        data.published_at = updatedState === "draft" ? new Date() : null;
+        data.published_at = updatedState === null ? new Date() : null;
       }
 
       try {
@@ -157,16 +158,14 @@ const EditForm = ({
           data
         );
 
-        if ((response.status = 200)) {
-          console.log("updated status");
-        }
+        setUpdatedState(response.data.published_at);
+        setNotification(
+          (updatedState === null && "Published") || "Unpublished"
+        );
 
-        const status =
-          response.data.published_at !== null ? "Unpublish" : "Publish";
-        setUpdatedState(status);
         setUpdatedAt(response.data.updated_at);
         setUpdated(true);
-        console.log(response);
+        setStateLoading(false);
       } catch (error) {
         setError(error.toString());
         console.log(error);
@@ -199,15 +198,18 @@ const EditForm = ({
     }
   }
 
-  const disableStateButton = () => setStateButton(false);
+  const disableStateButton = () => {
+    // TODO: future imrpovements:
+    setStateButton(false);
+  };
 
   return (
-    <Container>
-      <BackButton onClick={goBack}>
+    <Style.Container>
+      <Style.BackButton onClick={goBack}>
         <FontAwesomeIcon icon={chevron} size="lg" />
-      </BackButton>
+      </Style.BackButton>
       {error && <Error string={error} />}
-      {updated && <span>updated</span>}
+      {updated && <Save>{notification}</Save>}
       <Col xs={12} md={11} margin="0 0 0 2rem">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -220,21 +222,25 @@ const EditForm = ({
 
             <Col xs={12} md={6} alignSelf="center">
               <Row justifyContent="right">
-                <ButtonGroup>
+                <Style.ButtonGroup>
                   {id && (
-                    <Button
+                    <Style.Button
                       disabled={!stateButton && true}
                       onClick={updateButton}
                       bgColor="rgb(0, 126, 255)"
                       color="white"
                       disabledChange={!stateButton && true}
                     >
-                      {(updatedState && updatedState) ||
+                      {(stateLoading && (
+                        <FontAwesomeIcon icon={Spinner} spin />
+                      )) ||
+                        (updatedState && updatedState === null && "Publish") ||
+                        (isNaN(updatedState) && "Unpublish") ||
                         (state && "Unpublish") ||
                         "Publish"}
-                    </Button>
+                    </Style.Button>
                   )}
-                  <Button
+                  <Style.Button
                     disabled={id && stateButton && true}
                     type="submit"
                     bgColor="rgb(109, 187, 26)"
@@ -242,169 +248,201 @@ const EditForm = ({
                     margin="0 0 0 1rem"
                     disabledChange={id && stateButton && true}
                   >
-                    Save
-                  </Button>
-                </ButtonGroup>
+                    {(saveLoading && <FontAwesomeIcon icon={Spinner} spin />) ||
+                      "Save"}
+                  </Style.Button>
+                </Style.ButtonGroup>
               </Row>
             </Col>
           </Row>
           <Row>
-            <Col xs={11} md={9} box="white-card">
-              <Row padding="0px 0px 20px 0px">
-                <Heading size={5}>DESCRIPTION</Heading>
-                <Textarea
-                  placeholder="description *"
-                  defaultValue={description && description}
-                  {...register("description")}
-                  type="text"
-                  rows="10"
-                />
-                {errors.description && (
-                  <span>{errors.description.message}</span>
-                )}
-              </Row>
-              <Row padding="0px 0px 20px 0px">
-                <Col xs={11} md={6}>
-                  <Heading size={5}>NAME</Heading>
-                  <input
-                    placeholder="name *"
-                    defaultValue={name && name}
-                    {...register("name")}
+            <Col xs={11} md={9}>
+              <Style.Box padding="22px 40px">
+                <Row padding="0px 0px 20px 0px">
+                  <Heading size={5}>DESCRIPTION</Heading>
+                  <Style.Textarea
+                    placeholder="description *"
+                    defaultValue={description && description}
+                    {...register("description")}
                     type="text"
-                    autoFocus
+                    rows="10"
                   />
-                  {errors.name && <span>{errors.name.message}</span>}
-                </Col>
-                <Col xs={11} md={6}>
-                  <Heading size={5}>ADDRESS</Heading>
-                  <input
-                    placeholder="address *"
-                    defaultValue={address && address}
-                    {...register("address")}
-                    type="text"
-                  />
-                  {errors.address && <span>{errors.address.message}</span>}
-                </Col>
-              </Row>
-              <Row padding="0px 0px 20px 0px">
-                <Col xs={11} md={6}>
-                  <Heading size={5}>CITY</Heading>
-                  <input
-                    placeholder="city *"
-                    defaultValue={city && city}
-                    {...register("city")}
-                    type="text"
-                  />
-                  {errors.city && <span>{errors.city.message}</span>}
-                </Col>
-                <Col xs={11} md={6}>
-                  <Heading size={5}>ZIP CODE</Heading>
-                  <input
-                    placeholder="zip_code *"
-                    defaultValue={zip_code && zip_code}
-                    {...register("zip_code")}
-                    type="text"
-                  />
-                  {errors.zip_code && <span>{errors.zip_code.message}</span>}
-                </Col>
-              </Row>
-              <Row padding="0px 0px 20px 0px">
-                <Col xs={11} md={6}>
-                  <Row>
-                    <Col md={6}>
-                      <Heading size={6}>IMAGE</Heading>
-
-                      {(imagePreview && (
-                        <>
-                          <img
-                            src={imageFile}
-                            width="300px"
-                            alt="preview image"
-                          />
-
-                          <div onChange={handleImageChange}>
-                            <input
-                              type="file"
-                              name="image"
-                              {...register("image")}
-                            />
-                          </div>
-                          {imageRevertButton && (
-                            <button onClick={revertImage}>Revert image</button>
-                          )}
-                        </>
-                      )) || (
-                        <>
-                          {accommodationImage && (
-                            <img src={accommodationImage} width="300px" />
-                          )}
-
-                          <div onChange={handleImageChange}>
-                            {(newUpload && (
-                              <input
-                                type="file"
-                                name="image"
-                                {...register("image")}
+                  {errors.description && (
+                    <span>{errors.description.message}</span>
+                  )}
+                </Row>
+                <Row padding="0px 0px 20px 0px">
+                  <Col xs={11} md={6}>
+                    <Heading size={5}>NAME</Heading>
+                    <input
+                      placeholder="name *"
+                      defaultValue={name && name}
+                      {...register("name")}
+                      type="text"
+                      autoFocus
+                    />
+                    {errors.name && <span>{errors.name.message}</span>}
+                  </Col>
+                  <Col xs={11} md={6}>
+                    <Heading size={5}>ADDRESS</Heading>
+                    <input
+                      placeholder="address *"
+                      defaultValue={address && address}
+                      {...register("address")}
+                      type="text"
+                    />
+                    {errors.address && <span>{errors.address.message}</span>}
+                  </Col>
+                </Row>
+                <Row padding="0px 0px 20px 0px">
+                  <Col xs={11} md={6}>
+                    <Heading size={5}>CITY</Heading>
+                    <input
+                      placeholder="city *"
+                      defaultValue={city && city}
+                      {...register("city")}
+                      type="text"
+                    />
+                    {errors.city && <span>{errors.city.message}</span>}
+                  </Col>
+                  <Col xs={11} md={6}>
+                    <Heading size={5}>ZIP CODE</Heading>
+                    <input
+                      placeholder="zip_code *"
+                      defaultValue={zip_code && zip_code}
+                      {...register("zip_code")}
+                      type="text"
+                    />
+                    {errors.zip_code && <span>{errors.zip_code.message}</span>}
+                  </Col>
+                </Row>
+                <Row padding="0px 0px 20px 0px">
+                  <Col xs={11} md={6}>
+                    <Row>
+                      <Col md={6}>
+                        <Heading size={6}>IMAGE</Heading>
+                        <Style.ImageContainer>
+                          {(imagePreview && (
+                            <>
+                              <Style.Image
+                                src={imageFile}
+                                alt="preview image"
                               />
-                            )) || (
-                              <Button
-                                onClick={newImageUpload}
-                                bgColor="rgb(0 126 255)"
-                                color="white"
-                                padding="7px 10px"
-                              >
-                                Upload new image?
-                              </Button>
-                            )}
-                          </div>
-                          <span>
-                            {errors.image && (
-                              <span>{errors.image.message}</span>
-                            )}
-                          </span>
-                        </>
-                      )}
-                    </Col>
-                  </Row>
-                </Col>
-                <Col xs={11} md={6}>
-                  <Heading size={5}>Featured</Heading>
-                  <input
-                    type="checkbox"
-                    defaultChecked={featured && featured}
-                    name="featured"
-                    {...register("featured")}
-                  />
-                  {errors.featured && <span>{errors.featured.message}</span>}
-                </Col>
-              </Row>
+
+                              <div onChange={handleImageChange}>
+                                <input
+                                  type="file"
+                                  name="image"
+                                  {...register("image")}
+                                />
+                              </div>
+                              {imageRevertButton && (
+                                <button onClick={revertImage}>
+                                  Revert image
+                                </button>
+                              )}
+                            </>
+                          )) || (
+                            <>
+                              {accommodationImage && (
+                                <Style.Image src={accommodationImage} />
+                              )}
+
+                              <div onChange={handleImageChange}>
+                                {(newUpload && (
+                                  <input
+                                    type="file"
+                                    name="image"
+                                    {...register("image")}
+                                  />
+                                )) || (
+                                  <Style.Button
+                                    onClick={newImageUpload}
+                                    bgColor="rgb(0 126 255)"
+                                    color="white"
+                                    padding="7px 10px"
+                                  >
+                                    Upload new image?
+                                  </Style.Button>
+                                )}
+                              </div>
+                              <span>
+                                {errors.image && (
+                                  <span>{errors.image.message}</span>
+                                )}
+                              </span>
+                            </>
+                          )}
+                        </Style.ImageContainer>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Style.Box>
             </Col>
-            <Col md={1} />
-            <Col xs={11} md={2} box="white-card">
-              <InformationGroup>
-                <Row>
-                  <Heading size={5}>INFORMATION</Heading>
-                </Row>
-                <Row padding="10px 0">
-                  Last update:&nbsp;
-                  {(!updatedAt && updated_at && (
-                    <FormatDate date={updated_at} />
-                  )) || <FormatDate date={updatedAt} />}
-                </Row>
-                {id && (
-                  <Row padding="10px 0">
-                    <ButtonDelete onClick={deleteButton}>
-                      <FontAwesomeIcon icon={trash} size="lg" />
-                      &nbsp;Delete this accommodation
-                    </ButtonDelete>
+
+            <Col md={0.5} />
+
+            <Col xs={11} md={2.5}>
+              <Style.InformationGroup>
+                <Style.Box margin=" 0 0 10px 0 ">
+                  <Row>
+                    <Heading size={5}>INFORMATION</Heading>
                   </Row>
+                  <Row padding="10px 0" justifyContent="space-between">
+                    <Col xs={4}>
+                      <span>Featured</span>
+                    </Col>
+                    <Col xs={8}>
+                      <Style.CheckBox
+                        type="checkbox"
+                        defaultChecked={featured && featured}
+                        name="featured"
+                        {...register("featured")}
+                      />
+                    </Col>
+                    {errors.featured && <span>{errors.featured.message}</span>}
+                  </Row>
+                  <Row padding="10px 0">
+                    Last update:&nbsp;
+                    {(!updatedAt && updated_at && (
+                      <FormatDate date={updated_at} />
+                    )) || <FormatDate date={updatedAt} />}
+                  </Row>
+                </Style.Box>
+                <Style.StateInfo
+                  state={
+                    (updatedState && updatedState === null && "draft") ||
+                    (isNaN(updatedState) && "published") ||
+                    (state && "published") ||
+                    "draft"
+                  }
+                >
+                  <Row padding="5px 10px">
+                    • Editing{" "}
+                    {(updatedState && updatedState === null && "draft") ||
+                      (isNaN(updatedState) && "published") ||
+                      (state && "published") ||
+                      "draft"}{" "}
+                    version
+                  </Row>
+                </Style.StateInfo>
+                {id && (
+                  <Style.Box padding="5px 10px" margin="10px 0 0 0">
+                    <Row padding="10px 0">
+                      <Style.ButtonDelete onClick={deleteButton}>
+                        <FontAwesomeIcon icon={trash} size="lg" />
+                        &nbsp;Delete this accommodation
+                      </Style.ButtonDelete>
+                    </Row>
+                  </Style.Box>
                 )}
-              </InformationGroup>
+              </Style.InformationGroup>
             </Col>
           </Row>
         </form>
       </Col>
-    </Container>
+    </Style.Container>
   );
 };
 

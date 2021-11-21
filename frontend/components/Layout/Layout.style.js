@@ -210,6 +210,8 @@ export const SideContainer = styled.div`
   width: 0;
   height: 0;
 
+  z-index: 20;
+
   ${Breakpoints.mobileOnly} {
     z-index: 1;
 
@@ -314,6 +316,8 @@ export const AdminHeading = styled.div`
     margin: 0;
     padding-left: 10px;
   }
+
+  z-index: 10;
 `;
 
 export const LogoutButton = styled.div`

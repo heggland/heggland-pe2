@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import * as Breakpoints from "../../../components/Global/Breakpoints";
+import * as Colors from "../../../constants/colors";
 
 export const Container = styled.div`
   ${Breakpoints.xs} {
@@ -119,4 +120,52 @@ export const Textarea = styled.textarea`
   color: rgb(51, 55, 64);
   overflow: auto;
   line-height: 16px;
+  max-height: 600px;
+  min-width: 100%;
+  resize: vertical;
+`;
+
+export const StateInfo = styled.div`
+  background-color: rgb(230, 248, 212);
+  color: ${Colors.green};
+  border: 1px solid rgb(170, 214, 124);
+
+  ${({ state }) =>
+    state === "draft" &&
+    css`
+      color: rgb(0, 126, 255);
+      background-color: rgb(230, 240, 251);
+      border: 1px solid rgb(165, 213, 255);
+    `}
+`;
+
+export const Box = styled.div`
+  background-color: white;
+  padding: 22px 20px;
+  border-radius: 2 px;
+  box-shadow: rgb(227 223 243) 0px 2px 5px;
+  height: 100%;
+
+  ${({ padding }) =>
+    padding &&
+    css`
+      padding: ${padding};
+    `}
+
+  ${({ margin }) =>
+    margin &&
+    css`
+      margin: ${margin};
+    `}
+`;
+
+export const CheckBox = styled.input``;
+
+export const ImageContainer = styled.div`
+  height: 300px;
+`;
+
+export const Image = styled.img`
+  height: 250px;
+  width: 250px;
 `;
