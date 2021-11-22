@@ -37,7 +37,7 @@ export const Navigation = styled.div`
       }
     }
     ${Breakpoints.desktopOnly} {
-      height: 100px !important;
+      height: 85px !important;
     }
   }
 

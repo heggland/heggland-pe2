@@ -25,7 +25,7 @@ const Accommondation = ({ content, error }) => {
       </>
     );
   }
-
+  console.log(content);
   return (
     <Layout
       title={content.name + " | Holidaze"}

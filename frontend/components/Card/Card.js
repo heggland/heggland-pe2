@@ -1,4 +1,3 @@
-import { BASE_URL } from "../../constants/api";
 import Heading from "../Common/Heading";
 import * as Style from "./Card.style";
 
@@ -6,7 +5,7 @@ const Card = ({ name, city, image }) => {
   let img;
   let alt;
   if (image[0]) {
-    img = BASE_URL + image[0].url;
+    img = image[0].url;
     alt = image[0].alternativeText;
   }
   return (

@@ -194,7 +194,7 @@ const EditForm = ({
   let accommodationImage;
   if (image && image.length !== 0) {
     if (image[0].url) {
-      accommodationImage = BASE_URL + image[0].url;
+      accommodationImage = image[0].url;
     }
   }
 

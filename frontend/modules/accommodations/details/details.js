@@ -35,7 +35,7 @@ const Details = ({ accommodation }) => {
   let img;
   let alt;
   if (accommodation.image.length != 0) {
-    img = BASE_URL + accommodation.image[0].url;
+    img = accommodation.image[0].url;
     alt = accommodation.image[0].alternativeText;
   }
 
