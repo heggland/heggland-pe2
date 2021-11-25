@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import * as Breakpoints from "../Global/Breakpoints";
-import * as colors from "../../constants/colors";
+import * as Colors from "../../constants/colors";
 
 // unauthorized/visitors path
 export const Container = styled.div`
@@ -25,6 +25,9 @@ export const Navigation = styled.div`
   background-color: white;
   width: 100%;
   align-items: center;
+  z-index: 10;
+  position: relative;
+  font-size: 1.2rem;
 
   ${Breakpoints.xs} {
     box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
@@ -56,6 +59,7 @@ export const Navigation = styled.div`
     // nav search button
     > :nth-child(2) {
       order: 3;
+      z-index: 20;
 
       ${Breakpoints.xs} {
         margin-right: 30px;
@@ -109,7 +113,6 @@ export const NavPages = styled.div`
 
   ${Breakpoints.sm} {
     display: block;
-    background-color: white;
     border-top: none;
 
     & > * {
@@ -117,14 +120,16 @@ export const NavPages = styled.div`
 
       &:hover {
         cursor: pointer;
-        color: ${colors.blue};}});
+        color: ${Colors.green};
+        font-weight: 600;
       }
     }
   }
 `;
 
 export const SearchButton = styled.div`
-  background-color: rgb(255 74 82);
+  //background-color: rgb(255 74 82);
+  background-color: ${Colors.green};
   width: fit-content;
   font-size: 1.2rem;
   display: flex;
@@ -168,7 +173,9 @@ export const MobileButton = styled.div`
   }
 `;
 
-export const Children = styled.div``;
+export const Children = styled.div`
+  background-color: white;
+`;
 
 // --------------------------- admin path style ---------------------------
 
@@ -188,7 +195,7 @@ export const AdminMobileButton = styled.div`
   right: 5px;
   width: fit-content;
   font-size: 1.5rem;
-  z-index: 2;
+  z-index: 10;
   color: white;
 
   &: hover {
@@ -316,8 +323,6 @@ export const AdminHeading = styled.div`
     margin: 0;
     padding-left: 10px;
   }
-
-  z-index: 10;
 `;
 
 export const LogoutButton = styled.div`

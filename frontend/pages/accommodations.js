@@ -17,6 +17,11 @@ import Header from "../components/Header/Header";
 import SearchBox from "../modules/searchBox/searchBox";
 
 const Accommodation = ({ content, error }) => {
+  // sort content by name
+  content = content.sort((a, b) => {
+    return (a.name < b.name && -1) || (a.name > b.name && 1) || 0;
+  });
+
   return (
     <Layout
       title={TITLE_ACCOMMONDATION}
@@ -26,16 +31,10 @@ const Accommodation = ({ content, error }) => {
         imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
         imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
       />
-      <Row justifyContent="center">
-        <Col xs={11} sm={8}>
-          <SearchBox
-            accomondations={content && content.length >= 1 && content}
-          />
-        </Col>
-      </Row>
-      <Container>
+
+      <Container padding="0 0 50px 0">
         <Row justifyContent="center">
-          <Col xs={8} md={8}>
+          <Col xs={11} md={8}>
             <Row>
               <Heading>Our Accommodations</Heading>
             </Row>
@@ -44,7 +43,7 @@ const Accommodation = ({ content, error }) => {
                 content.length >= 1 &&
                 content.map(({ id, name, image, city }) => {
                   return (
-                    <Col md={6} lg={4} xxl={3} key={id}>
+                    <Col xs={12} md={6} lg={4} xxl={3} key={id}>
                       <a href={`accommodation/${id}`}>
                         <Card name={name} city={city} image={image} key={id} />
                       </a>

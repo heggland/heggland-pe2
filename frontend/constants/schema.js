@@ -12,8 +12,6 @@ export const SEARCH_SCHEMA = yup.object().shape({
 
 export const FRONTPAGESEARCH_SCHEMA = yup.object().shape({
   search: yup.string().required("Please type something"),
-  date_from: yup.date().min(Today(), "Date cannot be in the past"),
-  date_to: yup.date().min(yup.ref("date_from"), "Must be a later date"),
 });
 
 export const ENQUIRY_SCHEMA = yup.object().shape({
@@ -33,9 +31,7 @@ export const ENQUIRY_SCHEMA = yup.object().shape({
     .date()
     .required("Select a date")
     .min(Today(), "Date cannot be in the past"),
-  date_to: yup
-    .date()
-    .min(yup.ref("date_from"), "Date must be later than the start date"),
+  date_to: yup.date().min(yup.ref("date_from"), "Date must be later"),
 });
 
 export const CONTACT_SCHEMA = yup.object().shape({

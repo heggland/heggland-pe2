@@ -3,22 +3,23 @@ import * as colors from "../../constants/colors";
 import * as Breakpoints from "../../components/Global/Breakpoints";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   background-color: white;
   color: black;
-  display: flex;
-  position: relative;
-  top: -5rem;
-  box-shadow: 0px 0px 50px 5px rgba(0 0 0 / 50%);
+  box-shadow: 0px 0px 5px 5px rgba(0 0 0 / 10%);
   border: 3px solid ${colors.orange}};
   border-radius: 5px;
 
-  ${Breakpoints.sm} {
-    top: -2rem;
-  }
-
+  position: absolute;
+  top: 70%;
+  transform: translate(0, 70%);
  
+
+  ${({ width }) =>
+    width &&
+    css`
+      width: calc(calc(100% / 12) * ${width});
+    `}
+
   // border around last input field
   & > * > * > * {
     &:last-child {
@@ -26,6 +27,10 @@ export const Container = styled.div`
     }
   } 
   ${Breakpoints.mobileOnly} {
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 50%);
     & > *  > * > * > * {
     border: 3px solid ${colors.orange}};
   }

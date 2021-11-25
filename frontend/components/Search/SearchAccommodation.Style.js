@@ -27,6 +27,7 @@ export const CloseModal = styled.div`
 export const Form = styled.form``;
 
 export const Input = styled.input`
+  font-size: 1.2rem;
   width: 90%;
   border: 0 !important;
 
@@ -46,19 +47,25 @@ export const Input = styled.input`
 `;
 
 export const Header = styled.div`
+  font-size: 1.2rem;
   line-height: 20px;
   font-size: 1rem;
   font-weight: bold;
   padding: 15px 0;
-  border-bottom: 1px solid grey;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+  padding-bottom: 5px;
+  position: fixed;
+  left: 0;
+  right: 0;
 `;
 
 export const Result = styled.div`
-  margin-top: 15px;
+  margin-top: 50px;
   padding: 10px;
-  margin-bottom: 30px;
+  padding-bottom: 50px;
   overflow: auto;
   height: 100%;
+  font-size: 1.2rem;
 
   display: flex;
   justify-content: center;
@@ -96,17 +103,10 @@ export const Result = styled.div`
   }
 `;
 
-export const ResultImage = styled.img`
+export const ResultImage = styled.div`
   width: 100%;
-  max-height: 200px;
+  height: 200px;
+  position: relative;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 `;
-
-/*
-
-
-    ${Breakpoints.mobileOnly} {
-      flex-direction: row;
-    }
-
-
-*/

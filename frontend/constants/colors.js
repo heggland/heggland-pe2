@@ -7,3 +7,6 @@ export const greenDarkBlue = "#8CDEDC";
 export const darkBlue = "#011936";
 export const orange = "orange";
 export const black = "black";
+export const sandy = "rgb(248 249 250)";
+export const white = "white";
+export const grey = "rgb(52 58 64)";

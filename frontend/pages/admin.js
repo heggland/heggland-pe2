@@ -23,6 +23,7 @@ const Note = styled.div`
   width: 50%;
   box-shadow: 0px 0px 15px 9px rgba(165, 165, 165, 0.4);
   border-top: 30px solid rgb(245 245 8);
+  margin-bottom: 20px;
 `;
 
 const NoteHeader = styled.div`

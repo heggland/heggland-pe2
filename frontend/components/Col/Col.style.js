@@ -89,7 +89,7 @@ const Col = styled.div`
       display: flex !important;
     `}
 
-  //border: 1px solid grey; // debugging go brr
+  // border: 1px solid red; // debugging go brr
 
   ${({ values }) =>
     values.overflow === "hidden" &&
@@ -99,7 +99,7 @@ const Col = styled.div`
       white-space: nowrap;
     `}
 
-    ${({ values }) =>
+  ${({ values }) =>
     values.margin &&
     css`
       margin: ${values.margin};
@@ -111,6 +111,15 @@ const Col = styled.div`
     css`
       padding: ${values.padding};
     `}
+
+        
+    ${({ values }) =>
+    values.backgroundColor &&
+    css`
+      background-color: ${values.backgroundColor};
+    `}
+
+
 
   ${({ values }) => values && CreateCSS(values)}
 `;

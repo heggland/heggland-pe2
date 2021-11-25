@@ -19,6 +19,8 @@ import * as Style from "./SearchAccommodation.Style";
 import Modal from "react-modal";
 import Error from "../../modules/error/error";
 
+import Image from "next/image";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -27,13 +29,13 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "80%",
     height: "80%",
+    width: "90%",
   },
+  overlay: { zIndex: 1000 },
 };
 
 const SearchAccommodation = ({ type }) => {
-  const [fetchError, setFetchError] = useState(null);
   const [error, setError] = useState(null);
   const [accommodations, setAccommodation] = useState(null);
 
@@ -90,7 +92,7 @@ const SearchAccommodation = ({ type }) => {
                 city: accommodations.city,
               })
                 .toLowerCase()
-                .includes(search)
+                .includes(search.toLowerCase())
             ) {
               return accommodations;
             }
@@ -125,7 +127,7 @@ const SearchAccommodation = ({ type }) => {
           >
             <Style.ModalContainer>
               <Style.Header>
-                <Row justifyContent="center">
+                <Row justifyContent="center" padding="0 0 5px  0">
                   <Col xs={1}>
                     <FontAwesomeIcon icon={SearchIcon} />
                   </Col>
@@ -170,25 +172,31 @@ const SearchAccommodation = ({ type }) => {
                             <Row key={id} margin="5% 0">
                               <Col xs={12}>
                                 <a href={`/accommodation/${id}`}>
-                                  <Row justifyContent="center">
-                                    <Col xs={6} margin="0 25px 0 0">
+                                  <Row justifyContent="center" padding="35px 0">
+                                    <Col xs={12} md={6} margin="0 25px 0 0">
                                       <Heading size={4}>{name}</Heading>
                                       <Heading size={6}>
                                         {(address, zip_code, city).toString()}
                                       </Heading>
-                                      <i>
-                                        <small>
-                                          {description.slice(0, 250)}
-                                          {description.length > 250 && "..."}
-                                        </small>
-                                      </i>
+                                      <Row xs="none">
+                                        <i>
+                                          <small>
+                                            {description.slice(0, 250)}
+                                            {description.length > 250 && "..."}
+                                          </small>
+                                        </i>
+                                      </Row>
                                     </Col>
-                                    <Col xs={4}>
+                                    <Col xs={12} md={4}>
                                       {image[0] && (
-                                        <Style.ResultImage
-                                          src={BASE_URL + image[0].url}
-                                          alt={image[0].alternativeText}
-                                        />
+                                        <Style.ResultImage>
+                                          <Image
+                                            src={image[0].url}
+                                            alt={image[0].alternativeText}
+                                            layout="fill"
+                                            objectFit="scale-down"
+                                          />
+                                        </Style.ResultImage>
                                       )}
                                     </Col>
                                   </Row>

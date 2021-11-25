@@ -4,11 +4,24 @@ import * as Colors from "../../../constants/colors";
 
 export const Container = styled.div`
   ${Breakpoints.xs} {
-    margin: 0 20px;
+    margin: 0;
   }
 
   ${Breakpoints.md} {
     margin: 50px 20px;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  width: 100%;
+
+  ${Breakpoints.mobileOnly} {
+    flex-direction: column;
+    & > :first-child {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -22,28 +35,13 @@ display: flex;
 align-items: center;
 place-content: center;
 
-${Breakpoints.desktopOnly} {
 &:hover {
     cursor: pointer;
     background-color: rgb(0 114 231);
   }
-}
 
 ${Breakpoints.mobileOnly} {
-  position: relative;
-  color: black;
-  & > svg {
-    display: none;
-  }
-  width: fit-content;
-  ::after { 
-    content: " Go Back";
-  }
-  &:hover {
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: underline;
-  }
+display: none;
 }
 
 `;
@@ -157,6 +155,11 @@ export const Box = styled.div`
     css`
       margin: ${margin};
     `}
+
+    ${Breakpoints.xs} {
+    padding: 20px;
+    border: 0;
+  }
 `;
 
 export const CheckBox = styled.input``;
@@ -168,4 +171,9 @@ export const ImageContainer = styled.div`
 export const Image = styled.img`
   height: 250px;
   width: 250px;
+`;
+
+export const ErrorContainer = styled.div`
+  padding-bottom: 10px;
+  border-bottom: 1px solid red;
 `;

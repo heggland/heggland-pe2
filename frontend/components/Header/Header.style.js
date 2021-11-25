@@ -13,7 +13,7 @@ export const Header = styled.div`
     ${({ page }) =>
       page === "home" &&
       css`
-        height: 80vh !important;
+        height: 100vh !important;
       `}
   }
 `;

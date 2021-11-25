@@ -14,24 +14,26 @@ export default function Home() {
         imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
         imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
       />
-      <Container>
+      <Container padding="50px 0" backgroundColor="even">
         <Row justifyContent="center">
-          <Col xs={8} md={8}>
-            <Row>
-              <Heading>Get in Touch</Heading>
+          <Col xs={8} md={8} backgroundColor="white">
+            <Row padding="0 0 0 30px">
+              <Heading>Contact us</Heading>
             </Row>
             <Row>
               <Col xs={12}>
                 <Row>
-                  <Col xs={12} sm={5}>
+                  <Col xs={12} sm={5} padding="30px">
                     <ContactForm />
                   </Col>
                   <Col xs="none" sm={1} />
                   <Col xs={12} sm={6}>
+                    <Heading size={4}>Visit address:</Heading>
                     <address>
-                      4610 kristiansand
-                      <br />
-                      Norway
+                      <p>4600 Kristiansand</p>
+                      <p>Strandgata 13</p>
+                      <p>Norway</p>
+                      <p>+00 12 34 56 78 </p>
                     </address>
                   </Col>
                 </Row>

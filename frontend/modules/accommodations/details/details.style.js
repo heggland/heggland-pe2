@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import * as Breakpoints from "../../../components/Global/Breakpoints";
+import * as Colors from "../../../constants/colors";
 
 export const Container = styled.div`
   display: flex;
@@ -6,6 +8,12 @@ export const Container = styled.div`
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(228 230 233);
   margin-bottom: 30px;
+
+  ${Breakpoints.md} {
+    & > * {
+      padding: 1% 0 0 0;
+    }
+  }
 `;
 
 export const Image = styled.img`
@@ -34,7 +42,7 @@ export const CloseModal = styled.div`
 `;
 
 export const OrderButton = styled.button`
-  background-color: grey;
+  background-color: rgb(45 148 0 / 85%);
   border: none;
   color: white;
   padding: 10px 25px;

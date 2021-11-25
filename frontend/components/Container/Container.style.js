@@ -1,9 +1,23 @@
 import styled, { css } from "styled-components";
 import * as Breakpoints from "../Global/Breakpoints";
+import * as Colors from "../../constants/colors";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${({ values }) =>
+    (values.hasOwnProperty("backgroundColor") &&
+      values.backgroundColor === "odd" &&
+      css`
+    background-color: ${Colors.white};
+      }
+    `) ||
+    (values.backgroundColor === "even" &&
+      css`
+    background-color: ${Colors.sandy};
+      }
+    `)}
 
   ${({ values }) =>
     values.hasOwnProperty("placeContent") &&
@@ -14,12 +28,16 @@ const Container = styled.div`
       `}
 
   ${({ values }) =>
-    values.hasOwnProperty("height") &&
-    !isNaN(values.height) &&
-    css`
+    (values.hasOwnProperty("height") &&
+      !isNaN(values.height) &&
+      css`
       height: ${values.height}%;
       }
-    `}
+    `) ||
+    css`
+    height: ${values.height};
+    }
+  `}
 
     ${({ values }) =>
     values.hasOwnProperty("float") &&

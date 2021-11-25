@@ -11,11 +11,18 @@ import Row from "../../../components/Row/Row";
 import axios from "axios";
 import { BASE_URL, ENQUIRIES_PATH } from "../../../constants/api";
 import { ENQUIRY_SCHEMA } from "../../../constants/schema";
+import { useRouter } from "next/router";
 
 const EnquiryForm = ({ accommodation }) => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [sent, setSent] = useState(false);
+
+  const router = useRouter();
+  const query = router.query;
+
+  const fromDate = query.from || "";
+  const toDate = query.to || "";
 
   // default rooms, people values. future improvements - make dynamic with a new database for rooms on each accommodation
   const rooms = 10;
@@ -149,7 +156,10 @@ const EnquiryForm = ({ accommodation }) => {
               type="date"
               min={new Date().toISOString().split("T")[0]}
               {...register("date_from")}
-              defaultValue={new Date().toISOString().split("T")[0]}
+              defaultValue={
+                (!query.from && new Date().toISOString().split("T")[0]) ||
+                fromDate
+              }
             />
             {errors.date_from && (
               <div>
@@ -167,6 +177,7 @@ const EnquiryForm = ({ accommodation }) => {
               type="date"
               min={new Date().toISOString().split("T")[0]}
               {...register("date_to")}
+              defaultValue={query.to && toDate}
             />
             {errors.date_to && (
               <div>

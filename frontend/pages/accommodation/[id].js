@@ -25,7 +25,6 @@ const Accommondation = ({ content, error }) => {
       </>
     );
   }
-  console.log(content);
   return (
     <Layout
       title={content.name + " | Holidaze"}
@@ -36,10 +35,16 @@ const Accommondation = ({ content, error }) => {
   );
 };
 
+/*
+"?" +
+        data.date_from.toISOString().split("T")[0] +
+        "&" +
+        data.date_to.toISOString().split("T")[0]
+*/
+
 export async function getServerSidePaths() {
   try {
     const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);
-
     const paths = response.data.map((data) => ({
       params: { id: data.id },
     }));
@@ -53,6 +58,7 @@ export async function getServerSidePaths() {
 export async function getServerSideProps({ params }) {
   let data = [];
 
+  console.log(params);
   try {
     const response = await axios.get(
       BASE_URL + ACCOMMONDATION_PATH + params.id

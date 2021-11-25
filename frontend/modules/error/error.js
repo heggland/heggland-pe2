@@ -92,42 +92,48 @@ const Error = ({ string, path }) => {
     },
   ];
 
-  // filter out error code from string
-  const filteredError = errorsArray.find((item) => string.includes(item.code));
-  /*   const stringError =
-    filteredError.code +
-    " " +
-    filteredError.description +
-    " " +
-    filteredError.comment; */
+  try {
+    // filter out error code from string
+    const filteredError = errorsArray.find((item) =>
+      string.includes(item.code)
+    );
 
-  if (string.includes("ECONNREFUSED")) {
+    if (string.includes("ECONNREFUSED")) {
+      return (
+        <Style.ErrorString>Connection error to the server! </Style.ErrorString>
+      );
+    }
+
+    // custom errors
+    if (path) {
+      const paths = ["contact", "login", "enquiry", "accomondation"];
+      const filteredPath = paths.find((item) => path.includes(item));
+
+      const customError =
+        path === filteredPath
+          ? filteredError.custom[filteredPath]
+          : filteredError.note;
+
+      return <Style.ErrorString>{customError}</Style.ErrorString>;
+    }
+
     return (
-      <Style.ErrorString>Connection error to the server! </Style.ErrorString>
+      <Style.Container>
+        <Style.Title>{filteredError.code}</Style.Title>
+        <Style.Subtitle>{filteredError.description}</Style.Subtitle>
+        <Style.Description>{filteredError.comment}</Style.Description>
+        {filteredError.note && <Style.Note>{filteredError.note}</Style.Note>}
+      </Style.Container>
+    );
+  } catch (error) {
+    return (
+      <Style.Container>
+        <Style.Title>Unknown error</Style.Title>
+        <Style.Subtitle>Network might be down</Style.Subtitle>
+        <Style.Description>{error.toString()}</Style.Description>
+      </Style.Container>
     );
   }
-
-  // custom errors
-  if (path) {
-    const paths = ["contact", "login", "enquiry", "accomondation"];
-    const filteredPath = paths.find((item) => path.includes(item));
-
-    const customError =
-      path === filteredPath
-        ? filteredError.custom[filteredPath]
-        : filteredError.note;
-
-    return <Style.ErrorString>{customError}</Style.ErrorString>;
-  }
-
-  return (
-    <Style.Container>
-      <Style.Title>{filteredError.code}</Style.Title>
-      <Style.Subtitle>{filteredError.description}</Style.Subtitle>
-      <Style.Description>{filteredError.comment}</Style.Description>
-      {filteredError.note && <Style.Note>{filteredError.note}</Style.Note>}
-    </Style.Container>
-  );
 };
 
 export default Error;

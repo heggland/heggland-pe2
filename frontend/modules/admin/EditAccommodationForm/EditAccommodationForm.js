@@ -42,7 +42,6 @@ const EditForm = ({
   const [updatedAt, setUpdatedAt] = useState(null);
   const [stateButton, setStateButton] = useState(true);
   const [imagePreview, setImagePreview] = useState(false);
-  const [imageRevertButton, setImageRevertButton] = useState(true);
   const [imageFile, setImageFile] = useState(null);
   const [newUpload, setNewUpload] = useState(false);
   const [notification, setNotification] = useState();
@@ -91,10 +90,10 @@ const EditForm = ({
       let response;
       if (id) {
         response = await http.put(BASE_URL + ACCOMMONDATION_PATH + id, data);
-        setNotification("Saved");
       } else {
         response = await http.post(BASE_URL + ACCOMMONDATION_PATH, data);
       }
+      setNotification("Saved");
 
       // if new item is successfully created, push to edit route of the new item
       if (!id) {
@@ -102,11 +101,11 @@ const EditForm = ({
       }
 
       setSaveLoading(false);
-      setImageRevertButton(false);
       setUpdated(true);
       setUpdatedAt(response.data.updated_at);
     } catch (error) {
       setError(error.toString());
+      console.log(error);
     }
   }
   async function deleteButton(e) {
@@ -128,7 +127,6 @@ const EditForm = ({
         }
       } catch (error) {
         setError(error.toString());
-        console.log(error);
       }
     }
   }
@@ -168,7 +166,6 @@ const EditForm = ({
         setStateLoading(false);
       } catch (error) {
         setError(error.toString());
-        console.log(error);
       }
     }
   }
@@ -179,12 +176,10 @@ const EditForm = ({
     if (e.target.files[0]) {
       setImagePreview(true);
       setImageFile(URL.createObjectURL(e.target.files[0]));
+    } else {
+      setImagePreview(false);
+      setImageFile(null);
     }
-  };
-
-  const revertImage = () => {
-    setImagePreview(false);
-    setImageFile(null);
   };
 
   const newImageUpload = () => {
@@ -208,19 +203,24 @@ const EditForm = ({
       <Style.BackButton onClick={goBack}>
         <FontAwesomeIcon icon={chevron} size="lg" />
       </Style.BackButton>
-      {error && <Error string={error} />}
+
       {updated && <Save>{notification}</Save>}
       <Col xs={12} md={11} margin="0 0 0 2rem">
+        {error && (
+          <Style.ErrorContainer>
+            <Error string={error} />
+          </Style.ErrorContainer>
+        )}
         <form
           onSubmit={handleSubmit(onSubmit)}
           onChange={id && disableStateButton}
         >
           <Row padding="0px 0px 5px 0px" alignItems="center">
             <Col md={6}>
-              <Heading>{(id && name) || "Create a new accommodation"}</Heading>
+              <Heading>{(id && name) || "New accommodation"}</Heading>
             </Col>
 
-            <Col xs={12} md={6} alignSelf="center">
+            <Col xs="auto" md={6} alignSelf="center">
               <Row justifyContent="right">
                 <Style.ButtonGroup>
                   {id && (
@@ -256,105 +256,106 @@ const EditForm = ({
             </Col>
           </Row>
           <Row>
-            <Col xs={11} md={9}>
-              <Style.Box padding="22px 40px">
-                <Row padding="0px 0px 20px 0px">
-                  <Heading size={5}>DESCRIPTION</Heading>
-                  <Style.Textarea
-                    placeholder="description *"
-                    defaultValue={description && description}
-                    {...register("description")}
-                    type="text"
-                    rows="10"
-                  />
-                  {errors.description && (
-                    <span>{errors.description.message}</span>
-                  )}
-                </Row>
-                <Row padding="0px 0px 20px 0px">
-                  <Col xs={11} md={6}>
-                    <Heading size={5}>NAME</Heading>
-                    <input
-                      placeholder="name *"
-                      defaultValue={name && name}
-                      {...register("name")}
+            <Style.Content>
+              <Col xs={11} md={9}>
+                <Style.Box padding="22px 40px">
+                  <Row padding="0px 0px 20px 0px">
+                    <Heading size={5}>DESCRIPTION</Heading>
+                    <Style.Textarea
+                      placeholder="description *"
+                      defaultValue={description && description}
+                      {...register("description")}
                       type="text"
-                      autoFocus
+                      rows="10"
                     />
-                    {errors.name && <span>{errors.name.message}</span>}
-                  </Col>
-                  <Col xs={11} md={6}>
-                    <Heading size={5}>ADDRESS</Heading>
-                    <input
-                      placeholder="address *"
-                      defaultValue={address && address}
-                      {...register("address")}
-                      type="text"
-                    />
-                    {errors.address && <span>{errors.address.message}</span>}
-                  </Col>
-                </Row>
-                <Row padding="0px 0px 20px 0px">
-                  <Col xs={11} md={6}>
-                    <Heading size={5}>CITY</Heading>
-                    <input
-                      placeholder="city *"
-                      defaultValue={city && city}
-                      {...register("city")}
-                      type="text"
-                    />
-                    {errors.city && <span>{errors.city.message}</span>}
-                  </Col>
-                  <Col xs={11} md={6}>
-                    <Heading size={5}>ZIP CODE</Heading>
-                    <input
-                      placeholder="zip_code *"
-                      defaultValue={zip_code && zip_code}
-                      {...register("zip_code")}
-                      type="text"
-                    />
-                    {errors.zip_code && <span>{errors.zip_code.message}</span>}
-                  </Col>
-                </Row>
-                <Row padding="0px 0px 20px 0px">
-                  <Col xs={11} md={6}>
-                    <Row>
-                      <Col md={6}>
-                        <Heading size={6}>IMAGE</Heading>
-                        <Style.ImageContainer>
-                          {(imagePreview && (
-                            <>
-                              <Style.Image
-                                src={imageFile}
-                                alt="preview image"
-                              />
-
-                              <div onChange={handleImageChange}>
-                                <input
-                                  type="file"
-                                  name="image"
-                                  {...register("image")}
+                    {errors.description && (
+                      <span>{errors.description.message}</span>
+                    )}
+                  </Row>
+                  <Row padding="0px 0px 20px 0px">
+                    <Col xs={11} md={6}>
+                      <Heading size={5}>NAME</Heading>
+                      <input
+                        placeholder="name *"
+                        defaultValue={name && name}
+                        {...register("name")}
+                        type="text"
+                        autoFocus
+                      />
+                      {errors.name && <span>{errors.name.message}</span>}
+                    </Col>
+                    <Col xs={11} md={6}>
+                      <Heading size={5}>ADDRESS</Heading>
+                      <input
+                        placeholder="address *"
+                        defaultValue={address && address}
+                        {...register("address")}
+                        type="text"
+                      />
+                      {errors.address && <span>{errors.address.message}</span>}
+                    </Col>
+                  </Row>
+                  <Row padding="0px 0px 20px 0px">
+                    <Col xs={11} md={6}>
+                      <Heading size={5}>CITY</Heading>
+                      <input
+                        placeholder="city *"
+                        defaultValue={city && city}
+                        {...register("city")}
+                        type="text"
+                      />
+                      {errors.city && <span>{errors.city.message}</span>}
+                    </Col>
+                    <Col xs={11} md={6}>
+                      <Heading size={5}>ZIP CODE</Heading>
+                      <input
+                        placeholder="zip_code *"
+                        defaultValue={zip_code && zip_code}
+                        {...register("zip_code")}
+                        type="text"
+                      />
+                      {errors.zip_code && (
+                        <span>{errors.zip_code.message}</span>
+                      )}
+                    </Col>
+                  </Row>
+                  <Row padding="0px 0px 20px 0px">
+                    <Col xs={11} md={6}>
+                      <Row>
+                        <Col md={6}>
+                          <Heading size={6}>IMAGE</Heading>
+                          <Style.ImageContainer>
+                            {(imagePreview && (
+                              <>
+                                <Style.Image
+                                  src={imageFile}
+                                  alt="preview image"
                                 />
-                              </div>
-                              {imageRevertButton && (
-                                <button onClick={revertImage}>
-                                  Revert image
-                                </button>
-                              )}
-                            </>
-                          )) || (
-                            <>
-                              {accommodationImage && (
-                                <Style.Image src={accommodationImage} />
-                              )}
-
-                              <div onChange={handleImageChange}>
-                                {(newUpload && (
+                                <div onChange={handleImageChange}>
                                   <input
                                     type="file"
                                     name="image"
                                     {...register("image")}
                                   />
+                                </div>
+                                {/*                                <button onClick={revertImage}>
+                                  Revert image
+                                </button> */}
+                              </>
+                            )) || (
+                              <>
+                                {accommodationImage && (
+                                  <Style.Image src={accommodationImage} />
+                                )}
+
+                                {(newUpload && (
+                                  <div onChange={handleImageChange}>
+                                    <input
+                                      type="file"
+                                      name="image"
+                                      {...register("image")}
+                                    />
+                                  </div>
                                 )) || (
                                   <Style.Button
                                     onClick={newImageUpload}
@@ -362,83 +363,90 @@ const EditForm = ({
                                     color="white"
                                     padding="7px 10px"
                                   >
-                                    Upload new image?
+                                    {(accommodationImage &&
+                                      "Upload new image?") ||
+                                      "Upload image"}
                                   </Style.Button>
                                 )}
-                              </div>
-                              <span>
-                                {errors.image && (
-                                  <span>{errors.image.message}</span>
-                                )}
-                              </span>
-                            </>
-                          )}
-                        </Style.ImageContainer>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </Style.Box>
-            </Col>
 
-            <Col md={0.5} />
-
-            <Col xs={11} md={2.5}>
-              <Style.InformationGroup>
-                <Style.Box margin=" 0 0 10px 0 ">
-                  <Row>
-                    <Heading size={5}>INFORMATION</Heading>
-                  </Row>
-                  <Row padding="10px 0" justifyContent="space-between">
-                    <Col xs={4}>
-                      <span>Featured</span>
+                                <span>
+                                  {errors.image && (
+                                    <span>{errors.image.message}</span>
+                                  )}
+                                </span>
+                              </>
+                            )}
+                          </Style.ImageContainer>
+                        </Col>
+                      </Row>
                     </Col>
-                    <Col xs={8}>
-                      <Style.CheckBox
-                        type="checkbox"
-                        defaultChecked={featured && featured}
-                        name="featured"
-                        {...register("featured")}
-                      />
-                    </Col>
-                    {errors.featured && <span>{errors.featured.message}</span>}
-                  </Row>
-                  <Row padding="10px 0">
-                    Last update:&nbsp;
-                    {(!updatedAt && updated_at && (
-                      <FormatDate date={updated_at} />
-                    )) || <FormatDate date={updatedAt} />}
                   </Row>
                 </Style.Box>
-                <Style.StateInfo
-                  state={
-                    (updatedState && updatedState === null && "draft") ||
-                    (isNaN(updatedState) && "published") ||
-                    (state && "published") ||
-                    "draft"
-                  }
-                >
-                  <Row padding="5px 10px">
-                    • Editing{" "}
-                    {(updatedState && updatedState === null && "draft") ||
-                      (isNaN(updatedState) && "published") ||
-                      (state && "published") ||
-                      "draft"}{" "}
-                    version
-                  </Row>
-                </Style.StateInfo>
-                {id && (
-                  <Style.Box padding="5px 10px" margin="10px 0 0 0">
+              </Col>
+
+              <Col md={0.5} />
+
+              <Col xs={11} md={2.5}>
+                <Style.InformationGroup>
+                  <Style.Box margin=" 0 0 10px 0 ">
+                    <Row>
+                      <Heading size={5}>INFORMATION</Heading>
+                    </Row>
+                    <Row padding="10px 0" justifyContent="space-between">
+                      <Col xs={4}>
+                        <span>Featured</span>
+                      </Col>
+                      <Col xs={8}>
+                        <Style.CheckBox
+                          type="checkbox"
+                          defaultChecked={featured && featured}
+                          name="featured"
+                          {...register("featured")}
+                        />
+                      </Col>
+                      {errors.featured && (
+                        <span>{errors.featured.message}</span>
+                      )}
+                    </Row>
                     <Row padding="10px 0">
-                      <Style.ButtonDelete onClick={deleteButton}>
-                        <FontAwesomeIcon icon={trash} size="lg" />
-                        &nbsp;Delete this accommodation
-                      </Style.ButtonDelete>
+                      Last update:&nbsp;
+                      {(!updatedAt && updated_at && (
+                        <FormatDate date={updated_at} />
+                      )) || <FormatDate date={updatedAt} />}
                     </Row>
                   </Style.Box>
-                )}
-              </Style.InformationGroup>
-            </Col>
+                  {id && (
+                    <>
+                      <Style.StateInfo
+                        state={
+                          (updatedState && updatedState === null && "draft") ||
+                          (isNaN(updatedState) && "published") ||
+                          (state && "published") ||
+                          "draft"
+                        }
+                      >
+                        <Row padding="5px 10px">
+                          • Editing{" "}
+                          {(updatedState && updatedState === null && "draft") ||
+                            (isNaN(updatedState) && "published") ||
+                            (state && "published") ||
+                            "draft"}{" "}
+                          version
+                        </Row>
+                      </Style.StateInfo>
+                      <Style.Box padding="5px 10px" margin="10px 0 0 0">
+                        <Row padding="10px 0">
+                          <Style.ButtonDelete onClick={deleteButton}>
+                            <FontAwesomeIcon icon={trash} size="lg" />
+                            &nbsp;Delete this accommodation
+                          </Style.ButtonDelete>
+                        </Row>
+                      </Style.Box>
+                    </>
+                  )}
+                </Style.InformationGroup>
+              </Col>
+            </Style.Content>
           </Row>
         </form>
       </Col>

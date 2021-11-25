@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import { xs, sm, lg, md } from "../Global/Breakpoints";
+import * as Colors from "../../constants/colors";
 
 export const Card = styled.div`
   background-color: white;
   margin: 10px 0;
   border-radius: 5px;
   background-color: white;
-  box-shadow: rgb(227 233 243) 0px 2px 20px;
+  box-shadow: 0px 2px 20px rgb(227 233 243);
   padding: 10px 20px;
 
   &:hover {
-    box-shadow: 0 10px 20px rgb(0 0 0 / 4%);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
   }
 
   ${md} {
@@ -25,6 +26,7 @@ export const Head = styled.div`
 export const Image = styled.img`
   height: 200px;
   width: 100%;
+  position: relative;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 `;
@@ -41,7 +43,7 @@ export const Heading = styled.div`
   align-items: center;
 
   ${Card}:hover & {
-    color: rgb(255 74 82);
+    color: ${Colors.blue};
   }
 `;
 
