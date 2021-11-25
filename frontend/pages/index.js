@@ -19,14 +19,6 @@ import Image from "next/image";
 import Services from "../modules/services/services";
 import About from "../modules/about/about";
 
-const AboveFold = styled.div`
-  position: relative;
-  top: -85px;
-  margin-bottom: -85px;
-  z-index: 1;
-  height: 100vh;
-`;
-
 const Index = ({ content, error }) => {
   if (content) {
     // filter out featured accomondations
@@ -39,16 +31,12 @@ const Index = ({ content, error }) => {
 
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
-      <AboveFold>
-        {/* TODO: SAVE STATIC IMAGES IN PUBLIC FOLDER */}
-        <Header page="home" />
-        <Row justifyContent="center">
-          <SearchBox
-            width={7}
-            accomondations={content && content.length >= 1 && content}
-          />
-        </Row>
-      </AboveFold>
+      {/* TODO: SAVE STATIC IMAGES IN PUBLIC FOLDER */}
+      <Header page="home" />
+      <SearchBox
+        accomondations={content && content.length >= 1 && content}
+        width={7}
+      />
       <Container placeContent="center" backgroundColor="odd" padding="100px 0">
         <About />
       </Container>

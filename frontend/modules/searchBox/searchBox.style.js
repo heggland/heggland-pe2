@@ -2,6 +2,22 @@ import styled, { css } from "styled-components";
 import * as colors from "../../constants/colors";
 import * as Breakpoints from "../../components/Global/Breakpoints";
 
+export const SearchBox = styled.div`
+  position: relative;
+  margin-top: -25px;
+  ${Breakpoints.xsOnly} {
+    position: absolute;
+    transform: translate(0, 70%);
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 50%);
+    & > * > * > * > * {
+      border: 3px solid ${colors.orange};
+    }
+  }
+`;
+
 export const Container = styled.div`
   background-color: white;
   color: black;
@@ -9,16 +25,29 @@ export const Container = styled.div`
   border: 3px solid ${colors.orange}};
   border-radius: 5px;
 
-  position: absolute;
-  top: 70%;
-  transform: translate(0, 70%);
- 
-
   ${({ width }) =>
     width &&
     css`
       width: calc(calc(100% / 12) * ${width});
     `}
+ 
+
+  /*
+  ${Breakpoints.sm} {
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 50%);
+  }
+
+  ${Breakpoints.md} {
+    position: absolute;
+    top: 25%;
+    transform: translate(0, 25%);
+  } */
+ 
+
+
 
   // border around last input field
   & > * > * > * {
@@ -26,8 +55,9 @@ export const Container = styled.div`
     border-right: none;
     }
   } 
-  ${Breakpoints.mobileOnly} {
-    width: 95%;
+
+  ${Breakpoints.xsOnly} {
+    width: 99%;
     position: absolute;
     top: 50%;
     transform: translate(0, 50%);
@@ -116,7 +146,6 @@ export const ErrorDate = styled.div`
   font-size: 0.7rem;
 
   ${Breakpoints.sm} {
-    top: -25%;
     position: absolute;
     color: red;
     padding: 10px;
@@ -125,14 +154,13 @@ export const ErrorDate = styled.div`
 `;
 
 export const ErrorSearch = styled.div`
-  position: absolute;
+  position: relative;
   top: -5px;
   color: red;
   padding: 10px;
   font-size: 0.5rem;
 
   ${Breakpoints.sm} {
-    top: -25%;
     position: absolute;
     color: red;
     padding: 10px;

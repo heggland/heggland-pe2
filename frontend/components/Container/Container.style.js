@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import * as Breakpoints from "../Global/Breakpoints";
 import * as Colors from "../../constants/colors";
 
 const Container = styled.div`

@@ -22,7 +22,7 @@ import {
   faSpinner as Spinner,
 } from "@fortawesome/free-solid-svg-icons";
 import FormatDate from "../../../components/Common/FormatDate";
-import Save from "../../notification/save/save";
+import Notification from "../../notification/notification";
 
 const EditForm = ({
   id,
@@ -204,7 +204,7 @@ const EditForm = ({
         <FontAwesomeIcon icon={chevron} size="lg" />
       </Style.BackButton>
 
-      {updated && <Save>{notification}</Save>}
+      {updated && <Notification>{notification}</Notification>}
       <Col xs={12} md={11} margin="0 0 0 2rem">
         {error && (
           <Style.ErrorContainer>

@@ -30,6 +30,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Error from "../modules/error/error";
 
+import Notification from "../modules/notification/notification";
+
+const LoginContainer = styled.div`
+  background-color: white;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 2px 20px rgb(227 233 243);
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  margin-bottom: 25px;
+`;
+
 const LoginNavigation = styled.div`
   position: absolute;
   top: 0;
@@ -65,7 +80,29 @@ const LoginButton = styled.button`
 
 const Input = styled.input`
   border-radius: 3px;
-  // prop: error
+  border: none;
+  border-bottom: 2px solid rgb(227 233 243);
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    border-bottom: 1px solid rgb(0 114 182);
+    -webkit-text-fill-color: black;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+
+  margin: 10px 0;
+
   ${({ error }) =>
     error &&
     css`
@@ -126,7 +163,7 @@ const Login = () => {
       setError(error.toString());
       setTimeout(() => {
         setError(null);
-      }, 3000);
+      }, 1500);
     }
   }
 
@@ -144,66 +181,70 @@ const Login = () => {
         </Row>
       </LoginNavigation>
 
-      <Container placeContent="center" height={100}>
-        <Row justifyContent="center" textAlignLast="center">
-          <LoginForm onSubmit={handleSubmit(onSubmit)}>
-            <Col>
-              <Heading size={4}>Email address</Heading>
-            </Col>
-            <Col>
-              <Input
-                {...register("username")}
-                type="username"
-                error={errors.username && true}
-                name="username"
-                placeholder="ola@nordmann.no"
-                autoComplete="on"
-                autoFocus
-              />
-            </Col>
-            {errors.username && (
-              <div className="text-muted">{errors.username.message}</div>
-            )}
-
-            <Col>
-              <Heading size={4}>Password</Heading>
-            </Col>
-            <Col>
-              <Input
-                {...register("password")}
-                error={errors.password && true}
-                type="password"
-                name="password"
-                placeholder="Passord"
-                autoComplete="on"
-              />
-
-              {errors.password && (
-                <div className="text-muted">{errors.password.message}</div>
-              )}
-            </Col>
-
-            <Col>
-              {submitting ? (
-                <LoginButton width={100} bgColor="success" type="submit">
-                  <FontAwesomeIcon icon={Spinner} spin />
-                </LoginButton>
-              ) : (
-                (error && (
-                  <LoginButton width={100} bgColor="warning" type="submit">
-                    <FontAwesomeIcon icon={Exclamation} />
-                  </LoginButton>
-                )) || (
-                  <LoginButton width={100} bgColor="success" type="submit">
-                    {(loggedIn && "Success") || "Login"}
-                  </LoginButton>
-                )
-              )}
-            </Col>
-            <Row justifyContent="center" margin="10px 0 0 0">
-              {error && <Error string={error} path="login" />}
+      <Container placeContent="center" backgroundColor="even" height={100}>
+        <Row justifyContent="center">
+          <LoginContainer>
+            <Row justifyContent="center" padding="0 0 25px 0">
+              <Heading>Login</Heading>
             </Row>
-          </LoginForm>
+            <LoginForm onSubmit={handleSubmit(onSubmit)}>
+              <Col>
+                <Input
+                  {...register("username")}
+                  type="username"
+                  error={errors.username && true}
+                  name="username"
+                  placeholder="Email"
+                  autoComplete="on"
+                  autoFocus
+                />
+              </Col>
+              {errors.username && (
+                <div className="text-muted">{errors.username.message}</div>
+              )}
+
+              <Col>
+                <Input
+                  {...register("password")}
+                  error={errors.password && true}
+                  type="password"
+                  name="password"
+                  placeholder="Passord"
+                  autoComplete="on"
+                />
+
+                {errors.password && (
+                  <div className="text-muted">{errors.password.message}</div>
+                )}
+              </Col>
+
+              <Row justifyContent="center" padding="25px 0">
+                <Col>
+                  {submitting ? (
+                    <LoginButton width={100} bgColor="success" type="submit">
+                      <FontAwesomeIcon icon={Spinner} spin />
+                    </LoginButton>
+                  ) : (
+                    (error && (
+                      <LoginButton width={100} bgColor="warning" type="submit">
+                        <FontAwesomeIcon icon={Exclamation} />
+                      </LoginButton>
+                    )) || (
+                      <LoginButton width={100} bgColor="success" type="submit">
+                        {(loggedIn && "Success") || "Login"}
+                      </LoginButton>
+                    )
+                  )}
+                </Col>
+              </Row>
+
+              {error && (
+                <Notification type="error">
+                  <Error string={error} path="login" />
+                </Notification>
+              )}
+            </LoginForm>
+          </LoginContainer>
         </Row>
       </Container>
     </>

@@ -31,10 +31,7 @@ const Accommodation = ({ content, error }) => {
       <Container padding="0 0 50px 0">
         <Row justifyContent="center">
           <Col xs={11} md={8}>
-            <Row>
-              <Heading>Our Accommodations</Heading>
-            </Row>
-            <Row>
+            <Row padding="100px 0 100px 0">
               {(content &&
                 content.length >= 1 &&
                 content.map(({ id, name, image, city }) => {

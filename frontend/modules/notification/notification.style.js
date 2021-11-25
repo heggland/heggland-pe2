@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import * as colors from "../../../constants/colors";
+import styled, { css } from "styled-components";
+import * as colors from "../../constants/colors";
 
 export const Container = styled.div`
   height: 40px;
@@ -20,6 +20,12 @@ export const Container = styled.div`
   pointer-events: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-left: 2px solid ${colors.blue};
+
+  ${({ type }) =>
+    type === "error" &&
+    css`
+      border-left: 2px solid ${colors.red};
+    `}
 
   z-index: 1;
 

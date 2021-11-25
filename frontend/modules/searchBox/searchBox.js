@@ -90,98 +90,100 @@ const SearchBox = ({ accomondations = "", width }) => {
   };
 
   return (
-    <>
-      <Col xs={11} sm={12} md={8}>
-        <Row justifyContent="center">
-          <Style.Container width={width}>
-            <Col sm={12} height="100%">
-              <form autoComplete="off">
-                <Row height="100%">
-                  <Col xs={12} sm={5} height="100%">
-                    <Row alignItems="center" padding="0 10px">
-                      <Style.InputLabel htmlFor="textInput">
-                        <FontAwesomeIcon icon={BedIcon} />
-                      </Style.InputLabel>
+    <Style.SearchBox>
+      <Row justifyContent="center" padding="0 0  100px 0">
+        <Col xs={11} sm={12}>
+          <Row justifyContent="center">
+            <Style.Container width={width}>
+              <Col sm={12} height="100%">
+                <form autoComplete="off">
+                  <Row height="100%">
+                    <Col xs={12} sm={5} height="100%">
+                      <Row alignItems="center" padding="0 10px">
+                        <Style.InputLabel htmlFor="textInput">
+                          <FontAwesomeIcon icon={BedIcon} />
+                        </Style.InputLabel>
 
-                      <Style.TextInput
-                        list="suggestions"
-                        type="text"
-                        placeholder="Where are you going?"
-                        name="textInput"
-                        id="textInput"
-                        {...register("search")}
-                      />
+                        <Style.TextInput
+                          list="suggestions"
+                          type="text"
+                          placeholder="Where are you going?"
+                          name="textInput"
+                          id="textInput"
+                          {...register("search")}
+                        />
 
-                      <datalist id="suggestions">
-                        {suggestion &&
-                          suggestion.length > 0 &&
-                          suggestion.map((item) => {
-                            return <option key={item}>{item}</option>;
-                          })}
-                      </datalist>
+                        <datalist id="suggestions">
+                          {suggestion &&
+                            suggestion.length > 0 &&
+                            suggestion.map((item) => {
+                              return <option key={item}>{item}</option>;
+                            })}
+                        </datalist>
 
-                      <Style.ErrorSearch>
-                        {errors.search && errors.search.message}
-                      </Style.ErrorSearch>
-                    </Row>
-                  </Col>
+                        <Style.ErrorSearch>
+                          {errors.search && errors.search.message}
+                        </Style.ErrorSearch>
+                      </Row>
+                    </Col>
 
-                  <Col xs={6} sm={3} height="100%">
-                    <Row alignItems="center" padding="0 10px">
-                      <Style.InputLabel htmlFor="startDate">
-                        <FontAwesomeIcon icon={CalendarIcon} />
-                      </Style.InputLabel>
-                      <Style.DateInput
-                        type="date"
-                        name="startDate"
-                        id="startDate"
-                        {...register("date_from")}
-                        min={new Date().toISOString().split("T")[0]}
-                      />
-                      <Style.ErrorDate>
-                        {(errors.date_from &&
-                          errors.date_from.message.includes("type") &&
-                          "Please choose a date") ||
-                          (errors.date_from && errors.date_from.message)}
-                      </Style.ErrorDate>
-                    </Row>
-                  </Col>
+                    <Col xs={6} sm={3} height="100%">
+                      <Row alignItems="center" padding="0 10px">
+                        <Style.InputLabel htmlFor="startDate">
+                          <FontAwesomeIcon icon={CalendarIcon} />
+                        </Style.InputLabel>
+                        <Style.DateInput
+                          type="date"
+                          name="startDate"
+                          id="startDate"
+                          {...register("date_from")}
+                          min={new Date().toISOString().split("T")[0]}
+                        />
+                        <Style.ErrorDate>
+                          {(errors.date_from &&
+                            errors.date_from.message.includes("type") &&
+                            "Please choose a date") ||
+                            (errors.date_from && errors.date_from.message)}
+                        </Style.ErrorDate>
+                      </Row>
+                    </Col>
 
-                  <Col xs={6} sm={3} height="100%">
-                    <Row alignItems="center" padding="0 0 0 10px">
-                      <Style.InputLabel htmlFor="endDate">
-                        <FontAwesomeIcon icon={CalendarIcon} />
-                      </Style.InputLabel>
-                      <Style.DateInput
-                        type="date"
-                        name="endDate"
-                        id="endDate"
-                        {...register("date_to")}
-                        min={new Date().toISOString().split("T")[0]}
-                      />
-                      <Style.ErrorDate>
-                        {(errors.date_to &&
-                          errors.date_to.message.includes("type") &&
-                          "Please choose a date") ||
-                          (errors.date_to && errors.date_to.message)}
-                      </Style.ErrorDate>
-                    </Row>
-                  </Col>
-                  <Col sm={1} height="100%" width="100%">
-                    <Style.Button
-                      type="submit"
-                      onClick={handleSubmit(onSubmit)}
-                    >
-                      Search
-                    </Style.Button>
-                  </Col>
-                </Row>
-              </form>
-            </Col>
-          </Style.Container>
-        </Row>
-      </Col>
-    </>
+                    <Col xs={6} sm={3} height="100%">
+                      <Row alignItems="center" padding="0 0 0 10px">
+                        <Style.InputLabel htmlFor="endDate">
+                          <FontAwesomeIcon icon={CalendarIcon} />
+                        </Style.InputLabel>
+                        <Style.DateInput
+                          type="date"
+                          name="endDate"
+                          id="endDate"
+                          {...register("date_to")}
+                          min={new Date().toISOString().split("T")[0]}
+                        />
+                        <Style.ErrorDate>
+                          {(errors.date_to &&
+                            errors.date_to.message.includes("type") &&
+                            "Please choose a date") ||
+                            (errors.date_to && errors.date_to.message)}
+                        </Style.ErrorDate>
+                      </Row>
+                    </Col>
+                    <Col sm={1} height="100%" width="100%">
+                      <Style.Button
+                        type="submit"
+                        onClick={handleSubmit(onSubmit)}
+                      >
+                        Search
+                      </Style.Button>
+                    </Col>
+                  </Row>
+                </form>
+              </Col>
+            </Style.Container>
+          </Row>
+        </Col>
+      </Row>
+    </Style.SearchBox>
   );
 };
 

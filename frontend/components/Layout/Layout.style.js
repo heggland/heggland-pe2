@@ -13,7 +13,7 @@ export const LinkContainer = styled.span`
     active &&
     css`
     & > * {
-      font-weight: bold;s
+      font-weight: bold;
   }
 }
 `}
