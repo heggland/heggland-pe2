@@ -36,8 +36,6 @@ export const Image = styled.div`
   width: 100%;
   height: 200px;
   position: relative;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
 
   ${Breakpoints.sm} {
     width: 80%;

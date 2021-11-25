@@ -1,12 +1,11 @@
 import * as Style from "./Header.style";
 import Image from "next/image";
-//import sogndalstrand from "../../public/sogndalstrand.jpg";
+import HeadImg from "../../public/head.jpg";
 
-const Header = ({ page, imgUrl, imgAlt }) => {
+const Header = ({ page }) => {
   return (
     <Style.Header page={page}>
-      <img src={imgUrl} alt={imgAlt} />
-      {/* <Image src={sogndalstrand} alt="My image" /> */}
+      <Image src={HeadImg} alt="header" />
     </Style.Header>
   );
 };

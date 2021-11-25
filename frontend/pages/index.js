@@ -17,6 +17,7 @@ import logo from "../public/logo.png";
 import Image from "next/image";
 
 import Services from "../modules/services/services";
+import About from "../modules/about/about";
 
 const AboveFold = styled.div`
   position: relative;
@@ -40,11 +41,7 @@ const Index = ({ content, error }) => {
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
       <AboveFold>
         {/* TODO: SAVE STATIC IMAGES IN PUBLIC FOLDER */}
-        <Header
-          page="home"
-          imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
-          imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
-        />
+        <Header page="home" />
         <Row justifyContent="center">
           <SearchBox
             width={7}
@@ -53,38 +50,7 @@ const Index = ({ content, error }) => {
         </Row>
       </AboveFold>
       <Container placeContent="center" backgroundColor="odd" padding="100px 0">
-        <Row justifyContent="center">
-          <Col xs={11} md={8}>
-            <Row>
-              <Col xs={12} md={6}>
-                <Heading size={2}>About Us</Heading>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                  ut elit eget urna condimentum porta ac ut nibh. Nunc sit amet
-                  erat non elit suscipit vehicula. Nulla euismod neque semper
-                  felis imperdiet, ut sodales turpis efficitur. Pellentesque
-                  volutpat est ornare ultrices malesuada. Fusce ultrices mauris
-                  quis suscipit tempor. Cras id mauris sed justo semper varius.
-                  In hendrerit urna elit, scelerisque lacinia leo porta a. Sed
-                  eu vulputate massa.
-                </p>
-                {/*                 <Row xs="none" sm="none" padding="20px 5px">
-                  <Image src={logo} width={75} height={75} />
-                </Row> */}
-              </Col>
-              <Col xs="none" sm="none" md={1} />
-              <Col xs={12} sm={6} md={5}>
-                <Row justifyContent="center">
-                  <img
-                    width="100%"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
-                    alt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
-                  />
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+        <About />
       </Container>
       <Container placeContent="center" backgroundColor="even" padding="100px 0">
         <Row justifyContent="center">

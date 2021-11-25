@@ -27,11 +27,7 @@ const Accommodation = ({ content, error }) => {
       title={TITLE_ACCOMMONDATION}
       description={DESCRIPTION_ACCOMMONDATION}
     >
-      <Header
-        imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
-        imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
-      />
-
+      <Header />
       <Container padding="0 0 50px 0">
         <Row justifyContent="center">
           <Col xs={11} md={8}>

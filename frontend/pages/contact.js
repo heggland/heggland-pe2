@@ -10,10 +10,7 @@ import Header from "../components/Header/Header";
 export default function Home() {
   return (
     <Layout title={TITLE_CONTACT} description={DESCRIPTION_CONTACT}>
-      <Header
-        imgUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Los_Angeles_with_Mount_Baldy.jpg/1920px-Los_Angeles_with_Mount_Baldy.jpg"
-        imgAlt="https://ia.wikipedia.org/wiki/Los_Angeles#/media/File:Los_Angeles_with_Mount_Baldy.jpg"
-      />
+      <Header />
       <Container padding="50px 0" backgroundColor="even">
         <Row justifyContent="center">
           <Col xs={8} md={8} backgroundColor="white">
