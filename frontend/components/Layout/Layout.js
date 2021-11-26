@@ -76,6 +76,7 @@ const Layout = ({ title, description, children }) => {
         </Style.Navigation>
         <Style.Children>{children}</Style.Children>
       </Style.Container>
+
       <Footer />
     </>
   );

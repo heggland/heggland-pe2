@@ -70,7 +70,6 @@ ${({ values }) =>
 }
 `}
 
-
 ${({ values }) =>
     values.hasOwnProperty("borderSize") &&
     css`

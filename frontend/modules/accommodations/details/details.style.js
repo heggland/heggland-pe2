@@ -48,6 +48,7 @@ export const OrderButton = styled.button`
   padding: 10px 25px;
   margin-top: 30px;
   width: fit-content;
+  font-size: 1.5rem;
 
   &:hover {
     cursor: pointer;

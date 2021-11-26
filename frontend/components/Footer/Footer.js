@@ -14,7 +14,9 @@ const Footer = () => {
               <Col xs={12} sm={4}>
                 <Row>
                   <Col xs={12} sm={9}>
-                    <Heading size={5}>Copyright</Heading>
+                    <u>
+                      <Heading size={4}>Copyright</Heading>
+                    </u>
                   </Col>
                   <Col xs={12} sm={9}>
                     Holidaze &copy; 2021
@@ -26,13 +28,15 @@ const Footer = () => {
               </Col>
               <Col xs={12} sm={4}>
                 <Row justifyContent="center">
-                  <Col xs={12} sm={9}>
-                    <Heading size={5}>Social media</Heading>
+                  <Col xs={11} sm={9}>
+                    <u>
+                      <Heading size={4}>Social media</Heading>
+                    </u>
                   </Col>
-                  <Col xs={12} sm={9}>
+                  <Col xs={11} sm={9}>
                     Twitter, Instagram, Facebook,
                   </Col>
-                  <Col xs={12} sm={9}>
+                  <Col xs={11} sm={9}>
                     and YouTube
                   </Col>
                 </Row>
@@ -40,13 +44,20 @@ const Footer = () => {
               <Col xs={12} sm={4}>
                 <Row justifyContent="end">
                   <Col xs={12} sm={9}>
-                    <Heading size={5}>Contact</Heading>
+                    <a href="/contact">
+                      <u>
+                        <Heading size={4}>Contact</Heading>
+                      </u>
+                    </a>
                   </Col>
                   <Col xs={12} sm={9}>
-                    <a href="/contact">Get in touch with us here.</a>
-                  </Col>
-                  <Col xs={12} sm={9}>
-                    4600 Kristiansand, Strandgata 13, Norway, +00 12 34 56 78
+                    <address>
+                      <span>4600 Kristiansand, </span>
+                      <span>Strandgata 13</span>
+                      <br />
+                      <span>Norway, </span>
+                      <span>+00 12 34 56 78 </span>
+                    </address>
                   </Col>
                 </Row>
               </Col>

@@ -86,29 +86,27 @@ const ContactForm = () => {
           {error && <Error string={error} path="contact" />}
           {sent && (
             <Style.Thanks>
-              <Row padding="5px 0 0 0">Thank you for your message</Row>
+              <Col xs={12}>
+                <Row padding="5px 0 0 0" margin="0 10px">
+                  Thank you for your message
+                </Row>
+              </Col>
             </Style.Thanks>
           )}
         </Style.FormGroup>
 
-        <Row>
-          <Col>
-            <Row margin="10px 0 30px 0">
-              <Col>
-                <Style.Button
-                  type="submit"
-                  disabled={(error && true) || (sent && true) || false}
-                  error={(error && true) || false}
-                  sent={(sent && true) || false}
-                >
-                  {(sent && "Sent") ||
-                    (error && "error") ||
-                    (submitting && "Sending..") ||
-                    "Send"}
-                </Style.Button>
-              </Col>
-            </Row>
-          </Col>
+        <Row margin="10px 0 30px 0" justifyContent="center">
+          <Style.Button
+            type="submit"
+            disabled={(error && true) || (sent && true) || false}
+            error={(error && true) || false}
+            sent={(sent && true) || false}
+          >
+            {(sent && "Sent") ||
+              (error && "error") ||
+              (submitting && "Sending..") ||
+              "Send"}
+          </Style.Button>
         </Row>
       </Style.Form>
     </>

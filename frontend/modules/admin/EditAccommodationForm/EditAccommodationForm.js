@@ -28,6 +28,7 @@ const EditForm = ({
   id,
   name,
   description,
+  category,
   address,
   city,
   zip_code,
@@ -273,7 +274,7 @@ const EditForm = ({
                     )}
                   </Row>
                   <Row padding="0px 0px 20px 0px">
-                    <Col xs={11} md={6}>
+                    <Col xs={11} md={4}>
                       <Heading size={5}>NAME</Heading>
                       <input
                         placeholder="name *"
@@ -284,7 +285,7 @@ const EditForm = ({
                       />
                       {errors.name && <span>{errors.name.message}</span>}
                     </Col>
-                    <Col xs={11} md={6}>
+                    <Col xs={11} md={4}>
                       <Heading size={5}>ADDRESS</Heading>
                       <input
                         placeholder="address *"
@@ -294,19 +295,7 @@ const EditForm = ({
                       />
                       {errors.address && <span>{errors.address.message}</span>}
                     </Col>
-                  </Row>
-                  <Row padding="0px 0px 20px 0px">
-                    <Col xs={11} md={6}>
-                      <Heading size={5}>CITY</Heading>
-                      <input
-                        placeholder="city *"
-                        defaultValue={city && city}
-                        {...register("city")}
-                        type="text"
-                      />
-                      {errors.city && <span>{errors.city.message}</span>}
-                    </Col>
-                    <Col xs={11} md={6}>
+                    <Col xs={11} md={4}>
                       <Heading size={5}>ZIP CODE</Heading>
                       <input
                         placeholder="zip_code *"
@@ -317,6 +306,32 @@ const EditForm = ({
                       {errors.zip_code && (
                         <span>{errors.zip_code.message}</span>
                       )}
+                    </Col>
+                  </Row>
+                  <Row padding="0px 0px 20px 0px">
+                    <Col xs={11} md={4}>
+                      <Heading size={5}>Category</Heading>
+                      <input
+                        placeholder="category *"
+                        defaultValue={category && category}
+                        {...register("category")}
+                        type="text"
+                        autoFocus
+                      />
+                      {errors.category && (
+                        <span>{errors.category.message}</span>
+                      )}
+                    </Col>
+
+                    <Col xs={11} md={4}>
+                      <Heading size={5}>CITY</Heading>
+                      <input
+                        placeholder="city *"
+                        defaultValue={city && city}
+                        {...register("city")}
+                        type="text"
+                      />
+                      {errors.city && <span>{errors.city.message}</span>}
                     </Col>
                   </Row>
                   <Row padding="0px 0px 20px 0px">

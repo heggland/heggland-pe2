@@ -71,6 +71,10 @@ export const EDIT_ACCOMMONDATION_SCHEMA = yup.object().shape({
     .string()
     .required("Please enter city name")
     .min(3, "Value must be atleast 3 characters long"),
+  category: yup
+    .string()
+    .required("Please enter a category")
+    .min(3, "Value must be atleast 3 characters long"),
   zip_code: yup
     .string()
     .required("Please enter a zip code")

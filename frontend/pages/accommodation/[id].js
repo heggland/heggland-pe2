@@ -35,13 +35,6 @@ const Accommondation = ({ content, error }) => {
   );
 };
 
-/*
-"?" +
-        data.date_from.toISOString().split("T")[0] +
-        "&" +
-        data.date_to.toISOString().split("T")[0]
-*/
-
 export async function getServerSidePaths() {
   try {
     const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);

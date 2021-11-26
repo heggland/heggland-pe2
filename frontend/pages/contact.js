@@ -7,14 +7,28 @@ import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
 import Header from "../components/Header/Header";
 import styled from "styled-components";
+import * as Breakpoints from "../components/Global/Breakpoints";
 
 const Position = styled.div`
   z-index: 1;
-  position: relative;
+  position: absolute;
   display: flex;
-  flex-direction: column;
-  top: -20%;
-  transform: translate(0, 20%);
+  display: column;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  /*  & > * > * {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  } */
+
+  ${Breakpoints.sm} {
+    display: flex;
+    display: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+  } ;
 `;
 
 export default function Home() {
@@ -24,27 +38,13 @@ export default function Home() {
       <Position>
         <Container placeContent="center">
           <Row justifyContent="center">
-            <Col xs={8} md={8} backgroundColor="white">
-              <Row padding="0 0 0 30px">
+            <Col xs={11} md={12} backgroundColor="white">
+              <Row padding="0 0 0 30px" justifyContent="center">
                 <Heading>Contact us</Heading>
               </Row>
               <Row>
-                <Col xs={12}>
-                  <Row>
-                    <Col xs={12} sm={5} padding="30px">
-                      <ContactForm />
-                    </Col>
-                    <Col xs="none" sm={1} />
-                    <Col xs={12} sm={6}>
-                      <Heading size={4}>Visit address:</Heading>
-                      <address>
-                        <p>4600 Kristiansand</p>
-                        <p>Strandgata 13</p>
-                        <p>Norway</p>
-                        <p>+00 12 34 56 78 </p>
-                      </address>
-                    </Col>
-                  </Row>
+                <Col xs={12} padding="30px">
+                  <ContactForm />
                 </Col>
               </Row>
             </Col>

@@ -99,7 +99,7 @@ const SearchBox = ({ accomondations = "", width }) => {
       backgroundColor={Colors.darkBlue}
     >
       <Row justifyContent="center">
-        <Col xs={11}>
+        <Col xs={12} sm={11}>
           <Row justifyContent="center">
             <Style.Title> Where you want to go?</Style.Title>
             <Style.Container width={width}>

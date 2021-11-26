@@ -12,7 +12,7 @@ export const Header = styled.div`
         `) ||
       (page === "contact" &&
         css`
-          height: 100%;
+          height: 100vh;
         `)}
   }
 `;

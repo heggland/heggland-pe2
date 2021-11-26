@@ -12,7 +12,7 @@ const Header = ({ page }) => {
           <Image
             src={HeadImg}
             alt="Photo by Valdemaras D. from Pexels"
-            layout={(page === "contact" && "fill") || "responsive"}
+            layout="responsive"
             objectFit="cover"
           />
         </Style.Header>

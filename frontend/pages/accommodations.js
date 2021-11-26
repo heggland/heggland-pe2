@@ -13,14 +13,32 @@ import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
-import Header from "../components/Header/Header";
-import SearchBox from "../modules/searchBox/searchBox";
+
+import styled from "styled-components";
+import { useState } from "react";
+
+const CategoryContainer = styled.div`
+  display: flex;
+`;
+
+const Category = styled.div`
+  margin-left: 10px;
+`;
+
+const CategoryButton = styled.button``;
 
 const Accommodation = ({ content, error }) => {
-  // sort content by name
+  const [accommondation, setAccommodation] = useState([]);
+
+  /*   // sort content by name
   content = content.sort((a, b) => {
     return (a.name < b.name && -1) || (a.name > b.name && 1) || 0;
-  });
+  }); */
+
+  const HandleChangeCategory = (e) => {
+    const value = e.target.value;
+    console.log(value);
+  };
 
   return (
     <Layout
@@ -31,20 +49,53 @@ const Accommodation = ({ content, error }) => {
         <Row justifyContent="center">
           <Col xs={11} md={8}>
             <Row padding="100px 0 100px 0">
-              {(content &&
-                content.length >= 1 &&
-                content.map(({ id, name, image, city }) => {
-                  return (
-                    <Col xs={12} md={6} lg={4} xxl={3} key={id}>
-                      <a href={`accommodation/${id}`}>
-                        <Card name={name} city={city} image={image} key={id} />
-                      </a>
-                    </Col>
-                  );
-                })) ||
-                (!error && <span>No accommodations</span>) || (
-                  <Error string={error} path="accomondation" />
-                )}
+              <Row>
+                <CategoryContainer>
+                  Sort by:
+                  <Category onClick={HandleChangeCategory}>
+                    <CategoryButton value="name">Name</CategoryButton>
+                    <CategoryButton value="city">City</CategoryButton>
+                  </Category>
+                </CategoryContainer>
+              </Row>
+              <Row>
+                {accommondation &&
+                  accommondation.length >= 1 &&
+                  accommondation.map(({ id, name, image, city }) => {
+                    return (
+                      <Col xs={12} md={6} lg={4} xxl={3} key={id}>
+                        <a href={`accommodation/${id}`}>
+                          <Card
+                            name={name}
+                            city={city}
+                            image={image}
+                            key={id}
+                          />
+                        </a>
+                      </Col>
+                    );
+                  })}
+
+                {(content &&
+                  content.length >= 1 &&
+                  content.map(({ id, name, image, city }) => {
+                    return (
+                      <Col xs={12} md={6} lg={4} xxl={3} key={id}>
+                        <a href={`accommodation/${id}`}>
+                          <Card
+                            name={name}
+                            city={city}
+                            image={image}
+                            key={id}
+                          />
+                        </a>
+                      </Col>
+                    );
+                  })) ||
+                  (!error && <span>No accommodations</span>) || (
+                    <Error string={error} path="accomondation" />
+                  )}
+              </Row>
             </Row>
           </Col>
         </Row>

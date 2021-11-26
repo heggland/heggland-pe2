@@ -96,7 +96,7 @@ export const NavPages = styled.div`
 
   ${Breakpoints.mobileOnly} {
     & > * {
-      padding: 10px 0;
+      padding: 10px;
     }
   }
 
