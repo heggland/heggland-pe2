@@ -18,6 +18,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 import * as Colors from "../constants/colors";
+import { set } from "react-hook-form";
 
 const CategoryContainer = styled.div`
   display: flex;
@@ -68,7 +69,6 @@ const Accommodation = ({ content, error }) => {
         return item.category === value;
       });
       setAccommodation(filteredContent);
-      console.log(filteredContent);
     }
   };
   return (
@@ -131,6 +131,12 @@ const Accommodation = ({ content, error }) => {
                   )) || <Error string={error} path="accomondation" />}
               </Row>
             </Row>
+          </Col>
+        </Row>
+      </Container>
+      <Container padding="0 0 50px 0">
+        <Row justifyContent="center">
+          <Col xs={11} md={8}>
             <CategoryContainer>
               <Category>
                 <CategoryButton onClick={HandleClickCategory} value="all">
