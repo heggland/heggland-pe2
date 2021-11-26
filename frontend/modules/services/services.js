@@ -24,13 +24,13 @@ const services = () => {
             <Col xs={12} sm={5.5}>
               <Style.Card>
                 <Row>
-                  <Col xs={12} sm={5.5}>
+                  <Col xs={12} sm={6}>
                     <Style.Image>
                       <Image
                         src={hotel}
                         alt="Photo by Jovydas Pinkevicius from Pexels"
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                       />
                     </Style.Image>
                   </Col>
@@ -52,7 +52,7 @@ const services = () => {
                         src={apartment}
                         alt="Photo by SevenStorm JUHASZIMRUS from Pexels"
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                       />
                     </Style.Image>
                   </Col>
@@ -78,7 +78,7 @@ const services = () => {
                         src={resort}
                         alt="Photo by Vincent Gerbouin from Pexels"
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                       />
                     </Style.Image>
                   </Col>
@@ -100,7 +100,7 @@ const services = () => {
                         src={homestay}
                         alt="Photo from Pexels"
                         layout="fill"
-                        objectFit="contain"
+                        objectFit="cover"
                       />
                     </Style.Image>
                   </Col>

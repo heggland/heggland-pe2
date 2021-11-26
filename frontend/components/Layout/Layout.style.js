@@ -120,7 +120,7 @@ export const NavPages = styled.div`
 
       &:hover {
         cursor: pointer;
-        color: ${Colors.red};
+        color: ${Colors.turquoise};
         font-weight: 600;
       }
     }
@@ -156,10 +156,6 @@ export const SearchButton = styled.div`
       color: white;
     }
   }
-
-  &:hover {
-    transition: all 0.1s ease-in;
-    background-color: ${Colors.turquoise}
 `;
 
 export const MobileButton = styled.div`

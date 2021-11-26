@@ -8,7 +8,7 @@ export const Card = styled.div`
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 2px 20px rgb(227 233 243);
-  padding: 10px 20px;
+  padding: 20px 20px;
 
   &:hover {
     box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
@@ -16,6 +16,8 @@ export const Card = styled.div`
     & > * > * > :first-child {
       color: ${Colors.blue};
     }
+    transform: translateY(-5px);
+    transition: 0.3s;
   }
 
   display: flex;
@@ -34,7 +36,7 @@ export const Group = styled.div`
 
 export const Image = styled.div`
   width: 100%;
-  height: 200px;
+  height: 150px;
   position: relative;
 
   ${Breakpoints.sm} {

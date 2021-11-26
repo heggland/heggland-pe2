@@ -12,6 +12,8 @@ export const Card = styled.div`
 
   &:hover {
     box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+    transform: translateY(-1px);
+    transition: 0.3s;
   }
 
   ${md} {
