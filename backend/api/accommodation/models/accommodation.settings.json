@@ -46,6 +46,15 @@
     },
     "featured": {
       "type": "boolean"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "hotel",
+        "apartment",
+        "resort",
+        "homestay"
+      ]
     }
   }
 }

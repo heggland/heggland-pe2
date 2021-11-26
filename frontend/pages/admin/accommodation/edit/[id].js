@@ -38,6 +38,7 @@ const Hotel = ({ content, error }) => {
         state={content.published_at}
         updated_at={content.updated_at}
         featured={content.featured}
+        category={content.category}
       />
     </AdminLayout>
   );

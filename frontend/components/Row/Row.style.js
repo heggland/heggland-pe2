@@ -19,6 +19,14 @@ export const Row = styled.div`
   }
 `}
 
+${({ values }) =>
+    values.hasOwnProperty("flexDirection") &&
+    css`
+    display: flex;
+    flex-direction: ${values.flexDirection};
+    }
+`}
+
   ${({ values }) =>
     values.hasOwnProperty("backgroundColor") &&
     css`

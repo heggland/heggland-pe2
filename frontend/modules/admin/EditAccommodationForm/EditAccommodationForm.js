@@ -311,13 +311,24 @@ const EditForm = ({
                   <Row padding="0px 0px 20px 0px">
                     <Col xs={11} md={4}>
                       <Heading size={5}>Category</Heading>
-                      <input
+                      <select
+                        defaultValue={category && category}
+                        {...register("category")}
+                      >
+                        <option value="hotel">Hotel</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="resort">Resort</option>
+                        <option value="homestay">Homestay</option>
+                      </select>
+
+                      {/*                       <input
                         placeholder="category *"
                         defaultValue={category && category}
                         {...register("category")}
                         type="text"
                         autoFocus
-                      />
+                      /> */}
+
                       {errors.category && (
                         <span>{errors.category.message}</span>
                       )}

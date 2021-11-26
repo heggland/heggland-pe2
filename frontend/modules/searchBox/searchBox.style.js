@@ -86,15 +86,11 @@ export const DateInput = styled.input`
     }
 
 }
-
-
   &:hover { 
     &::-webkit-calendar-picker-indicator {
       opacity: 1;
     }
   }
-
-  
 
 `;
 
