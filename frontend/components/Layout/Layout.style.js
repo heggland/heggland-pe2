@@ -156,6 +156,10 @@ export const SearchButton = styled.div`
       color: white;
     }
   }
+
+  &:hover {
+    transition: all 0.1s ease-in;
+    background-color: ${Colors.turquoise}
 `;
 
 export const MobileButton = styled.div`

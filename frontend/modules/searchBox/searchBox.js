@@ -99,7 +99,7 @@ const SearchBox = ({ accomondations = "", width }) => {
       backgroundColor={Colors.darkBlue}
     >
       <Row justifyContent="center">
-        <Col xs={11} sm={12}>
+        <Col xs={11}>
           <Row justifyContent="center">
             <Style.Title> Where you want to go?</Style.Title>
             <Style.Container width={width}>
@@ -108,28 +108,31 @@ const SearchBox = ({ accomondations = "", width }) => {
                   <Row height="100%">
                     <Col xs={12} sm={4} height="100%">
                       <Row alignItems="center" padding="0 10px">
-                        <Style.InputLabel htmlFor="textInput">
-                          <FontAwesomeIcon icon={BedIcon} />
-                        </Style.InputLabel>
-
-                        <Style.TextInput
-                          list="suggestions"
-                          type="text"
-                          placeholder="Where to go?"
-                          name="textInput"
-                          id="textInput"
-                          {...register("search")}
-                        />
-                        <datalist id="suggestions">
-                          {suggestion &&
-                            suggestion.length > 0 &&
-                            suggestion.map((item) => {
-                              return <option key={item}>{item}</option>;
-                            })}
-                        </datalist>
-                        <Style.ErrorSearch>
-                          {errors.search && errors.search.message}
-                        </Style.ErrorSearch>
+                        <Col xs={1} sm={1}>
+                          <Style.InputIcon htmlFor="textInput">
+                            <FontAwesomeIcon icon={BedIcon} />
+                          </Style.InputIcon>
+                        </Col>
+                        <Col xs={11} sm={11}>
+                          <Style.TextInput
+                            list="suggestions"
+                            type="text"
+                            placeholder="Where to go?"
+                            name="textInput"
+                            id="textInput"
+                            {...register("search")}
+                          />
+                          <datalist id="suggestions">
+                            {suggestion &&
+                              suggestion.length > 0 &&
+                              suggestion.map((item) => {
+                                return <option key={item}>{item}</option>;
+                              })}
+                          </datalist>
+                          <Style.ErrorSearch>
+                            {errors.search && errors.search.message}
+                          </Style.ErrorSearch>
+                        </Col>
                       </Row>
                     </Col>
 
@@ -137,22 +140,29 @@ const SearchBox = ({ accomondations = "", width }) => {
 
                     <Col xs={6} sm={3} height="100%">
                       <Row alignItems="center" padding="0 10px">
-                        <Style.InputLabel htmlFor="startDate">
-                          <FontAwesomeIcon icon={CalendarIcon} />
-                        </Style.InputLabel>
-                        <Style.DateInput
-                          type="date"
-                          name="startDate"
-                          id="startDate"
-                          {...register("date_from")}
-                          min={new Date().toISOString().split("T")[0]}
-                        />
-                        <Style.ErrorDate>
-                          {(errors.date_from &&
-                            errors.date_from.message.includes("type") &&
-                            "Please choose a date") ||
-                            (errors.date_from && errors.date_from.message)}
-                        </Style.ErrorDate>
+                        <Col xs={1} sm={1}>
+                          <Style.InputIcon>
+                            <FontAwesomeIcon icon={CalendarIcon} />
+                          </Style.InputIcon>
+                        </Col>
+                        <Col xs={10} sm={10}>
+                          <Style.InputLabel htmlFor="startDate">
+                            Check in
+                          </Style.InputLabel>
+                          <Style.DateInput
+                            type="date"
+                            name="startDate"
+                            id="startDate"
+                            {...register("date_from")}
+                            min={new Date().toISOString().split("T")[0]}
+                          />
+                          <Style.ErrorDate>
+                            {(errors.date_from &&
+                              errors.date_from.message.includes("type") &&
+                              "Please choose a date") ||
+                              (errors.date_from && errors.date_from.message)}
+                          </Style.ErrorDate>
+                        </Col>
                       </Row>
                     </Col>
 
@@ -160,22 +170,29 @@ const SearchBox = ({ accomondations = "", width }) => {
 
                     <Col xs={6} sm={3} height="100%">
                       <Row alignItems="center" padding="0 0 0 10px">
-                        <Style.InputLabel htmlFor="endDate">
-                          <FontAwesomeIcon icon={CalendarIcon} />
-                        </Style.InputLabel>
-                        <Style.DateInput
-                          type="date"
-                          name="endDate"
-                          id="endDate"
-                          {...register("date_to")}
-                          min={new Date().toISOString().split("T")[0]}
-                        />
-                        <Style.ErrorDate>
-                          {(errors.date_to &&
-                            errors.date_to.message.includes("type") &&
-                            "Please choose a date") ||
-                            (errors.date_to && errors.date_to.message)}
-                        </Style.ErrorDate>
+                        <Col xs={1} sm={1}>
+                          <Style.InputIcon>
+                            <FontAwesomeIcon icon={CalendarIcon} />
+                          </Style.InputIcon>
+                        </Col>
+                        <Col xs={10} sm={10}>
+                          <Style.InputLabel htmlFor="endDate">
+                            Check out
+                          </Style.InputLabel>
+                          <Style.DateInput
+                            type="date"
+                            name="endDate"
+                            id="endDate"
+                            {...register("date_to")}
+                            min={new Date().toISOString().split("T")[0]}
+                          />
+                          <Style.ErrorDate>
+                            {(errors.date_to &&
+                              errors.date_to.message.includes("type") &&
+                              "Please choose a date") ||
+                              (errors.date_to && errors.date_to.message)}
+                          </Style.ErrorDate>
+                        </Col>
                       </Row>
                     </Col>
                     <Col xs="none" sm={0.15} />

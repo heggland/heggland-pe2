@@ -41,9 +41,22 @@ export const TextInput = styled.input`
   border: none;
   outline: none;
 
+  color: ${colors.white};
+
+  &::placeholder {
+    color: ${colors.lightGrey};
+  }
+
   &::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
+`;
+
+export const InputLabel = styled.label`
+  position: absolute;
+  padding-left: 2rem;
+  color: white;
+  font-size: 1rem;
 `;
 
 export const DateInput = styled.input`
@@ -53,6 +66,12 @@ export const DateInput = styled.input`
   padding-left: 2rem;
   border: none;
 
+  color: white;
+
+  &:::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+  }
+
   ${Breakpoints.sm} {
   outline: none;
   padding: 0 2rem;
@@ -60,11 +79,14 @@ export const DateInput = styled.input`
   &::-webkit-calendar-picker-indicator {
     padding: 0;
     margin: 0;
-
+    filter: invert(100%);
+    
     ${Breakpoints.sm} {
       opacity: 0;
     }
+
 }
+
 
   &:hover { 
     &::-webkit-calendar-picker-indicator {
@@ -72,10 +94,15 @@ export const DateInput = styled.input`
     }
   }
 
+  
+
 `;
 
-export const InputLabel = styled.label`
-  position: absolute;
+export const InputContainer = styled.div`
+  color: white;
+`;
+
+export const InputIcon = styled.label`
   color: white;
 `;
 
@@ -89,6 +116,12 @@ export const Button = styled.button`
   ${Breakpoints.xs} {
     width: 100%;
   }
+
+  &:hover {
+    transition: all 0.2s ease-in;
+    background-color: ${colors.turquoise};
+  }
+
 `;
 
 // error
