@@ -50,14 +50,8 @@ export const CONTACT_SCHEMA = yup.object().shape({
 });
 
 export const LOGIN_SCHEMA = yup.object().shape({
-  username: yup
-    .string()
-    .required("Please enter a username")
-    .min(3, "Username must be at least 3 characters long"),
-  password: yup
-    .string()
-    .required("Please enter your password")
-    .min(6, "Password must be at least 6 characters long"),
+  username: yup.string().required("!"),
+  password: yup.string().required("!"),
 });
 
 export const EDIT_ACCOMMONDATION_SCHEMA = yup.object().shape({

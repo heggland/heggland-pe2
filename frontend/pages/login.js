@@ -31,6 +31,7 @@ import {
 import Error from "../modules/error/error";
 
 import Notification from "../modules/notification/notification";
+import { ErrorSearch } from "../modules/searchBox/searchBox.style";
 
 const LoginContainer = styled.div`
   background-color: white;
@@ -50,6 +51,21 @@ const LoginNavigation = styled.div`
   top: 0;
   left: 0;
   right: 0;
+`;
+
+const InputError = styled.div`
+color: red;
+font-weight: bold;
+position: relative;
+left: -20px;
+font-family: monospace;
+font-size: 1.5rem;
+}
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const LoginButton = styled.button`
@@ -188,34 +204,37 @@ const Login = () => {
               <Heading>Login</Heading>
             </Row>
             <LoginForm onSubmit={handleSubmit(onSubmit)}>
-              <Col>
-                <Input
-                  {...register("username")}
-                  type="username"
-                  error={errors.username && true}
-                  name="username"
-                  placeholder="Email"
-                  autoComplete="on"
-                  autoFocus
-                />
-              </Col>
-              {errors.username && (
-                <div className="text-muted">{errors.username.message}</div>
-              )}
-
-              <Col>
-                <Input
-                  {...register("password")}
-                  error={errors.password && true}
-                  type="password"
-                  name="password"
-                  placeholder="Passord"
-                  autoComplete="on"
-                />
-
-                {errors.password && (
-                  <div className="text-muted">{errors.password.message}</div>
+              <InputContainer>
+                <Col>
+                  <Input
+                    {...register("username")}
+                    type="username"
+                    error={errors.username && true}
+                    name="username"
+                    placeholder="Email"
+                    autoComplete="on"
+                    autoFocus
+                  />
+                </Col>
+                {errors.username && (
+                  <InputError>{errors.username.message}</InputError>
                 )}
+              </InputContainer>
+
+              <Col>
+                <InputContainer>
+                  <Input
+                    {...register("password")}
+                    error={errors.password && true}
+                    type="password"
+                    name="password"
+                    placeholder="Passord"
+                    autoComplete="on"
+                  />
+                  {errors.password && (
+                    <InputError>{errors.password.message}</InputError>
+                  )}
+                </InputContainer>
               </Col>
 
               <Row justifyContent="center" padding="25px 0">
