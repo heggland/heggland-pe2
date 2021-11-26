@@ -1,3 +1,4 @@
+import Container from "../../components/Container/Container";
 import Col from "../../components/Col/Col";
 import Row from "../../components/Row/Row";
 import { useRouter } from "next/router";
@@ -14,6 +15,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import Card from "../../components/Card/Card";
 import FormatDate from "../../components/Common/FormatDate";
+import * as Colors from "../../constants/colors";
+import Heading from "../../components/Common/Heading";
 
 const SearchBox = ({ accomondations = "", width }) => {
   let suggestion;
@@ -90,10 +93,15 @@ const SearchBox = ({ accomondations = "", width }) => {
   };
 
   return (
-    <Style.SearchBox>
-      <Row justifyContent="center" padding="0 0  100px 0">
+    <Container
+      height="150px"
+      placeContent="center"
+      backgroundColor={Colors.darkBlue}
+    >
+      <Row justifyContent="center">
         <Col xs={11} sm={12}>
           <Row justifyContent="center">
+            <Style.Title> Where you want to go?</Style.Title>
             <Style.Container width={width}>
               <Col sm={12} height="100%">
                 <form autoComplete="off">
@@ -107,12 +115,11 @@ const SearchBox = ({ accomondations = "", width }) => {
                         <Style.TextInput
                           list="suggestions"
                           type="text"
-                          placeholder="Where are you going?"
+                          placeholder="Where to go?"
                           name="textInput"
                           id="textInput"
                           {...register("search")}
                         />
-
                         <datalist id="suggestions">
                           {suggestion &&
                             suggestion.length > 0 &&
@@ -120,7 +127,6 @@ const SearchBox = ({ accomondations = "", width }) => {
                               return <option key={item}>{item}</option>;
                             })}
                         </datalist>
-
                         <Style.ErrorSearch>
                           {errors.search && errors.search.message}
                         </Style.ErrorSearch>
@@ -183,7 +189,7 @@ const SearchBox = ({ accomondations = "", width }) => {
           </Row>
         </Col>
       </Row>
-    </Style.SearchBox>
+    </Container>
   );
 };
 

@@ -120,7 +120,7 @@ export const NavPages = styled.div`
 
       &:hover {
         cursor: pointer;
-        color: ${Colors.green};
+        color: ${Colors.red};
         font-weight: 600;
       }
     }
@@ -129,7 +129,7 @@ export const NavPages = styled.div`
 
 export const SearchButton = styled.div`
   //background-color: rgb(255 74 82);
-  background-color: ${Colors.green};
+  background-color: ${Colors.red};
   width: fit-content;
   font-size: 1.2rem;
   display: flex;

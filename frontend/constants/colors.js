@@ -1,6 +1,5 @@
-export const red = "#FF2F54";
+export const red = "rgb(255 74 82)";
 export const blue = "#2191FB";
-export const blueGreen = "#B2ECE1";
 export const green = "rgb(109, 187, 26)";
 export const yellow = "#FFF8E5";
 export const greenDarkBlue = "#8CDEDC";

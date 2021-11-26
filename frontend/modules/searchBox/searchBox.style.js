@@ -2,27 +2,11 @@ import styled, { css } from "styled-components";
 import * as colors from "../../constants/colors";
 import * as Breakpoints from "../../components/Global/Breakpoints";
 
-export const SearchBox = styled.div`
-  position: relative;
-  margin-top: -25px;
-  ${Breakpoints.xsOnly} {
-    position: absolute;
-    transform: translate(0, 70%);
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, 50%);
-    & > * > * > * > * {
-      border: 3px solid ${colors.orange};
-    }
-  }
-`;
-
 export const Container = styled.div`
   background-color: white;
   color: black;
   box-shadow: 0px 0px 5px 5px rgba(0 0 0 / 10%);
-  border: 3px solid ${colors.orange}};
+  // border: 3px solid ${colors.orange}};
   border-radius: 5px;
 
   ${({ width }) =>
@@ -62,10 +46,17 @@ export const Container = styled.div`
     top: 50%;
     transform: translate(0, 50%);
     & > *  > * > * > * {
-    border: 3px solid ${colors.orange}};
+    // border: 3px solid ${colors.orange}};
   }
   }
 }
+`;
+
+export const Title = styled.label`
+  color: white;
+  font-size: 1.5rem;
+  align-self: center;
+  padding: 0.5rem;
 `;
 
 export const TextInput = styled.input`
@@ -74,14 +65,13 @@ export const TextInput = styled.input`
   padding: 0 2rem;
   border: none;
   outline: none;
-    
+
   ${Breakpoints.sm} {
-  border-right: 3px solid ${colors.orange}};
-}
+    // border-right: 3px solid ${colors.orange}};
+  }
   ::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
-
 `;
 
 export const DateInput = styled.input`
@@ -94,7 +84,7 @@ export const DateInput = styled.input`
   border: none;
 
   ${Breakpoints.sm} {
-  border-right: 3px solid ${colors.orange}};
+  //border-right: 3px solid ${colors.orange}};
   }
   outline: none;
   padding: 0 2rem;
@@ -129,7 +119,7 @@ export const InputLabel = styled.label`
 export const Button = styled.button`
   width: 100%;
   height: 45px;
-  background-color: ${colors.blue}};
+  background-color: ${colors.red}};
   color: white;
   border: 0;
   cursor: pointer;

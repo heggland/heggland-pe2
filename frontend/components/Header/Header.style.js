@@ -8,7 +8,7 @@ export const Header = styled.div`
     ${({ page }) =>
       page === "home" &&
       css`
-        height: 800px !important;
+        height: 700px !important;
       `}
   }
 `;

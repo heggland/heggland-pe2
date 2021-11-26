@@ -16,7 +16,12 @@ const Container = styled.div`
       css`
     background-color: ${Colors.sandy};
       }
-    `)}
+    `) ||
+    (values.backgroundColor &&
+      css`
+        background-color: ${values.backgroundColor};
+    }
+  `)}
 
   ${({ values }) =>
     values.hasOwnProperty("placeContent") &&
