@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import Error from "../../../modules/error/error";
 
-import * as Style from "./EnquiryForm.style";
+import * as Style from "./enquiryForm.style";
 import Container from "../../../components/Container/Container";
 import Col from "../../../components/Col/Col";
 import Row from "../../../components/Row/Row";
