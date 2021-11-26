@@ -13,6 +13,10 @@ export const Container = styled.div`
       width: calc(calc(100% / 12) * ${width});
     `}
 
+    ${Breakpoints.mobileOnly} {
+      width: 100%;
+    }
+
 }
 `;
 

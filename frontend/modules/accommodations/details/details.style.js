@@ -42,7 +42,7 @@ export const CloseModal = styled.div`
 `;
 
 export const OrderButton = styled.button`
-  background-color: rgb(45 148 0 / 85%);
+  background-color: ${Colors.red};
   border: none;
   color: white;
   padding: 10px 25px;
@@ -52,5 +52,6 @@ export const OrderButton = styled.button`
 
   &:hover {
     cursor: pointer;
+    background-color: ${Colors.turquoise};
   }
 `;

@@ -103,7 +103,7 @@ const SearchBox = ({ accomondations = "", width }) => {
           <Row justifyContent="center">
             <Style.Title> Where you want to go?</Style.Title>
             <Style.Container width={width}>
-              <Col sm={12} height="100%">
+              <Col xs={12} height="100%">
                 <Style.Form autoComplete="off">
                   <Row height="100%">
                     <Col xs={12} sm={4} height="100%">
@@ -138,7 +138,7 @@ const SearchBox = ({ accomondations = "", width }) => {
 
                     <Col xs="none" sm={0.15} />
 
-                    <Col xs={6} sm={3} height="100%">
+                    <Col xs={12} sm={3} height="100%">
                       <Row alignItems="center" padding="0 10px">
                         <Col xs={1} sm={1}>
                           <Style.InputIcon>
@@ -168,7 +168,7 @@ const SearchBox = ({ accomondations = "", width }) => {
 
                     <Col xs="none" sm={0.15} />
 
-                    <Col xs={6} sm={3} height="100%">
+                    <Col xs={12} sm={3} height="100%">
                       <Row alignItems="center" padding="0 0 0 10px">
                         <Col xs={1} sm={1}>
                           <Style.InputIcon>

@@ -3,7 +3,6 @@ import {
   TITLE_ACCOMMONDATION,
   DESCRIPTION_ACCOMMONDATION,
 } from "../constants/meta";
-import Heading from "../components/Common/Heading";
 import axios from "axios";
 import { BASE_URL, ACCOMMONDATION_PATH } from "../constants/api";
 
@@ -18,7 +17,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 import * as Colors from "../constants/colors";
-import { set } from "react-hook-form";
+import * as Breakpoints from "../components/Global/Breakpoints";
 
 const CategoryContainer = styled.div`
   display: flex;
@@ -37,6 +36,11 @@ const CategoryButton = styled.button`
   color: white;
   border: 0;
   cursor: pointer;
+
+  ${Breakpoints.mobileOnly} {
+    width: 70px;
+    font-size: 0.7rem;
+  }
 
   &:hover {
     transition: all 0.15s ease-in;
