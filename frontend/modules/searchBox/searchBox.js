@@ -104,9 +104,9 @@ const SearchBox = ({ accomondations = "", width }) => {
             <Style.Title> Where you want to go?</Style.Title>
             <Style.Container width={width}>
               <Col sm={12} height="100%">
-                <form autoComplete="off">
+                <Style.Form autoComplete="off">
                   <Row height="100%">
-                    <Col xs={12} sm={5} height="100%">
+                    <Col xs={12} sm={4} height="100%">
                       <Row alignItems="center" padding="0 10px">
                         <Style.InputLabel htmlFor="textInput">
                           <FontAwesomeIcon icon={BedIcon} />
@@ -133,6 +133,8 @@ const SearchBox = ({ accomondations = "", width }) => {
                       </Row>
                     </Col>
 
+                    <Col xs="none" sm={0.15} />
+
                     <Col xs={6} sm={3} height="100%">
                       <Row alignItems="center" padding="0 10px">
                         <Style.InputLabel htmlFor="startDate">
@@ -154,6 +156,8 @@ const SearchBox = ({ accomondations = "", width }) => {
                       </Row>
                     </Col>
 
+                    <Col xs="none" sm={0.15} />
+
                     <Col xs={6} sm={3} height="100%">
                       <Row alignItems="center" padding="0 0 0 10px">
                         <Style.InputLabel htmlFor="endDate">
@@ -174,6 +178,7 @@ const SearchBox = ({ accomondations = "", width }) => {
                         </Style.ErrorDate>
                       </Row>
                     </Col>
+                    <Col xs="none" sm={0.15} />
                     <Col sm={1} height="100%" width="100%">
                       <Style.Button
                         type="submit"
@@ -183,7 +188,7 @@ const SearchBox = ({ accomondations = "", width }) => {
                       </Style.Button>
                     </Col>
                   </Row>
-                </form>
+                </Style.Form>
               </Col>
             </Style.Container>
           </Row>
