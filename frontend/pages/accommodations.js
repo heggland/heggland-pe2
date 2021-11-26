@@ -68,6 +68,7 @@ const Accommodation = ({ content, error }) => {
         return item.category === value;
       });
       setAccommodation(filteredContent);
+      console.log(filteredContent);
     }
   };
   return (
@@ -108,7 +109,7 @@ const Accommodation = ({ content, error }) => {
               </Row>
               <Row>
                 {(accommondation &&
-                  accommondation.length > 1 &&
+                  accommondation.length >= 1 &&
                   accommondation.map(({ id, name, image, city }) => {
                     return (
                       <Col xs={12} md={6} lg={4} xxl={3} key={id}>

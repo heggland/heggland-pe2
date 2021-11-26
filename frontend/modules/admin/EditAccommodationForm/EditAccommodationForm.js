@@ -170,7 +170,6 @@ const EditForm = ({
       }
     }
   }
-
   const goBack = () => router.push("/admin/accommodation");
 
   const handleImageChange = (e) => {
@@ -312,9 +311,10 @@ const EditForm = ({
                     <Col xs={11} md={4}>
                       <Heading size={5}>Category</Heading>
                       <select
-                        defaultValue={category && category}
+                        defaultValue={(category && category) || ""}
                         {...register("category")}
                       >
+                        <option value="">Select an option</option>
                         <option value="hotel">Hotel</option>
                         <option value="apartment">Apartment</option>
                         <option value="resort">Resort</option>
