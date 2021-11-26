@@ -2,13 +2,17 @@ import styled, { css } from "styled-components";
 
 export const Header = styled.div`
   & > * {
-    height: 500px;
+    height: 300px;
     position: relative;
 
     ${({ page }) =>
-      page === "home" &&
-      css`
-        height: 700px !important;
-      `}
+      (page === "home" &&
+        css`
+          height: 700px;
+        `) ||
+      (page === "contact" &&
+        css`
+          height: 100%;
+        `)}
   }
 `;

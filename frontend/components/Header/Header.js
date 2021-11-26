@@ -11,8 +11,8 @@ const Header = ({ page }) => {
         <Style.Header page={page}>
           <Image
             src={HeadImg}
-            alt="header"
-            layout="responsive"
+            alt="Photo by Valdemaras D. from Pexels"
+            layout={(page === "contact" && "fill") || "responsive"}
             objectFit="cover"
           />
         </Style.Header>

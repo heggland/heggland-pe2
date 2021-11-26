@@ -27,7 +27,6 @@ const Accommodation = ({ content, error }) => {
       title={TITLE_ACCOMMONDATION}
       description={DESCRIPTION_ACCOMMONDATION}
     >
-      <Header />
       <Container padding="0 0 50px 0">
         <Row justifyContent="center">
           <Col xs={11} md={8}>
