@@ -19,14 +19,13 @@ import * as Colors from "../../constants/colors";
 import Heading from "../../components/Common/Heading";
 
 const SearchBox = ({ accomondations = "", width }) => {
-  let suggestion;
-
+  let suggestion = [];
   if (accomondations) {
     // array of cities
     suggestion =
       accomondations &&
       accomondations.map((item) => {
-        return item.city + " " + item.name;
+        return item.city;
       });
     // remove duplicate in the array
     suggestion = [...new Set(suggestion)];
@@ -45,51 +44,39 @@ const SearchBox = ({ accomondations = "", width }) => {
   const onSubmit = (data) => {
     //search data.city in accomondations
 
-    const filterSearch = accomondations.filter((item) => {
-      // split the city and name
-      return (
-        item.city.toLowerCase() + " " + item.name.toLowerCase() ===
-        data.search.toLowerCase()
-      );
-    });
+    try {
+      const path = "/accommodations";
+      const search = "?search=" + data.search;
 
-    const path = "/accommodation/" + filterSearch[0].id;
+      const options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      };
 
-    const options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-    };
+      let dateFrom = "";
+      if (data.date_from) {
+        dateFrom = "from=" + data.date_from;
+      }
 
-    let dateFrom = "";
-    if (data.date_from) {
-      /*       dateFrom = new Intl.DateTimeFormat("en-UK", options).format(
-        new Date(data.date_from)
-      ); */
-      dateFrom = "from=" + data.date_from;
+      let dateTo = "";
+      if (data.date_to) {
+        dateTo = "to=" + data.date_to;
+      }
+
+      let date = "";
+      if (dateFrom && dateTo) {
+        date = "&" + dateFrom + "&" + dateTo;
+      } else if (dateFrom) {
+        date = "&" + dateFrom;
+      } else if (dateTo) {
+        date = "&" + dateTo;
+      }
+
+      router.push(path + search + date);
+    } catch (error) {
+      console.log(error);
     }
-
-    let dateTo = "";
-    if (data.date_to) {
-      /*      dateTo = new Intl.DateTimeFormat("en-UK", options).format(
-        new Date(data.date_to)
-      ); */
-
-      dateTo = "to=" + data.date_to;
-    }
-
-    console.log(dateFrom, dateTo);
-
-    let date = "";
-    if (dateFrom && dateTo) {
-      date = "?" + dateFrom + "&" + dateTo;
-    } else if (dateFrom) {
-      date = "?" + dateFrom;
-    } else if (dateTo) {
-      date = "?" + dateTo;
-    }
-
-    router.push(path + date);
   };
 
   return (
@@ -117,11 +104,15 @@ const SearchBox = ({ accomondations = "", width }) => {
                           <Style.TextInput
                             list="suggestions"
                             type="text"
-                            placeholder="Where to go?"
+                            placeholder={
+                              (errors.search && errors.search.message) ||
+                              "Where to go?"
+                            }
                             name="textInput"
                             id="textInput"
                             {...register("search")}
                           />
+
                           <datalist id="suggestions">
                             {suggestion &&
                               suggestion.length > 0 &&
@@ -129,9 +120,6 @@ const SearchBox = ({ accomondations = "", width }) => {
                                 return <option key={item}>{item}</option>;
                               })}
                           </datalist>
-                          <Style.ErrorSearch>
-                            {errors.search && errors.search.message}
-                          </Style.ErrorSearch>
                         </Col>
                       </Row>
                     </Col>
@@ -201,7 +189,7 @@ const SearchBox = ({ accomondations = "", width }) => {
                         type="submit"
                         onClick={handleSubmit(onSubmit)}
                       >
-                        Search
+                        Go
                       </Style.Button>
                     </Col>
                   </Row>

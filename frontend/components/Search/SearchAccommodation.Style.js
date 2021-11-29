@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import * as Breakpoints from "../Global/Breakpoints";
 
 export const ButtonContainer = styled.div`
   height: 100%;
@@ -31,7 +30,7 @@ export const Input = styled.input`
   width: 90%;
   border: 0 !important;
 
-  & :focus {
+  &:focus {
     outline: none;
   }
 
@@ -41,7 +40,7 @@ export const Input = styled.input`
   background-color: white;
   `}
 
-  ::-webkit-search-cancel-button {
+  &::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
 `;

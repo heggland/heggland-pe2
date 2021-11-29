@@ -14,14 +14,18 @@ import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
 
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import * as Colors from "../constants/colors";
 import * as Breakpoints from "../components/Global/Breakpoints";
+import { useRouter } from "next/router";
 
-const CategoryContainer = styled.div`
+const FilterContainer = styled.div`
   display: flex;
+  flex-direction: row;
   margin-top: -50px;
+  width: 100%;
+  align-items: center;
 `;
 
 const Category = styled.div`
@@ -55,26 +59,145 @@ const EmptyAccomondations = styled.div`
   cursor: pointer;
 `;
 
+const SearchError = styled.div`
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+`;
+
+const Input = styled.input`
+  padding-left: 10px;
+  width: 100%;
+  height: 45px;
+  border: 0;
+  background-color: rgb(255 74 82);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  &::placeholder {
+    color: white;
+  }
+`;
+
 const Accommodation = ({ content, error }) => {
   const [accommondation, setAccommodation] = useState(content);
+  const [searchError, setSearchError] = useState(false);
+  const [filter, setFilter] = useState(false);
 
-  /*   // sort content by name
-  content = content.sort((a, b) => {
-    return (a.name < b.name && -1) || (a.name > b.name && 1) || 0;
-  }); */
+  const router = useRouter();
+  let query = router.query;
+
+  const [search, setSearch] = useState(query.search);
+
+  let querySearch;
+  let queryDate;
+  let queryFilter;
+
+  if (query.search) {
+    querySearch = query.search;
+
+    try {
+      let dateFrom = "";
+      if (query.from) {
+        dateFrom = "from=" + query.from;
+      }
+
+      let dateTo = "";
+      if (query.to) {
+        dateTo = "to=" + query.to;
+      }
+
+      queryDate = "";
+      if (dateFrom && dateTo) {
+        queryDate = "?" + dateFrom + "&" + dateTo;
+      } else if (dateFrom) {
+        queryDate = "?" + dateFrom;
+      } else if (dateTo) {
+        queryDate = "?" + dateTo;
+      }
+
+      if (querySearch) {
+        // search.length > 1
+        queryFilter = content.filter(function (accommodations) {
+          if (
+            JSON.stringify({
+              city: accommodations.city,
+            })
+              .toLowerCase()
+              .includes(querySearch.toLowerCase())
+          ) {
+            return accommodations;
+          }
+        });
+      }
+    } catch (error) {
+      setSearchError(error.toString());
+      console.log(error);
+    }
+  }
+
+  const removePreSearch = () => {
+    setSearch("");
+  };
 
   const HandleClickCategory = (e) => {
     const value = e.target.value;
     if (value === "all") {
+      removePreSearch();
       setAccommodation(content);
+      router.replace(router.pathname);
     } else {
-      // filter out the content by category value
-      const filteredContent = content.filter((item) => {
-        return item.category === value;
-      });
-      setAccommodation(filteredContent);
+      // filter out the data
+      let filteredData;
+      if (queryFilter) {
+        console.log("presearch go");
+        filteredData = queryFilter.filter((accommodations) => {
+          if (accommodations.category === value) {
+            return accommodations;
+          }
+        });
+      } else {
+        filteredData = content.filter((accommodations) => {
+          if (accommodations.category === value) {
+            return accommodations;
+          }
+        });
+      }
+      setFilter(true);
+      setAccommodation(filteredData);
     }
   };
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    if (value === "") {
+      setSearch(false);
+      setAccommodation(content);
+    } else {
+      // filter out the content
+      const filtered = content.filter(function (accommodations) {
+        if (
+          JSON.stringify({
+            name: accommodations.name,
+            description: accommodations.description,
+            address: accommodations.address,
+            zip_code: accommodations.zip_code,
+            city: accommodations.city,
+          })
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        ) {
+          return accommodations;
+        }
+      });
+      setSearch(true);
+      setAccommodation(filtered);
+    }
+  };
+
+  console.log(accommondation);
+
   return (
     <Layout
       title={TITLE_ACCOMMONDATION}
@@ -84,40 +207,58 @@ const Accommodation = ({ content, error }) => {
         <Row justifyContent="center">
           <Col xs={11} md={8}>
             <Row padding="100px 0 100px 0" flexDirection="column">
-              <Row>
-                <CategoryContainer>
-                  <Category>
-                    <CategoryButton onClick={HandleClickCategory} value="hotel">
-                      Hotel
-                    </CategoryButton>
-                    <CategoryButton
-                      onClick={HandleClickCategory}
-                      value="apartment"
-                    >
-                      Apartment
-                    </CategoryButton>
-                    <CategoryButton
-                      onClick={HandleClickCategory}
-                      value="resort"
-                    >
-                      Resort
-                    </CategoryButton>
-                    <CategoryButton
-                      onClick={HandleClickCategory}
-                      value="homestay"
-                    >
-                      Homestay
-                    </CategoryButton>
-                  </Category>
-                </CategoryContainer>
+              <Row alignItems="center">
+                <FilterContainer>
+                  <Col xs={4} margin="0 15px;">
+                    <SearchError>{searchError}</SearchError>
+                    <Input
+                      defaultValue={
+                        (search && queryFilter && query.search) || ""
+                      }
+                      placeholder="Search.."
+                      onChange={handleSearch}
+                    />
+                  </Col>
+
+                  <Col xs={8} justifyContent="right">
+                    <Category>
+                      <CategoryButton
+                        onClick={HandleClickCategory}
+                        value="hotel"
+                      >
+                        Hotel
+                      </CategoryButton>
+                      <CategoryButton
+                        onClick={HandleClickCategory}
+                        value="apartment"
+                      >
+                        Apartment
+                      </CategoryButton>
+                      <CategoryButton
+                        onClick={HandleClickCategory}
+                        value="resort"
+                      >
+                        Resort
+                      </CategoryButton>
+                      <CategoryButton
+                        onClick={HandleClickCategory}
+                        value="homestay"
+                      >
+                        Homestay
+                      </CategoryButton>
+                    </Category>
+                  </Col>
+                </FilterContainer>
               </Row>
               <Row>
-                {(accommondation &&
-                  accommondation.length >= 1 &&
-                  accommondation.map(({ id, name, image, city }) => {
+                {(!filter &&
+                  queryFilter &&
+                  queryFilter.length > 0 &&
+                  queryFilter.map(({ id, name, image, city }) => {
+                    console.log("query print go brrr");
                     return (
                       <Col xs={12} md={6} lg={4} xxl={3} key={id}>
-                        <a href={`accommodation/${id}`}>
+                        <a href={`accommodation/${id + queryDate}`}>
                           <Card
                             name={name}
                             city={city}
@@ -128,6 +269,23 @@ const Accommodation = ({ content, error }) => {
                       </Col>
                     );
                   })) ||
+                  (accommondation &&
+                    accommondation.length >= 1 &&
+                    accommondation.map(({ id, name, image, city }) => {
+                      console.log("accommondation print go brrr");
+                      return (
+                        <Col xs={12} md={6} lg={4} xxl={3} key={id}>
+                          <a href={`accommodation/${id}`}>
+                            <Card
+                              name={name}
+                              city={city}
+                              image={image}
+                              key={id}
+                            />
+                          </a>
+                        </Col>
+                      );
+                    })) ||
                   (!error && (
                     <EmptyAccomondations>
                       No accommodations found
@@ -141,13 +299,15 @@ const Accommodation = ({ content, error }) => {
       <Container padding="0 0 50px 0">
         <Row justifyContent="center">
           <Col xs={11} md={8}>
-            <CategoryContainer>
-              <Category>
-                <CategoryButton onClick={HandleClickCategory} value="all">
-                  Show all
-                </CategoryButton>
-              </Category>
-            </CategoryContainer>
+            <FilterContainer>
+              <Col xs={12} justifyContent="center">
+                <Category>
+                  <CategoryButton onClick={HandleClickCategory} value="all">
+                    Show all
+                  </CategoryButton>
+                </Category>
+              </Col>
+            </FilterContainer>
           </Col>
         </Row>
       </Container>

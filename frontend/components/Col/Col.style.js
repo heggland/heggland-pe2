@@ -89,6 +89,13 @@ const Col = styled.div`
       display: flex !important;
     `}
 
+    ${({ values }) =>
+    values.justifyContent &&
+    css`
+      display: flex !important;
+      justify-content: ${values.justifyContent};
+    `}
+
   // border: 1px solid red; // debugging go brr
 
   ${({ values }) =>
@@ -114,7 +121,7 @@ const Col = styled.div`
 
         
     ${({ values }) =>
-    values.backgroundColor &&
+    values.justifyContent &&
     css`
       background-color: ${values.backgroundColor};
     `}

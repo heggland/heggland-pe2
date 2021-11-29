@@ -20,11 +20,12 @@ import Services from "../modules/services/services";
 import About from "../modules/about/about";
 
 const Index = ({ content, error }) => {
+  let featured;
   if (content) {
     // filter out featured accomondations
-    content = content.filter((item) => item.featured === true);
+    featured = content.filter((item) => item.featured === true);
     // sorting accomondations by id
-    content = content.sort((a, b) => {
+    featured = featured.sort((a, b) => {
       return (a.id > b.id && -1) || (a.id < b.id && 1) || 0;
     });
   }
@@ -47,9 +48,9 @@ const Index = ({ content, error }) => {
               <Heading size={2}>Recommended establishments</Heading>
             </Row>
             <Row>
-              {(content &&
-                content.length >= 1 &&
-                content.map(({ id, name, image, city }) => {
+              {(featured &&
+                featured.length >= 1 &&
+                featured.map(({ id, name, image, city }) => {
                   return (
                     <Col xs={12} md={6} lg={4} xxl={3} key={id}>
                       <a href={`accommodation/${id}`}>

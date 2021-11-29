@@ -20,6 +20,7 @@ export const LinkContainer = styled.span`
 `;
 
 export const Navigation = styled.div`
+
   display: flex;
   flex-wrap: wrap;
   background-color: white;
@@ -28,6 +29,7 @@ export const Navigation = styled.div`
   z-index: 10;
   position: relative;
   font-size: 1.2rem;
+ 
 
   ${Breakpoints.xs} {
     box-shadow: 0 1px 3px rgb(0 0 0 / 25%);

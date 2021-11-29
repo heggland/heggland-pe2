@@ -110,141 +110,106 @@ const SearchAccommodation = ({ type }) => {
     }
   }
 
-  if (type === "nav") {
-    const data = (searchResult && searchResult) || accommodations;
-    return (
-      <>
-        <Style.ButtonContainer onClick={openModal}>
-          <FontAwesomeIcon icon={SearchIcon} />
-        </Style.ButtonContainer>
-        <div id="searchForm">
-          <Modal
-            id="searchForm"
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            ariaHideApp={false}
-          >
-            <Style.ModalContainer>
-              <Style.Header>
-                <Row justifyContent="center" padding="0 0 5px  0">
-                  <Col xs={1}>
-                    <FontAwesomeIcon icon={SearchIcon} />
-                  </Col>
-                  <Col xs={9}>
-                    <Style.Form onChange={handleSubmit(onChange)}>
-                      <Style.Input
-                        autocomplete="off"
-                        {...register("search")}
-                        type="search"
-                        disabled={!accommodations && true}
-                        error={(error && true) || false}
-                        placeholder={
-                          (errors.search && errors.search.message) || "search.."
-                        }
-                        autoFocus
-                      />
-                    </Style.Form>
-                  </Col>
-                  <Col xs={1}>
-                    <Style.CloseModal onClick={closeModal}>
-                      <FontAwesomeIcon icon={Close} transform="grow-5" />
-                    </Style.CloseModal>
-                  </Col>
-                </Row>
-              </Style.Header>
-              <Style.Result>
-                <Col xs={11}>
-                  <Col>
-                    {error && <Error string={error} path="search" />}
-                    {data &&
-                      data.map(
-                        ({
-                          id,
-                          name,
-                          city,
-                          address,
-                          zip_code,
-                          description,
-                          image,
-                        }) => {
-                          return (
-                            <Row key={id} margin="5% 0">
-                              <Col xs={12}>
-                                <a href={`/accommodation/${id}`}>
-                                  <Row justifyContent="center" padding="35px 0">
-                                    <Col xs={12} md={6} margin="0 25px 0 0">
-                                      <Heading size={4}>{name}</Heading>
-                                      <Heading size={6}>
-                                        {(address, zip_code, city).toString()}
-                                      </Heading>
-                                      <Row xs="none">
-                                        <i>
-                                          <small>
-                                            {description.slice(0, 250)}
-                                            {description.length > 250 && "..."}
-                                          </small>
-                                        </i>
-                                      </Row>
-                                    </Col>
-                                    <Col xs={12} md={4}>
-                                      {image[0] && (
-                                        <Style.ResultImage>
-                                          <Image
-                                            src={image[0].url}
-                                            alt={image[0].alternativeText}
-                                            layout="fill"
-                                            objectFit="scale-down"
-                                          />
-                                        </Style.ResultImage>
-                                      )}
-                                    </Col>
-                                  </Row>
-                                </a>
-                              </Col>
-                            </Row>
-                          );
-                        }
-                      )}
-                  </Col>
-                </Col>
-              </Style.Result>
-            </Style.ModalContainer>
-          </Modal>
-        </div>
-      </>
-    );
-  }
-
+  const data = (searchResult && searchResult) || accommodations;
   return (
-    <div>
-      <form onChange={handleSubmit(onChange)}>
-        <input
-          {...register("search")}
-          disabled={!accommodations && true}
-          placeholder={(errors.search && errors.search.message) || "search.."}
-        ></input>
-      </form>
-      {searchResult && (
-        <>
-          {searchResult.map(
-            ({ id, name, city, address, zip_code, description }) => {
-              return (
-                <div key={id}>
-                  <a href={`accommodation/${id}`}>
-                    <p>{name}</p>
-                  </a>
-                  <p>{city}</p>
-                  <p>{address}</p>
-                  <p>{zip_code}</p>
-                  <small>{description}</small>
-                </div>
-              );
-            }
-          )}
-        </>
-      )}
-    </div>
+    <>
+      <Style.ButtonContainer onClick={openModal}>
+        <FontAwesomeIcon icon={SearchIcon} />
+      </Style.ButtonContainer>
+      <Modal
+        id="searchForm"
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        ariaHideApp={false}
+      >
+        <Style.ModalContainer>
+          <Style.Header>
+            <Row justifyContent="center" padding="0 0 5px  0">
+              <Col xs={1}>
+                <FontAwesomeIcon icon={SearchIcon} />
+              </Col>
+              <Col xs={9}>
+                <Style.Form onChange={handleSubmit(onChange)}>
+                  <Style.Input
+                    autocomplete="off"
+                    {...register("search")}
+                    type="search"
+                    disabled={!accommodations && true}
+                    error={(error && true) || false}
+                    placeholder={
+                      (errors.search && errors.search.message) || "search.."
+                    }
+                    autoFocus
+                  />
+                </Style.Form>
+              </Col>
+              <Col xs={1}>
+                <Style.CloseModal onClick={closeModal}>
+                  <FontAwesomeIcon icon={Close} transform="grow-5" />
+                </Style.CloseModal>
+              </Col>
+            </Row>
+          </Style.Header>
+          <Style.Result>
+            <Col xs={11}>
+              <Col>
+                {error && <Error string={error} path="search" />}
+                {data &&
+                  data.map(
+                    ({
+                      id,
+                      name,
+                      city,
+                      address,
+                      zip_code,
+                      description,
+                      image,
+                    }) => {
+                      return (
+                        <Row key={id} margin="5% 0">
+                          <Col xs={12}>
+                            <a href={`/accommodation/${id}`}>
+                              <Row justifyContent="center" padding="35px 0">
+                                <Col xs={12} md={6} margin="0 25px 0 0">
+                                  <Heading size={4}>{name}</Heading>
+                                  <Heading size={6}>
+                                    {(address, zip_code, city).toString()}
+                                  </Heading>
+                                  <Row xs="none">
+                                    <i>
+                                      <small>
+                                        {description.slice(0, 250)}
+                                        {description.length > 250 && "..."}
+                                      </small>
+                                    </i>
+                                  </Row>
+                                </Col>
+                                <Col xs={12} md={4}>
+                                  {image[0] && (
+                                    <Style.ResultImage>
+                                      <Image
+                                        src={image[0].url}
+                                        alt={image[0].alternativeText}
+                                        layout="fill"
+                                        objectFit="scale-down"
+                                      />
+                                    </Style.ResultImage>
+                                  )}
+                                </Col>
+                              </Row>
+                            </a>
+                          </Col>
+                        </Row>
+                      );
+                    }
+                  )}
+              </Col>
+            </Col>
+          </Style.Result>
+        </Style.ModalContainer>
+      </Modal>
+    </>
   );
 };
 

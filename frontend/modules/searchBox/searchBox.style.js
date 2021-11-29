@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as colors from "../../constants/colors";
+import * as Colors from "../../constants/colors";
 import * as Breakpoints from "../../components/Global/Breakpoints";
 
 export const Container = styled.div`
@@ -32,7 +32,7 @@ export const Form = styled.form`
     &:first-child,
     &:nth-child(3),
     &:nth-child(5) {
-      border: 1px solid ${colors.grey};
+      border: 1px solid ${Colors.grey};
     }
   }
 `;
@@ -45,10 +45,10 @@ export const TextInput = styled.input`
   border: none;
   outline: none;
 
-  color: ${colors.white};
+  color: ${Colors.white};
 
   &::placeholder {
-    color: ${colors.lightGrey};
+    color: ${Colors.lightGrey};
   }
 
   &::-webkit-search-cancel-button {
@@ -109,7 +109,7 @@ export const InputIcon = styled.label`
 export const Button = styled.button`
   width: 100%;
   height: 45px;
-  background-color: ${colors.red}};
+  background-color: ${Colors.red}};
   color: white;
   border: 0;
   cursor: pointer;
@@ -119,31 +119,19 @@ export const Button = styled.button`
 
   &:hover {
     transition: all 0.2s ease-in;
-    background-color: ${colors.turquoise};
+    background-color: ${Colors.turquoise};
   }
 
 `;
 
-// error
-
 export const ErrorDate = styled.div`
-  position: relative;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
   font-size: 0.7rem;
 
   ${Breakpoints.sm} {
     color: red;
     font-size: 0.5rem;
-  }
-`;
-
-export const ErrorSearch = styled.div`
-  position: relative;
-  top: -5px;
-  color: red;
-  font-size: 0.5rem;
-
-  ${Breakpoints.sm} {
-    color: red;
-    font-size: 0.7rem;
   }
 `;
