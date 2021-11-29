@@ -12,11 +12,7 @@ import {
 import { FRONTPAGESEARCH_SCHEMA } from "../../constants/schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import Card from "../../components/Card/Card";
-import FormatDate from "../../components/Common/FormatDate";
 import * as Colors from "../../constants/colors";
-import Heading from "../../components/Common/Heading";
 
 const SearchBox = ({ accomondations = "", width }) => {
   let suggestion = [];
@@ -157,7 +153,7 @@ const SearchBox = ({ accomondations = "", width }) => {
                     <Col xs="none" sm={0.15} />
 
                     <Col xs={12} sm={3} height="100%">
-                      <Row alignItems="center" padding="0 0 0 10px">
+                      <Row alignItems="center" padding="0 10px">
                         <Col xs={1} sm={1}>
                           <Style.InputIcon>
                             <FontAwesomeIcon icon={CalendarIcon} />

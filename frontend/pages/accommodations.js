@@ -153,6 +153,10 @@ const Accommodation = ({ content, error }) => {
         queryFilter = content.filter(function (accommodations) {
           if (
             JSON.stringify({
+              name: accommodations.name,
+              description: accommodations.description,
+              address: accommodations.address,
+              zip_code: accommodations.zip_code,
               city: accommodations.city,
             })
               .toLowerCase()

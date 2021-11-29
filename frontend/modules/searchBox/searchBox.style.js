@@ -45,6 +45,14 @@ export const TextInput = styled.input`
   border: none;
   outline: none;
 
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
   color: ${Colors.white};
 
   &::placeholder {
@@ -69,11 +77,15 @@ export const DateInput = styled.input`
   height: 45px;
   padding-left: 2rem;
   border: none;
-
   color: white;
 
-  &:::-webkit-calendar-picker-indicator {
-    filter: invert(100%);
+  &::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    filter: invert(1);
+  }
+
+  &:focus{
+    outline: none;
   }
 
   ${Breakpoints.sm} {
@@ -84,12 +96,13 @@ export const DateInput = styled.input`
     padding: 0;
     margin: 0;
     filter: invert(100%);
-    
-    ${Breakpoints.sm} {
-      opacity: 0;
-    }
+    opacity: 0;
 
-}
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
   &:hover { 
     &::-webkit-calendar-picker-indicator {
       opacity: 1;
