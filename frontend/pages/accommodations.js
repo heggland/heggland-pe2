@@ -170,6 +170,10 @@ const Accommodation = ({ content, error }) => {
   };
 
   const handleSearch = (e) => {
+    // router.replace(router.pathname);
+    if (router.query.search) {
+      router.replace(router.pathname + queryDate);
+    }
     const value = e.target.value;
     if (value === "") {
       setSearch(false);
@@ -300,7 +304,7 @@ const Accommodation = ({ content, error }) => {
         <Row justifyContent="center">
           <Col xs={11} md={8}>
             <FilterContainer>
-              <Col xs={12} justifyContent="center">
+              <Col xs={12}>
                 <Category>
                   <CategoryButton onClick={HandleClickCategory} value="all">
                     Show all
