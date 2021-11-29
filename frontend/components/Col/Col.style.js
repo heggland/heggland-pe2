@@ -92,7 +92,7 @@ const Col = styled.div`
     ${({ values }) =>
     values.justifyContent &&
     css`
-      display: flex !important;
+      display: flex;
       justify-content: ${values.justifyContent};
     `}
 

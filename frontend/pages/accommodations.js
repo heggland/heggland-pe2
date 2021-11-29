@@ -22,14 +22,42 @@ import { useRouter } from "next/router";
 
 const FilterContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-top: -50px;
+  width: 100%;
+  align-items: center;
+
+  & > *:first-child {
+    order: 2;
+  }
+
+  & > *:last-child {
+    order: 1;
+  }
+
+  ${Breakpoints.md} {
+    flex-direction: row;
+    & > *:first-child {
+      order: 1;
+    }
+
+    & > *:last-child {
+      order: 2;
+    }
+  }
+`;
+
+const FilterContainerBottom = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: -50px;
   width: 100%;
   align-items: center;
 `;
 
 const Category = styled.div`
-  margin-left: 10px;
+  ${Breakpoints.md} {
+  }
 `;
 
 const CategoryButton = styled.button`
@@ -200,8 +228,6 @@ const Accommodation = ({ content, error }) => {
     }
   };
 
-  console.log(accommondation);
-
   return (
     <Layout
       title={TITLE_ACCOMMONDATION}
@@ -213,7 +239,7 @@ const Accommodation = ({ content, error }) => {
             <Row padding="100px 0 100px 0" flexDirection="column">
               <Row alignItems="center">
                 <FilterContainer>
-                  <Col xs={4} margin="0 15px;">
+                  <Col xs={12} sm={4} margin="0 15px">
                     <SearchError>{searchError}</SearchError>
                     <Input
                       defaultValue={
@@ -224,33 +250,28 @@ const Accommodation = ({ content, error }) => {
                     />
                   </Col>
 
-                  <Col xs={8} justifyContent="right">
-                    <Category>
-                      <CategoryButton
-                        onClick={HandleClickCategory}
-                        value="hotel"
-                      >
-                        Hotel
-                      </CategoryButton>
-                      <CategoryButton
-                        onClick={HandleClickCategory}
-                        value="apartment"
-                      >
-                        Apartment
-                      </CategoryButton>
-                      <CategoryButton
-                        onClick={HandleClickCategory}
-                        value="resort"
-                      >
-                        Resort
-                      </CategoryButton>
-                      <CategoryButton
-                        onClick={HandleClickCategory}
-                        value="homestay"
-                      >
-                        Homestay
-                      </CategoryButton>
-                    </Category>
+                  <Col xs="none" sm={8} justifyContent="right">
+                    <CategoryButton onClick={HandleClickCategory} value="hotel">
+                      Hotel
+                    </CategoryButton>
+                    <CategoryButton
+                      onClick={HandleClickCategory}
+                      value="apartment"
+                    >
+                      Apartment
+                    </CategoryButton>
+                    <CategoryButton
+                      onClick={HandleClickCategory}
+                      value="resort"
+                    >
+                      Resort
+                    </CategoryButton>
+                    <CategoryButton
+                      onClick={HandleClickCategory}
+                      value="homestay"
+                    >
+                      Homestay
+                    </CategoryButton>
                   </Col>
                 </FilterContainer>
               </Row>
@@ -303,7 +324,7 @@ const Accommodation = ({ content, error }) => {
       <Container padding="0 0 50px 0">
         <Row justifyContent="center">
           <Col xs={11} md={8}>
-            <FilterContainer>
+            <FilterContainerBottom>
               <Col xs={12}>
                 <Category>
                   <CategoryButton onClick={HandleClickCategory} value="all">
@@ -311,7 +332,7 @@ const Accommodation = ({ content, error }) => {
                   </CategoryButton>
                 </Category>
               </Col>
-            </FilterContainer>
+            </FilterContainerBottom>
           </Col>
         </Row>
       </Container>
