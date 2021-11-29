@@ -13,10 +13,10 @@ const Hotel = ({ content, error }) => {
   if (error) {
     return (
       <>
+        {error}
         <Link href="/admin/edit">
           <a className="link">Go back</a>
         </Link>
-        {error}
       </>
     );
   }

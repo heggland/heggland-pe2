@@ -6,6 +6,11 @@ import * as Colors from "../../constants/colors";
 export const Container = styled.div`
   flex: 1 0 auto;
   background-color: white;
+
+  & > * {
+    border-bottom: 1px solid ${Colors.red};
+    box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+s  }
 `;
 
 export const LinkContainer = styled.span`
@@ -20,20 +25,17 @@ export const LinkContainer = styled.span`
 `;
 
 export const Navigation = styled.div`
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: white;
   width: 100%;
   align-items: center;
   z-index: 10;
   position: relative;
   font-size: 1.2rem;
- 
+  background-color: transparent;
 
   ${Breakpoints.xs} {
-    //box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
     justify-content: space-between;
 
     > :nth-child(1),
