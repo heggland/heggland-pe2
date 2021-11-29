@@ -35,7 +35,7 @@ const FilterContainer = styled.div`
     order: 1;
   }
 
-  ${Breakpoints.md} {
+  ${Breakpoints.sm} {
     flex-direction: row;
     & > *:first-child {
       order: 1;
@@ -43,6 +43,9 @@ const FilterContainer = styled.div`
 
     & > *:last-child {
       order: 2;
+      ${Breakpoints.md} {
+        display: flex;
+      }
     }
   }
 `;
@@ -239,7 +242,7 @@ const Accommodation = ({ content, error }) => {
             <Row padding="100px 0 100px 0" flexDirection="column">
               <Row alignItems="center">
                 <FilterContainer>
-                  <Col xs={12} sm={4} margin="0 15px">
+                  <Col xs={12} sm={4} md={4} margin="0 15px">
                     <SearchError>{searchError}</SearchError>
                     <Input
                       defaultValue={
@@ -250,7 +253,7 @@ const Accommodation = ({ content, error }) => {
                     />
                   </Col>
 
-                  <Col xs="none" sm={8} justifyContent="right">
+                  <Col xs="none" sm={8} md={8} justifyContent="right">
                     <CategoryButton onClick={HandleClickCategory} value="hotel">
                       Hotel
                     </CategoryButton>
