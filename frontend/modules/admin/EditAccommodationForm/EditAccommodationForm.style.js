@@ -107,6 +107,18 @@ export const ButtonDelete = styled.div`
   }
 `;
 
+export const Select = styled.select`
+  &:focus {
+    border: 2px solid ${Colors.blue};
+    outline: 0;
+    box-shadow: none;
+  }
+`;
+
+export const Input = styled.input`
+  padding-left: 5px;
+`;
+
 export const Textarea = styled.textarea`
   width: 100%;
   min-height: 300px;
@@ -121,6 +133,12 @@ export const Textarea = styled.textarea`
   max-height: 600px;
   min-width: 100%;
   resize: vertical;
+
+  &:focus {
+    border: 2px solid ${Colors.blue};
+    outline: 0;
+    box-shadow: none;
+  }
 `;
 
 export const StateInfo = styled.div`

@@ -19,7 +19,6 @@ import {
   faSignOutAlt as SignOut,
   faBars as MobileMenu,
 } from "@fortawesome/free-solid-svg-icons";
-import SearchAccommodation from "../Search/SearchAccommodation";
 
 const Layout = ({ title, description, children }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -37,43 +36,48 @@ const Layout = ({ title, description, children }) => {
       <Head title={title} description={description} />
 
       <Style.Container>
-        <Style.Navigation>
-          <Col xs={6} sm={2}>
-            <Style.NavTitle>
-              <Style.LinkContainer active={(pathname === "/" && true) || false}>
-                <a href="/">
-                  {/* <Image height="100" width="120" src={logo} /> */}
-                  Holidaze
-                </a>
-              </Style.LinkContainer>
-            </Style.NavTitle>
-          </Col>
+        <Row justifyContent="center">
+          <Col xs={12} md={9}>
+            <Style.Navigation>
+              <Col xs={6} sm={2} lg={2}>
+                <Style.NavTitle>
+                  <Style.LinkContainer
+                    active={(pathname === "/" && true) || false}
+                  >
+                    <a href="/">
+                      {/* <Image height="100" width="120" src={logo} /> */}
+                      Holidaze
+                    </a>
+                  </Style.LinkContainer>
+                </Style.NavTitle>
+              </Col>
 
-          <Col xs={6} sm={4} md={2} height="100%">
-            <Row justifyContent="right" height="100%">
-              <Style.SearchButton>
-                <SearchAccommodation type="nav" />
-              </Style.SearchButton>
-              <Style.MobileButton onClick={handleClick}>
-                <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />
-              </Style.MobileButton>
-            </Row>
+              <Col xs={6} sm="none" height="100%">
+                <Row justifyContent="right" height="100%">
+                  <Style.MobileButton onClick={handleClick}>
+                    <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />
+                  </Style.MobileButton>
+                </Row>
+              </Col>
+              <Col xs="auto" sm={9} md={8} lg={10}>
+                <Style.NavPages show={mobileMenu}>
+                  <Style.LinkContainer
+                    active={
+                      (pathname.includes("accommodations") && true) || false
+                    }
+                  >
+                    <Link href="/accommodations">Accommodation</Link>
+                  </Style.LinkContainer>
+                  <Style.LinkContainer
+                    active={(pathname.includes("contact") && true) || false}
+                  >
+                    <Link href="/contact">Contact</Link>
+                  </Style.LinkContainer>
+                </Style.NavPages>
+              </Col>
+            </Style.Navigation>
           </Col>
-          <Col xs="auto" md={8}>
-            <Style.NavPages show={mobileMenu}>
-              <Style.LinkContainer
-                active={(pathname.includes("accommodations") && true) || false}
-              >
-                <Link href="/accommodations">Accommodation</Link>
-              </Style.LinkContainer>
-              <Style.LinkContainer
-                active={(pathname.includes("contact") && true) || false}
-              >
-                <Link href="/contact">Contact</Link>
-              </Style.LinkContainer>
-            </Style.NavPages>
-          </Col>
-        </Style.Navigation>
+        </Row>
         <Style.Children>{children}</Style.Children>
       </Style.Container>
 

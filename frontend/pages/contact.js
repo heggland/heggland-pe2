@@ -17,9 +17,10 @@ const Position = styled.div`
   top: 50%;
   transform: translate(0, -50%);
 
-  /*  & > * > * {
+  & > * > * {
+    background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  } */
+  }
 
   ${Breakpoints.sm} {
     display: flex;

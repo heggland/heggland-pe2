@@ -275,7 +275,7 @@ const EditForm = ({
                   <Row padding="0px 0px 20px 0px">
                     <Col xs={11} md={4}>
                       <Heading size={5}>NAME</Heading>
-                      <input
+                      <Style.Input
                         placeholder="name *"
                         defaultValue={name && name}
                         {...register("name")}
@@ -286,7 +286,7 @@ const EditForm = ({
                     </Col>
                     <Col xs={11} md={4}>
                       <Heading size={5}>ADDRESS</Heading>
-                      <input
+                      <Style.Input
                         placeholder="address *"
                         defaultValue={address && address}
                         {...register("address")}
@@ -296,7 +296,7 @@ const EditForm = ({
                     </Col>
                     <Col xs={11} md={4}>
                       <Heading size={5}>ZIP CODE</Heading>
-                      <input
+                      <Style.Input
                         placeholder="zip_code *"
                         defaultValue={zip_code && zip_code}
                         {...register("zip_code")}
@@ -310,7 +310,7 @@ const EditForm = ({
                   <Row padding="0px 0px 20px 0px">
                     <Col xs={11} md={4}>
                       <Heading size={5}>Category</Heading>
-                      <select
+                      <Style.Select
                         defaultValue={(category && category) || ""}
                         {...register("category")}
                       >
@@ -321,7 +321,7 @@ const EditForm = ({
                         <option value="apartment">Apartment</option>
                         <option value="resort">Resort</option>
                         <option value="homestay">Homestay</option>
-                      </select>
+                      </Style.Select>
 
                       {errors.category && (
                         <span>{errors.category.message}</span>
@@ -330,7 +330,7 @@ const EditForm = ({
 
                     <Col xs={11} md={4}>
                       <Heading size={5}>CITY</Heading>
-                      <input
+                      <Style.Input
                         placeholder="city *"
                         defaultValue={city && city}
                         {...register("city")}

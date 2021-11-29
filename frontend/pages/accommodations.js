@@ -100,11 +100,21 @@ const Input = styled.input`
   padding-left: 10px;
   width: 100%;
   height: 45px;
-  border: 0;
-  background-color: rgb(255 74 82);
+  background-color: rgb(255 74 82/ 0.85);
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
+
+  border: 2px solid rgb(255 74 82);
+  &:hover {
+    border: 2px solid ${Colors.turquoise};
+  }
+
+  &:focus {
+    border: 2px solid ${Colors.turquoise};
+    outline: 0;
+    box-shadow: none;
+  }
 
   &::placeholder {
     color: white;

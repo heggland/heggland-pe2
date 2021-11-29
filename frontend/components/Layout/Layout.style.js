@@ -22,6 +22,7 @@ export const LinkContainer = styled.span`
 export const Navigation = styled.div`
 
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   background-color: white;
   width: 100%;
@@ -32,7 +33,7 @@ export const Navigation = styled.div`
  
 
   ${Breakpoints.xs} {
-    box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+    //box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
     justify-content: space-between;
 
     > :nth-child(1),
@@ -114,8 +115,10 @@ export const NavPages = styled.div`
   }
 
   ${Breakpoints.sm} {
-    display: block;
     border-top: none;
+
+    display: flex;
+    flex-direction: row;
 
     & > * {
       margin: 0 40px 0 0;
