@@ -125,14 +125,12 @@ const SearchBox = ({ accomondations = "", width }) => {
                     <Col xs={12} sm={3} height="100%">
                       <Row alignItems="center" padding="0 10px">
                         <Col xs={1} sm={1}>
-                          <Style.InputIcon>
-                            <FontAwesomeIcon icon={CalendarIcon} />
-                          </Style.InputIcon>
+                          <Style.InputIcon>from</Style.InputIcon>
                         </Col>
                         <Col xs={10} sm={10}>
-                          <Style.InputLabel htmlFor="startDate">
+                          {/*                           <Style.InputLabel htmlFor="startDate">
                             Check in
-                          </Style.InputLabel>
+                          </Style.InputLabel> */}
                           <Style.DateInput
                             type="date"
                             name="startDate"
@@ -155,14 +153,12 @@ const SearchBox = ({ accomondations = "", width }) => {
                     <Col xs={12} sm={3} height="100%">
                       <Row alignItems="center" padding="0 10px">
                         <Col xs={1} sm={1}>
-                          <Style.InputIcon>
-                            <FontAwesomeIcon icon={CalendarIcon} />
-                          </Style.InputIcon>
+                          <Style.InputIcon>to</Style.InputIcon>
                         </Col>
                         <Col xs={10} sm={10}>
-                          <Style.InputLabel htmlFor="endDate">
+                          {/*                           <Style.InputLabel htmlFor="endDate">
                             Check out
-                          </Style.InputLabel>
+                          </Style.InputLabel> */}
                           <Style.DateInput
                             type="date"
                             name="endDate"
