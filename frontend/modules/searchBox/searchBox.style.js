@@ -224,17 +224,3 @@ export const Dropdown = styled.div`
       }
     `}
 `;
-
-/* & > * {
-  &:hover {
-    font-weight: bold;
-  }
-} */
-
-/*
-
-      ${Suggestions}:hover & {
-        font-weight: bold;
-      }
-
-      */

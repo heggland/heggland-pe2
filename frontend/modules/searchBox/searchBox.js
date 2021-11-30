@@ -101,12 +101,11 @@ const SearchBox = ({ content = [], width }) => {
       filterSearch = filterSearch.slice(0, 5);
     }
 
-    if (filterSearch && filterSearch.length >= 1) {
+    if (filterSearch && filterSearch.length === 0) {
       setMatch(true);
     }
 
     setSearch(filterSearch);
-    console.log(search);
   };
 
   const handleClickSearchInput = () => {
@@ -241,7 +240,7 @@ const SearchBox = ({ content = [], width }) => {
                           )}
                           <Style.Suggestions show={showSuggestions && true}>
                             {(search &&
-                              search.length > 1 &&
+                              search.length > 0 &&
                               search.map(({ id, name, city }) => {
                                 return (
                                   <Style.Dropdown
