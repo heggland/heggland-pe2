@@ -104,6 +104,10 @@ export const InputLabel = styled.label`
   font-size: 1rem;
 `;
 
+export const DatePicker = styled.label`
+  color: white;
+`;
+
 export const DateInput = styled.input`
   background-color: transparent;
   width: 100%;
@@ -112,36 +116,23 @@ export const DateInput = styled.input`
   border: none;
   color: white;
 
+  filter: invert(0);
+
   &::-webkit-calendar-picker-indicator {
-    opacity: 1;
-    filter: invert(1);
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
   }
 
-  &:focus{
+  &:focus {
     outline: none;
   }
-
-  ${Breakpoints.sm} {
-  outline: none;
-  padding: 0 2rem;
-
-  &::-webkit-calendar-picker-indicator {
-    padding: 0;
-    margin: 0;
-    filter: invert(100%);
-    opacity: 0;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  
-  &:hover { 
-    &::-webkit-calendar-picker-indicator {
-      opacity: 1;
-    }
-  }
-
 `;
 
 export const InputContainer = styled.div`
@@ -195,11 +186,27 @@ export const Suggestions = styled.div`
   z-index: 1;
   background-color: white;
   border-radius: 5px;
-  padding: 0.5rem;
+  margin-top: 10px;
   height: fit-content;
-  border: 1px solid ${Colors.blue};
-  display: none;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  width: 95%;
+  padding: 15px;
+  left: 50%;
+  transform: translateX(-50%);
 
+  ${Breakpoints.sm} {
+    left: auto;
+    transform: none;
+    width: 40%;
+  }
+
+  ${Breakpoints.lg} {
+    left: auto;
+    transform: none;
+    width: 20%;
+  }
+
+  display: none;
   ${({ show }) =>
     show &&
     css`
@@ -214,6 +221,7 @@ export const Dropdown = styled.div`
   align-items: center;
   justify-content: space-between;
   cursor: default;
+  padding: 0.5rem;
 
   ${({ hover }) =>
     hover &&

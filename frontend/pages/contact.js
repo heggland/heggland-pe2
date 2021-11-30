@@ -33,11 +33,6 @@ const Position = styled.div`
     transform: translate(-50%, -50%);
     height: 100%;
   }
-
-  ${Breakpoints.md} {
-    top: 50%;
-    transform: translate(0, -50%);
-  }
 `;
 
 export default function Home() {

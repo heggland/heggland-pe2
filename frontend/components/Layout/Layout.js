@@ -39,7 +39,7 @@ const Layout = ({ title, description, children }) => {
         <Row justifyContent="center">
           <Col xs={12} md={9}>
             <Style.Navigation>
-              <Col xs={6} sm={2} lg={2}>
+              <Col xs={6} sm={2} md={2} lg={2.5}>
                 <Style.NavTitle>
                   <Style.LinkContainer
                     active={(pathname === "/" && true) || false}
@@ -59,7 +59,7 @@ const Layout = ({ title, description, children }) => {
                   </Style.MobileButton>
                 </Row>
               </Col>
-              <Col xs="auto" sm={9} md={8} lg={10}>
+              <Col xs="auto" sm={9} md={8} lg={8} xl={10}>
                 <Style.NavPages show={mobileMenu}>
                   <Style.LinkContainer
                     active={

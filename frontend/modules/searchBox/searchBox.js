@@ -24,7 +24,6 @@ const SearchBox = ({ content = [], width }) => {
   const [inputSelected, setInputSelected] = useState("");
   const [selected, setSelected] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [match, setMatch] = useState(false);
 
   const {
     register,
@@ -77,6 +76,11 @@ const SearchBox = ({ content = [], width }) => {
     const value = e.target.value;
     let filterSearch;
 
+    // if value start with space, remove it
+    if (value === " ") {
+      e.target.value = "";
+    }
+
     if (value && value.length >= 1) {
       setShowSuggestions(true);
       filterSearch = accommodations.filter((items) => {
@@ -101,39 +105,26 @@ const SearchBox = ({ content = [], width }) => {
       filterSearch = filterSearch.slice(0, 5);
     }
 
-    if (filterSearch && filterSearch.length === 0) {
-      setMatch(true);
-    }
-
     setSearch(filterSearch);
   };
 
   const handleClickSearchInput = () => {
-    if (search && showSuggestions) {
+    if (showSuggestions) {
       setShowSuggestions(false);
     } else {
-      if (match.length === 0) {
-        setSearch(content.slice(0, 5));
-      }
-      if (search === undefined) {
-        setSearch(content.slice(0, 5));
-      }
       setShowSuggestions(true);
+    }
+    if (search && search.length >= 1) {
+    } else {
+      setSearch(content.slice(0, 5));
     }
   };
 
   const handleClickChevronDown = () => {
-    if (search && search.length >= 2) {
-      setShowSuggestions(true);
+    setShowSuggestions(true);
+    if (search && search.length >= 1) {
     } else {
-      if (match.length === 0) {
-        setSearch(content.slice(0, 5));
-      }
-      if (search === undefined) {
-        setSearch(content.slice(0, 5));
-      }
-
-      setShowSuggestions(true);
+      setSearch(content.slice(0, 5));
     }
   };
 
@@ -238,26 +229,26 @@ const SearchBox = ({ content = [], width }) => {
                               </Col>
                             </Row>
                           )}
-                          <Style.Suggestions show={showSuggestions && true}>
-                            {(search &&
-                              search.length > 0 &&
-                              search.map(({ id, name, city }) => {
-                                return (
-                                  <Style.Dropdown
-                                    hover={true}
-                                    key={id}
-                                    onClick={handleSelect}
-                                    data-city={city}
-                                    data-name={name}
-                                    data-id={id}
-                                  >
-                                    {name}
-                                  </Style.Dropdown>
-                                );
-                              })) || <Style.Dropdown>No match</Style.Dropdown>}
-                          </Style.Suggestions>
                         </Col>
                       </Row>
+                      <Style.Suggestions show={showSuggestions && true}>
+                        {(search &&
+                          search.length > 0 &&
+                          search.map(({ id, name, city }) => {
+                            return (
+                              <Style.Dropdown
+                                hover={true}
+                                key={id}
+                                onClick={handleSelect}
+                                data-city={city}
+                                data-name={name}
+                                data-id={id}
+                              >
+                                {name}
+                              </Style.Dropdown>
+                            );
+                          })) || <Style.Dropdown>No match</Style.Dropdown>}
+                      </Style.Suggestions>
                     </Col>
 
                     <Col xs="none" sm={0.15} />
@@ -267,20 +258,33 @@ const SearchBox = ({ content = [], width }) => {
                         <Col xs={1} sm={1}>
                           <Style.InputIcon>from</Style.InputIcon>
                         </Col>
-                        <Col xs={10} sm={10}>
-                          <Style.DateInput
-                            type="date"
-                            name="startDate"
-                            id="startDate"
-                            {...register("date_from")}
-                            min={new Date().toISOString().split("T")[0]}
-                          />
-                          <Style.ErrorDate>
-                            {(errors.date_from &&
-                              errors.date_from.message.includes("type") &&
-                              "Please choose a date") ||
-                              (errors.date_from && errors.date_from.message)}
-                          </Style.ErrorDate>
+                        <Col xs={11} sm={10}>
+                          <Row alignItems="center">
+                            <Col xs={11}>
+                              <Style.DateInput
+                                type="date"
+                                name="startDate"
+                                id="startDate"
+                                {...register("date_from")}
+                                min={new Date().toISOString().split("T")[0]}
+                              />
+                              <Style.ErrorDate>
+                                {(errors.date_from &&
+                                  errors.date_from.message.includes("type") &&
+                                  "Please choose a date") ||
+                                  (errors.date_from &&
+                                    errors.date_from.message)}
+                              </Style.ErrorDate>
+                            </Col>
+                            <Col xs={1}>
+                              <Style.DatePicker for="startDate">
+                                <FontAwesomeIcon
+                                  onClick={handleClickChevronUp}
+                                  icon={CalendarIcon}
+                                />
+                              </Style.DatePicker>
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
                     </Col>
@@ -292,20 +296,33 @@ const SearchBox = ({ content = [], width }) => {
                         <Col xs={1} sm={1}>
                           <Style.InputIcon>to</Style.InputIcon>
                         </Col>
-                        <Col xs={10} sm={10}>
-                          <Style.DateInput
-                            type="date"
-                            name="endDate"
-                            id="endDate"
-                            {...register("date_to")}
-                            min={new Date().toISOString().split("T")[0]}
-                          />
-                          <Style.ErrorDate>
-                            {(errors.date_to &&
-                              errors.date_to.message.includes("type") &&
-                              "Please choose a date") ||
-                              (errors.date_to && errors.date_to.message)}
-                          </Style.ErrorDate>
+                        <Col xs={11} sm={10}>
+                          <Row alignItems="center">
+                            <Col xs={11}>
+                              <Style.DateInput
+                                type="date"
+                                name="endDate"
+                                id="endDate"
+                                {...register("date_to")}
+                                min={new Date().toISOString().split("T")[0]}
+                                placeholder="Date of birth"
+                              />
+                              <Style.ErrorDate>
+                                {(errors.date_to &&
+                                  errors.date_to.message.includes("type") &&
+                                  "Please choose a date") ||
+                                  (errors.date_to && errors.date_to.message)}
+                              </Style.ErrorDate>
+                            </Col>
+                            <Col xs={1}>
+                              <Style.DatePicker for="endDate">
+                                <FontAwesomeIcon
+                                  onClick={handleClickChevronUp}
+                                  icon={CalendarIcon}
+                                />
+                              </Style.DatePicker>
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
                     </Col>
