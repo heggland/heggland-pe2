@@ -108,8 +108,7 @@ const SearchBox = ({ content = [], width }) => {
 
   const handleClickChevronDown = () => {
     // if search is true it means that the user has selected an item from the suggestions
-
-    if (search) {
+    if (search.length >= 2) {
       setShowSuggestions(true);
     } else {
       setSearch(content.slice(0, 5));
@@ -117,7 +116,7 @@ const SearchBox = ({ content = [], width }) => {
     }
   };
   const handleClickChevronUp = () => {
-    if (search) {
+    if (search.length >= 2) {
       setShowSuggestions(false);
     } else {
       setSearch([]);
