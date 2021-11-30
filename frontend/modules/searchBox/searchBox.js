@@ -13,19 +13,13 @@ import { FRONTPAGESEARCH_SCHEMA } from "../../constants/schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Colors from "../../constants/colors";
+import { useState } from "react";
 
-const SearchBox = ({ accomondations = "", width }) => {
-  let suggestion = [];
-  if (accomondations) {
-    // array of cities
-    suggestion =
-      accomondations &&
-      accomondations.map((item) => {
-        return item.city;
-      });
-    // remove duplicate in the array
-    suggestion = [...new Set(suggestion)];
-  }
+const SearchBox = ({ content = [], width }) => {
+  const [accommodations] = useState(content);
+  const [search, setSearch] = useState([]);
+  const [inputSelected, setInputSelected] = useState("");
+  const [selected, setSelected] = useState(false);
 
   const {
     register,
@@ -39,10 +33,17 @@ const SearchBox = ({ accomondations = "", width }) => {
 
   const onSubmit = (data) => {
     //search data.city in accomondations
-
+    if (selected) {
+      // filter out name from accommodations
+      const filterAccommodations = accommodations.filter((item) => {
+        return item.name === inputSelected;
+      });
+      router.push("/accommodation/" + filterAccommodations[0].id);
+      return;
+    }
     try {
-      const path = "/accommodations";
-      const search = "?search=" + data.search;
+      const searchInput = (inputSelected && inputSelected) || data.search;
+      const search = "?search=" + searchInput;
 
       const options = {
         year: "numeric",
@@ -69,10 +70,59 @@ const SearchBox = ({ accomondations = "", width }) => {
         date = "&" + dateTo;
       }
 
-      router.push(path + search + date);
+      router.push("/accommodations" + search + date);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    let filterSearch;
+
+    if (value && value.length >= 1) {
+      filterSearch = accommodations.filter((items) => {
+        if (
+          JSON.stringify({
+            name: items.name,
+            city: items.city,
+            id: items.id,
+          })
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        ) {
+          return items;
+        }
+      });
+    } else {
+      setSearch([]);
+    }
+
+    // filter out cities from array
+
+    // slice fitlersearch to 5 items
+    if (filterSearch && filterSearch.length > 5) {
+      filterSearch = filterSearch.slice(0, 5);
+    }
+
+    setSearch(filterSearch);
+  };
+
+  const handleClick = (e) => {
+    const name = e.target.dataset.name;
+    const city = e.target.dataset.city;
+    setSearch([]);
+    setInputSelected(name);
+
+    if (name !== city) {
+      setSelected(true);
+    }
+  };
+
+  const resetSearch = () => {
+    setSearch([]);
+    setInputSelected("");
+    // RESET INPUT
   };
 
   return (
@@ -97,25 +147,54 @@ const SearchBox = ({ accomondations = "", width }) => {
                           </Style.InputIcon>
                         </Col>
                         <Col xs={11} sm={11}>
-                          <Style.TextInput
-                            list="suggestions"
-                            type="text"
-                            placeholder={
-                              (errors.search && errors.search.message) ||
-                              "Where to go?"
-                            }
-                            name="textInput"
-                            id="textInput"
-                            {...register("search")}
-                          />
-
-                          <datalist id="suggestions">
-                            {suggestion &&
-                              suggestion.length > 0 &&
-                              suggestion.map((item) => {
-                                return <option key={item}>{item}</option>;
+                          {(inputSelected && (
+                            <Row alignItems="center">
+                              <Col xs={11}>
+                                <Style.InputSelected
+                                  type="text"
+                                  name="textInput"
+                                  id="textInput"
+                                  {...register("search")}
+                                >
+                                  {inputSelected}
+                                </Style.InputSelected>
+                              </Col>
+                              <Col xs={1}>
+                                <Style.SelectedButton onClick={resetSearch}>
+                                  x
+                                </Style.SelectedButton>
+                              </Col>
+                            </Row>
+                          )) || (
+                            <Style.TextInput
+                              onKeyDown={handleInputChange}
+                              onKeyUp={handleInputChange}
+                              type="text"
+                              placeholder={
+                                (errors.search && errors.search.message) ||
+                                "Where to go?"
+                              }
+                              name="textInput"
+                              id="textInput"
+                              {...register("search")}
+                            />
+                          )}
+                          <Style.Suggestions>
+                            {search &&
+                              search.map(({ id, name, city }) => {
+                                return (
+                                  <Style.Dropdown
+                                    key={id}
+                                    onClick={handleClick}
+                                    data-city={city}
+                                    data-name={name}
+                                    data-id={id}
+                                  >
+                                    {name}
+                                  </Style.Dropdown>
+                                );
                               })}
-                          </datalist>
+                          </Style.Suggestions>
                         </Col>
                       </Row>
                     </Col>
@@ -128,9 +207,6 @@ const SearchBox = ({ accomondations = "", width }) => {
                           <Style.InputIcon>from</Style.InputIcon>
                         </Col>
                         <Col xs={10} sm={10}>
-                          {/*                           <Style.InputLabel htmlFor="startDate">
-                            Check in
-                          </Style.InputLabel> */}
                           <Style.DateInput
                             type="date"
                             name="startDate"
@@ -156,9 +232,6 @@ const SearchBox = ({ accomondations = "", width }) => {
                           <Style.InputIcon>to</Style.InputIcon>
                         </Col>
                         <Col xs={10} sm={10}>
-                          {/*                           <Style.InputLabel htmlFor="endDate">
-                            Check out
-                          </Style.InputLabel> */}
                           <Style.DateInput
                             type="date"
                             name="endDate"

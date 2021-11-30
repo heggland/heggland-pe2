@@ -21,6 +21,7 @@ import About from "../modules/about/about";
 
 const Index = ({ content, error }) => {
   let featured;
+  let searchContent = content;
   if (content) {
     // filter out featured accomondations
     featured = content.filter((item) => item.featured === true);
@@ -28,6 +29,25 @@ const Index = ({ content, error }) => {
     featured = featured.sort((a, b) => {
       return (a.id > b.id && -1) || (a.id < b.id && 1) || 0;
     });
+
+    // filter out cities to be used in SearchBox.
+    let cities = content.map((item) => {
+      return item.city;
+    });
+    // remove duplicate in the array
+    cities = [...new Set(cities)];
+
+    const cityObject = [];
+    cities.forEach((city) => {
+      cityObject.push({
+        name: city,
+        city: city,
+        id: city,
+      });
+    });
+
+    // cities first then the accomondations
+    searchContent = cityObject.concat(searchContent);
   }
 
   return (
@@ -35,7 +55,7 @@ const Index = ({ content, error }) => {
       {/* TODO: SAVE STATIC IMAGES IN PUBLIC FOLDER */}
       <Header page="home" />
       <SearchBox
-        accomondations={content && content.length >= 1 && content}
+        content={searchContent && searchContent.length >= 1 && searchContent}
         width={7}
       />
       <Container placeContent="center" backgroundColor="odd" padding="100px 0">

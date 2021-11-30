@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Heading from "../../components/Common/Heading";
 import { AdminLayout } from "../../components/Layout/Layout";

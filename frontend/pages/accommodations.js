@@ -225,7 +225,7 @@ const Accommodation = ({ content, error }) => {
       setAccommodation(content);
     } else {
       // filter out the content
-      const filtered = content.filter(function (accommodations) {
+      const filtered = content.filter((accommodations) => {
         if (
           JSON.stringify({
             name: accommodations.name,

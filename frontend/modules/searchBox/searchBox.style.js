@@ -64,6 +64,36 @@ export const TextInput = styled.input`
   }
 `;
 
+export const InputSelected = styled.div`
+  color: white;
+  background-color: transparent;
+  width: 100%;
+  height: 45px;
+  padding: 0 2rem;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    cursor: default;
+  }
+`;
+
+export const SelectedButton = styled.button`
+  background-color: ${Colors.white}};
+  border: 0;
+  cursor: pointer;
+  outline: none;
+
+  
+  &:hover {
+    transition: all 0.2s ease-in;
+    background-color: ${Colors.turquoise};
+  }
+
+`;
+
 export const InputLabel = styled.label`
   position: absolute;
   padding-left: 2rem;
@@ -147,4 +177,16 @@ export const ErrorDate = styled.div`
     color: red;
     font-size: 0.5rem;
   }
+`;
+
+export const Suggestions = styled.div`
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+
+  color: white;
+`;
+
+export const Dropdown = styled.div`
+  color: white;
 `;
