@@ -14,7 +14,7 @@ import Row from "../components/Row/Row";
 import Container from "../components/Container/Container";
 
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import * as Colors from "../constants/colors";
 import * as Breakpoints from "../components/Global/Breakpoints";
@@ -256,7 +256,7 @@ const Accommodation = ({ content, error }) => {
             <Row padding="100px 0 100px 0" flexDirection="column">
               <Row alignItems="center">
                 <FilterContainer>
-                  <Col xs={12} sm={4} md={4} margin="0 15px">
+                  <Col xs={11.5} sm={4} md={4} margin="0 15px">
                     <SearchError>{searchError}</SearchError>
                     <Input
                       defaultValue={

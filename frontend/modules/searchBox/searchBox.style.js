@@ -190,7 +190,7 @@ export const Suggestions = styled.div`
   height: fit-content;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   width: 95%;
-  padding: 15px;
+  margin-top: 15px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -219,16 +219,17 @@ export const Dropdown = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   cursor: default;
   padding: 0.5rem;
+  font-weight: 600;
 
   ${({ hover }) =>
     hover &&
     css`
       &:hover {
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 700;
+        background-color: rgba(0, 0, 0, 0.05);
       }
     `}
 `;

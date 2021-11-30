@@ -36,12 +36,12 @@ const SearchBox = ({ content = [], width }) => {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    console.log(data);
     if (selected) {
       const filterAccommodations = accommodations.filter((item) => {
         return item.name === inputSelected;
       });
       router.push("/accommodation/" + filterAccommodations[0].id);
+      return;
     }
     try {
       const searchInput = (inputSelected && inputSelected) || data.search;
@@ -106,6 +106,7 @@ const SearchBox = ({ content = [], width }) => {
     }
 
     setSearch(filterSearch);
+    console.log(search);
   };
 
   const handleClickSearchInput = () => {
@@ -239,10 +240,9 @@ const SearchBox = ({ content = [], width }) => {
                               <Style.Dropdown
                                 hover={true}
                                 key={id}
-                                onClick={handleSelect}
                                 data-city={city}
                                 data-name={name}
-                                data-id={id}
+                                onClick={handleSelect}
                               >
                                 {name}
                               </Style.Dropdown>
@@ -277,7 +277,7 @@ const SearchBox = ({ content = [], width }) => {
                               </Style.ErrorDate>
                             </Col>
                             <Col xs={1}>
-                              <Style.DatePicker for="startDate">
+                              <Style.DatePicker htmlFor="startDate">
                                 <FontAwesomeIcon
                                   onClick={handleClickChevronUp}
                                   icon={CalendarIcon}
@@ -315,7 +315,7 @@ const SearchBox = ({ content = [], width }) => {
                               </Style.ErrorDate>
                             </Col>
                             <Col xs={1}>
-                              <Style.DatePicker for="endDate">
+                              <Style.DatePicker htmlFor="endDate">
                                 <FontAwesomeIcon
                                   onClick={handleClickChevronUp}
                                   icon={CalendarIcon}
@@ -347,3 +347,42 @@ const SearchBox = ({ content = [], width }) => {
 };
 
 export default SearchBox;
+
+/*
+
+
+import {
+  faBed as BedIcon,
+  faMapMarkerAlt as MarkerIcon,
+  faCalendarAlt as CalendarIcon,
+  faChevronDown as ChevronDownIcon,
+  faChevronUp as ChevronUpIcon,
+  faTimes as CloseIcon,
+} from "@fortawesome/free-solid-svg-icons";
+
+                              <Style.Dropdown
+                                hover={true}
+                                key={id}
+                                data-city={city}
+                                data-name={name}
+                                onClick={handleSelect}
+                              >
+                                <Col xs={1} data-city={city} data-name={name}>
+                                  {(name === city && (
+                                    <FontAwesomeIcon icon={MarkerIcon} />
+                                  )) || <FontAwesomeIcon icon={BedIcon} />}
+                                </Col>
+                                <Col
+                                  xs={0.5}
+                                  data-city={city}
+                                  data-name={name}
+                                />
+                                <Col
+                                  xs={10.5}
+                                  data-city={city}
+                                  data-name={name}
+                                >
+                                  {name}
+                                </Col>
+                              </Style.Dropdown>
+*/
