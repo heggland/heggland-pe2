@@ -24,6 +24,7 @@ const SearchBox = ({ content = [], width }) => {
   const [inputSelected, setInputSelected] = useState("");
   const [selected, setSelected] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [match, setMatch] = useState(false);
 
   const {
     register,
@@ -36,16 +37,13 @@ const SearchBox = ({ content = [], width }) => {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    //search data.city in accomondations
+    console.log(data);
     if (selected) {
-      // filter out name from accommodations
       const filterAccommodations = accommodations.filter((item) => {
         return item.name === inputSelected;
       });
       router.push("/accommodation/" + filterAccommodations[0].id);
-      return;
     }
-
     try {
       const searchInput = (inputSelected && inputSelected) || data.search;
       const search = "?search=" + searchInput;
@@ -103,20 +101,45 @@ const SearchBox = ({ content = [], width }) => {
       filterSearch = filterSearch.slice(0, 5);
     }
 
+    if (filterSearch && filterSearch.length >= 1) {
+      setMatch(true);
+    }
+
     setSearch(filterSearch);
+    console.log(search);
   };
 
-  const handleClickChevronDown = () => {
-    // if search is true it means that the user has selected an item from the suggestions
-    if (search.length >= 2) {
-      setShowSuggestions(true);
+  const handleClickSearchInput = () => {
+    if (search && showSuggestions) {
+      setShowSuggestions(false);
     } else {
-      setSearch(content.slice(0, 5));
+      if (match.length === 0) {
+        setSearch(content.slice(0, 5));
+      }
+      if (search === undefined) {
+        setSearch(content.slice(0, 5));
+      }
       setShowSuggestions(true);
     }
   };
+
+  const handleClickChevronDown = () => {
+    if (search && search.length >= 2) {
+      setShowSuggestions(true);
+    } else {
+      if (match.length === 0) {
+        setSearch(content.slice(0, 5));
+      }
+      if (search === undefined) {
+        setSearch(content.slice(0, 5));
+      }
+
+      setShowSuggestions(true);
+    }
+  };
+
   const handleClickChevronUp = () => {
-    if (search.length >= 2) {
+    if (search && search.length >= 2) {
       setShowSuggestions(false);
     } else {
       setSearch([]);
@@ -129,6 +152,7 @@ const SearchBox = ({ content = [], width }) => {
     const city = e.target.dataset.city;
     setSearch([]);
     setInputSelected(name);
+    setShowSuggestions(false);
 
     if (name !== city) {
       setSelected(true);
@@ -165,12 +189,16 @@ const SearchBox = ({ content = [], width }) => {
                           {(inputSelected && (
                             <Row alignItems="center">
                               <Col xs={11}>
-                                <Style.InputSelected
+                                <Style.InputSelectedText
                                   {...register("search")}
                                   title={inputSelected}
                                 >
                                   {inputSelected}
-                                </Style.InputSelected>
+                                </Style.InputSelectedText>
+                                <Style.InputSelected
+                                  {...register("search")}
+                                  value={inputSelected}
+                                />
                               </Col>
                               <Col xs={1}>
                                 <Style.SelectedButton onClick={resetSearch}>
@@ -182,6 +210,7 @@ const SearchBox = ({ content = [], width }) => {
                             <Row alignItems="center">
                               <Col xs={11}>
                                 <Style.TextInput
+                                  onClick={handleClickSearchInput}
                                   onKeyDown={handleInputChange}
                                   onKeyUp={handleInputChange}
                                   type="text"
@@ -191,7 +220,6 @@ const SearchBox = ({ content = [], width }) => {
                                   }
                                   name="textInput"
                                   id="textInput"
-                                  {...register("search")}
                                 />
                               </Col>
                               <Col xs={1}>
@@ -212,10 +240,12 @@ const SearchBox = ({ content = [], width }) => {
                             </Row>
                           )}
                           <Style.Suggestions show={showSuggestions && true}>
-                            {search &&
+                            {(search &&
+                              search.length > 1 &&
                               search.map(({ id, name, city }) => {
                                 return (
                                   <Style.Dropdown
+                                    hover={true}
                                     key={id}
                                     onClick={handleSelect}
                                     data-city={city}
@@ -225,7 +255,7 @@ const SearchBox = ({ content = [], width }) => {
                                     {name}
                                   </Style.Dropdown>
                                 );
-                              })}
+                              })) || <Style.Dropdown>No match</Style.Dropdown>}
                           </Style.Suggestions>
                         </Col>
                       </Row>

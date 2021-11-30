@@ -14,6 +14,8 @@ const Position = styled.div`
   position: absolute;
   display: flex;
   display: column;
+
+  margin: 1%;
   top: 50%;
   transform: translate(0, -50%);
 
@@ -23,13 +25,19 @@ const Position = styled.div`
   }
 
   ${Breakpoints.sm} {
+    margin: 0;
     display: flex;
     display: column;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 100%;
-  } ;
+  }
+
+  ${Breakpoints.md} {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 `;
 
 export default function Home() {

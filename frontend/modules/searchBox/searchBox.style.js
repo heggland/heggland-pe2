@@ -64,7 +64,11 @@ export const TextInput = styled.input`
   }
 `;
 
-export const InputSelected = styled.span`
+export const InputSelected = styled.input`
+  display: none;
+`;
+
+export const InputSelectedText = styled.span`
   color: white;
   background-color: transparent;
   width: 100%;
@@ -201,12 +205,6 @@ export const Suggestions = styled.div`
     css`
       display: block;
     `}
-
-  & > * {
-    &:hover {
-      font-weight: bold;
-    }
-  }
 `;
 
 export const Dropdown = styled.div`
@@ -215,8 +213,28 @@ export const Dropdown = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: default;
 
-  &:hover {
-    cursor: pointer;
-  }
+  ${({ hover }) =>
+    hover &&
+    css`
+      &:hover {
+        cursor: pointer;
+        font-weight: bold;
+      }
+    `}
 `;
+
+/* & > * {
+  &:hover {
+    font-weight: bold;
+  }
+} */
+
+/*
+
+      ${Suggestions}:hover & {
+        font-weight: bold;
+      }
+
+      */
