@@ -64,7 +64,7 @@ export const TextInput = styled.input`
   }
 `;
 
-export const InputSelected = styled.div`
+export const InputSelected = styled.span`
   color: white;
   background-color: transparent;
   width: 100%;
@@ -74,24 +74,23 @@ export const InputSelected = styled.div`
   outline: none;
   display: flex;
   align-items: center;
+  white-space: nowrap !important;
+  overflow: hidden;
 
   &:hover {
     cursor: default;
   }
 `;
 
-export const SelectedButton = styled.button`
-  background-color: ${Colors.white}};
+export const SelectedButton = styled.div`
+  color: white;
   border: 0;
   cursor: pointer;
   outline: none;
 
-  
   &:hover {
     transition: all 0.2s ease-in;
-    background-color: ${Colors.turquoise};
   }
-
 `;
 
 export const InputLabel = styled.label`
@@ -147,6 +146,14 @@ export const InputContainer = styled.div`
 
 export const InputIcon = styled.label`
   color: white;
+  user-select: none;
+  ${({ hover }) =>
+    hover &&
+    css`
+      &:hover {
+        cursor: pointer;
+      }
+    `}
 `;
 
 export const Button = styled.button`
@@ -182,11 +189,34 @@ export const ErrorDate = styled.div`
 export const Suggestions = styled.div`
   position: absolute;
   z-index: 1;
-  background-color: black;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+  height: fit-content;
+  border: 1px solid ${Colors.blue};
+  display: none;
 
-  color: white;
+  ${({ show }) =>
+    show &&
+    css`
+      display: block;
+    `}
+
+  & > * {
+    &:hover {
+      font-weight: bold;
+    }
+  }
 `;
 
 export const Dropdown = styled.div`
-  color: white;
+  color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

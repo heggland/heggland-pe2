@@ -8,6 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed as BedIcon,
   faCalendarAlt as CalendarIcon,
+  faChevronDown as ChevronDownIcon,
+  faChevronUp as ChevronUpIcon,
+  faTimes as CloseIcon,
 } from "@fortawesome/free-solid-svg-icons";
 import { FRONTPAGESEARCH_SCHEMA } from "../../constants/schema";
 import { useForm } from "react-hook-form";
@@ -20,6 +23,7 @@ const SearchBox = ({ content = [], width }) => {
   const [search, setSearch] = useState([]);
   const [inputSelected, setInputSelected] = useState("");
   const [selected, setSelected] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const {
     register,
@@ -41,15 +45,10 @@ const SearchBox = ({ content = [], width }) => {
       router.push("/accommodation/" + filterAccommodations[0].id);
       return;
     }
+
     try {
       const searchInput = (inputSelected && inputSelected) || data.search;
       const search = "?search=" + searchInput;
-
-      const options = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      };
 
       let dateFrom = "";
       if (data.date_from) {
@@ -81,6 +80,7 @@ const SearchBox = ({ content = [], width }) => {
     let filterSearch;
 
     if (value && value.length >= 1) {
+      setShowSuggestions(true);
       filterSearch = accommodations.filter((items) => {
         if (
           JSON.stringify({
@@ -96,11 +96,9 @@ const SearchBox = ({ content = [], width }) => {
       });
     } else {
       setSearch([]);
+      setShowSuggestions(false);
     }
 
-    // filter out cities from array
-
-    // slice fitlersearch to 5 items
     if (filterSearch && filterSearch.length > 5) {
       filterSearch = filterSearch.slice(0, 5);
     }
@@ -108,7 +106,26 @@ const SearchBox = ({ content = [], width }) => {
     setSearch(filterSearch);
   };
 
-  const handleClick = (e) => {
+  const handleClickChevronDown = () => {
+    // if search is true it means that the user has selected an item from the suggestions
+
+    if (search) {
+      setShowSuggestions(true);
+    } else {
+      setSearch(content.slice(0, 5));
+      setShowSuggestions(true);
+    }
+  };
+  const handleClickChevronUp = () => {
+    if (search) {
+      setShowSuggestions(false);
+    } else {
+      setSearch([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSelect = (e) => {
     const name = e.target.dataset.name;
     const city = e.target.dataset.city;
     setSearch([]);
@@ -122,7 +139,6 @@ const SearchBox = ({ content = [], width }) => {
   const resetSearch = () => {
     setSearch([]);
     setInputSelected("");
-    // RESET INPUT
   };
 
   return (
@@ -151,41 +167,58 @@ const SearchBox = ({ content = [], width }) => {
                             <Row alignItems="center">
                               <Col xs={11}>
                                 <Style.InputSelected
-                                  type="text"
-                                  name="textInput"
-                                  id="textInput"
                                   {...register("search")}
+                                  title={inputSelected}
                                 >
                                   {inputSelected}
                                 </Style.InputSelected>
                               </Col>
                               <Col xs={1}>
                                 <Style.SelectedButton onClick={resetSearch}>
-                                  x
+                                  <FontAwesomeIcon icon={CloseIcon} />
                                 </Style.SelectedButton>
                               </Col>
                             </Row>
                           )) || (
-                            <Style.TextInput
-                              onKeyDown={handleInputChange}
-                              onKeyUp={handleInputChange}
-                              type="text"
-                              placeholder={
-                                (errors.search && errors.search.message) ||
-                                "Where to go?"
-                              }
-                              name="textInput"
-                              id="textInput"
-                              {...register("search")}
-                            />
+                            <Row alignItems="center">
+                              <Col xs={11}>
+                                <Style.TextInput
+                                  onKeyDown={handleInputChange}
+                                  onKeyUp={handleInputChange}
+                                  type="text"
+                                  placeholder={
+                                    (errors.search && errors.search.message) ||
+                                    "Where to go?"
+                                  }
+                                  name="textInput"
+                                  id="textInput"
+                                  {...register("search")}
+                                />
+                              </Col>
+                              <Col xs={1}>
+                                <Style.InputIcon hover={true}>
+                                  {(showSuggestions && (
+                                    <FontAwesomeIcon
+                                      onClick={handleClickChevronUp}
+                                      icon={ChevronUpIcon}
+                                    />
+                                  )) || (
+                                    <FontAwesomeIcon
+                                      onClick={handleClickChevronDown}
+                                      icon={ChevronDownIcon}
+                                    />
+                                  )}
+                                </Style.InputIcon>
+                              </Col>
+                            </Row>
                           )}
-                          <Style.Suggestions>
+                          <Style.Suggestions show={showSuggestions && true}>
                             {search &&
                               search.map(({ id, name, city }) => {
                                 return (
                                   <Style.Dropdown
                                     key={id}
-                                    onClick={handleClick}
+                                    onClick={handleSelect}
                                     data-city={city}
                                     data-name={name}
                                     data-id={id}
