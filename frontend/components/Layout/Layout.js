@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 
 import Image from "next/image";
 // placeholder logo.
-import logo from "../../public/logo.png";
+import logo from "../../public/logo.svg";
 
 import * as Style from "./Layout.style";
 import Col from "../Col/Col";
@@ -45,8 +45,7 @@ const Layout = ({ title, description, children }) => {
                     active={(pathname === "/" && true) || false}
                   >
                     <a href="/">
-                      {/* <Image height="100" width="120" src={logo} /> */}
-                      Holidaze
+                      <Image height={100} width={150} src={logo} />
                     </a>
                   </Style.LinkContainer>
                 </Style.NavTitle>

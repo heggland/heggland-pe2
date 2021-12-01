@@ -79,6 +79,13 @@ ${({ values }) =>
 `}
 
 ${({ values }) =>
+    values.hasOwnProperty("textAlign") &&
+    css`
+    text-align: ${values.textAlign};
+}
+`}
+
+${({ values }) =>
     values.hasOwnProperty("borderSize") &&
     css`
     border-bottom: ${values.borderSize || 1}px solid;

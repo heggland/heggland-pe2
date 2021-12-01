@@ -67,7 +67,7 @@ const CategoryButton = styled.button`
   margin: 10px;
   width: 100px;
   height: 45px;
-  background-color: rgb(255 74 82);
+  background-color: ${Colors.red};
   color: white;
   border: 0;
   cursor: pointer;
@@ -100,12 +100,12 @@ const Input = styled.input`
   padding-left: 10px;
   width: 100%;
   height: 45px;
-  background-color: rgb(255 74 82/ 0.85);
+  background-color: ${Colors.lightRed};
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
 
-  border: 2px solid rgb(255 74 82);
+  border: 2px solid ${Colors.red};
   &:hover {
     border: 2px solid ${Colors.turquoise};
   }

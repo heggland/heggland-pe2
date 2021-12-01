@@ -167,6 +167,7 @@ const EditForm = ({
         setStateLoading(false);
       } catch (error) {
         setError(error.toString());
+        setStateLoading(false);
       }
     }
   }

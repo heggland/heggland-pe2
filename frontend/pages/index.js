@@ -4,7 +4,6 @@ import { DESCRIPTION_HOME, TITLE_HOME } from "../constants/meta";
 import axios from "axios";
 import { ACCOMMONDATION_PATH, BASE_URL } from "../constants/api";
 
-import styled from "styled-components";
 import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";
 import Row from "../components/Row/Row";
@@ -13,7 +12,6 @@ import Header from "../components/Header/Header";
 import Error from "../modules/error/error";
 import SearchBox from "../modules/searchBox/searchBox";
 
-import logo from "../public/logo.png";
 import Image from "next/image";
 
 import Services from "../modules/services/services";

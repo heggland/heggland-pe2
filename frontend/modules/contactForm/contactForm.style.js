@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as Colors from "../../constants/colors";
 
 export const Form = styled.form`
   width: 100%;
@@ -50,7 +51,7 @@ export const Thanks = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: rgb(45 148 0);s
+  background-color: ${Colors.green}}
   border: none;
   color: white;
   padding: 10px 25px;
@@ -61,7 +62,6 @@ export const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
-
 
   ${({ error }) =>
     error &&
@@ -80,8 +80,6 @@ export const Button = styled.button`
     cursor: default;
   }
 `}
-
-
 `;
 
 export const SentButton = styled.div`

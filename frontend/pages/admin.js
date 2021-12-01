@@ -81,6 +81,7 @@ export default function Home() {
     <AdminLayout title={TITLE_ADMIN} description={DESCRIPTION_ADMIN}>
       <Row margin="2rem 0 0 1rem">
         <Heading>Dashboard</Heading>
+
         <Col xs={12}>
           <Row>
             <Col xs={12} lg={6}>

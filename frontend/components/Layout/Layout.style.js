@@ -20,6 +20,14 @@ export const LinkContainer = styled.span`
     & > * {
       font-weight: bold;
   }
+
+  ${Breakpoints.mobileOnly} {
+  & > * {
+    border-top: 1px solid rgb(0 0 0 / 5%);
+    margin-left: 10%;
+   
+  }
+}
 }
 `}
 `;
@@ -35,18 +43,24 @@ export const Navigation = styled.div`
   font-size: 1.2rem;
   background-color: transparent;
 
-  ${Breakpoints.xs} {
-    justify-content: space-between;
+  ${Breakpoints.mobileOnly} {
+    > :nth-child(2),
+    > :nth-child(3) {
+      padding-left: 5%;
+    }
 
     > :nth-child(1),
     > :nth-child(2) {
-      ${Breakpoints.mobileOnly} {
-        padding 0 5px;
-      }
+      padding: 0 5px;
     }
-    ${Breakpoints.desktopOnly} {
-      height: 85px !important;
-    }
+  }
+
+  ${Breakpoints.xs} {
+    justify-content: space-between;
+  }
+
+  ${Breakpoints.desktopOnly} {
+    height: 85px !important;
   }
 
   ${Breakpoints.sm} {
@@ -60,7 +74,7 @@ export const Navigation = styled.div`
       padding-left: 5vw;
       order: 1;
     }
-    
+
     // nav search button
     > :nth-child(2) {
       order: 3;
@@ -74,19 +88,17 @@ export const Navigation = styled.div`
         padding: 0;
       }
     }
-    
+
     // nav social icons
     > :nth-child(3) {
-      // border-left: 1px solid rgb(234 234 234);
-       order: 2;
-     }
+      order: 2;
+    }
   }
 `;
 
 export const NavTitle = styled.div`
   ${Breakpoints.md} {
     font-size: 1.5rem;
-    border-right: 1px solid rgb(234 234 234);
     padding-right: 15%;
     width: 130px;
   }
@@ -101,13 +113,11 @@ export const NavPages = styled.div`
 
   ${Breakpoints.mobileOnly} {
     & > * {
-      padding: 10px;
+      padding: 10px 0 20px 10px;
     }
   }
 
   ${Breakpoints.xs} {
-    border-top: 1px solid rgb(0 0 0 / 5%);
-
     ${({ show }) =>
       isNaN(show) &&
       css`
@@ -173,6 +183,10 @@ export const MobileButton = styled.div`
 
   &: hover {
     cursor: pointer;
+  }
+
+  ${Breakpoints.mobileOnly} {
+    margin-right: 10%;
   }
 
   ${Breakpoints.sm} {

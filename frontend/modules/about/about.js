@@ -22,9 +22,6 @@ const About = () => {
               tempor. Cras id mauris sed justo semper varius. In hendrerit urna
               elit, scelerisque lacinia leo porta a. Sed eu vulputate massa.
             </p>
-            {/*                 <Row xs="none" sm="none" padding="20px 5px">
-        <Image src={logo} width={75} height={75} />
-      </Row> */}
           </Col>
           <Col xs="none" sm="none" md={1} />
           <Col xs={12} sm={6} md={5}>

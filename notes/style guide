@@ -1,0 +1,39 @@
+
+ <Row justifyContent="center" textAlign="center" padding="100px 0">
+        <Col xs={1}>
+          <ColorCircle color={Colors.green} />
+          <small>{Colors.green}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.turquoise} />
+          <small>{Colors.turquoise}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.darkBlue} />
+          <small>{Colors.darkBlue}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.red} />
+          <small>{Colors.red}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.lightRed} />
+          <small>{Colors.lightRed}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.sandy} />
+          <small>{Colors.sandy}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.white} />
+          <small>{Colors.white}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.grey} />
+          <small>{Colors.grey}</small>
+        </Col>
+        <Col xs={1}>
+          <ColorCircle color={Colors.black} />
+          <small>{Colors.black}</small>
+        </Col>
+      </Row>
