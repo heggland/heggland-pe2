@@ -36,7 +36,7 @@ const Layout = ({ title, description, children }) => {
       <Head title={title} description={description} />
 
       <Style.Container>
-        <Row justifyContent="center">
+        <Row justifyContent="center" padding="0 10px">
           <Col xs={12} md={9}>
             <Style.Navigation>
               <Col xs={6} sm={2} md={2} lg={2.5}>

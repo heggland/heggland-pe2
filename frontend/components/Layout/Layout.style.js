@@ -24,8 +24,6 @@ export const LinkContainer = styled.span`
   ${Breakpoints.mobileOnly} {
   & > * {
     border-top: 1px solid rgb(0 0 0 / 5%);
-    margin-left: 10%;
-   
   }
 }
 }
@@ -41,7 +39,7 @@ export const Navigation = styled.div`
   z-index: 10;
   position: relative;
   font-size: 1.2rem;
-  background-color: transparent;
+  background-color: white;
 
   ${Breakpoints.mobileOnly} {
     > :nth-child(2),
