@@ -27,7 +27,11 @@ const About = () => {
           <Col xs={12} sm={6} md={5}>
             <Row justifyContent="center">
               <Style.ImageContainer>
-                <Image src={aboutImg} alt="Photo by Monstera from Pexels" />
+                <Image
+                  src={aboutImg}
+                  alt="Photo by Monstera from Pexels"
+                  priority={true}
+                />
               </Style.ImageContainer>
             </Row>
           </Col>

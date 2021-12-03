@@ -45,7 +45,12 @@ const Layout = ({ title, description, children }) => {
                     active={(pathname === "/" && true) || false}
                   >
                     <a href="/">
-                      <Image height={100} width={150} src={logo} />
+                      <Image
+                        priority={true}
+                        height={100}
+                        width={150}
+                        src={logo}
+                      />
                     </a>
                   </Style.LinkContainer>
                 </Style.NavTitle>
