@@ -72,6 +72,8 @@ const SearchBox = ({ content = [], width }) => {
     }
   };
 
+  const handleLeave = () => setShowSuggestions(showSuggestions && false);
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     let filterSearch;
@@ -106,7 +108,6 @@ const SearchBox = ({ content = [], width }) => {
     }
 
     setSearch(filterSearch);
-    console.log(search);
   };
 
   const handleClickSearchInput = () => {
@@ -232,7 +233,11 @@ const SearchBox = ({ content = [], width }) => {
                           )}
                         </Col>
                       </Row>
-                      <Style.Suggestions show={showSuggestions && true}>
+
+                      <Style.Suggestions
+                        show={showSuggestions && true}
+                        onMouseLeave={handleLeave}
+                      >
                         {(search &&
                           search.length > 0 &&
                           search.map(({ id, name, city }) => {
@@ -347,42 +352,3 @@ const SearchBox = ({ content = [], width }) => {
 };
 
 export default SearchBox;
-
-/*
-
-
-import {
-  faBed as BedIcon,
-  faMapMarkerAlt as MarkerIcon,
-  faCalendarAlt as CalendarIcon,
-  faChevronDown as ChevronDownIcon,
-  faChevronUp as ChevronUpIcon,
-  faTimes as CloseIcon,
-} from "@fortawesome/free-solid-svg-icons";
-
-                              <Style.Dropdown
-                                hover={true}
-                                key={id}
-                                data-city={city}
-                                data-name={name}
-                                onClick={handleSelect}
-                              >
-                                <Col xs={1} data-city={city} data-name={name}>
-                                  {(name === city && (
-                                    <FontAwesomeIcon icon={MarkerIcon} />
-                                  )) || <FontAwesomeIcon icon={BedIcon} />}
-                                </Col>
-                                <Col
-                                  xs={0.5}
-                                  data-city={city}
-                                  data-name={name}
-                                />
-                                <Col
-                                  xs={10.5}
-                                  data-city={city}
-                                  data-name={name}
-                                >
-                                  {name}
-                                </Col>
-                              </Style.Dropdown>
-*/
