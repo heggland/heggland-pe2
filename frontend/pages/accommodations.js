@@ -297,7 +297,6 @@ const Accommodation = ({ content, error }) => {
                   queryFilter &&
                   queryFilter.length > 0 &&
                   queryFilter.map(({ id, name, image, city }) => {
-                    console.log("query print go brrr");
                     return (
                       <Col xs={12} md={6} lg={4} xxl={3} key={id}>
                         <a href={`accommodation/${id + queryDate}`}>
@@ -314,7 +313,6 @@ const Accommodation = ({ content, error }) => {
                   (accommondation &&
                     accommondation.length >= 1 &&
                     accommondation.map(({ id, name, image, city }) => {
-                      console.log("accommondation print go brrr");
                       return (
                         <Col xs={12} md={6} lg={4} xxl={3} key={id}>
                           <a href={`accommodation/${id}`}>

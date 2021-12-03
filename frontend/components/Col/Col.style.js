@@ -3,6 +3,10 @@ import * as Breakpoints from "../Global/Breakpoints";
 
 // fetch the media query breakpoint
 const handleBreakpoint = (values) => {
+  // check if values has breakpoints key
+  const breakpointsKey = ["xs", "sm", "md", "lg", "xl", "xxl"];
+  if (!breakpointsKey.includes(values)) return false;
+
   switch (values) {
     case "xs":
       return Breakpoints.xs;
@@ -96,8 +100,6 @@ const Col = styled.div`
       justify-content: ${values.justifyContent};
     `}
 
-  // border: 1px solid red; // debugging go brr
-
   ${({ values }) =>
     values.overflow === "hidden" &&
     css`
@@ -125,8 +127,6 @@ const Col = styled.div`
     css`
       background-color: ${values.backgroundColor};
     `}
-
-
 
   ${({ values }) => values && CreateCSS(values)}
 `;

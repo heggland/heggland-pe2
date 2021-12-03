@@ -31,7 +31,6 @@ import {
 import Error from "../modules/error/error";
 
 import Notification from "../modules/notification/notification";
-import { ErrorSearch } from "../modules/searchBox/searchBox.style";
 
 const LoginContainer = styled.div`
   background-color: white;
