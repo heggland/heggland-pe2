@@ -8,26 +8,25 @@ export const Container = styled.div`
   background-color: white;
 
   & > * {
-    border-bottom: 1px solid ${Colors.red};
-    box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
-s  }
+    //border-bottom: 1px solid ${Colors.red};
+    box-shadow: 0 1px 3px rgb(0 0 0 / 75%);
+  }
 `;
 
 export const LinkContainer = styled.span`
   ${({ active }) =>
     active &&
     css`
-    & > * {
-      font-weight: bold;
-  }
+      & > * {
+        font-weight: bold;
+      }
+    `}
 
   ${Breakpoints.mobileOnly} {
-  & > * {
-    border-top: 1px solid rgb(0 0 0 / 5%);
+    & > * {
+      border-top: 1px solid rgb(0 0 0 / 5%);
+    }
   }
-}
-}
-`}
 `;
 
 export const Navigation = styled.div`
@@ -39,7 +38,7 @@ export const Navigation = styled.div`
   z-index: 10;
   position: relative;
   font-size: 1.2rem;
-  background-color: white;
+  background-color: transparent;
 
   ${Breakpoints.mobileOnly} {
     > :nth-child(2),
@@ -184,7 +183,7 @@ export const MobileButton = styled.div`
   }
 
   ${Breakpoints.mobileOnly} {
-    margin-right: 10%;
+    width: 3rem;
   }
 
   ${Breakpoints.sm} {

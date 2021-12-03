@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignOutAlt as SignOut,
   faBars as MobileMenu,
+  faMinus as MobileMenuOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Layout = ({ title, description, children }) => {
@@ -60,11 +61,15 @@ const Layout = ({ title, description, children }) => {
               <Col xs={6} sm="none" height="100%">
                 <Row justifyContent="right" height="100%">
                   <Style.MobileButton onClick={handleClick}>
-                    <FontAwesomeIcon icon={MobileMenu} transform="grow-4" />
+                    {(mobileMenu === false && (
+                      <FontAwesomeIcon icon={MobileMenu} color="black" />
+                    )) || (
+                      <FontAwesomeIcon icon={MobileMenuOpen} color="black" />
+                    )}
                   </Style.MobileButton>
                 </Row>
               </Col>
-              <Col xs="auto" sm={9} md={8} lg={8} xl={10}>
+              <Col xs={12} sm={9} md={8} lg={8} xl={10}>
                 <Style.NavPages show={mobileMenu}>
                   <Style.LinkContainer
                     active={
