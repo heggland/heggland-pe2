@@ -1,5 +1,6 @@
 import Heading from "../Common/Heading";
 import * as Style from "./Card.style";
+import Image from "next/image";
 
 const Card = ({ name, city, image }) => {
   let img;
@@ -11,7 +12,9 @@ const Card = ({ name, city, image }) => {
   return (
     <Style.Card>
       <Style.Head>
-        <Style.Image src={img} alt={alt} />
+        <Style.Image>
+          <Image src={img} alt={alt} layout="fill" objectFit="cover" />
+        </Style.Image>
       </Style.Head>
       <Style.Content>
         <Style.Heading>

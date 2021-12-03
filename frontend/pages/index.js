@@ -12,8 +12,6 @@ import Header from "../components/Header/Header";
 import Error from "../modules/error/error";
 import SearchBox from "../modules/searchBox/searchBox";
 
-import Image from "next/image";
-
 import Services from "../modules/services/services";
 import About from "../modules/about/about";
 

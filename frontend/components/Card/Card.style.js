@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { xs, sm, lg, md } from "../Global/Breakpoints";
+import { md } from "../Global/Breakpoints";
 import * as Colors from "../../constants/colors";
 
 export const Card = styled.div`
@@ -25,7 +25,7 @@ export const Head = styled.div`
   height: 200px;
 `;
 
-export const Image = styled.img`
+export const Image = styled.div`
   height: 200px;
   width: 100%;
   position: relative;

@@ -46,9 +46,10 @@ const Layout = ({ title, description, children }) => {
                   >
                     <a href="/">
                       <Image
-                        priority={true}
+                        priority="eager"
                         height={100}
                         width={150}
+                        alt="logo"
                         src={logo}
                       />
                     </a>

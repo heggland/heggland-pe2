@@ -174,7 +174,10 @@ const SearchBox = ({ content = [], width }) => {
                       <Row alignItems="center" padding="0 10px">
                         <Col xs={1} sm={1}>
                           <Style.InputIcon htmlFor="textInput">
-                            <FontAwesomeIcon icon={BedIcon} />
+                            <FontAwesomeIcon
+                              icon={BedIcon}
+                              transform="shrink-4"
+                            />
                           </Style.InputIcon>
                         </Col>
                         <Col xs={11} sm={11}>
@@ -194,7 +197,10 @@ const SearchBox = ({ content = [], width }) => {
                               </Col>
                               <Col xs={1}>
                                 <Style.SelectedButton onClick={resetSearch}>
-                                  <FontAwesomeIcon icon={CloseIcon} />
+                                  <FontAwesomeIcon
+                                    icon={CloseIcon}
+                                    transform="shrink-8"
+                                  />
                                 </Style.SelectedButton>
                               </Col>
                             </Row>
@@ -220,11 +226,13 @@ const SearchBox = ({ content = [], width }) => {
                                     <FontAwesomeIcon
                                       onClick={handleClickChevronUp}
                                       icon={ChevronUpIcon}
+                                      transform="shrink-6"
                                     />
                                   )) || (
                                     <FontAwesomeIcon
                                       onClick={handleClickChevronDown}
                                       icon={ChevronDownIcon}
+                                      transform="shrink-6"
                                     />
                                   )}
                                 </Style.InputIcon>
@@ -286,6 +294,7 @@ const SearchBox = ({ content = [], width }) => {
                                 <FontAwesomeIcon
                                   onClick={handleClickChevronUp}
                                   icon={CalendarIcon}
+                                  transform="shrink-4"
                                 />
                               </Style.DatePicker>
                             </Col>
@@ -324,6 +333,7 @@ const SearchBox = ({ content = [], width }) => {
                                 <FontAwesomeIcon
                                   onClick={handleClickChevronUp}
                                   icon={CalendarIcon}
+                                  transform="shrink-4"
                                 />
                               </Style.DatePicker>
                             </Col>
