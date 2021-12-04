@@ -48,7 +48,6 @@ const Index = ({ content, error }) => {
 
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
-      {/* TODO: SAVE STATIC IMAGES IN PUBLIC FOLDER */}
       <Header page="home" />
       <SearchBox
         content={searchContent && searchContent.length >= 1 && searchContent}

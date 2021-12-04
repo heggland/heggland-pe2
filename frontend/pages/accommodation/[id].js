@@ -51,7 +51,6 @@ export async function getServerSidePaths() {
 export async function getServerSideProps({ params }) {
   let data = [];
 
-  console.log(params);
   try {
     const response = await axios.get(
       BASE_URL + ACCOMMONDATION_PATH + params.id

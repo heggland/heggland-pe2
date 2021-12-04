@@ -21,11 +21,6 @@ export const LinkContainer = styled.span`
         font-weight: bold;
       }
     `}
-
-  ${Breakpoints.mobileOnly} {
-    & > * {
-      border-top: 1px solid rgb(0 0 0 / 5%);
-    }
   }
 `;
 
@@ -99,6 +94,13 @@ export const NavTitle = styled.div`
     padding-right: 15%;
     width: 130px;
   }
+
+  ${Breakpoints.mobileOnly} {
+    & > * {
+      padding-left: 5%;
+    }
+
+
 `;
 
 export const NavPages = styled.div`

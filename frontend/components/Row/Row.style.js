@@ -63,6 +63,15 @@ ${({ values }) =>
 `}
 
 ${({ values }) =>
+    values.hasOwnProperty("alignItemsMobile") &&
+    css`
+    ${Breakpoints.mobileOnly} {
+    align-items: ${values.alignItemsMobile};
+    }
+}
+`}
+
+${({ values }) =>
     values.hasOwnProperty("alignItemsSm") &&
     css`
     ${Breakpoints.sm} {

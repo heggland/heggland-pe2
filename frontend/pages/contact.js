@@ -35,7 +35,7 @@ const Position = styled.div`
   }
 `;
 
-export default function Home() {
+const Contact = () => {
   return (
     <Layout title={TITLE_CONTACT} description={DESCRIPTION_CONTACT}>
       <Header page="contact" />
@@ -57,4 +57,6 @@ export default function Home() {
       </Position>
     </Layout>
   );
-}
+};
+
+export default Contact;

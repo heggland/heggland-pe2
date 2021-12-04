@@ -20,7 +20,8 @@ import Error from "../modules/error/error";
 
 const Note = styled.div`
   background-color: #ffff4a;
-  width: 50%;
+  min-width: 50%;
+  max-width: 300px;
   box-shadow: 0px 0px 15px 9px rgba(165, 165, 165, 0.4);
   border-top: 30px solid rgb(245 245 8);
   margin-bottom: 20px;
@@ -51,7 +52,7 @@ const NoteFooter = styled.div`
   width: fit-content;
 `;
 
-export default function Home() {
+const Admin = () => {
   const [enquiries, setEnquiries] = useState([]);
   const [messages, setMessages] = useState([]);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -83,13 +84,15 @@ export default function Home() {
         <Heading>Dashboard</Heading>
 
         <Col xs={12}>
-          <Row>
+          <Row alignItemsMobile="center">
             <Col xs={12} lg={6}>
               <Note>
                 <NoteHeader>
-                  <Row>
-                    <Heading xs={3}>Messages</Heading>
-                  </Row>
+                  <NoteLink href="/admin/messages">
+                    <Row>
+                      <Heading xs={3}>Messages</Heading>
+                    </Row>
+                  </NoteLink>
                 </NoteHeader>
                 <Row>
                   {(messages.length >= 1 && (
@@ -120,9 +123,11 @@ export default function Home() {
             <Col xs={12} lg={6}>
               <Note>
                 <NoteHeader>
-                  <Row>
-                    <Heading xs={3}>Enquiries</Heading>
-                  </Row>
+                  <NoteLink href="/admin/enquiries">
+                    <Row>
+                      <Heading xs={3}>Enquiries</Heading>
+                    </Row>
+                  </NoteLink>
                 </NoteHeader>
                 {(enquiries.length >= 1 && (
                   <NoteBody>
@@ -153,4 +158,6 @@ export default function Home() {
       </Row>
     </AdminLayout>
   );
-}
+};
+
+export default Admin;

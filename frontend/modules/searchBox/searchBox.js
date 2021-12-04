@@ -20,6 +20,7 @@ import { useState } from "react";
 
 const SearchBox = ({ content = [], width }) => {
   const [accommodations] = useState(content);
+  const [error, setError] = useState(false);
   const [search, setSearch] = useState([]);
   const [inputSelected, setInputSelected] = useState("");
   const [selected, setSelected] = useState(false);
@@ -36,39 +37,42 @@ const SearchBox = ({ content = [], width }) => {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    if (selected) {
-      const filterAccommodations = accommodations.filter((item) => {
-        return item.name === inputSelected;
-      });
-      router.push("/accommodation/" + filterAccommodations[0].id);
-      return;
+    let dateFrom = "";
+    if (data.date_from) {
+      dateFrom = "from=" + data.date_from;
     }
+
+    let dateTo = "";
+    if (data.date_to) {
+      dateTo = "to=" + data.date_to;
+    }
+
+    let date = "";
+    if (dateFrom && dateTo) {
+      date = "&" + dateFrom + "&" + dateTo;
+    } else if (dateFrom) {
+      date = "&" + dateFrom;
+    } else if (dateTo) {
+      date = "&" + dateTo;
+    }
+
     try {
+      if (error) setError(false);
+
+      if (selected) {
+        const filterAccommodations = accommodations.filter((item) => {
+          return item.name === inputSelected;
+        });
+        date = date && "?" + date.slice(1);
+        router.push("/accommodation/" + filterAccommodations[0].id + date);
+        return;
+      }
+
       const searchInput = (inputSelected && inputSelected) || data.search;
       const search = "?search=" + searchInput;
-
-      let dateFrom = "";
-      if (data.date_from) {
-        dateFrom = "from=" + data.date_from;
-      }
-
-      let dateTo = "";
-      if (data.date_to) {
-        dateTo = "to=" + data.date_to;
-      }
-
-      let date = "";
-      if (dateFrom && dateTo) {
-        date = "&" + dateFrom + "&" + dateTo;
-      } else if (dateFrom) {
-        date = "&" + dateFrom;
-      } else if (dateTo) {
-        date = "&" + dateTo;
-      }
-
       router.push("/accommodations" + search + date);
     } catch (error) {
-      console.log(error);
+      setError(error.toString());
     }
   };
 
@@ -346,8 +350,9 @@ const SearchBox = ({ content = [], width }) => {
                       <Style.Button
                         type="submit"
                         onClick={handleSubmit(onSubmit)}
+                        title={(!error && "Search") || error}
                       >
-                        Go
+                        {(!error && "Go") || "Error!"}
                       </Style.Button>
                     </Col>
                   </Row>

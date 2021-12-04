@@ -4,6 +4,13 @@ import Container from "../Container/Container";
 import * as Style from "./Footer.style";
 import Heading from "../Common/Heading";
 
+import {
+  faFacebook as FacebookIcon,
+  faTwitter as TwitterIcon,
+  faYoutube as YoutubeIcon,
+  faInstagram as InstagramIcon,
+} from "@fortawesome/free-brands-svg-icons";
+
 const Footer = () => {
   return (
     <Style.Footer>
@@ -34,10 +41,48 @@ const Footer = () => {
                     </u>
                   </Col>
                   <Col xs={11} sm={9}>
-                    Twitter, Instagram, Facebook,
-                  </Col>
-                  <Col xs={11} sm={9}>
-                    and YouTube
+                    <Row>
+                      <Col xs={12} md={10} xl={5}>
+                        <Style.Link href="#">
+                          <Row>
+                            <Col xs={6}>Twitter</Col>
+                            <Col xs={6}>
+                              <Style.SocialMediaIcon icon={TwitterIcon} />
+                            </Col>
+                          </Row>
+                        </Style.Link>
+                      </Col>
+                      <Col xs={12} md={10} xl={5}>
+                        <Style.Link href="#">
+                          <Row>
+                            <Col xs={6}>Facebook</Col>
+                            <Col xs={6}>
+                              <Style.SocialMediaIcon icon={FacebookIcon} />
+                            </Col>
+                          </Row>
+                        </Style.Link>
+                      </Col>
+                      <Col xs={12} md={10} xl={5}>
+                        <Style.Link href="#">
+                          <Row>
+                            <Col xs={6}>Youtube</Col>
+                            <Col xs={6}>
+                              <Style.SocialMediaIcon icon={YoutubeIcon} />
+                            </Col>
+                          </Row>
+                        </Style.Link>
+                      </Col>
+                      <Col xs={12} md={10} xl={5}>
+                        <Style.Link href="#">
+                          <Row>
+                            <Col xs={6}>Instagram</Col>
+                            <Col xs={6}>
+                              <Style.SocialMediaIcon icon={InstagramIcon} />
+                            </Col>
+                          </Row>
+                        </Style.Link>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </Col>
