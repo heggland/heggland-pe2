@@ -5,6 +5,8 @@ import * as Colors from "../../../constants/colors";
 export const Container = styled.div`
   ${Breakpoints.xs} {
     margin: 0;
+    display: flex;
+    padding-top: 25px;
   }
 
   ${Breakpoints.md} {

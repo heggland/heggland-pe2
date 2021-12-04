@@ -21,6 +21,7 @@ import {
   faTrashAlt as Trash,
   faPencilAlt as Edit,
   faPlusCircle as Plus,
+  faStar as Star,
 } from "@fortawesome/free-solid-svg-icons";
 import Container from "../../components/Container/Container";
 import Error from "../../modules/error/error";
@@ -83,8 +84,6 @@ const Accommodation = () => {
     );
   };
 
-  // TODO, future improvement: add a marker for each accommodation that is featured
-
   return (
     <AdminLayout title={TITLE_ADMIN_ACCOMMONDATION}>
       <Row margin="0 1rem 0 1rem">
@@ -141,7 +140,7 @@ const Accommodation = () => {
             <Col box="white-table">
               {(accommodations.length !== 0 &&
                 accommodations.map(
-                  ({ id, name, city, address, published_at }) => {
+                  ({ id, name, city, address, published_at, featured }) => {
                     return (
                       <Row
                         key={id}
@@ -157,7 +156,16 @@ const Accommodation = () => {
                             <Col xs={3} sm="none">
                               ID:
                             </Col>
-                            <Span padding="0 0 0 0.5rem">{id}</Span>
+                            <Span padding="0 0 0 0.5rem">
+                              {id}&nbsp;
+                              {featured && (
+                                <FontAwesomeIcon
+                                  icon={Star}
+                                  transform="shrink-6"
+                                  color="orange"
+                                />
+                              )}
+                            </Span>
                           </Row>
                         </Col>
                         <Col xs={11} sm={3} hover="grey">
@@ -207,12 +215,18 @@ const Accommodation = () => {
                             <Col xs={3} sm="none">
                               Tools:
                             </Col>
+                            <Col xs={2} sm="none">
+                              <a href={`accommodation/edit/${id}`}>Edit</a>
+                            </Col>
                             <Col xs={1} sm={6}>
                               <a href={`accommodation/edit/${id}`}>
                                 <Button href={`accommodation/edit/${id}`}>
                                   <FontAwesomeIcon icon={Edit} />
                                 </Button>
                               </a>
+                            </Col>
+                            <Col xs={2} sm="none">
+                              Delete
                             </Col>
                             <Col xs={1} sm={6}>
                               <DeleteButton id={id}>
@@ -231,6 +245,10 @@ const Accommodation = () => {
             </Col>
           </Col>
         </Col>
+      </Row>
+      <Row alignItems="center" padding="20px 20px ">
+        <FontAwesomeIcon icon={Star} transform="shrink-6" color="orange" />-
+        featured establishment
       </Row>
     </AdminLayout>
   );

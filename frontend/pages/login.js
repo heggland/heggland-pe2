@@ -225,7 +225,7 @@ const Login = () => {
                   <Input
                     {...register("password")}
                     error={errors.password && true}
-                    type="password"
+                    type="text"
                     name="password"
                     placeholder="Passord"
                     autoComplete="on"

@@ -217,7 +217,7 @@ const EditForm = ({
           onChange={id && disableStateButton}
         >
           <Row padding="0px 0px 5px 0px" alignItems="center">
-            <Col md={6}>
+            <Col xs={12} md={6}>
               <Heading>{(id && name) || "New accommodation"}</Heading>
             </Col>
 
