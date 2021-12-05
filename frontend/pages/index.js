@@ -49,22 +49,6 @@ const Content = styled.div`
   }
 `;
 
-/* const Content = styled.div`
-  ${Breakpoints.mobileOnly} {
-    & > * {
-      display: flex;
-      flex-direction: row;
-      overflow-y: scroll;
-      flex-wrap: inherit;
-      justify-content: start;
-    }
-    & * > * {
-      margin-right: 40px;
-      width: 100%;
-    }
-  }
-`; */
-
 const Board = styled.div`
   & > * {
     min-height: 100%;
@@ -144,30 +128,6 @@ const Index = ({ content, error }) => {
     }
   };
 
-  /*   const handleChangeScroll = (e) => {
-    const position = e.target.scrollLeft;
-    console.log(position);
-
-    // set pagination on every 1000 position scroll
-    if (position > 1000) {
-      const newScroll = Math.floor(position / 1000);
-      setScroll(newScroll);
-
-      // add pagination[newScroll] to the state
-      setPagination(featuredPages + featuredPages[newScroll]);
-    }
-
-    console.log(page);
-
-    /* if (position > 1000) {
-      setPage(0);
-      setPagination(featuredPages[0]);
-    } else {
-      let newPage = page + 1;
-      setPage(newPage);
-      setPagination(featuredPages[newPage]);
-    } */
-
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
       <Header page="home" />
@@ -194,7 +154,6 @@ const Index = ({ content, error }) => {
                   )}
                 </Col>
                 <Col xs={12} sm={11}>
-                  {/*  <Content onScrollCapture={handleChangeScroll}> */}
                   <Row placeContent="center">
                     {(featured &&
                       featured.length >= 1 &&
@@ -215,7 +174,6 @@ const Index = ({ content, error }) => {
                         <Error string={error} path="accomondation" />
                       )}
                   </Row>
-                  {/* </Content> */}
                   <Content>
                     {(featured &&
                       featured.length >= 1 &&
