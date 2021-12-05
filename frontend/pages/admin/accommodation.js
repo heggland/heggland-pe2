@@ -37,7 +37,10 @@ const Accommodation = () => {
         const response = await http.get(
           BASE_URL + ACCOMMONDATION_PATH + ACCOMMONDATION_STATE_PATH
         );
-        setAccommodations(response.data);
+        const sortedResponse = response.data.sort((a, b) => {
+          return a.id - b.id;
+        });
+        setAccommodations(sortedResponse);
       } catch (error) {
         setError(error.toString());
       }
