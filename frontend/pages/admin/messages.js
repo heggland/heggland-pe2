@@ -33,7 +33,10 @@ const Messages = () => {
     async function fetchData() {
       try {
         const response = await http.get(BASE_URL + CONTACT_STATE_PATH);
-        setMessages(response.data);
+        const sortedResponse = response.data.sort((a, b) => {
+          return a.id - b.id;
+        });
+        setMessages(sortedResponse);
       } catch (error) {
         setError(error.toString());
       }

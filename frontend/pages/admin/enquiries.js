@@ -32,7 +32,10 @@ const Enquiries = () => {
     async function fetchData() {
       try {
         const response = await http.get(BASE_URL + ENQUIRIES_STATE_PATH);
-        setEnquiries(response.data);
+        const sortedResponse = response.data.sort((a, b) => {
+          return a.id - b.id;
+        });
+        setEnquiries(sortedResponse);
       } catch (error) {
         setError(error.toString());
       }
