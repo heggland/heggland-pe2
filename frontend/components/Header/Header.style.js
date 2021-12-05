@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import * as Breakpoints from "../Global/Breakpoints";
 
 export const Header = styled.div`
   & > * {
@@ -8,7 +9,17 @@ export const Header = styled.div`
     ${({ page }) =>
       (page === "home" &&
         css`
-          height: 700px;
+          ${Breakpoints.sm} {
+            height: 600px;
+          }
+
+          ${Breakpoints.md} {
+            height: 600px;
+          }
+
+          ${Breakpoints.lg} {
+            height: 700px;
+          }
         `) ||
       (page === "contact" &&
         css`

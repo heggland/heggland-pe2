@@ -69,7 +69,7 @@ const Layout = ({ title, description, children }) => {
                   </Style.MobileButton>
                 </Row>
               </Col>
-              <Col xs={12} sm={9} md={8} lg={8} xl={10}>
+              <Col xs={12} sm={10} md={8} lg={8} xl={10}>
                 <Style.NavPages show={mobileMenu}>
                   <Style.LinkContainer
                     active={
