@@ -112,6 +112,9 @@ const Index = ({ content, error }) => {
     } else {
       let newPage = page + 1;
       setPage(newPage);
+      if (featuredPages[newPage]) {
+        setPagination(featuredPages[newPage]);
+      }
     }
   };
 
