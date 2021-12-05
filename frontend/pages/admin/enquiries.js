@@ -59,7 +59,6 @@ const Enquiries = () => {
             setEnquiries(newArray);
           }
         } catch (error) {
-          console.log(error);
           setError(error);
         }
       }

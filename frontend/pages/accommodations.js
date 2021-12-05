@@ -175,7 +175,6 @@ const Accommodation = ({ content, error }) => {
       }
     } catch (error) {
       setSearchError(error.toString());
-      console.log(error);
     }
   }
 
@@ -193,7 +192,6 @@ const Accommodation = ({ content, error }) => {
       // filter out the data
       let filteredData;
       if (queryFilter) {
-        console.log("presearch go");
         filteredData = queryFilter.filter((accommodations) => {
           if (accommodations.category === value) {
             return accommodations;

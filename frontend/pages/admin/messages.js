@@ -94,7 +94,6 @@ const Messages = () => {
     async function handleUpdate() {
       try {
         const response = await http.put(BASE_URL + CONTACT_PATH + id, data);
-        console.log(response);
         if ((response.status = 200)) {
           for (let i = 0; i < updatedMessages.length; i++) {
             if (updatedMessages[i].id === id) {

@@ -106,7 +106,6 @@ const EditForm = ({
       setUpdatedAt(response.data.updated_at);
     } catch (error) {
       setError(error.toString());
-      console.log(error);
     }
   }
   async function deleteButton(e) {
@@ -143,7 +142,6 @@ const EditForm = ({
     if (confirmUpdate) {
       const data = new Object();
       data.id = id;
-      console.log(data);
 
       if (updatedState === null) {
         data.published_at = state === null ? new Date() : null;

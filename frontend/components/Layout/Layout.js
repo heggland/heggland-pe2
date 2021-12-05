@@ -27,8 +27,6 @@ const Layout = ({ title, description, children }) => {
   const handleClick = () =>
     setMobileMenu((mobileMenu === false && "flex") || false);
 
-  // console.log("TODO CHANGE: ", logo);
-
   const router = useRouter();
   const { pathname } = router;
 

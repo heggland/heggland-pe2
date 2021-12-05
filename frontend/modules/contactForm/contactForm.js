@@ -31,7 +31,6 @@ const ContactForm = () => {
 
     try {
       const response = await axios.post(BASE_URL + CONTACT_PATH, data);
-      console.log(response);
       setSubmitting(false);
       setSent(true);
     } catch (error) {
