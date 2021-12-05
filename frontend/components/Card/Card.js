@@ -15,13 +15,7 @@ const Card = ({ name, city, image, id, link }) => {
       <a href={(link && link) || `accommodation/${id}`}>
         <Style.Head>
           <Style.Image>
-            <Image
-              src={img}
-              alt={alt}
-              layout="fill"
-              objectFit="cover"
-              priority={true}
-            />
+            <Image src={img} alt={alt} layout="fill" objectFit="cover" />
           </Style.Image>
         </Style.Head>
         <Style.Content>

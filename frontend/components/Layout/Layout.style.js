@@ -104,8 +104,6 @@ export const NavTitle = styled.div`
     & > * {
       padding-left: 5%;
     }
-
-
 `;
 
 export const NavPages = styled.div`
@@ -184,6 +182,8 @@ export const MobileButton = styled.div`
   margin-left: 10px;
   width: fit-content;
   font-size: 1.5rem;
+  display: none;
+  opacity: 0;
 
   &: hover {
     cursor: pointer;
@@ -191,10 +191,8 @@ export const MobileButton = styled.div`
 
   ${Breakpoints.mobileOnly} {
     width: 3rem;
-  }
-
-  ${Breakpoints.sm} {
-    display: none;
+    display: flex;
+    opacity: 1;
   }
 `;
 

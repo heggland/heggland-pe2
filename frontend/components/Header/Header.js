@@ -14,7 +14,7 @@ const Header = ({ page }) => {
             alt="Photo by Valdemaras D. from Pexels"
             layout="responsive"
             objectFit="cover"
-            priority={true}
+            priority="eager"
           />
         </Style.Header>
       </Col>

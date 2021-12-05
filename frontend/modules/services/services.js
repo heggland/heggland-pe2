@@ -31,7 +31,6 @@ const services = () => {
                         alt="Photo by Jovydas Pinkevicius from Pexels"
                         layout="fill"
                         objectFit="cover"
-                        priority={true}
                       />
                     </Style.Image>
                   </Col>
@@ -54,7 +53,6 @@ const services = () => {
                         alt="Photo by SevenStorm JUHASZIMRUS from Pexels"
                         layout="fill"
                         objectFit="cover"
-                        priority={true}
                       />
                     </Style.Image>
                   </Col>
@@ -81,7 +79,6 @@ const services = () => {
                         alt="Photo by Vincent Gerbouin from Pexels"
                         layout="fill"
                         objectFit="cover"
-                        priority={true}
                       />
                     </Style.Image>
                   </Col>
@@ -104,7 +101,6 @@ const services = () => {
                         alt="Photo from Pexels"
                         layout="fill"
                         objectFit="cover"
-                        priority={true}
                       />
                     </Style.Image>
                   </Col>
