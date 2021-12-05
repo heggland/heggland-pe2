@@ -13,7 +13,13 @@ const Card = ({ name, city, image }) => {
     <Style.Card>
       <Style.Head>
         <Style.Image>
-          <Image src={img} alt={alt} layout="fill" objectFit="cover" />
+          <Image
+            src={img}
+            alt={alt}
+            layout="fill"
+            objectFit="cover"
+            priority={true}
+          />
         </Style.Image>
       </Style.Head>
       <Style.Content>

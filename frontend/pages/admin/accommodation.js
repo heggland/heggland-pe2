@@ -215,7 +215,7 @@ const Accommodation = () => {
                             <Col xs={3} sm="none">
                               Tools:
                             </Col>
-                            <Col xs={2} sm="none">
+                            <Col xs={1} sm="none">
                               <a href={`accommodation/edit/${id}`}>Edit</a>
                             </Col>
                             <Col xs={1} sm={6}>
@@ -225,7 +225,8 @@ const Accommodation = () => {
                                 </Button>
                               </a>
                             </Col>
-                            <Col xs={2} sm="none">
+
+                            <Col xs={1.5} sm="none">
                               Delete
                             </Col>
                             <Col xs={1} sm={6}>

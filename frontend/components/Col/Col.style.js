@@ -94,6 +94,12 @@ const Col = styled.div`
     `}
 
     ${({ values }) =>
+    values.alignSelf &&
+    css`
+      align-self: ${values.alignSelf};
+    `}
+
+    ${({ values }) =>
     values.justifyContent &&
     css`
       display: flex;

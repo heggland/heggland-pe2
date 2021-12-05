@@ -2,7 +2,14 @@ import Heading from "../components/Common/Heading";
 import Layout from "../components/Layout/Layout";
 import { DESCRIPTION_HOME, TITLE_HOME } from "../constants/meta";
 import axios from "axios";
-import { ACCOMMONDATION_PATH, BASE_URL } from "../constants/api";
+import {
+  ACCOMMONDATION_PATH,
+  ACCOMMONDATION_FEATURED_PATH,
+  BASE_URL,
+} from "../constants/api";
+
+import styled from "styled-components";
+import * as Breakpoints from "../components/Global/Breakpoints";
 
 import Card from "../components/Card/Card";
 import Col from "../components/Col/Col";
@@ -14,17 +21,70 @@ import SearchBox from "../modules/searchBox/searchBox";
 
 import Services from "../modules/services/services";
 import About from "../modules/about/about";
+import { useState } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft as BackIcon,
+  faChevronRight as ForwardIcon,
+} from "@fortawesome/free-solid-svg-icons";
+
+const PageButton = styled.div`
+  height: 100%;
+  align-self: center;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Content = styled.div`
+  ${Breakpoints.mobileOnly} {
+    display: flex;
+    flex-direction: row;
+    overflow-y: scroll;
+    flex-wrap: inherit;
+
+    & > * > * > * {
+      width: 300px;
+    }
+  }
+`;
+
+/* const Content = styled.div`
+  ${Breakpoints.mobileOnly} {
+    & > * {
+      display: flex;
+      flex-direction: row;
+      overflow-y: scroll;
+      flex-wrap: inherit;
+      justify-content: start;
+    }
+    & * > * {
+      margin-right: 40px;
+      width: 100%;
+    }
+  }
+`; */
 
 const Index = ({ content, error }) => {
+  let featuredPages = [];
   let featured;
   let searchContent = content;
+  const [page, setPage] = useState(0);
+  const [scroll, setScroll] = useState(0);
+
   if (content) {
     // filter out featured accomondations
-    featured = content.filter((item) => item.featured === true);
+    /* featured = content.filter((item) => item.featured === true); */
     // sorting accomondations by id
-    featured = featured.sort((a, b) => {
+    featured = content.sort((a, b) => {
       return (a.id > b.id && -1) || (a.id < b.id && 1) || 0;
     });
+
+    // devide featured accomondations into pages on 8
+    for (let i = 0; i < featured.length; i += 4) {
+      featuredPages.push(featured.slice(i, i + 4));
+    }
 
     // filter out cities to be used in SearchBox.
     let cities = content.map((item) => {
@@ -46,6 +106,54 @@ const Index = ({ content, error }) => {
     searchContent = cityObject.concat(searchContent);
   }
 
+  const [pagination, setPagination] = useState(featuredPages[0]);
+
+  const handleClickForward = () => {
+    if (page === 0) {
+      setPage(1);
+      setPagination(featuredPages[1]);
+    } else {
+      let newPage = page + 1;
+      setPage(newPage);
+      setPagination(featuredPages[newPage]);
+    }
+  };
+
+  const handleClickBack = () => {
+    if (page === 1) {
+      setPage(0);
+      setPagination(featuredPages[0]);
+    } else {
+      let newPage = page - 1;
+      setPage(newPage);
+      setPagination(featuredPages[newPage]);
+    }
+  };
+
+  /*   const handleChangeScroll = (e) => {
+    const position = e.target.scrollLeft;
+    console.log(position);
+
+    // set pagination on every 1000 position scroll
+    if (position > 1000) {
+      const newScroll = Math.floor(position / 1000);
+      setScroll(newScroll);
+
+      // add pagination[newScroll] to the state
+      setPagination(featuredPages + featuredPages[newScroll]);
+    }
+
+    console.log(page);
+
+    /* if (position > 1000) {
+      setPage(0);
+      setPagination(featuredPages[0]);
+    } else {
+      let newPage = page + 1;
+      setPage(newPage);
+      setPagination(featuredPages[newPage]);
+    } */
+
   return (
     <Layout title={TITLE_HOME} description={DESCRIPTION_HOME}>
       <Header page="home" />
@@ -58,25 +166,72 @@ const Index = ({ content, error }) => {
       </Container>
       <Container placeContent="center" backgroundColor="even" padding="100px 0">
         <Row justifyContent="center">
-          <Col xs={11} sm={12} md={8}>
+          <Col xs={11} sm={11} md={8}>
             <Row>
               <Heading size={2}>Recommended establishments</Heading>
             </Row>
             <Row>
-              {(featured &&
-                featured.length >= 1 &&
-                featured.map(({ id, name, image, city }) => {
-                  return (
-                    <Col xs={12} md={6} lg={4} xxl={3} key={id}>
-                      <a href={`accommodation/${id}`}>
-                        <Card name={name} city={city} image={image} key={id} />
-                      </a>
-                    </Col>
-                  );
-                })) ||
-                (!error && <span>No featured establishments</span>) || (
-                  <Error string={error} path="accomondation" />
+              <Col xs="none" sm={0.5} alignSelf="center">
+                {page !== 0 && (
+                  <PageButton onClick={handleClickBack}>
+                    <FontAwesomeIcon icon={BackIcon} transform="shrink-11" />
+                  </PageButton>
                 )}
+              </Col>
+              <Col xs={12} sm={11}>
+                {/*  <Content onScrollCapture={handleChangeScroll}> */}
+                <Row placeContent="center">
+                  {(featured &&
+                    featured.length >= 1 &&
+                    pagination &&
+                    pagination.map(({ id, name, image, city }) => {
+                      return (
+                        <Col xs="none" sm={6} md={6} lg={6} xxl={3} key={id}>
+                          <a href={`accommodation/${id}`}>
+                            <Card
+                              name={name}
+                              city={city}
+                              image={image}
+                              key={id}
+                            />
+                          </a>
+                        </Col>
+                      );
+                    })) ||
+                    (!error && <span>No featured establishments</span>) || (
+                      <Error string={error} path="accomondation" />
+                    )}
+                </Row>
+                {/* </Content> */}
+                <Content>
+                  {(featured &&
+                    featured.length >= 1 &&
+                    featured.map(({ id, name, image, city }) => {
+                      return (
+                        <Col xs={12} sm="none" key={id}>
+                          <a href={`accommodation/${id}`}>
+                            <Card
+                              name={name}
+                              city={city}
+                              image={image}
+                              key={id}
+                            />
+                          </a>
+                        </Col>
+                      );
+                    })) ||
+                    (!error && <span>No featured establishments</span>) || (
+                      <Error string={error} path="accomondation" />
+                    )}
+                </Content>
+              </Col>
+              <Col xs="none" sm={0.5} alignSelf="center">
+                {page >= 1 && pagination.length === 4 && (
+                  <PageButton onClick={handleClickForward}>
+                    <FontAwesomeIcon icon={ForwardIcon} transform="shrink-11" />
+                  </PageButton>
+                )}
+              </Col>
             </Row>
           </Col>
         </Row>
@@ -109,7 +264,9 @@ export async function getServerSideProps() {
   let data = [];
 
   try {
-    const response = await axios.get(BASE_URL + ACCOMMONDATION_PATH);
+    const response = await axios.get(
+      BASE_URL + ACCOMMONDATION_PATH + ACCOMMONDATION_FEATURED_PATH
+    );
     data = response.data;
   } catch (error) {
     return {

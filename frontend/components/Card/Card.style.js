@@ -4,7 +4,7 @@ import * as Colors from "../../constants/colors";
 
 export const Card = styled.div`
   background-color: white;
-  margin: 10px 0;
+  margin: 10px 10px;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 2px 20px rgb(227 233 243);

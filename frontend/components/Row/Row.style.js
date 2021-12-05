@@ -95,6 +95,16 @@ ${({ values }) =>
 `}
 
 ${({ values }) =>
+    values.hasOwnProperty("placeContent") &&
+    css`
+      place-content: ${values.placeContent};
+
+      ${Breakpoints.md} {
+        place-content: start;
+      }
+    `}
+
+${({ values }) =>
     values.hasOwnProperty("borderSize") &&
     css`
     border-bottom: ${values.borderSize || 1}px solid;
