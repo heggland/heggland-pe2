@@ -6,7 +6,6 @@ import useAxios from "../../../hooks/useAxios";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Heading from "../../../components/Common/Heading";
-// import Image from "next/image";
 
 import Error from "../../../modules/error/error";
 
