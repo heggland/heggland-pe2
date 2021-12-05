@@ -130,7 +130,6 @@ const Accommodation = ({ content, error }) => {
   let query = router.query;
 
   const [search, setSearch] = useState(query.search);
-
   let querySearch;
   let queryDate;
   let queryFilter;
