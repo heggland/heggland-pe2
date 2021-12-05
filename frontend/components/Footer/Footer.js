@@ -42,41 +42,41 @@ const Footer = () => {
                   </Col>
                   <Col xs={11} sm={9}>
                     <Row>
-                      <Col xs={12} md={10} xl={5}>
+                      <Col xs={12} md={10} xl={6}>
                         <Style.Link href="#">
                           <Row>
-                            <Col xs={6}>Twitter</Col>
-                            <Col xs={6}>
+                            <Col xs={7}>Twitter</Col>
+                            <Col xs={5}>
                               <Style.SocialMediaIcon icon={TwitterIcon} />
                             </Col>
                           </Row>
                         </Style.Link>
                       </Col>
-                      <Col xs={12} md={10} xl={5}>
+                      <Col xs={12} md={10} xl={6}>
                         <Style.Link href="#">
                           <Row>
-                            <Col xs={6}>Facebook</Col>
-                            <Col xs={6}>
+                            <Col xs={7}>Facebook</Col>
+                            <Col xs={5}>
                               <Style.SocialMediaIcon icon={FacebookIcon} />
                             </Col>
                           </Row>
                         </Style.Link>
                       </Col>
-                      <Col xs={12} md={10} xl={5}>
+                      <Col xs={12} md={10} xl={6}>
                         <Style.Link href="#">
                           <Row>
-                            <Col xs={6}>Youtube</Col>
-                            <Col xs={6}>
+                            <Col xs={7}>Youtube</Col>
+                            <Col xs={5}>
                               <Style.SocialMediaIcon icon={YoutubeIcon} />
                             </Col>
                           </Row>
                         </Style.Link>
                       </Col>
-                      <Col xs={12} md={10} xl={5}>
+                      <Col xs={12} md={10} xl={6}>
                         <Style.Link href="#">
                           <Row>
-                            <Col xs={6}>Instagram</Col>
-                            <Col xs={6}>
+                            <Col xs={7}>Instagram</Col>
+                            <Col xs={5}>
                               <Style.SocialMediaIcon icon={InstagramIcon} />
                             </Col>
                           </Row>

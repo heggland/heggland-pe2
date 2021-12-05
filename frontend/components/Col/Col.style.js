@@ -92,7 +92,7 @@ const Col = styled.div`
       align-items: ${values.alignItems};
       display: flex !important;
     `}
-
+    
     ${({ values }) =>
     values.alignSelf &&
     css`

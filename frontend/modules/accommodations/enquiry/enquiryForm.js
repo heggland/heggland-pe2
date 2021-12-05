@@ -43,7 +43,7 @@ const EnquiryForm = ({ accommodation }) => {
     data.accommondation_id = accommodation;
 
     try {
-      const response = await axios.post(BASE_URL + ENQUIRIES_PATH, data);
+      await axios.post(BASE_URL + ENQUIRIES_PATH, data);
 
       setSubmitting(false);
       setSent(true);

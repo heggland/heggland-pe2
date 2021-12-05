@@ -164,9 +164,7 @@ const Accommodation = ({ content, error }) => {
           if (
             JSON.stringify({
               name: accommodations.name,
-              description: accommodations.description,
               address: accommodations.address,
-              zip_code: accommodations.zip_code,
               city: accommodations.city,
             })
               .toLowerCase()
@@ -229,9 +227,7 @@ const Accommodation = ({ content, error }) => {
         if (
           JSON.stringify({
             name: accommodations.name,
-            description: accommodations.description,
             address: accommodations.address,
-            zip_code: accommodations.zip_code,
             city: accommodations.city,
           })
             .toLowerCase()
@@ -298,15 +294,14 @@ const Accommodation = ({ content, error }) => {
                   queryFilter.length > 0 &&
                   queryFilter.map(({ id, name, image, city }) => {
                     return (
-                      <Col xs={12} md={6} lg={4} xxl={3} key={id}>
-                        <a href={`accommodation/${id + queryDate}`}>
-                          <Card
-                            name={name}
-                            city={city}
-                            image={image}
-                            key={id}
-                          />
-                        </a>
+                      <Col xs={12} sm={6} lg={4} xxl={3} key={id}>
+                        <Card
+                          name={name}
+                          city={city}
+                          image={image}
+                          link={`accommodation/${id + queryDate}`}
+                          key={id}
+                        />
                       </Col>
                     );
                   })) ||
@@ -314,15 +309,14 @@ const Accommodation = ({ content, error }) => {
                     accommondation.length >= 1 &&
                     accommondation.map(({ id, name, image, city }) => {
                       return (
-                        <Col xs={12} md={6} lg={4} xxl={3} key={id}>
-                          <a href={`accommodation/${id}`}>
-                            <Card
-                              name={name}
-                              city={city}
-                              image={image}
-                              key={id}
-                            />
-                          </a>
+                        <Col xs={12} sm={6} lg={4} xxl={3} key={id}>
+                          <Card
+                            name={name}
+                            city={city}
+                            image={image}
+                            link={`accommodation/${id}`}
+                            key={id}
+                          />
                         </Col>
                       );
                     })) ||

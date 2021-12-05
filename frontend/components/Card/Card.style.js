@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { md } from "../Global/Breakpoints";
 import * as Colors from "../../constants/colors";
 
@@ -19,6 +19,12 @@ export const Card = styled.div`
   ${md} {
     margin: 10px 10px;
   }
+
+  ${({ opacity }) =>
+    opacity &&
+    css`
+      opacity: ${Number(opacity)};
+    `}
 `;
 
 export const Head = styled.div`

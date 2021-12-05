@@ -34,7 +34,8 @@ export const CloseModal = styled.div`
   color: rgb(255 74 82);
   position: absolute;
   top: 3%;
-  right: 5%;
+  right: 6%;
+  width: 15px;
 
   &: hover {
     cursor: pointer;

@@ -15,17 +15,3 @@ export const yellowNote = "rgb(255 255 74)";
 export const navigationHeader = "rgb(0 126 255)";
 export const navigationPages = "rgb(24 32 46)";
 export const navigationLogoutContainer = "rgb(29 36 50)";
-
-// button colors
-/* color: rgb(45 148 0);
-border: 1px solid rgb(170,214,124); */
-
-// export const warning = "rgb(246,77,10)";
-
-// blue button
-/* background-color: rgb(230,240,251);
-border: 1px solid rgb(165,213,255); */
-
-// red logout
-// rgb(174 13 27)
-// white text

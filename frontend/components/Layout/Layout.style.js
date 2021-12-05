@@ -7,9 +7,14 @@ export const Container = styled.div`
   flex: 1 0 auto;
   background-color: white;
 
-  & > * {
-    //border-bottom: 1px solid ${Colors.red};
-    box-shadow: 0 1px 3px rgb(0 0 0 / 75%);
+  // navigation bar on destkop
+  & > *:first-child {
+    border-bottom: 2px solid ${Colors.sandy};
+
+    ${Breakpoints.sm} {
+      background-color: ${Colors.sandy};
+      border: none;
+    }
   }
 `;
 

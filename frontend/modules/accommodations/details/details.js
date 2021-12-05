@@ -76,9 +76,12 @@ const Details = ({ accommodation }) => {
                   style={customStyles}
                   ariaHideApp={false}
                 >
-                  <Style.CloseModal onClick={closeModal}>
-                    <FontAwesomeIcon icon={close} transform="grow-5" />
-                  </Style.CloseModal>
+                  <Row justifyContent="center" margin="0">
+                    <Heading size={4}>Enquiry</Heading>
+                    <Style.CloseModal onClick={closeModal}>
+                      <FontAwesomeIcon icon={close} transform="shrink-1" />
+                    </Style.CloseModal>
+                  </Row>
                   <EnquiryForm accommodation={accommodation.id} />
                 </Modal>
               </div>

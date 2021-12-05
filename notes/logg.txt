@@ -55,3 +55,37 @@ export const DropContent = styled.div`
     display: block;
   }
 `;
+
+        const lengthFeatured = featuredPages[1].length;
+        switch (lengthFeatured) {
+          case 1:
+            modifiedPagination[0] = featuredPages[1][0];
+            modifiedPagination[1] = featuredPages[1][0];
+            modifiedPagination[2] = featuredPages[1][0];
+            modifiedPagination[3] = featuredPages[1][0];
+            break;
+          case 2:
+            modifiedPagination[1] = featuredPages[1][0];
+            modifiedPagination[2] = featuredPages[1][0];
+            modifiedPagination[3] = featuredPages[1][0];
+            break;
+          default:
+            modifiedPagination[2] = featuredPages[1][0];
+            modifiedPagination[3] = featuredPages[1][0];
+            break;
+        }
+
+        // loop over modifiedPagination and change the id to negative - i
+        modifiedPagination = modifiedPagination.map((item, i) => {
+          return { ...item, id: -i };
+        });
+
+        // loop over modifiedPagination and convert the id to negative
+        modifiedPagination.forEach((item, i) => {
+          item.id = "placeholder" + item.id.toString();
+        });
+
+        // merge featuredPages[0] and modifiedPagination sliced
+        modifiedPagination = featuredPages[1].concat(
+          modifiedPagination.slice(lengthFeatured, 4)
+        );
