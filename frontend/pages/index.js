@@ -147,11 +147,12 @@ const Index = ({ content, error }) => {
             <Board>
               <Row>
                 <Col xs="none" sm={0.5} alignSelf="center">
-                  {page && page !== 0 && (
+                  {(page && page !== 0 && (
                     <PageButton onClick={handleClickBack}>
                       <FontAwesomeIcon icon={BackIcon} transform="shrink-11" />
                     </PageButton>
-                  )}
+                  )) ||
+                    ""}
                 </Col>
                 <Col xs={12} sm={11}>
                   <Row placeContent="center">
@@ -199,14 +200,15 @@ const Index = ({ content, error }) => {
                   </Content>
                 </Col>
                 <Col xs="none" sm={0.5} alignSelf="center">
-                  {pagination && pagination.length === 4 && (
+                  {(pagination && pagination.length === 4 && (
                     <PageButton onClick={handleClickForward}>
                       <FontAwesomeIcon
                         icon={ForwardIcon}
                         transform="shrink-11"
                       />
                     </PageButton>
-                  )}
+                  )) ||
+                    ""}
                 </Col>
               </Row>
             </Board>
