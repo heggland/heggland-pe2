@@ -57,7 +57,6 @@ const Layout = ({ title, description, children }) => {
                   </Style.LinkContainer>
                 </Style.NavTitle>
               </Col>
-
               <Col xs={6} sm="none" height="100%">
                 <Row justifyContent="right" height="100%">
                   <Style.MobileButton onClick={handleClick}>
@@ -69,6 +68,7 @@ const Layout = ({ title, description, children }) => {
                   </Style.MobileButton>
                 </Row>
               </Col>
+
               <Col xs={12} sm={10} md={8} lg={8} xl={10}>
                 <Style.NavPages show={mobileMenu}>
                   <Style.LinkContainer
