@@ -147,7 +147,7 @@ const Index = ({ content, error }) => {
             <Board>
               <Row>
                 <Col xs="none" sm={0.5} alignSelf="center">
-                  {page !== 0 && (
+                  {page && page !== 0 && (
                     <PageButton onClick={handleClickBack}>
                       <FontAwesomeIcon icon={BackIcon} transform="shrink-11" />
                     </PageButton>
@@ -170,9 +170,11 @@ const Index = ({ content, error }) => {
                           </Col>
                         );
                       })) ||
-                      (!error && <span>No featured establishments</span>) || (
-                        <Error string={error} path="accomondation" />
-                      )}
+                      (!error && (
+                        <Col xs="none" sm={12}>
+                          No featured establishments
+                        </Col>
+                      )) || <Error string={error} path="accomondation" />}
                   </Row>
                   <Content>
                     {(featured &&
@@ -189,13 +191,15 @@ const Index = ({ content, error }) => {
                           </Col>
                         );
                       })) ||
-                      (!error && <span>No featured establishments</span>) || (
-                        <Error string={error} path="accomondation" />
-                      )}
+                      (!error && (
+                        <Col xs={12} sm="none">
+                          No featured establishments
+                        </Col>
+                      )) || <Error string={error} path="accomondation" />}
                   </Content>
                 </Col>
                 <Col xs="none" sm={0.5} alignSelf="center">
-                  {pagination.length === 4 && (
+                  {pagination && pagination.length === 4 && (
                     <PageButton onClick={handleClickForward}>
                       <FontAwesomeIcon
                         icon={ForwardIcon}
