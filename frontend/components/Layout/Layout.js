@@ -71,10 +71,10 @@ const Layout = ({ title, description, children }) => {
                 <Style.NavPages show={mobileMenu}>
                   <Style.LinkContainer
                     active={
-                      (pathname.includes("accommodations") && true) || false
+                      (pathname.includes("accommondations") && true) || false
                     }
                   >
-                    <Link href="/accommodations">Accommodation</Link>
+                    <Link href="/accommondations">Accommondation</Link>
                   </Style.LinkContainer>
                   <Style.LinkContainer
                     active={(pathname.includes("contact") && true) || false}
