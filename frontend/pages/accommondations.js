@@ -296,7 +296,7 @@ const Accommodation = ({ content, error }) => {
                           name={name}
                           city={city}
                           image={image}
-                          link={`accommodation/${id + queryDate}`}
+                          link={`accommondation/${id + queryDate}`}
                           key={id}
                         />
                       </Col>
@@ -311,7 +311,7 @@ const Accommodation = ({ content, error }) => {
                             name={name}
                             city={city}
                             image={image}
-                            link={`accommodation/${id}`}
+                            link={`accommondation/${id}`}
                             key={id}
                           />
                         </Col>

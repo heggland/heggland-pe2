@@ -64,13 +64,13 @@ const SearchBox = ({ content = [], width }) => {
           return item.name === inputSelected;
         });
         date = date && "?" + date.slice(1);
-        router.push("/accommodation/" + filterAccommodations[0].id + date);
+        router.push("/accommondation/" + filterAccommodations[0].id + date);
         return;
       }
 
       const searchInput = (inputSelected && inputSelected) || data.search;
       const search = "?search=" + searchInput;
-      router.push("/accommodations" + search + date);
+      router.push("/accommondations" + search + date);
     } catch (error) {
       setError(error.toString());
     }

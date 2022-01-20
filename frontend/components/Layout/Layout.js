@@ -141,8 +141,8 @@ export const AdminLayout = ({
             <Link href="/admin">Admin</Link>
           </Style.AdminNavHead>
           <Style.AdminNav show={mobileMenu}>
-            <Link href="/admin/accommodation">
-              <Style.AdminLink>Accommodation</Style.AdminLink>
+            <Link href="/admin/accommondation">
+              <Style.AdminLink>Accommondation</Style.AdminLink>
             </Link>
             <Link href="/admin/enquiries">
               <Style.AdminLink>Enquiries</Style.AdminLink>
