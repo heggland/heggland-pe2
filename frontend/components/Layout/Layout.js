@@ -61,8 +61,8 @@ const Layout = ({ title, description, children }) => {
                     {(mobileMenu === false && (
                       <FontAwesomeIcon icon={MobileMenu} color="black" />
                     )) || (
-                      <FontAwesomeIcon icon={MobileMenuOpen} color="black" />
-                    )}
+                        <FontAwesomeIcon icon={MobileMenuOpen} color="black" />
+                      )}
                   </Style.MobileButton>
                 </Row>
               </Col>
@@ -141,7 +141,7 @@ export const AdminLayout = ({
             <Link href="/admin">Admin</Link>
           </Style.AdminNavHead>
           <Style.AdminNav show={mobileMenu}>
-            <Link href="/admin/accommondation">
+            <Link href="/admin/accommondations">
               <Style.AdminLink>Accommondation</Style.AdminLink>
             </Link>
             <Link href="/admin/enquiries">
